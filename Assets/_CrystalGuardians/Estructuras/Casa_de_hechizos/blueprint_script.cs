@@ -6,34 +6,48 @@ public class blueprint_script : MonoBehaviour
 {
 
     RaycastHit hit;
+    public LayerMask layer = ~0;
     Vector3 movePoint;
     public GameObject prefab;
+    public Transform target;
+    public float gridSize;
     // Start is called before the first frame update
     void Start()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        Debug.Log("start");
-        if (Physics.Raycast(ray, out hit, 50000.0f, (1 << 8)))
+        
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
         {
-            Debug.Log("if del start");
-            transform.position = hit.point;
+            Vector3 truePos;
+            truePos.x = Mathf.Floor(hit.point.x / gridSize) * gridSize;
+            truePos.y = 0;
+            truePos.z = Mathf.Floor(hit.point.z / gridSize) * gridSize;
+            Debug.Log(truePos);
+            transform.position = truePos;
         }
        
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.Log("update");
-        if (Physics.Raycast(ray, out hit, 50000.0f, (1 << 8)))
+        
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
         {
-            transform.position = hit.point;
+            
+            Vector3 truePos;
+           // truncar x,z para que solo valga valores enteros y cuadre con las casillas
+            truePos.x = Mathf.Floor(hit.point.x / gridSize) * gridSize;
+            truePos.y = 0;
+            truePos.z = Mathf.Floor(hit.point.z / gridSize) * gridSize;
+            Debug.Log(truePos.ToString());
+            transform.position = truePos;
         }
         if (Input.GetMouseButton(0))
         {
-            Debug.Log("input");
+
             Instantiate(prefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }

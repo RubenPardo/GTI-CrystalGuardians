@@ -47,7 +47,7 @@ public class blueprint_script : MonoBehaviour
         }
         if (Input.GetMouseButton(0))
         {
-
+            // construir la estructura y borrar el blue print
             Instantiate(prefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }

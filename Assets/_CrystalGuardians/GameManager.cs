@@ -39,9 +39,25 @@ public class GameManager : MonoBehaviour
     public static int nivelMinimoCastilloExtractor = 0;
     public static int costeConstruirExtractor = 2160;
 
+    //recursos -------------
+    private float oro = 0;
+    private float obsidium = 0;
+    private bool oroConstruido = false;
+    private bool obsidiumConstruido = false;
+
+    public GameObject prefabOro;
+    public GameObject prefabObsidium;
+    public float Oro { get => oro; set => oro = value; }
+    public float Obsiidum { get => obsidium; set => obsidium = value; }
+
+    public bool OroConstruido { get => oroConstruido; set => oroConstruido = value; }
+    public bool ObsidiumConstruido { get => obsidiumConstruido; set => obsidiumConstruido = value; }
+
 
     public GameObject castillo;
 
+    public int i = 0;
+    public int y = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -59,8 +75,36 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    
     void Update()
     {
-        
+        //generacion de recursos manual
+        Vector3 posicionOro = new Vector3(0, 0, 0);
+        Vector3 posicionObsidium = new Vector3(3, 0, 0);
+        if (OroConstruido)
+        {
+            Oro = Oro + 10000;
+        }
+        if (ObsidiumConstruido)
+        {
+            Obsiidum = Obsiidum + 10000;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && i == 0)
+        {
+            Debug.Log("generador de oro construido");
+            Instantiate(prefabOro, posicionOro, transform.rotation);
+            OroConstruido = true;
+            i++;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return) && y == 0)
+        {
+            Debug.Log("El obsidium aumenta");
+            Instantiate(prefabObsidium, posicionObsidium, transform.rotation);
+            ObsidiumConstruido = true;
+            y++;
+        }
     }
 }

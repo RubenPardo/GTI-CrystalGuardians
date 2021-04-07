@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 585925250}
   - component: {fileID: 585925249}
   m_Layer: 5
-  m_Name: Trampa
+  m_Name: btnTrampa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 714572016}
   - component: {fileID: 714572015}
   m_Layer: 5
-  m_Name: Muro
+  m_Name: btnMuro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 860564801}
   - component: {fileID: 860564800}
   m_Layer: 5
-  m_Name: Extractor
+  m_Name: btnExtractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1101,7 +1101,7 @@ GameObject:
   - component: {fileID: 919675239}
   - component: {fileID: 919675238}
   m_Layer: 5
-  m_Name: Torre
+  m_Name: btnTorre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1639,7 +1639,7 @@ GameObject:
   - component: {fileID: 1480738301}
   - component: {fileID: 1480738300}
   m_Layer: 5
-  m_Name: Mina
+  m_Name: btnMina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1772,7 +1772,7 @@ GameObject:
   - component: {fileID: 1691041634}
   - component: {fileID: 1691041633}
   m_Layer: 5
-  m_Name: CasaHechizos
+  m_Name: btnCasaHechizos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2063,7 +2063,7 @@ GameObject:
   - component: {fileID: 2126219025}
   - component: {fileID: 2126219024}
   m_Layer: 5
-  m_Name: Cuartel
+  m_Name: btnCuartel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

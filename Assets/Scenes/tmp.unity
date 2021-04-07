@@ -455,7 +455,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.5549027, g: 0.754717, b: 0.5517978, a: 1}
     m_PressedColor: {r: 0.37201852, g: 0.8301887, b: 0.63438964, a: 1}
     m_SelectedColor: {r: 0.4072484, g: 0.8113208, b: 0.35590956, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.9622642, g: 0.049928807, b: 0.049928807, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1016,10 +1016,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.5549027, g: 0.754717, b: 0.5517978, a: 1}
-    m_PressedColor: {r: 0.37201852, g: 0.8301887, b: 0.63438964, a: 1}
-    m_SelectedColor: {r: 0.4072484, g: 0.8113208, b: 0.35590956, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_HighlightedColor: {r: 0.43129978, g: 0.8301887, b: 0.20754717, a: 1}
+    m_PressedColor: {r: 0.36048564, g: 0.8018868, b: 0.2004717, a: 1}
+    m_SelectedColor: {r: 0.2562272, g: 0.7830189, b: 0.13665895, a: 1}
+    m_DisabledColor: {r: 0.8773585, g: 0.10278875, b: 0.028969401, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1152,7 +1152,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.5549027, g: 0.754717, b: 0.5517978, a: 1}
     m_PressedColor: {r: 0.37201852, g: 0.8301887, b: 0.63438964, a: 1}
     m_SelectedColor: {r: 0.4072484, g: 0.8113208, b: 0.35590956, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.8962264, g: 0.08877714, b: 0.08877714, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1532,6 +1532,13 @@ MonoBehaviour:
   Muro_blueprint: {fileID: 6160587124684472113, guid: c2d3ba9dd4d2646429e95ba5a12b6f93, type: 3}
   Torre_blueprint: {fileID: 8430572771911094623, guid: c73cbc3200d6ef748bdce1af9117d9f0, type: 3}
   Trampa_blueprint: {fileID: 7342297621100151602, guid: bb82df85d2ca4994ca641fb4458b4f5e, type: 3}
+  btnCasaHechizos: {fileID: 0}
+  btnCuartel: {fileID: 0}
+  btnMina: {fileID: 0}
+  btnExtractor: {fileID: 0}
+  btnMuro: {fileID: 0}
+  btnTorre: {fileID: 0}
+  btnTrampa: {fileID: 0}
 --- !u!114 &1242609360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1683,7 +1690,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.5549027, g: 0.754717, b: 0.5517978, a: 1}
     m_PressedColor: {r: 0.37201852, g: 0.8301887, b: 0.63438964, a: 1}
     m_SelectedColor: {r: 0.4072484, g: 0.8113208, b: 0.35590956, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.8584906, g: 0.125534, b: 0.125534, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1813,10 +1820,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.5549027, g: 0.754717, b: 0.5517978, a: 1}
-    m_PressedColor: {r: 0.37201852, g: 0.8301887, b: 0.63438964, a: 1}
-    m_SelectedColor: {r: 0.4072484, g: 0.8113208, b: 0.35590956, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_HighlightedColor: {r: 0.454902, g: 0.7176471, b: 0.16470589, a: 1}
+    m_PressedColor: {r: 0.454902, g: 0.7176471, b: 0.16470589, a: 1}
+    m_SelectedColor: {r: 0.4556506, g: 0.7169812, b: 0.16571736, a: 1}
+    m_DisabledColor: {r: 0.5377358, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1836,7 +1843,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1242609359}
-        m_TargetAssemblyTypeName: build_casaDeHechizos, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConstruirEstructuras, Assembly-CSharp
         m_MethodName: spawn_CasaDeHechizos_blueprint
         m_Mode: 1
         m_Arguments:
@@ -2107,7 +2114,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.5549027, g: 0.754717, b: 0.5517978, a: 1}
     m_PressedColor: {r: 0.37201852, g: 0.8301887, b: 0.63438964, a: 1}
     m_SelectedColor: {r: 0.4072484, g: 0.8113208, b: 0.35590956, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.8207547, g: 0.096787095, b: 0.096787095, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

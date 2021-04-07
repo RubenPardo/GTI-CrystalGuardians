@@ -139,3 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade5d01d75c48f846a5c5110cb0e8a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NivelMaximo: 1
+  nivelActual: 0
+  nivelMinimoCastilloParaMejorar: 01000000
+  vidaPorNivel: 
+  vidaActual: 1
+  costeOroMejorar: 983a0000

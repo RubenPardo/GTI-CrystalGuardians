@@ -9,7 +9,6 @@ public class blueprint_script : MonoBehaviour
     public LayerMask layer = ~0;
     Vector3 movePoint;
     public GameObject prefab;
-    public Transform target;
     public float gridSize;
     // Start is called before the first frame update
     void Start()

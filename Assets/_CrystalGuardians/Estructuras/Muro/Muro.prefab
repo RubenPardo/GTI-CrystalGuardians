@@ -46,11 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NivelMaximo: 2
   nivelActual: 0
-  nivelCastilloParaConstruir: 0
-  nivelMinimoCastilloParaMejorar: 000000000100000002000000
-  vidaPorNivel: f4010000b80b000010270000
+  nivelMinimoCastilloParaMejorar: 0100000002000000
+  vidaPorNivel: b80b000010270000
   vidaActual: 1
-  costeOroConstruirMejorar: 64000000e803000070170000
+  costeOroMejorar: 
 --- !u!1 &6102428624866434698
 GameObject:
   m_ObjectHideFlags: 0

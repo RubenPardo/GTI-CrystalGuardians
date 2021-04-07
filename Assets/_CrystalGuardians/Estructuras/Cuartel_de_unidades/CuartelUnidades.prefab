@@ -141,12 +141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NivelMaximo: 5
   nivelActual: 0
-  nivelCastilloParaConstruir: 0
-  nivelMinimoCastilloParaMejorar: 000000000000000001000000010000000100000002000000
+  nivelMinimoCastilloParaMejorar: 0000000001000000010000000100000002000000
   vidaPorNivel: d80100000d0200004702000088020000d002000020030000
   vidaActual: 1
-  "da\xF1o": 
-  generacionOro: 
-  generacionObsidium: 
-  costeOroConstruirMejorar: 90010000dc050000a00f0000983a000050c30000400d0300
+  costeOroMejorar: dc050000a00f0000983a000050c30000400d0300
   capacidadUnidades: 0500000007000000090000000b0000000d00000014000000

@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     // cuartel de unidades -----------
     public static int nivelMinimoCastilloCuartel = 0;
     public static int costeConstruirCuartel = 400;
+    public static int topeCuartelUnidades = 4;
+    private int cuartelesConstruidos = 0;
+    public int CuartelesConstruidos { get => cuartelesConstruidos; set => cuartelesConstruidos = value; }
 
     // trampas -----------
     public static int nivelMinimoCastilloTrampa = 0;

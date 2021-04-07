@@ -21,7 +21,7 @@ public class ExtractorObsidium : Estructura
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirExtractor;
     }
 
     // Update is called once per frame

@@ -27,15 +27,28 @@ public class blueprint_script : MonoBehaviour
        
 
     }
+    // Update is called once per frame
+    void LateUpdate()
+    {
+        mover_blueprint();
+
+       
+        
+        if (Input.GetMouseButton(0) && sePuedeConstruir)
+        {
+            // construir la estructura y borrar el blue print
+            Instantiate(prefab, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+       
+    }
 
     private void mover_blueprint()
     {
+        // mover el blue print por donde apunta el raton por encima de solo 
+        // las capas de casillas con movimiento truncado al tamaño de la casillas
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerEstructuras))
-        {
-            Debug.Log("Encima de una estructura");
-        }
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerCasillas))
         {
@@ -43,7 +56,7 @@ public class blueprint_script : MonoBehaviour
             truePos.x = Mathf.Floor(hit.point.x / gridSize) * gridSize;
             truePos.y = 0;
             truePos.z = Mathf.Floor(hit.point.z / gridSize) * gridSize;
-          
+
             transform.position = truePos;
         }
     }
@@ -51,13 +64,11 @@ public class blueprint_script : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        // se debe hacer en trigger stay ya que si hay dos edificios juntos 
+        // y sales de uno no detectará el on enter solo el on exit
         sePuedeConstruir = false;
         mat.color = colorColision;
 
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-       
     }
 
     private void OnTriggerExit(Collider other)
@@ -66,23 +77,4 @@ public class blueprint_script : MonoBehaviour
         mat.color = colorNormal;
     }
 
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        mover_blueprint();
-
-       
-        if (sePuedeConstruir)
-        {
-            if (Input.GetMouseButton(0))
-            {
-                // construir la estructura y borrar el blue print
-                Instantiate(prefab, transform.position, transform.rotation);
-                Destroy(gameObject);
-            }
-        }
-
-        
-
-    }
 }

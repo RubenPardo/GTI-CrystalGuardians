@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8548761431937790142}
   - component: {fileID: 6254001026206130971}
+  - component: {fileID: 5228329551034022794}
   m_Layer: 0
   m_Name: CuartelUnidades_bluePrint
   m_TagString: Untagged
@@ -46,12 +47,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerCasillas:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4294967295
   layerEstructuras:
     serializedVersion: 2
     m_Bits: 4294967295
   prefab: {fileID: 3296397069373787150, guid: c249cfa16d05808488ac594e9da347ce, type: 3}
   gridSize: 1
+--- !u!54 &5228329551034022794
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8548761431937790136}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8548761432882357401
 GameObject:
   m_ObjectHideFlags: 0

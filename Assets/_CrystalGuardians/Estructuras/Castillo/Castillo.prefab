@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 676753213047908805}
   - component: {fileID: 9171828577869393282}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Castillo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 8227281435943560528}
   - component: {fileID: 1162226460429784059}
   - component: {fileID: 4695968498784054632}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

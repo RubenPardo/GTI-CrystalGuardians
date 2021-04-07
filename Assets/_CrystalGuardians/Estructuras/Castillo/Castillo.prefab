@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 676753213047908805}
   - component: {fileID: 9171828577869393282}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Castillo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 8227281435943560528}
   - component: {fileID: 1162226460429784059}
   - component: {fileID: 4695968498784054632}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,8 +141,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8005858202441647289}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.9, y: 1, z: 0.9}
   m_Center: {x: 0, y: 0, z: 0}

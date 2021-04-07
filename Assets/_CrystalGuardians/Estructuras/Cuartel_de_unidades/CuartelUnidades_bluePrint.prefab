@@ -44,9 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d310815b129694d86300f585513b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
+  layerCasillas:
     serializedVersion: 2
     m_Bits: 64
+  layerEstructuras:
+    serializedVersion: 2
+    m_Bits: 4294967295
   prefab: {fileID: 3296397069373787150, guid: c249cfa16d05808488ac594e9da347ce, type: 3}
   gridSize: 1
 --- !u!1 &8548761432882357401

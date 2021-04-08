@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     static GameManager instance;
     public static GameManager Instance { get => instance; set => instance = value; }
 
+    public bool seEstaConstruyendo = false; // cuando se pulsa un boton poner a true y deshabilitar todo hasta que se deje de construir
+    public bool SeEstaConstruyendo { get => seEstaConstruyendo; set => seEstaConstruyendo = value; }
+
     // casa de hechizos -----------
     public static int nivelMinimoCastilloCasaHechizos = 1;
     public static int costeConstruirCasaHechizos = 1440;
@@ -57,7 +60,7 @@ public class GameManager : MonoBehaviour
     public bool ObsidiumConstruido { get => obsidiumConstruido; set => obsidiumConstruido = value; }
 
 
-    public GameObject castillo;
+    public GameObject castillo; // se construira al inicio
 
     public int i = 0;
     public int y = 0;

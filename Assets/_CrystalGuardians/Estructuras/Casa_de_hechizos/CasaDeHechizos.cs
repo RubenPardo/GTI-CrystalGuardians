@@ -14,7 +14,7 @@ public class CasaDeHechizos : Estructura
     {
         // al empezar restar el oro
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirCasaHechizos;
-        Debug.Log(GameManager.Instance.Oro);
+   
     }
 
     // Update is called once per frame

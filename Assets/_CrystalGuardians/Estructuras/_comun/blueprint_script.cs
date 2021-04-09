@@ -34,7 +34,7 @@ public class blueprint_script : MonoBehaviour
     void LateUpdate()
     {
 
-        comprobarOro();
+        //comprobarOro();
         mover_blueprint();
 
        
@@ -46,6 +46,18 @@ public class blueprint_script : MonoBehaviour
             if (Input.GetMouseButtonDown(0)){
                 // construir la estructura 
                 Instantiate(prefab, transform.position, transform.rotation);
+                // mina
+                if (prefab.GetComponent<Mina>())
+                {
+                    GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirMina;
+
+                }
+                if (prefab.GetComponent<ExtractorObsidium>())
+                {
+                    GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirExtractor;
+
+                }
+                comprobarOro();
             }
 
         }

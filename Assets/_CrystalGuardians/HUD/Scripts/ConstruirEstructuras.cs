@@ -40,7 +40,7 @@ public class ConstruirEstructuras : MonoBehaviour
  
     private void Update()
     {
-        GameManager.Instance.Oro += 50000 * Time.deltaTime;
+       // GameManager.Instance.Oro += 50000 * Time.deltaTime;
         habilitarCanvas(!GameManager.Instance.seEstaConstruyendo);
         comprobarDisponibilidadBotones();
         
@@ -112,8 +112,11 @@ public class ConstruirEstructuras : MonoBehaviour
        
     }
     public void spawn_Mina()
-    {   
+    {
+        //GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirMina;
+        GameManager.Instance.oroConstruido = true;
         Instantiate(Mina_blueprint);
+        
     }
     public void spawn_Extractor()
     {  

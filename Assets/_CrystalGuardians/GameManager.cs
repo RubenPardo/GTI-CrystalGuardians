@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    
+    public Text hudProba;
 
 
     // singleton
@@ -48,8 +51,8 @@ public class GameManager : MonoBehaviour
     //recursos -------------
     private float oro = 0;
     private float obsidium = 0;
-    private bool oroConstruido = false;
-    private bool obsidiumConstruido = false;
+    public bool oroConstruido = false;
+    public bool obsidiumConstruido = false;
 
     public GameObject prefabOro;
     public GameObject prefabObsidium;
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        oro = 8000;
         if(instance == null)
         {
             instance = this;
@@ -85,19 +89,25 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        //generacion de recursos manual
+        /*/generacion de recursos manual
         Vector3 posicionOro = new Vector3(0, 0, 0);
         Vector3 posicionObsidium = new Vector3(3, 0, 0);
         if (OroConstruido)
         {
-            Oro = Oro + 10000;
+            if (oro < 999999999.0f)//mina lvl-1
+            {
+                oro = oro + 100 * Time.deltaTime;
+
+            }
         }
         if (ObsidiumConstruido)
         {
             Obsiidum = Obsiidum + 10000;
         }
+        hudProba.text = "" + oro.ToString("f0");
+        */
 
-        if (Input.GetKeyDown(KeyCode.Space) && i == 0)
+        /*if (Input.GetKeyDown(KeyCode.Space) && i == 0)
         {
             Debug.Log("generador de oro construido");
             Instantiate(prefabOro, posicionOro, transform.rotation);
@@ -111,6 +121,6 @@ public class GameManager : MonoBehaviour
             Instantiate(prefabObsidium, posicionObsidium, transform.rotation);
             ObsidiumConstruido = true;
             y++;
-        }
+        }*/
     }
 }

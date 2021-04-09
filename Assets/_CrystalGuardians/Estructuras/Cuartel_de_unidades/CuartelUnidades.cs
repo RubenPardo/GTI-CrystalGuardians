@@ -7,7 +7,8 @@ public class CuartelUnidades : Estructura
     public int[] capacidadUnidades;
     private void Start()
     {
-        
+        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirCuartel;
+        GameManager.Instance.CuartelesConstruidos++;
     }
 
     private void Update()

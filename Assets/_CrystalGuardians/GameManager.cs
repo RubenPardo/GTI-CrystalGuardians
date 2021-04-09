@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    
+    public Text hudProba;
 
 
     // singleton
 
     static GameManager instance;
     public static GameManager Instance { get => instance; set => instance = value; }
+
+    public bool seEstaConstruyendo = false; // cuando se pulsa un boton poner a true y deshabilitar todo hasta que se deje de construir
+    public bool SeEstaConstruyendo { get => seEstaConstruyendo; set => seEstaConstruyendo = value; }
 
     // casa de hechizos -----------
     public static int nivelMinimoCastilloCasaHechizos = 1;
@@ -18,6 +24,9 @@ public class GameManager : MonoBehaviour
     // cuartel de unidades -----------
     public static int nivelMinimoCastilloCuartel = 0;
     public static int costeConstruirCuartel = 400;
+    public static int topeCuartelUnidades = 4;
+    private int cuartelesConstruidos = 0;
+    public int CuartelesConstruidos { get => cuartelesConstruidos; set => cuartelesConstruidos = value; }
 
     // trampas -----------
     public static int nivelMinimoCastilloTrampa = 0;
@@ -42,8 +51,8 @@ public class GameManager : MonoBehaviour
     //recursos -------------
     private float oro = 0;
     private float obsidium = 0;
-    private bool oroConstruido = false;
-    private bool obsidiumConstruido = false;
+    public bool oroConstruido = false;
+    public bool obsidiumConstruido = false;
 
     public GameObject prefabOro;
     public GameObject prefabObsidium;
@@ -54,7 +63,7 @@ public class GameManager : MonoBehaviour
     public bool ObsidiumConstruido { get => obsidiumConstruido; set => obsidiumConstruido = value; }
 
 
-    public GameObject castillo;
+    public GameObject castillo; // se construira al inicio
 
     public int i = 0;
     public int y = 0;
@@ -62,6 +71,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        oro = 8000;
         if(instance == null)
         {
             instance = this;
@@ -79,19 +89,25 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        //generacion de recursos manual
+        /*/generacion de recursos manual
         Vector3 posicionOro = new Vector3(0, 0, 0);
         Vector3 posicionObsidium = new Vector3(3, 0, 0);
         if (OroConstruido)
         {
-            Oro = Oro + 10000;
+            if (oro < 999999999.0f)//mina lvl-1
+            {
+                oro = oro + 100 * Time.deltaTime;
+
+            }
         }
         if (ObsidiumConstruido)
         {
             Obsiidum = Obsiidum + 10000;
         }
+        hudProba.text = "" + oro.ToString("f0");
+        */
 
-        if (Input.GetKeyDown(KeyCode.Space) && i == 0)
+        /*if (Input.GetKeyDown(KeyCode.Space) && i == 0)
         {
             Debug.Log("generador de oro construido");
             Instantiate(prefabOro, posicionOro, transform.rotation);
@@ -105,6 +121,6 @@ public class GameManager : MonoBehaviour
             Instantiate(prefabObsidium, posicionObsidium, transform.rotation);
             ObsidiumConstruido = true;
             y++;
-        }
+        }*/
     }
 }

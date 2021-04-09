@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7553514987722405637}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0.5, y: 1, z: 0.5}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 7052383790629437659}
@@ -147,7 +147,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   prefab: {fileID: 4728793521327876393, guid: 05c47c41492e8f440aca0b432960efef, type: 3}
-  gridSize: 0.5
+  gridSize: 1
 --- !u!54 &2652412970785046555
 Rigidbody:
   m_ObjectHideFlags: 0

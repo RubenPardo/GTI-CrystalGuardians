@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     // muros -----------
     public static int nivelMinimoCastilloMuros = 0;
-    public static int costeConstruirMuro = 500;
+    public static int costeConstruirMuro = 100;
 
     // mina -----------
     public static int nivelMinimoCastilloMina = 0;
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        oro = 8000;
+        
         if(instance == null)
         {
             instance = this;
@@ -89,38 +89,6 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        /*/generacion de recursos manual
-        Vector3 posicionOro = new Vector3(0, 0, 0);
-        Vector3 posicionObsidium = new Vector3(3, 0, 0);
-        if (OroConstruido)
-        {
-            if (oro < 999999999.0f)//mina lvl-1
-            {
-                oro = oro + 100 * Time.deltaTime;
-
-            }
-        }
-        if (ObsidiumConstruido)
-        {
-            Obsiidum = Obsiidum + 10000;
-        }
-        hudProba.text = "" + oro.ToString("f0");
-        */
-
-        /*if (Input.GetKeyDown(KeyCode.Space) && i == 0)
-        {
-            Debug.Log("generador de oro construido");
-            Instantiate(prefabOro, posicionOro, transform.rotation);
-            OroConstruido = true;
-            i++;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Return) && y == 0)
-        {
-            Debug.Log("El obsidium aumenta");
-            Instantiate(prefabObsidium, posicionObsidium, transform.rotation);
-            ObsidiumConstruido = true;
-            y++;
-        }*/
+      
     }
 }

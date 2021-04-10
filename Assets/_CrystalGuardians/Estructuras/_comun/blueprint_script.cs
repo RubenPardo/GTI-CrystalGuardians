@@ -34,7 +34,7 @@ public class blueprint_script : MonoBehaviour
     void LateUpdate()
     {
 
-        //comprobarOro();
+        comprobarOro();
         mover_blueprint();
 
        
@@ -57,7 +57,7 @@ public class blueprint_script : MonoBehaviour
                     GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirExtractor;
 
                 }
-                comprobarOro();
+                
             }
 
         }

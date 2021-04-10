@@ -10,7 +10,8 @@ public class Mina : Estructura
 
     private void generarRecursos()
     {
-
+        //GameManager.Instance.Oro += 1 * Time.deltaTime; //mina lvl-1
+        GameManager.Instance.Oro = GameManager.Instance.Oro + generacionOroPorNivel[nivelActual] * Time.deltaTime;
     }
 
     public override void mejorar()
@@ -30,8 +31,7 @@ public class Mina : Estructura
     void Update()
     {
 
-        //GameManager.Instance.Oro += 1 * Time.deltaTime; //mina lvl-1
-        GameManager.Instance.Oro = GameManager.Instance.Oro + 30 * Time.deltaTime;
+        generarRecursos();
 
     }
 }

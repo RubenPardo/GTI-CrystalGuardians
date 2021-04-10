@@ -10,7 +10,7 @@ public class ExtractorObsidium : Estructura
 
     private void generarRecursos()
     {
-
+        GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum + generacionObsidiumPorNivel[nivelActual] * Time.deltaTime;
     }
 
     public override void mejorar()
@@ -27,6 +27,6 @@ public class ExtractorObsidium : Estructura
     // Update is called once per frame
     void Update()
     {
-        GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum + 20 * Time.deltaTime;
+        generarRecursos();
     }
 }

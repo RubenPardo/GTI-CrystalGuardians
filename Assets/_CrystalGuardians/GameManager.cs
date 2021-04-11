@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public int CuartelesConstruidos { get => cuartelesConstruidos; set => cuartelesConstruidos = value; }
 
     // trampas -----------
-    public static int nivelMinimoCastilloTrampa = 0;
+    public static int nivelMinimoCastilloTrampa = 1;
     public static int costeConstruirTrampa = 500;
 
     // torre -----------
@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     // mina -----------
     public static int nivelMinimoCastilloMina = 0;
     public static int costeConstruirMina = 3150;
+    public int NivelMinimoCastilloMina { get => nivelMinimoCastilloMina; set => nivelMinimoCastilloMina = value; }
+    public int CosteConstruirMina { get => costeConstruirMina; set => costeConstruirMina = value; }
 
     // extractor -----------
     public static int nivelMinimoCastilloExtractor = 0;
@@ -64,6 +66,10 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject castillo; // se construira al inicio
+
+    //atributos del castillo
+    private int nivelActualCastillo = 0;
+    public int NivelActualCastillo { get => nivelActualCastillo; set => nivelActualCastillo = value; }
 
     public int i = 0;
     public int y = 0;

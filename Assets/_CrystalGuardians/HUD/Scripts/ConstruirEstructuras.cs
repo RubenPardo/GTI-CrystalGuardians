@@ -22,6 +22,29 @@ public class ConstruirEstructuras : MonoBehaviour
     public Button btnTorre;
     public Button btnTrampa;
 
+    public Texture texturaReadyMina;
+    public Texture texturaGrisMina;
+    public Texture texturaRojaMina;
+    public Texture texturaReadyExtractor;
+    public Texture texturaGrisExtractor;
+    public Texture texturaRojaExtractor;
+    public Texture texturaReadyCuartel;
+    public Texture texturaGrisCuartel;
+    public Texture texturaRojaCuartel;
+    public Texture texturaReadyTorre;
+    public Texture texturaGrisTorre;
+    public Texture texturaRojaTorre;
+    public Texture texturaReadyTrampa;
+    public Texture texturaGrisTrampa;
+    public Texture texturaRojaTrampa;
+    public Texture texturaReadyMuro;
+    public Texture texturaGrisMuro;
+    public Texture texturaRojaMuro;
+    public Texture texturaReadyHechizos;
+    public Texture texturaGrisHechizos;
+    public Texture texturaRojaHechizos;
+
+
     public Canvas canvasHUD;
 
     private Castillo castillo;
@@ -60,12 +83,15 @@ public class ConstruirEstructuras : MonoBehaviour
     {
         // comprobar nivel y luego los recursos para habilitar o deshabilitar los botones
 
-        // casa hechizos
+        // CAMBIO DE ICONO CASA DE HECHIZOS
         if(castillo.nivelActual < GameManager.nivelMinimoCastilloCasaHechizos)
         {
             // nivel insuficiente
             // cuando se haga con imagen poner esto tmb con la imagen que le toca
             // button.GetComponent<Image>().sprite = Image1;
+
+            RawImage icono = btnCasaHechizos.GetComponent<RawImage>();
+            icono.texture = texturaGrisHechizos;
 
             habilitar(btnCasaHechizos,false);
            
@@ -73,27 +99,205 @@ public class ConstruirEstructuras : MonoBehaviour
         else if (GameManager.Instance.Oro < GameManager.costeConstruirCasaHechizos)
         {
             // recursos insuficiente
+
+            RawImage icono = btnCasaHechizos.GetComponent<RawImage>();
+            icono.texture = texturaRojaHechizos;
             habilitar(btnCasaHechizos, false);
         }
         else
         {
             // disponible
+
+            RawImage icono = btnCasaHechizos.GetComponent<RawImage>();
+            icono.texture = texturaReadyHechizos;
             habilitar(btnCasaHechizos, true);
+
+            
         }
 
-        // cuartel de unidades
-        habilitar(btnCuartel, (castillo.nivelActual >= GameManager.nivelMinimoCastilloCuartel && GameManager.Instance.Oro >= GameManager.costeConstruirCuartel && GameManager.Instance.CuartelesConstruidos < GameManager.topeCuartelUnidades));
-        // mina
-        habilitar ( btnMina,castillo.nivelActual >= GameManager.nivelMinimoCastilloMina && GameManager.Instance.Oro >= GameManager.costeConstruirMina);
-        // obsidium
-        habilitar( btnExtractor,castillo.nivelActual >= GameManager.nivelMinimoCastilloExtractor && GameManager.Instance.Oro >= GameManager.costeConstruirExtractor);
-        // muro
-        habilitar(btnMuro,castillo.nivelActual >= GameManager.nivelMinimoCastilloMuros && GameManager.Instance.Oro >= GameManager.costeConstruirMuro);
-        // torre
-        habilitar(btnTorre,castillo.nivelActual >= GameManager.nivelMinimoCastilloTorre && GameManager.Instance.Oro >= GameManager.costeConstruirTorre);
-        // trampa
-        habilitar(btnTrampa,castillo.nivelActual >= GameManager.nivelMinimoCastilloTrampa && GameManager.Instance.Oro >= GameManager.costeConstruirTrampa);
+        // CAMBIO DE ICONO CUARTEL
+        //habilitar(btnCuartel, (castillo.nivelActual >= GameManager.nivelMinimoCastilloCuartel && GameManager.Instance.Oro >= GameManager.costeConstruirCuartel && GameManager.Instance.CuartelesConstruidos < GameManager.topeCuartelUnidades));
+        if (castillo.nivelActual < GameManager.nivelMinimoCastilloCuartel)
+        {
+            // nivel insuficiente
+            // cuando se haga con imagen poner esto tmb con la imagen que le toca
 
+            RawImage icono = btnCuartel.GetComponent<RawImage>();
+            icono.texture = texturaGrisCuartel;
+
+
+            habilitar(btnCuartel, false);
+        }
+        else if (GameManager.Instance.Oro < GameManager.costeConstruirCuartel)
+        {
+            // recursos insuficiente
+
+            RawImage icono = btnCuartel.GetComponent<RawImage>();
+            icono.texture = texturaRojaCuartel;
+
+            habilitar(btnCuartel, false);
+        }
+        else
+        {
+            // disponible
+
+            RawImage icono = btnCuartel.GetComponent<RawImage>();
+            icono.texture = texturaReadyCuartel;
+
+            habilitar(btnCuartel, true);
+        }
+
+        // CAMBIO DE ICONO MINA
+        //habilitar( btnMina,castillo.nivelActual >= GameManager.nivelMinimoCastilloMina && GameManager.Instance.Oro >= GameManager.costeConstruirMina);
+        if (castillo.nivelActual < GameManager.nivelMinimoCastilloMina)
+        {
+            // nivel insuficiente
+            // cuando se haga con imagen poner esto tmb con la imagen que le toca
+
+            RawImage icono = btnMina.GetComponent<RawImage>();
+            icono.texture =  texturaGrisMina;
+
+
+            habilitar(btnMina, false);
+        }
+        else if (GameManager.Instance.Oro < GameManager.costeConstruirMina)
+        {
+            // recursos insuficiente
+
+            RawImage icono = btnMina.GetComponent<RawImage>();
+            icono.texture = texturaRojaMina;
+
+            habilitar(btnMina, false);
+        }
+        else
+        {
+            // disponible
+
+            RawImage icono = btnMina.GetComponent<RawImage>();
+            icono.texture = texturaReadyMina;
+
+            habilitar(btnMina, true);
+        }
+
+        // CAMBIO DE ICONO EXTRACTOR
+        //habilitar( btnExtractor,castillo.nivelActual >= GameManager.nivelMinimoCastilloExtractor && GameManager.Instance.Oro >= GameManager.costeConstruirExtractor);
+        if (castillo.nivelActual < GameManager.nivelMinimoCastilloExtractor)
+        {
+            // nivel insuficiente
+            // cuando se haga con imagen poner esto tmb con la imagen que le toca
+            // button.GetComponent<Image>().sprite = Image1;
+
+            RawImage icono = btnExtractor.GetComponent<RawImage>();
+            icono.texture = texturaGrisExtractor;
+
+            habilitar(btnExtractor, false);
+
+        }
+        else if (GameManager.Instance.Oro < GameManager.costeConstruirExtractor)
+        {
+            // recursos insuficiente
+
+            RawImage icono = btnExtractor.GetComponent<RawImage>();
+            icono.texture = texturaRojaExtractor;
+            habilitar(btnExtractor, false);
+        }
+        else
+        {
+            // disponible
+
+            RawImage icono = btnExtractor.GetComponent<RawImage>();
+            icono.texture = texturaReadyExtractor;
+            habilitar(btnExtractor, true);
+        }
+
+        // CAMBIO DE ICONO MURO
+        //habilitar(btnMuro,castillo.nivelActual >= GameManager.nivelMinimoCastilloMuros && GameManager.Instance.Oro >= GameManager.costeConstruirMuro);
+        if (castillo.nivelActual < GameManager.nivelMinimoCastilloMuros)
+        {
+            // nivel insuficiente
+            // cuando se haga con imagen poner esto tmb con la imagen que le toca
+            // button.GetComponent<Image>().sprite = Image1;
+
+            RawImage icono = btnMuro.GetComponent<RawImage>();
+            icono.texture = texturaGrisMuro;
+
+            habilitar(btnMuro, false);
+
+        }
+        else if (GameManager.Instance.Oro < GameManager.costeConstruirMuro)
+        {
+            // recursos insuficiente
+
+            RawImage icono = btnMuro.GetComponent<RawImage>();
+            icono.texture = texturaRojaMuro;
+            habilitar(btnMuro, false);
+        }
+        else
+        {
+            // disponible
+
+            RawImage icono = btnMuro.GetComponent<RawImage>();
+            icono.texture = texturaReadyMuro;
+            habilitar(btnMuro, true);
+        }
+        // CAMBIO DE ICONO TORRE
+        //habilitar(btnTorre,castillo.nivelActual >= GameManager.nivelMinimoCastilloTorre && GameManager.Instance.Oro >= GameManager.costeConstruirTorre);
+        if (castillo.nivelActual < GameManager.nivelMinimoCastilloTorre)
+        {
+            // nivel insuficiente
+            // cuando se haga con imagen poner esto tmb con la imagen que le toca
+            // button.GetComponent<Image>().sprite = Image1;
+
+            RawImage icono = btnTorre.GetComponent<RawImage>();
+            icono.texture = texturaGrisTorre;
+
+            habilitar(btnTorre, false);
+
+        }
+        else if (GameManager.Instance.Oro < GameManager.costeConstruirTorre)
+        {
+            // recursos insuficiente
+
+            RawImage icono = btnTorre.GetComponent<RawImage>();
+            icono.texture = texturaRojaTorre;
+            habilitar(btnTorre, false);
+        }
+        else
+        {
+            // disponible
+            RawImage icono = btnTorre.GetComponent<RawImage>();
+            icono.texture = texturaReadyTorre;
+            habilitar(btnTorre, true);
+        }
+        // CAMBIO DE ICONO TRAMPA
+        //habilitar(btnTrampa,castillo.nivelActual >= GameManager.nivelMinimoCastilloTrampa && GameManager.Instance.Oro >= GameManager.costeConstruirTrampa);
+        if (castillo.nivelActual < GameManager.nivelMinimoCastilloTrampa)
+        {
+            // nivel insuficiente
+            // cuando se haga con imagen poner esto tmb con la imagen que le toca
+            // button.GetComponent<Image>().sprite = Image1;
+
+            RawImage icono = btnTrampa.GetComponent<RawImage>();
+            icono.texture = texturaGrisTrampa;
+
+            habilitar(btnTrampa, false);
+
+        }
+        else if (GameManager.Instance.Oro < GameManager.costeConstruirTrampa)
+        {
+            // recursos insuficiente
+
+            RawImage icono = btnTrampa.GetComponent<RawImage>();
+            icono.texture = texturaRojaTrampa;
+            habilitar(btnTrampa, false);
+        }
+        else
+        {
+            // disponible
+            RawImage icono = btnTrampa.GetComponent<RawImage>();
+            icono.texture = texturaReadyTrampa;
+            habilitar(btnTrampa, true);
+        }
 
     }
  

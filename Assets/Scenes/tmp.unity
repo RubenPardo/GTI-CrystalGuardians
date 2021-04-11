@@ -22712,7 +22712,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.5549027, g: 0.754717, b: 0.5517978, a: 1}
     m_PressedColor: {r: 0.37201852, g: 0.8301887, b: 0.63438964, a: 1}
     m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -48894,15 +48894,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2855807874156308922, guid: c8594e4772837be4f8970588383c44e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.51
       objectReference: {fileID: 0}
     - target: {fileID: 2855807874156308922, guid: c8594e4772837be4f8970588383c44e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 7.03
       objectReference: {fileID: 0}
     - target: {fileID: 2855807874156308922, guid: c8594e4772837be4f8970588383c44e1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.51
       objectReference: {fileID: 0}
     - target: {fileID: 2855807874156308922, guid: c8594e4772837be4f8970588383c44e1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -48931,6 +48931,14 @@ PrefabInstance:
     - target: {fileID: 2855807874156308922, guid: c8594e4772837be4f8970588383c44e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855807874156308923, guid: c8594e4772837be4f8970588383c44e1, type: 3}
+      propertyPath: near clip plane
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855807874156308923, guid: c8594e4772837be4f8970588383c44e1, type: 3}
+      propertyPath: orthographic size
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2855807874156308925, guid: c8594e4772837be4f8970588383c44e1, type: 3}
       propertyPath: m_Name

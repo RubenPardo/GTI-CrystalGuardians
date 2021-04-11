@@ -51,8 +51,8 @@ public class GameManager : MonoBehaviour
     public static int costeConstruirExtractor = 2160;
 
     //recursos -------------
-    private float oro = 0;
-    private float obsidium = 0;
+    private float oro = 3000;
+    private float obsidium = 3000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 

@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public int CuartelesConstruidos { get => cuartelesConstruidos; set => cuartelesConstruidos = value; }
 
     // trampas -----------
-    public static int nivelMinimoCastilloTrampa = 1;
+    public static int nivelMinimoCastilloTrampa = 0;
     public static int costeConstruirTrampa = 500;
 
     // torre -----------

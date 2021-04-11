@@ -12,7 +12,9 @@ public class CasaDeHechizos : Estructura
     // Start is called before the first frame update
     void Start()
     {
-        
+        // al empezar restar el oro
+        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirCasaHechizos;
+   
     }
 
     // Update is called once per frame

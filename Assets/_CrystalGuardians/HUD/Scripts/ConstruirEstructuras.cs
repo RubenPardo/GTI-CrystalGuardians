@@ -116,10 +116,9 @@ public class ConstruirEstructuras : MonoBehaviour
         }
 
         // CAMBIO DE ICONO CUARTEL
-        //habilitar(btnCuartel, (castillo.nivelActual >= GameManager.nivelMinimoCastilloCuartel && GameManager.Instance.Oro >= GameManager.costeConstruirCuartel && GameManager.Instance.CuartelesConstruidos < GameManager.topeCuartelUnidades));
         if (castillo.nivelActual < GameManager.nivelMinimoCastilloCuartel)
         {
-            // nivel insuficiente
+            // nivel insuficiente 
             // cuando se haga con imagen poner esto tmb con la imagen que le toca
 
             RawImage icono = btnCuartel.GetComponent<RawImage>();
@@ -128,9 +127,9 @@ public class ConstruirEstructuras : MonoBehaviour
 
             habilitar(btnCuartel, false);
         }
-        else if (GameManager.Instance.Oro < GameManager.costeConstruirCuartel)
+        else if (GameManager.Instance.Oro < GameManager.costeConstruirCuartel || GameManager.Instance.CuartelesConstruidos >= GameManager.topeCuartelUnidades)
         {
-            // recursos insuficiente
+            // recursos insuficiente o tope de cuarteles construidos
 
             RawImage icono = btnCuartel.GetComponent<RawImage>();
             icono.texture = texturaRojaCuartel;

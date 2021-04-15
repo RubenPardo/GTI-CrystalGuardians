@@ -48,6 +48,6 @@ public class Mina : Estructura
 
     public override void abrirMenu()
     {
-        throw new System.NotImplementedException();
+        canvas.SetActive(true);
     }
 }

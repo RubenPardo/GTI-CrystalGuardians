@@ -7,6 +7,7 @@ public class Muro : Estructura
     public override void abrirMenu()
     {
         canvas.SetActive(true);
+
     }
     public override void cerrarMenu()
     {

@@ -24,21 +24,22 @@ public class showMenuEstructuraOnClick : MonoBehaviour
             if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity))
             {
                 // el ray cast colisionara contra el cubo, cogemos el padre que es el que tiene el script estructura
-                Estructura e = raycastHit.transform.parent.gameObject.GetComponent<Estructura>();
-                 
-                if (e != null)
+                Transform parent = raycastHit.transform.parent;
+                if (parent != null)
                 {
-                    estructuraAnterior?.cerrarMenu();
-                    estructuraAnterior = e;
-                    e.abrirMenu();
+                    Estructura e = parent.gameObject.GetComponent<Estructura>();
+                    if (e != null)
+                    {
+                        estructuraAnterior?.cerrarMenu();
+                        estructuraAnterior = e;
+                        e.abrirMenu();
+                    }
+                    else
+                    {
+                        // se hizo click en otra cosa que no es una estructura
+                        estructuraAnterior?.cerrarMenu();
+                    }
                 }
-                else
-                {
-                    // se hizo click en otra cosa que no es una estructura
-                    estructuraAnterior?.cerrarMenu();
-                }
-
-
             }
             else
             { 

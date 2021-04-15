@@ -30,7 +30,7 @@ public class ExtractorObsidium : Estructura
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirExtractor;
+        //GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirExtractor;
         // canvas del menu de botones
         canvas = gameObject.transform.Find("Canvas").gameObject;
         if (canvas != null)

@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class CasaDeHechizos : Estructura
 {
+
+    public override void abrirMenu()
+    {
+        canvas.SetActive(true);
+    }
+    public override void cerrarMenu()
+    {
+        canvas.SetActive(false);
+    }
+
     public override void mejorar()
     {
         throw new System.NotImplementedException();
@@ -14,7 +24,13 @@ public class CasaDeHechizos : Estructura
     {
         // al empezar restar el oro
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirCasaHechizos;
-   
+        // canvas del menu de botones
+        canvas = gameObject.transform.Find("Canvas").gameObject;
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
+
     }
 
     // Update is called once per frame

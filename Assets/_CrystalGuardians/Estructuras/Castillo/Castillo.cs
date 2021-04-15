@@ -6,6 +6,14 @@ public class Castillo : Estructura
 {
     public int[] costeObsidiumConstruirMejorar;
 
+    public override void abrirMenu()
+    {
+        canvas.SetActive(true);
+    }
+    public override void cerrarMenu()
+    {
+        canvas.SetActive(false);
+    }
     public override void mejorar()
     {
         throw new System.NotImplementedException();
@@ -14,7 +22,12 @@ public class Castillo : Estructura
     // Start is called before the first frame update
     void Start()
     {
-        
+        // canvas del menu de botones
+        canvas = gameObject.transform.Find("Canvas").gameObject;
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
 
     // Update is called once per frame

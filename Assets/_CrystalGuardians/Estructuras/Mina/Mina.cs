@@ -22,9 +22,15 @@ public class Mina : Estructura
     // Start is called before the first frame update
     void Start()
     {
-        //Este se llama nada mas empezar el juego, NO CUANDO SE CONSTRUYE LA ESTRUCTURA
-        //GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirMina;
-        //GameManager.Instance.oroConstruido = true;
+       
+        /*GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirMina;
+        GameManager.Instance.oroConstruido = true;*/
+        // canvas del menu de botones
+        canvas = gameObject.transform.Find("Canvas").gameObject;
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -33,5 +39,15 @@ public class Mina : Estructura
 
         generarRecursos();
 
+    }
+
+    public override void cerrarMenu()
+    {
+        canvas.SetActive(false);
+    }
+
+    public override void abrirMenu()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -7,6 +7,16 @@ public class Torre : Estructura
 
     public int[] danyoPorNivel;
 
+    public override void abrirMenu()
+    {
+        canvas.SetActive(true);
+    }
+
+    public override void cerrarMenu()
+    {
+         canvas.SetActive(false);
+    }
+
     public override void mejorar()
     {
         throw new System.NotImplementedException();
@@ -16,6 +26,12 @@ public class Torre : Estructura
     void Start()
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirTorre;
+        // canvas del menu de botones
+        canvas = gameObject.transform.Find("Canvas").gameObject;
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
 
     // Update is called once per frame

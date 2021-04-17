@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
     //atributos del castillo
     private int nivelActualCastillo = 0;
     public int NivelActualCastillo { get => nivelActualCastillo; set => nivelActualCastillo = value; }
+    public int TopeUnidades { get; internal set; }
+    private int topeUnidades = 0;
 
     public int i = 0;
     public int y = 0;

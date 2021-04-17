@@ -13,6 +13,7 @@ public class CuartelUnidades : Estructura
     public Text txtNivel;
     public Text txtCosteGuerrero;
     public Text txtCosteBallestero;
+    public Text txtTopeUnidades;
     
 
     private void Start()
@@ -28,7 +29,22 @@ public class CuartelUnidades : Estructura
             canvas.SetActive(false);
         }
         setUpCanvasValues();
+        sumarTopeUnidades(false);
 
+
+    }
+
+    private void sumarTopeUnidades(bool isMejora)
+    {
+        // si estamos mejorando se aumenta solo la resta entre el nivel nuevo menos el anterior
+        if (isMejora)
+        {
+            GameManager.Instance.TopeUnidades += capacidadUnidades[nivelActual] - capacidadUnidades[nivelActual - 1];
+        }
+        else
+        {
+            GameManager.Instance.TopeUnidades += capacidadUnidades[nivelActual];
+        }
 
     }
 
@@ -39,6 +55,7 @@ public class CuartelUnidades : Estructura
         txtNivel.text = (nivelActual+1).ToString();
         txtCosteBallestero.text = costesBallesteroPorNivel[nivelActual].ToString();
         txtCosteGuerrero.text = costesGuerreroPorNivel[nivelActual].ToString();
+     
 
     }
 

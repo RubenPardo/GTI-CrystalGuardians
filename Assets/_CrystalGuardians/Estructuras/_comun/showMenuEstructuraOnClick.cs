@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class showMenuEstructuraOnClick : MonoBehaviour
 {
@@ -18,34 +20,65 @@ public class showMenuEstructuraOnClick : MonoBehaviour
         //Check for mouse click 
         if (Input.GetMouseButtonDown(0))
         {
-            
-            RaycastHit raycastHit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity))
+            // mostrar y esconder menus de las estructuras si no se hace click en UI
+            if (!rayCastUI())
             {
-                // el ray cast colisionara contra el cubo, cogemos el padre que es el que tiene el script estructura
-                Transform parent = raycastHit.transform.parent;
-                if (parent != null)
+                RaycastHit raycastHit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity))
                 {
-                    Estructura e = parent.gameObject.GetComponent<Estructura>();
-                    if (e != null)
+                    // el ray cast colisionara contra el cubo, cogemos el padre que es el que tiene el script estructura
+                    Transform parent = raycastHit.transform.parent;
+                    if (parent != null)
                     {
-                        estructuraAnterior?.cerrarMenu();
-                        estructuraAnterior = e;
-                        e.abrirMenu();
+                        Estructura e = parent.gameObject.GetComponent<Estructura>();
+
+                        if (e != null)
+                        {
+                            estructuraAnterior?.cerrarMenu();
+                            estructuraAnterior = e;
+                            e.abrirMenu();
+                        }
+                        else
+                        {
+                            // se hizo click en otra cosa que no es una estructura
+                            estructuraAnterior?.cerrarMenu();
+                        }
                     }
-                    else
-                    {
-                        // se hizo click en otra cosa que no es una estructura
-                        estructuraAnterior?.cerrarMenu();
-                    }
+                }
+                else
+                {
+                    // se hizo click en otra cosa que no es una estructura
+                    estructuraAnterior?.cerrarMenu();
                 }
             }
             else
-            { 
-                // se hizo click en otra cosa que no es una estructura
-                estructuraAnterior?.cerrarMenu();
+            {
+                Debug.Log("Dio UI");
+            }
+
+           
+        }
+    }
+
+    
+    private bool rayCastUI()
+    {
+
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+
+        pointerData.position = Input.mousePosition;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+        if (results.Count > 0)
+        {
+            //WorldUI is my layer name
+            if (results[0].gameObject.layer == LayerMask.NameToLayer("UI"))
+            {
+                return true;
             }
         }
+        return false;
     }
 }

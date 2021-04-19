@@ -51,8 +51,8 @@ public class GameManager : MonoBehaviour
     public static int costeConstruirExtractor = 2160;
 
     //recursos -------------
-    private float oro = 0;
-    private float obsidium = 0;
+    private float oro = 3000;
+    private float obsidium = 3000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 
@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
     //atributos del castillo
     private int nivelActualCastillo = 0;
     public int NivelActualCastillo { get => nivelActualCastillo; set => nivelActualCastillo = value; }
+    public int TopeUnidades { get; internal set; }
+    private int topeUnidades = 0;
 
     public int i = 0;
     public int y = 0;

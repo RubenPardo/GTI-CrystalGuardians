@@ -74,7 +74,13 @@ public class GameManager : MonoBehaviour
     public int i = 0;
     public int y = 0;
 
+    //Mejoras de aldea
+    List<string> listaStrings = new List<string>();
+    
+
     // Start is called before the first frame update
+
+
     void Start()
     {
         
@@ -88,6 +94,15 @@ public class GameManager : MonoBehaviour
         {
             DestroyImmediate(gameObject);
         }
+
+        //pruebas mejoras de aldea
+        listaStrings.Add("1");
+        listaStrings.Add("2");
+        listaStrings.Add("3");
+        listaStrings.Add("4");
+        listaStrings.Add("5");
+        listaStrings.Add("6");
+        listaStrings.Add("7");
     }
 
     // Update is called once per frame

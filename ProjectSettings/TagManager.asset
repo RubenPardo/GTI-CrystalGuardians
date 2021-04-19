@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Casilla
   - Castillo
+  - Enemigo
+  - Estructura
   layers:
   - Default
   - TransparentFX

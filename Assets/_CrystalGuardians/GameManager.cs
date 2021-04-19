@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
             instance = this;
 
             Instantiate(castillo, transform.position, transform.rotation);
+            Oro = 5000;
         }
         else
         {

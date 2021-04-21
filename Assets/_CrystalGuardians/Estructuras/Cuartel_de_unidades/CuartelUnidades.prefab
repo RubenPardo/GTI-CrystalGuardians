@@ -575,7 +575,7 @@ MonoBehaviour:
   costeOroMejorar: dc050000a00f0000983a000050c30000400d0300
   capacidadUnidades: 0500000007000000090000000b0000000d00000014000000
   guerrero: {fileID: 2440663351571530753, guid: 2f89fb3167ed71744ab2994c89443cdf, type: 3}
-  ballestero: {fileID: 2440663351571530753, guid: 2f89fb3167ed71744ab2994c89443cdf, type: 3}
+  ballestero: {fileID: 5163503144190585066, guid: d626d2bb06ffcd94a89a03498e705594, type: 3}
   distanciaSpawn: 1
   txtNivel: {fileID: 7867784535723941975}
   txtCosteGuerrero: {fileID: 7599947376624463775}
@@ -1423,7 +1423,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6849498034258343756}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3296397069373787151}
+        m_TargetAssemblyTypeName: CuartelUnidades, Assembly-CSharp
+        m_MethodName: spawnUnidades
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5163503144190585066, guid: d626d2bb06ffcd94a89a03498e705594, type: 3}
+          m_ObjectArgumentAssemblyTypeName: Aliado, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7991532070617724052
 GameObject:
   m_ObjectHideFlags: 0

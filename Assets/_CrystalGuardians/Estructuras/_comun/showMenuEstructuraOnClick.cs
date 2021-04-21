@@ -54,7 +54,7 @@ public class showMenuEstructuraOnClick : MonoBehaviour
             }
             else
             {
-                Debug.Log("Dio UI");
+               // golpeo en UI
             }
 
            

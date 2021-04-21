@@ -33,6 +33,7 @@ public class RecursosManager : MonoBehaviour
     private void updateUnidades()
     {
         textTopeUnidades.text = GameManager.Instance.TopeUnidades.ToString() ;
+        textActualUnidades.text = GameManager.Instance.Unidades.ToString() ;
     }
 
     private void updateObsidium()

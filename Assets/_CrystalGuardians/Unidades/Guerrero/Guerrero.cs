@@ -61,9 +61,6 @@ public class Guerrero : Aliado
 
             }
 
-            
-
-
 
         }
         else

@@ -8,6 +8,7 @@ TagManager:
   - Castillo
   - estructura
   - Unidad
+  - Enemigo
   layers:
   - Default
   - TransparentFX

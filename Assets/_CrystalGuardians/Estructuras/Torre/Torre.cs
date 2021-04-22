@@ -45,11 +45,11 @@ public class Torre : Estructura
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirTorre;
         // canvas del menu de botones
-        canvas = gameObject.transform.Find("Canvas").gameObject;
+       /* canvas = gameObject.transform.Find("Canvas").gameObject;
         if (canvas != null)
         {
             canvas.SetActive(false);
-        }
+        }*/
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 

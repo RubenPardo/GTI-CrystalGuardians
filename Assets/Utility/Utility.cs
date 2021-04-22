@@ -33,6 +33,47 @@ public static class Utility
         return r;
     }
 
+
+    public static float getCircleRadiusByArea(float area)
+    {
+        // 2 pi r^2 = area, r = sqrt(area/2pi)
+
+        return Mathf.Sqrt(area / 2 * Mathf.PI);
+    }
+    public static Vector3[] getPuntosEquidistribuidosDentroCirculo(float radio,int n)
+    {
+        Vector3[] puntos = new Vector3[n];
+
+        Debug.Log("Puntos---------------------- ");
+        int alpha = 1;
+        float b = Mathf.Round(alpha * Mathf.Sqrt(n));
+        float phi = (Mathf.Sqrt(5) + 1) / 2; // golden ratio
+        for(int k = 0; k < n; k++)
+        {
+            float r = Utility.radio(k, n, b);
+            float theta = (2 * Mathf.PI) / Mathf.Pow(phi, 2);
+
+            Debug.Log("Radio: "+r);
+            float x = r * Mathf.Cos(theta);
+            float y = 0;
+            float z = r * Mathf.Sin(theta);
+            Debug.Log("Punto: " + x + " " + y + " " + z);
+            puntos[k] = new Vector3(x, y, z);
+        }
+        return puntos;
+    }
+
+    private static float radio(int k, float n, float b)
+    {
+        float r;
+        if (k > n - b)
+            r = 1;            // put on the boundary
+        else
+            r = Mathf.Sqrt(k - 1 / 2) / Mathf.Sqrt(n - (b + 1) / 2);
+
+        return Mathf.Sqrt(k - 1 / 2) / Mathf.Sqrt(n - (b + 1) / 2);
+    }
+
     public static bool rayCastUI()
     {
 

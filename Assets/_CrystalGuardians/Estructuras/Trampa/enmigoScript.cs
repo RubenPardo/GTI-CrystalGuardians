@@ -18,6 +18,7 @@ public class enmigoScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Cambiar a mover a estructuras o enemigos
         float x;
         if (dir)
         {
@@ -38,6 +39,8 @@ public class enmigoScript : MonoBehaviour
             dir = true;
         }
 
+        //-----
+        //No cambiar
         if(vida <= 0)
         {
             Destroy(gameObject);

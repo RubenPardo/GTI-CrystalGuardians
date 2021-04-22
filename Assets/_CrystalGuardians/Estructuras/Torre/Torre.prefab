@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6089003391458818221}
   - component: {fileID: 1840233093101355974}
+  - component: {fileID: 1581660927230794759}
   m_Layer: 0
   m_Name: Torre
   m_TagString: Untagged

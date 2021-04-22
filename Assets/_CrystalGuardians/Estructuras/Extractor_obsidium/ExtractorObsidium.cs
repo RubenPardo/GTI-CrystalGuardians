@@ -7,6 +7,15 @@ public class ExtractorObsidium : Estructura
 
     public int[] generacionObsidiumPorNivel;
 
+    public override void abrirMenu()
+    {
+        canvas.SetActive(true);
+    }
+
+    public override void cerrarMenu()
+    {
+         canvas.SetActive(false);
+    }
 
     private void generarRecursos()
     {
@@ -22,6 +31,12 @@ public class ExtractorObsidium : Estructura
     void Start()
     {
         //GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirExtractor;
+        // canvas del menu de botones
+        canvas = gameObject.transform.Find("Canvas").gameObject;
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
 
     // Update is called once per frame

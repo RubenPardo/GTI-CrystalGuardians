@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Casilla
   - Castillo
+  - Unidad
   - Enemigo
   - Estructura
   layers:
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - Casillas
   - Estructura
-  - 
+  - Ground
   - 
   - 
   - 

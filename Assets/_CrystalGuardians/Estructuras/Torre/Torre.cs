@@ -8,6 +8,16 @@ public class Torre : Estructura
     [Header("Atributos")]
     public int[] danyoPorNivel;
 
+    public override void abrirMenu()
+    {
+        canvas.SetActive(true);
+    }
+
+    public override void cerrarMenu()
+    {
+         canvas.SetActive(false);
+    }
+
     public float attackSpeed = 1f;
     private float fireCoutDwon = 0f;
 
@@ -33,6 +43,13 @@ public class Torre : Estructura
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirTorre;
+        // canvas del menu de botones
+        canvas = gameObject.transform.Find("Canvas").gameObject;
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 

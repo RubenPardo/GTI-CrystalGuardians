@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 2325133145305357891}
   - component: {fileID: 4397731089738922922}
   m_Layer: 0
-  m_Name: enemigo
+  m_Name: enemigoMele
   m_TagString: Enemigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 100
-  speed: 0
+  speed: 5
   healthBar: {fileID: 7592100259447508494}
 --- !u!54 &4397731089738922922
 Rigidbody:

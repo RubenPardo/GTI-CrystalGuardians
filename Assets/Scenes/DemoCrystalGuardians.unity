@@ -30553,6 +30553,7 @@ GameObject:
   - component: {fileID: 1124900461}
   - component: {fileID: 1124900465}
   - component: {fileID: 1124900464}
+  - component: {fileID: 1124900466}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -30633,6 +30634,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TagUnidades: Unidad
+  selected_table: {fileID: 0}
+--- !u!114 &1124900466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124900460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f6b638acc6030458071f7086d7d647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1128140503 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6505362721177315436, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}

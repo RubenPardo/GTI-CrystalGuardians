@@ -9,7 +9,7 @@ public class global_selection : MonoBehaviour
 
     public string TagUnidades = "Unidad";
 
-    selected_dictionary selected_table;
+    public selected_dictionary selected_table;
     RaycastHit hit;
 
     bool dragSelect;

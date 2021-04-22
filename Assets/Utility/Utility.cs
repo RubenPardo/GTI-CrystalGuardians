@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public static class Utility 
 {
@@ -32,6 +33,25 @@ public static class Utility
         return r;
     }
 
+    public static bool rayCastUI()
+    {
+
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+
+        pointerData.position = Input.mousePosition;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+        if (results.Count > 0)
+        {
+            //WorldUI is my layer name
+            if (results[0].gameObject.layer == LayerMask.NameToLayer("UI"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // Metodos genericos para la funcionalidad de seleccion de unidades
     static Texture2D _whiteTexture;

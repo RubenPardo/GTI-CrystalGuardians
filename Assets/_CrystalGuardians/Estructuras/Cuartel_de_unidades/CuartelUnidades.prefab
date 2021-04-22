@@ -531,6 +531,7 @@ GameObject:
   - component: {fileID: 3296397069373787144}
   - component: {fileID: 3296397069373787151}
   - component: {fileID: 7445176651192200416}
+  - component: {fileID: 7975527794292110191}
   m_Layer: 0
   m_Name: CuartelUnidades
   m_TagString: estructura
@@ -595,6 +596,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelAAbrir: {fileID: 8306299707270412338}
+--- !u!208 &7975527794292110191
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296397069373787150}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3461880940727047002
 GameObject:
   m_ObjectHideFlags: 0

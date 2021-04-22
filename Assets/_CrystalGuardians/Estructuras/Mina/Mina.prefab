@@ -420,6 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5414440465539987493}
   - component: {fileID: 4319135670969035619}
+  - component: {fileID: 3347636918229534363}
   m_Layer: 0
   m_Name: Mina
   m_TagString: Untagged
@@ -462,3 +463,19 @@ MonoBehaviour:
   vidaActual: 1
   costeOroMejorar: c31e0000d44900004083000014cd000050270100
   generacionOroPorNivel: 1e0000004b000000b400000040010000f4010000d0020000
+--- !u!208 &3347636918229534363
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047545057962889104}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+  m_TimeToStationary: 0.5

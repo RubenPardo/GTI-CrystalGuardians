@@ -320,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8076399094265432057}
   - component: {fileID: 8656110707124300057}
+  - component: {fileID: 3588175921475844688}
   m_Layer: 0
   m_Name: Trampa
   m_TagString: Untagged
@@ -361,6 +362,22 @@ MonoBehaviour:
   vidaPorNivel: 
   vidaActual: 1
   costeOroMejorar: 983a0000
+--- !u!208 &3588175921475844688
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5842723749176449981}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.5, y: 0.5, z: 0.5}
+  m_TimeToStationary: 0.5
 --- !u!1 &7193186298918952135
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,7 +77,8 @@ public class GameManager : MonoBehaviour
     public int y = 0;
 
     //Mejoras de aldea
-    List<string> listaStrings = new List<string>();
+    public List<Carta> listaCartas;
+
     
 
     // Start is called before the first frame update
@@ -92,20 +93,25 @@ public class GameManager : MonoBehaviour
 
             Instantiate(castillo, transform.position, transform.rotation);
             Oro = 5000;
+
+
+            //Debug.Log("Numeros añadidos");
+
+            //Añadimos las cartas a la lista de cartas disponibles
+            listaCartas = new List<Carta>();
+            listaCartas.Add(new Carta("Estructura", "Descripcion de carta de estructura", "estructuras", escribirDebug));
+            listaCartas.Add(new Carta("Recursos", "Descripcion de carta de recursos", "recursos", escribirDebug));
+            listaCartas.Add(new Carta("Unidades", "Descripcion de carta de unidades", "unidades", escribirDebug));
+            listaCartas.Add(new Carta("Hechizos", "Descripcion de carta de hechizos", "hechizos", escribirDebug));
+
         }
         else
         {
             DestroyImmediate(gameObject);
         }
 
-        //pruebas mejoras de aldea
-        listaStrings.Add("1");
-        listaStrings.Add("2");
-        listaStrings.Add("3");
-        listaStrings.Add("4");
-        listaStrings.Add("5");
-        listaStrings.Add("6");
-        listaStrings.Add("7");
+        
+        
     }
 
     // Update is called once per frame
@@ -114,5 +120,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
       
+    }
+    static int escribirDebug()
+    {
+        Debug.Log("Esto esta escrito por una carta");
+        return 0;
     }
 }

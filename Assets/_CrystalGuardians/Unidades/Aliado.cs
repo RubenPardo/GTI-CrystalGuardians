@@ -12,15 +12,16 @@ public class Aliado : MonoBehaviour
     public float rangoAtaque; // casillas para atacar a los enemigos
     public float velocidadAtaque;// ataque por segundo
 
-    // Start is called before the first frame update
-    void Start()
+    public bool isEnemigoFijado = false;
+    public bool isMoving = false;
+    public bool isAtacking = false;
+
+    public void setDefaultMoveFlags()
     {
-        
+        isEnemigoFijado = false;
+        isMoving = true;
+        isAtacking = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

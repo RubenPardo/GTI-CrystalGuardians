@@ -95,14 +95,14 @@ public class GameManager : MonoBehaviour
             Oro = 5000;
 
 
-            //Debug.Log("Numeros añadidos");
+            
 
             //Añadimos las cartas a la lista de cartas disponibles
             listaCartas = new List<Carta>();
-            listaCartas.Add(new Carta("Estructura", "Descripcion de carta de estructura", "estructuras", escribirDebug));
-            listaCartas.Add(new Carta("Recursos", "Descripcion de carta de recursos", "recursos", escribirDebug));
-            listaCartas.Add(new Carta("Unidades", "Descripcion de carta de unidades", "unidades", escribirDebug));
-            listaCartas.Add(new Carta("Hechizos", "Descripcion de carta de hechizos", "hechizos", escribirDebug));
+            listaCartas.Add(new Carta("Estructura", "El coste de las estructuras se reduce un 10%", "estructuras", reducirCosteEstructuras));
+            listaCartas.Add(new Carta("Recursos", "Descripcion de carta de recursos", "recursos", escribirDebugRecursos));
+            listaCartas.Add(new Carta("Unidades", "Descripcion de carta de unidades", "unidades", escribirDebugUnidades));
+            listaCartas.Add(new Carta("Hechizos", "Descripcion de carta de hechizos", "hechizos", escribirDebugHechizos));
 
         }
         else
@@ -121,9 +121,40 @@ public class GameManager : MonoBehaviour
     {
       
     }
-    static int escribirDebug()
+    static int escribirDebugUnidades()
     {
-        Debug.Log("Esto esta escrito por una carta");
+        Debug.Log("Has seleccionado una carta de mejora de aldea de clase unidades");
+        
         return 0;
     }
+    static int reducirCosteEstructuras()
+    {
+        Debug.Log("Las estructuras han bajado de coste un 10%");
+
+        //Debug.Log("Coste antes --> " + costeConstruirMina);
+
+        costeConstruirMina = costeConstruirMina -  10 * costeConstruirMina / 100;
+        costeConstruirExtractor = costeConstruirExtractor - 10 * costeConstruirExtractor / 100;
+        costeConstruirCuartel = costeConstruirCuartel - 10 * costeConstruirCuartel / 100;
+        costeConstruirCasaHechizos = costeConstruirCasaHechizos - 10 * costeConstruirCasaHechizos / 100;
+        costeConstruirMuro = costeConstruirMuro - 10 * costeConstruirMuro / 100;
+        costeConstruirTorre = costeConstruirTorre - 10 * costeConstruirTorre / 100;
+        costeConstruirTrampa = costeConstruirTrampa - 10 * costeConstruirTrampa / 100;
+
+        //Debug.Log("Coste despues --> " + costeConstruirMina);
+
+        return 0;
+    }
+    static int escribirDebugHechizos()
+    {
+        Debug.Log("Has seleccionado una carta de mejora de aldea de clase hechizos");
+        return 0;
+    }
+    static int escribirDebugRecursos()
+    {
+        Debug.Log("Has seleccionado una carta de mejora de aldea de clase recursos");
+        return 0;
+    }
+
+
 }

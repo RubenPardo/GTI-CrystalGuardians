@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 
 public class MejorasController : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    //panel general
+    public GameObject panelGeneral;
 
     //Parametros del UI
     public RawImage contenedorCarta1;
@@ -34,9 +38,20 @@ public class MejorasController : MonoBehaviour
     public Texture iconoClaseHechizos;
     public Texture iconoClaseRecursos;
 
+    //botones que representan a cada carta
+    public Button botonCarta1;
+    public Button botonCarta2;
+    public Button botonCarta3;
+
     //Listas que almacenan las cartas a utilizar
     List<Carta> listaCartas;
     List<Carta> listaTresCartas;
+
+    //Texto a modificar del contenedor de mis mejoras
+    public Text textoDeMisMejoras;
+    public bool hasElegidoMejora ;
+
+
     private void Start()
     {
         //recibimos las cartas procedentes de GameManager
@@ -45,12 +60,15 @@ public class MejorasController : MonoBehaviour
         listaTresCartas = ChooseThreeCartas(listaCartas);
         //personalizamos las  3 cartas que apareceran en el canvas de seleccion de cartas
         personalizarPanelSeleccion(listaTresCartas);
+        //indicamos este booleano en falso para controlar el texto del contenedor mis mejoras
+        hasElegidoMejora = false;
+        Debug.Log("START");
     }
     
     
     
     //metodo para elegir una carta al azar
-    public  string ChooseUnaCarta(List<Carta> listaCartas)
+    public   string ChooseUnaCarta(List<Carta> listaCartas)
     {
         //Debug.Log("hola "+ listaStrings.Count);
         
@@ -65,7 +83,7 @@ public class MejorasController : MonoBehaviour
         {
             cartasElegidas.Add(listaGeneral[Random.Range(0, listaGeneral.Count)]);
         }
-        Debug.Log(cartasElegidas.Count);
+        //Debug.Log(cartasElegidas.Count);
         return cartasElegidas;
     }
 
@@ -108,6 +126,12 @@ public class MejorasController : MonoBehaviour
                 elegirClase(cartaElegida, contenedorCarta1 , iconoCarta1);
                 titulo1.text = cartaElegida.Titulo;
                 descripcionCarta1.text = cartaElegida.Descripcion;
+
+                //agregamos los eventos que sucederan al seleccionar la carta
+                botonCarta1.onClick.AddListener(delegate { cartaElegida.startFunction(); });
+                botonCarta1.onClick.AddListener(delegate { registrarCarta(cartaElegida.Titulo,cartaElegida.Descripcion); });
+                
+                 
             }
             if (i == 1)
             {
@@ -115,6 +139,11 @@ public class MejorasController : MonoBehaviour
                 elegirClase(cartaElegida, contenedorCarta2, iconoCarta2);
                 titulo2.text = cartaElegida.Titulo;
                 descripcionCarta2.text = cartaElegida.Descripcion;
+
+                //agregamos los eventos que sucederan al seleccionar la carta
+                botonCarta2.onClick.AddListener(delegate { cartaElegida.startFunction(); });
+                botonCarta2.onClick.AddListener(delegate { registrarCarta(cartaElegida.Titulo, cartaElegida.Descripcion); });
+                
             }
             if (i == 2)
             {
@@ -122,8 +151,68 @@ public class MejorasController : MonoBehaviour
                 elegirClase(cartaElegida, contenedorCarta3, iconoCarta3);
                 titulo3.text = cartaElegida.Titulo;
                 descripcionCarta3.text = cartaElegida.Descripcion;
+
+                //agregamos los eventos que sucederan al seleccionar la carta
+                
+                botonCarta3.onClick.AddListener(delegate { cartaElegida.startFunction(); });
+                botonCarta3.onClick.AddListener(delegate { registrarCarta(cartaElegida.Titulo, cartaElegida.Descripcion); });
             }
         }
     }
+
+    //con este metodo al elegir una carta se generarán otras nuevas tres cartas
+    public void nuevas3cartas()
+    {
+        listaTresCartas = ChooseThreeCartas(listaCartas);
+        personalizarPanelSeleccion(listaTresCartas);
+
+        
+    }
+
+    //con este metodo registramos la carta en mis mejoras
+
+    public void registrarCarta(string titulo , string descripcion)
+    {
+        
+        Debug.Log("HAS ELEGIDO UNA CARTA");
+        if (hasElegidoMejora)
+        {
+            textoDeMisMejoras.text += "-"  + titulo + ": " + descripcion + "\n";
+            
+        }
+        else
+        {
+           textoDeMisMejoras.text = "-" + titulo + ": " + descripcion + "\n";
+            
+            hasElegidoMejora = true;
+        }
+        
+
+        
+
+    }
+
+    public void Cerrar() 
+    {
+
+        //borramos los onclick anteriores
+        botonCarta1.onClick.RemoveAllListeners();
+        botonCarta2.onClick.RemoveAllListeners();
+        botonCarta3.onClick.RemoveAllListeners();
+
+        //elegimos las tres proximas nuevas cartas
+        listaTresCartas = ChooseThreeCartas(listaCartas);
+        personalizarPanelSeleccion(listaTresCartas);
+
+        //cerramos el panel
+        panelGeneral.SetActive(false);
+    }
+        
+
+
+
+        
+        
+    }
     
-}
+

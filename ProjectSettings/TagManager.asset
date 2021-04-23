@@ -6,9 +6,9 @@ TagManager:
   tags:
   - Casilla
   - Castillo
-  - estructura
   - Unidad
   - Enemigo
+  - Estructura
   layers:
   - Default
   - TransparentFX

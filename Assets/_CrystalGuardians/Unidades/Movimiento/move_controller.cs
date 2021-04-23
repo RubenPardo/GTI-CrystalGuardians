@@ -50,8 +50,12 @@ public class move_controller : MonoBehaviour
                     NavMeshAgent agent = unidad.GetComponent<NavMeshAgent>();
                     // cuando pulsamos restablecer por defecto los flags
                     unidad.setDefaultMoveFlags();
+                    //Debug.Log("PUNTO " +k +": "  + (hit.point + PuntosPosicionamiento.puntos[k] * (agent.radius+0.7f)));
+                    Debug.Log(PuntosPosicionamiento.puntos[k]);
+                    agent.SetDestination(hit.point+PuntosPosicionamiento.puntos[k]*(agent.radius + 0.7f));
+                   
+                    k++;
 
-                    agent.SetDestination(hit.point);
                     
                 }
                 

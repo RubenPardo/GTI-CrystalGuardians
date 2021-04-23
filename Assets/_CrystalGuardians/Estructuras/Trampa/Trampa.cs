@@ -18,6 +18,7 @@ public class Trampa : Estructura
     {
         canvas.SetActive(true);
     }
+
     public override void cerrarMenu()
     {
         canvas.SetActive(false);

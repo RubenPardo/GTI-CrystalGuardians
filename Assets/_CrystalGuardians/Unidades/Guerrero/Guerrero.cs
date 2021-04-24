@@ -32,8 +32,9 @@ public class Guerrero : Aliado
             enemigosDistancias = new Dictionary<GameObject, float>();
 
 
-            if (!isEnemigoFijado)// intentar fijar un enemigo
+            if (!isEnemigoFijado && enemigos.Length > 0)// intentar fijar un enemigo si hay
             {
+                
                 foreach (GameObject enemigo in enemigos)
                 {
                     // distancia enemigos
@@ -92,12 +93,23 @@ public class Guerrero : Aliado
 
         if (isAtacking)
         {
-            //Debug.Log("GUERRERO atacando");
-            // si muere isEnemigoFijado = false
+           // comprobar que el enemigo ha muerto antes de estos calculos
+            if (Vector3.Distance(transform.position, enemigoFijado.transform.position) > rangoAtaque)
+            {
+                // si el enemigo sale del rango de ataque desfijarlo
+                Debug.Log("Enemigo fuera de rango");
+                isAtacking = false;
+                isEnemigoFijado = false;
+            }
+            else
+            {
+                Debug.Log("GUERRERO atacando");
+                // si muere isEnemigoFijado
+                // isAtacking = false;
+                // isEnemigoFijado = false;
+            }
+
         }
-
-
-
 
     }
 }

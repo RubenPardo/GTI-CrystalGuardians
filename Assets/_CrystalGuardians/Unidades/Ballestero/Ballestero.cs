@@ -31,7 +31,7 @@ public class Ballestero : Aliado
             enemigosDistancias = new Dictionary<GameObject, float>();
 
 
-            if (!isEnemigoFijado)// intentar fijar un enemigo
+            if (!isEnemigoFijado && enemigos.Length > 0)// intentar fijar un enemigo
             {
                 foreach (GameObject enemigo in enemigos)
                 {
@@ -94,8 +94,22 @@ public class Ballestero : Aliado
 
         if (isAtacking)
         {
-            //Debug.Log("BALLESTERO atacando");
-            // si muere isEnemigoFijado = false
+
+            // comprobar que el enemigo ha muerto antes de estos calculos
+            if (Vector3.Distance(transform.position, enemigoFijado.transform.position) > rangoAtaque)
+            {
+                // si el enemigo sale del rango de ataque desfijarlo
+                Debug.Log("Enemigo fuera de rango");
+                isAtacking = false;
+                isEnemigoFijado = false;
+            }
+            else
+            {
+                //Debug.Log("Ballestero atacando");
+                // si muere isEnemigoFijado
+                // isAtacking = false;
+                // isEnemigoFijado = false;
+            }
         }
 
 

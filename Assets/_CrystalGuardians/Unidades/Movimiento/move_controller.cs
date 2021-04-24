@@ -46,6 +46,7 @@ public class move_controller : MonoBehaviour
                 int k = 0;
                 foreach (KeyValuePair<int, GameObject> pair in global_selection.selected_table.selectedTable)
                 {
+                   
                     Aliado unidad = global_selection.selected_table.selectedTable[pair.Key].transform.parent.gameObject.GetComponent<Aliado>();
                     NavMeshAgent agent = unidad.GetComponent<NavMeshAgent>();
                     // cuando pulsamos restablecer por defecto los flags

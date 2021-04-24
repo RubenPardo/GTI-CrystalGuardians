@@ -92,7 +92,7 @@ public class Guerrero : Aliado
 
         if (isAtacking)
         {
-            Debug.Log("GUERRERO atacando");
+            //Debug.Log("GUERRERO atacando");
             // si muere isEnemigoFijado = false
         }
 

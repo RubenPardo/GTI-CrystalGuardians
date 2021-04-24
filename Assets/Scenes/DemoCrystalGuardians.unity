@@ -22093,7 +22093,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 673813405}
-  - component: {fileID: 673813406}
   m_Layer: 5
   m_Name: BarraHechizos
   m_TagString: Untagged
@@ -22121,22 +22120,6 @@ RectTransform:
   m_AnchoredPosition: {x: 296, y: -377}
   m_SizeDelta: {x: 50, y: 60}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &673813406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 673813404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b26d6b564a159e4c9e70c35d9746ce6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textOro: {fileID: 0}
-  textObsidium: {fileID: 0}
-  textTopeUnidades: {fileID: 0}
-  textActualUnidades: {fileID: 0}
 --- !u!1 &675736988 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6505362721449792680, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -43880,7 +43863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2052162451704548511, guid: de219af1d9e38c54dabcabadde7519f8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.2407827
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 2052162451704548511, guid: de219af1d9e38c54dabcabadde7519f8, type: 3}
       propertyPath: m_LocalRotation.w

@@ -94,7 +94,7 @@ public class Ballestero : Aliado
 
         if (isAtacking)
         {
-            Debug.Log("BALLESTERO atacando");
+            //Debug.Log("BALLESTERO atacando");
             // si muere isEnemigoFijado = false
         }
 

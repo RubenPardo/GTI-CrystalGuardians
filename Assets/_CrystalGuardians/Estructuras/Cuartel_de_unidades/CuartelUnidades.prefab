@@ -1482,7 +1482,7 @@ GameObject:
   - component: {fileID: -3281618452165654047}
   m_Layer: 0
   m_Name: CuartelUnidades
-  m_TagString: estructura
+  m_TagString: Estructura
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

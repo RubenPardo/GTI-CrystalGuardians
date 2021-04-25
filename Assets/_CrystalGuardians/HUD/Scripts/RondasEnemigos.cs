@@ -31,7 +31,7 @@ public class RondasEnemigos : MonoBehaviour
 
     void Start()
     {
-        Button btn = btnRondas.GetComponent<Button>();
+        //Button btn = btnRondas.GetComponent<Button>();
        // Button btnR = btnReiniciar.GetComponent<Button>();
       
         numeroRonda.text = numeroRnda.ToString("f0");
@@ -83,6 +83,10 @@ public class RondasEnemigos : MonoBehaviour
                 isRondaActive = false;
                 contadorTiempoRonda = 300.0f;
                 numeroRonda.text = numeroRnda.ToString("f0");
+                if(numeroRnda % 3 == 0)
+                {
+                    //lanzar mejoras de aldea
+                }
                 
                 
 
@@ -159,13 +163,15 @@ public class RondasEnemigos : MonoBehaviour
         if(numeroRnda % 5 == 0)
         {
             int cantidadEnemigosFuertes = numeroRnda / 5;
+            Debug.Log(cantidadEnemigosFuertes);
             if (cantidadEnemigosFuertes > 4) cantidadEnemigosFuertes = 4;
 
-            for (int i = 0; i < cantidadEnemigosFuertes; i++) { }
+            for (int i = 0; i < cantidadEnemigosFuertes; i++) 
             {
                 GameObject casilla = listaSpawn[Random.Range(0, listaSpawn.Length)];
                 
                 GameObject g = Instantiate(enemigoFuerte);
+                
                 g.transform.position = casilla.transform.position;
 
                 

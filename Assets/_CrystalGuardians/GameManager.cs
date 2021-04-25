@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // cuartel de unidades -----------
     public static int nivelMinimoCastilloCuartel = 0;
     public static int costeConstruirCuartel = 400;
-    public static int topeCuartelUnidades = 4;
+    public static int topeCuartelUnidades = 2;
     private int cuartelesConstruidos = 0;
     public int CuartelesConstruidos { get => cuartelesConstruidos; set => cuartelesConstruidos = value; }
 
@@ -99,10 +99,7 @@ public class GameManager : MonoBehaviour
             instance = this;
 
             Instantiate(castillo, transform.position, transform.rotation);
-            Oro = 5000;
-
-
-            
+           
 
             //Añadimos las cartas a la lista de cartas disponibles
             listaCartas = new List<Carta>();

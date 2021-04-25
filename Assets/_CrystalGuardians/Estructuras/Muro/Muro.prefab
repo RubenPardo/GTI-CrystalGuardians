@@ -1017,7 +1017,7 @@ MonoBehaviour:
   nivelMinimoCastilloParaMejorar: 0100000002000000
   vidaPorNivel: b80b000010270000
   vidaActual: 1
-  costeOroMejorar: 
+  costeOroMejorar: 64000000e803000070170000
   capacidadUnidades: 
   guerrero: {fileID: 0}
   ballestero: {fileID: 0}

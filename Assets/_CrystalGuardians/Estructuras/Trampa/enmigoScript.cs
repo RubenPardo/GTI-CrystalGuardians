@@ -19,7 +19,7 @@ public class enmigoScript : MonoBehaviour
     void Update()
     {
         //Cambiar a mover a estructuras o enemigos
-        float x;
+        /*float x;
         if (dir)
         {
             x = transform.position.x + speed * Time.deltaTime;
@@ -37,7 +37,7 @@ public class enmigoScript : MonoBehaviour
         else if (transform.position.x <= -8f) {
 
             dir = true;
-        }
+        }*/
 
         //-----
         //No cambiar

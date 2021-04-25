@@ -1015,7 +1015,7 @@ MonoBehaviour:
   NivelMaximo: 2
   nivelActual: 0
   nivelMinimoCastilloParaMejorar: 0100000002000000
-  vidaPorNivel: b80b000010270000
+  vidaPorNivel: f4010000b80b000010270000
   vidaActual: 1
   costeOroMejorar: 64000000e803000070170000
   capacidadUnidades: 

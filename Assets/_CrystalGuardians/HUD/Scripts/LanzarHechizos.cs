@@ -35,7 +35,7 @@ public class LanzarHechizos : MonoBehaviour
     {
         // comprobar nivel y luego los recursos para habilitar o deshabilitar los botones
 
-        // CAMBIO DE ICONO HEAL
+        /*// CAMBIO DE ICONO HEAL
         if (GameManager.Instance.Oro < GameManager.costeLanzarHeal)
         {
             // recursos insuficiente
@@ -93,7 +93,7 @@ public class LanzarHechizos : MonoBehaviour
             btnBuff.interactable = true;
 
 
-        }
+        }*/
 
 
     }

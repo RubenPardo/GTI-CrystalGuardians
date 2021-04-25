@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // cuartel de unidades -----------
     public static int nivelMinimoCastilloCuartel = 0;
     public static int costeConstruirCuartel = 400;
-    public static int topeCuartelUnidades = 4;
+    public static int topeCuartelUnidades = 2;
     private int cuartelesConstruidos = 0;
     public int CuartelesConstruidos { get => cuartelesConstruidos; set => cuartelesConstruidos = value; }
 
@@ -83,7 +83,14 @@ public class GameManager : MonoBehaviour
     public int i = 0;
     public int y = 0;
 
+    //Mejoras de aldea
+    public List<Carta> listaCartas;
+
+    
+
     // Start is called before the first frame update
+
+
     void Start()
     {
         
@@ -92,12 +99,23 @@ public class GameManager : MonoBehaviour
             instance = this;
 
             Instantiate(castillo, transform.position, transform.rotation);
-            Oro = 5000;
+           
+
+            //Añadimos las cartas a la lista de cartas disponibles
+            listaCartas = new List<Carta>();
+            listaCartas.Add(new Carta("Estructura", "El coste de las estructuras se reduce un 10%", "estructuras", reducirCosteEstructuras));
+            listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas rápido", "recursos", aumentarProduccionMinas20));
+            listaCartas.Add(new Carta("Unidades", "Descripcion de carta de unidades", "unidades", funcionPorDefectoUnidades));
+            listaCartas.Add(new Carta("Hechizos", "Descripcion de carta de hechizos", "hechizos", funcionPorDefectoHechizos));
+
         }
         else
         {
             DestroyImmediate(gameObject);
         }
+
+        
+        
     }
 
     // Update is called once per frame
@@ -107,4 +125,44 @@ public class GameManager : MonoBehaviour
     {
       
     }
+    static int funcionPorDefectoUnidades()
+    {
+        Debug.Log("Has seleccionado una carta de mejora de aldea de clase unidades");
+        
+        
+        return 0;
+    }
+    static int reducirCosteEstructuras()
+    {
+        Debug.Log("Las estructuras han bajado de coste un 10%");
+
+        //Debug.Log("Coste antes --> " + costeConstruirMina);
+
+        costeConstruirMina = costeConstruirMina -  10 * costeConstruirMina / 100;
+        costeConstruirExtractor = costeConstruirExtractor - 10 * costeConstruirExtractor / 100;
+        costeConstruirCuartel = costeConstruirCuartel - 10 * costeConstruirCuartel / 100;
+        costeConstruirCasaHechizos = costeConstruirCasaHechizos - 10 * costeConstruirCasaHechizos / 100;
+        costeConstruirMuro = costeConstruirMuro - 10 * costeConstruirMuro / 100;
+        costeConstruirTorre = costeConstruirTorre - 10 * costeConstruirTorre / 100;
+        costeConstruirTrampa = costeConstruirTrampa - 10 * costeConstruirTrampa / 100;
+
+        //Debug.Log("Coste despues --> " + costeConstruirMina);
+
+        return 0;
+    }
+    static int funcionPorDefectoHechizos()
+    {
+        Debug.Log("Has seleccionado una carta de mejora de aldea de clase hechizos");
+        return 0;
+    }
+    static int aumentarProduccionMinas20()
+    {
+        //aumenta un 20% la produccion de las minas
+        Debug.Log("Has mejorado la produccion de las minas un 20%");
+        //cambiar la variable 
+        Mina.mejoraDeAldeaProduccionOro = Mina.mejoraDeAldeaProduccionOro *  1.2f;
+        return 0;
+    }
+
+
 }

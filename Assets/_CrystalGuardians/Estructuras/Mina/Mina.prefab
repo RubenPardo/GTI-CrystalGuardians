@@ -1433,7 +1433,7 @@ GameObject:
   - component: {fileID: -1617478378624079782}
   m_Layer: 0
   m_Name: Mina
-  m_TagString: Untagged
+  m_TagString: Estructura
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -14,11 +14,10 @@ public class RondasEnemigos : MonoBehaviour
     private bool isRondaActive = false;
 
 
-    //public int rangoSpawn = 0;
-    //public float xPos = 0;
-
-    //public float zPos = 0;
+   
     public int cantidadEnemigosPorRonda=3;
+
+    public GameObject panelMejoras;
 
 
     // Start is called before the first frame upd0ate
@@ -26,19 +25,27 @@ public class RondasEnemigos : MonoBehaviour
     public GameObject enemigoDistancia;
     public GameObject enemigoFuerte;
     public GameObject mina;
-    public Button btnRondas;
-    public Button btnReiniciar;
+   
+
+
 
     void Start()
     {
-        Button btn = btnRondas.GetComponent<Button>();
-       // Button btnR = btnReiniciar.GetComponent<Button>();
-      
+        
         numeroRonda.text = numeroRnda.ToString("f0");
-        //contadorRondas.text = contadorRonda.ToString("f2");
+        
 
     }
 
+    private void comprobarLanzarMejorasAldeas()
+    {
+        // cada 3 rondas se lanzaran las mejoras de la aldea
+        if (numeroRnda % 3 == 0)
+        {
+            //lanzar mejoras de aldea
+            panelMejoras.SetActive(true);
+        }
+    }
 
     public void comenzarRonda()
     {
@@ -62,6 +69,7 @@ public class RondasEnemigos : MonoBehaviour
             Destroy(listaEnemigosEnPartida[i]);
         }
 
+        comprobarLanzarMejorasAldeas();
 
     }
 
@@ -83,8 +91,8 @@ public class RondasEnemigos : MonoBehaviour
                 isRondaActive = false;
                 contadorTiempoRonda = 300.0f;
                 numeroRonda.text = numeroRnda.ToString("f0");
-                
-                
+                comprobarLanzarMejorasAldeas();
+
 
             }
         }
@@ -159,13 +167,15 @@ public class RondasEnemigos : MonoBehaviour
         if(numeroRnda % 5 == 0)
         {
             int cantidadEnemigosFuertes = numeroRnda / 5;
+            Debug.Log(cantidadEnemigosFuertes);
             if (cantidadEnemigosFuertes > 4) cantidadEnemigosFuertes = 4;
 
-            for (int i = 0; i < cantidadEnemigosFuertes; i++) { }
+            for (int i = 0; i < cantidadEnemigosFuertes; i++) 
             {
                 GameObject casilla = listaSpawn[Random.Range(0, listaSpawn.Length)];
                 
                 GameObject g = Instantiate(enemigoFuerte);
+                
                 g.transform.position = casilla.transform.position;
 
                 

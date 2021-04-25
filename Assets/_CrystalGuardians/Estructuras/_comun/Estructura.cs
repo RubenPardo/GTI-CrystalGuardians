@@ -13,8 +13,11 @@ public abstract class Estructura : MonoBehaviour
     public int[] costeOroMejorar; // costes para mejorar (el primer valor es el nivel 2)
 
     public abstract void mejorar();
+    public abstract void abrirMenu();
+    public abstract void cerrarMenu();
 
-    
+    protected GameObject canvas;
+
 
 
 }

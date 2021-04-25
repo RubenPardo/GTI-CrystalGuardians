@@ -1,10 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public static class Utility 
 {
+
+
+    public static GameObject[] unirDosArrays(GameObject[] arr1, GameObject[] arr2)
+    {
+        
+        return arr1.Concat(arr2).ToArray(); ;
+    }
+
     // Devuelve un punto aleatorio dentro de un perimetro de un rectangulo de lado 2*distance
     public static Vector3 getPuntoPerimetroRectangulo(float distance)
     {

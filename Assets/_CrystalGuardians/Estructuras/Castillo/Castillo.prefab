@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 4754766673540945886}
   m_Layer: 7
   m_Name: Castillo
-  m_TagString: Untagged
+  m_TagString: Estructura
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

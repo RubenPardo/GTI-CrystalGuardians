@@ -10,12 +10,16 @@ public class selected_dictionary : MonoBehaviour
 
     public void addSelected(GameObject go)
     {
-        int id = go.GetInstanceID();
-        if (!selectedTable.ContainsKey(id))
+        if (go.tag.Equals("Unidad"))
         {
-            selectedTable.Add(id, go);
-            go.AddComponent<selection_component>();
+            int id = go.GetInstanceID();
+            if (!selectedTable.ContainsKey(id))
+            {
+                selectedTable.Add(id, go);
+                go.AddComponent<selection_component>();
+            }
         }
+        
     }
 
     public void deselect(int id)

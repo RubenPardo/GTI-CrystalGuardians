@@ -7,12 +7,20 @@ using UnityEngine.AI;
 
 public class enmigoScript : MonoBehaviour
 {
-    public int vida = 100;
+    [Header("Stasts Enemgio")]
+    public int nivelActual;
+    public int[] danyoPorNivel;
+    public int[] vidaPorNivel;
+    public int vidaMaxima;
+    public int vidaActual;
+
     public float speed;
     public float rangoVision;
     public float rangoAtaque;
+    public float attackSpeed = 1f;
+    private float attackCoutDwon = 0f;
     private bool dir;
-
+    [Header("HUD")]
     public HealthBarScript healthBar;
 
     GameObject[] estructurasUnidades;
@@ -23,6 +31,8 @@ public class enmigoScript : MonoBehaviour
     private bool isObjetivoFijado;
     private bool isAtacking;
 
+    private float ultimoAtaque=0;
+
     NavMeshAgent agent;
 
     // Start is called before the first frame update
@@ -30,6 +40,8 @@ public class enmigoScript : MonoBehaviour
     {
         dir = true;
         agent = GetComponent<NavMeshAgent>();
+        vidaActual = vidaPorNivel[nivelActual];
+        healthBar.SetMaxHealth(vidaPorNivel[nivelActual]);
     }
 
     // Update is called once per frame
@@ -59,7 +71,7 @@ public class enmigoScript : MonoBehaviour
 
         //-----
         //No cambiar
-        if(vida <= 0)
+        if(vidaActual <= 0)
         {
             Destroy(gameObject);
         }
@@ -114,22 +126,31 @@ public class enmigoScript : MonoBehaviour
         }
         else
         {
-            if (isObjetivoFijado)
+            if (objetivoFijado == null)
             {
-                if (Vector3.Distance(transform.position, objetivoFijado.transform.position) <= rangoAtaque)
+                isAtacking = false;
+                isObjetivoFijado = false;
+            }
+            else
+            {
+                if (isObjetivoFijado)
                 {
-                    // el enemigo esta dentro del rango de ataque
+                    if (Vector3.Distance(transform.position, objetivoFijado.transform.position) <= rangoAtaque)
+                    {
+                        // el enemigo esta dentro del rango de ataque
 
-                    // parar el agent y true el flag de atacar
+                        // parar el agent y true el flag de atacar
 
-                    isMoving = false;
-                    agent.SetDestination(this.transform.position);
+                        isMoving = false;
+                        agent.SetDestination(this.transform.position);
 
-                    isAtacking = true;
+                        isAtacking = true;
 
 
+                    }
                 }
             }
+            
 
             if (agent.remainingDistance == 0)// para cuando se pulsa a otra direccion hay que comprobar cuando para
             {
@@ -141,9 +162,14 @@ public class enmigoScript : MonoBehaviour
 
         if (isAtacking)
         {
-
-            // comprobar que el objetivo ha muerto antes de estos calculos
-            if (Vector3.Distance(transform.position, objetivoFijado.transform.position) > rangoAtaque)
+            if (objetivoFijado == null)
+            {
+                // si el enemigo ha muerto
+                Debug.Log("Objetivo ha muerto");
+                isAtacking = false;
+                isObjetivoFijado = false;
+            }
+            else if (Vector3.Distance(transform.position, objetivoFijado.transform.position) > rangoAtaque)
             {
                 // si el enemigo sale del rango de ataque desfijarlo
                 Debug.Log("Objetivo fuera de rango");
@@ -152,7 +178,20 @@ public class enmigoScript : MonoBehaviour
             }
             else
             {
-                Debug.Log("Enemigo atacando");
+                if (attackCoutDwon <= 0f)
+                {
+                    Estructura estructura = objetivoFijado.GetComponent<Estructura>();
+                    Debug.Log("Atacando : " + estructura.currentVida);
+                    int vidaTMP = estructura.currentVida - danyoPorNivel[nivelActual];
+                    estructura.setCurrentHealth(vidaTMP);
+
+                    attackCoutDwon = 1f / attackSpeed;
+
+                    Debug.Log("Atacando : "+ estructura.currentVida);
+                }
+
+                attackCoutDwon -= Time.deltaTime;
+
                 // si muere isEnemigoFijado
                 // isAtacking = false;
                 // isEnemigoFijado = false;
@@ -164,6 +203,6 @@ public class enmigoScript : MonoBehaviour
     {
        
         healthBar.SetHeatlh(health);
-        vida = health;
+        vidaActual = health;
     }
 }

@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class Torre : Estructura
 {
 
+
     public Text txtNivel;
     public Text txtMejora;
-  
+    
     public Text txtSaludActual;
     public Text txtSaludMejorada;
     public Text txtDañoActual;
@@ -62,8 +63,8 @@ public class Torre : Estructura
         nivelActual = nivelActual + 1;
 
 
+        settearVida();
 
-       
 
         // actualizar hud informacion
         setUpCanvasValues();
@@ -81,6 +82,7 @@ public class Torre : Estructura
         }
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         setUpCanvasValues();
+        settearVida();
     }
 
     void UpdateTarget()
@@ -149,7 +151,8 @@ public class Torre : Estructura
 
         if (bala != null)
         {
-            bala.Seek(target);
+            bala.damage = danyoPorNivel[nivelActual];
+            bala.setTarget(target);
         }
     }
 

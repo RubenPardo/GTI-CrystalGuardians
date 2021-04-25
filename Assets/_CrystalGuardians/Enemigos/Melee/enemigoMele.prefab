@@ -125,6 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a60810d8f22d67438a1d8cf7a016985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nivelActual: 0
+  danyoPorNivel: 5100000059000000630000006d0000007700000083000000
+  vidaPorNivel: 71020000e204000053070000c4090000350c0000a60e0000
   vida: 100
   speed: 5
   rangoVision: 71
@@ -175,6 +178,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2052162451704548511}
     m_Modifications:
+    - target: {fileID: 4064880173633874496, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4064880173633874498, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

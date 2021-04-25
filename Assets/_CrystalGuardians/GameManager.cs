@@ -56,8 +56,8 @@ public class GameManager : MonoBehaviour
     public static int costeLanzarBuff = 400;
 
     //recursos -------------
-    private float oro = 3000000;
-    private float obsidium = 300000;
+    private float oro = 99000000;
+    private float obsidium = 99900000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 

@@ -37,12 +37,12 @@ public class Mina : Estructura
 
     public override void mejorar()
     {
-        current_level = current_level++;
+        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
         nivelActual = nivelActual + 1;
 
 
 
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+        
 
         // actualizar hud informacion
         setUpCanvasValues();
@@ -84,9 +84,9 @@ public class Mina : Estructura
     private void comprobarDisponibilidadMejora()
     {
 
-        btnMejorar.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        btnMejorarInfo.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
     }
 
@@ -96,13 +96,25 @@ public class Mina : Estructura
 
         
         txtLvlActual.text = (nivelActual + 1).ToString();
-        txtLvlSiguiente.text = (nivelActual + 2).ToString();
         txtProduccionActual.text = generacionOroPorNivel[nivelActual].ToString();
-        txtProduccionMejorada.text = generacionOroPorNivel[nivelActual + 1].ToString();
-        txtMejora.text = costeOroMejorar[nivelActual].ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
-        txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
 
+        if (nivelActual < NivelMaximo) {
+            txtLvlSiguiente.text = (nivelActual + 2).ToString();
+
+            txtProduccionMejorada.text = generacionOroPorNivel[nivelActual + 1].ToString();
+            txtMejora.text = costeOroMejorar[nivelActual].ToString();
+            ;
+            txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
+        }
+        else
+        {
+            txtLvlSiguiente.text = "----------";
+
+            txtProduccionMejorada.text = "-----------";
+            txtMejora.text = "----------";
+            txtSaludMejorada.text = "-------";
+        }
 
 
     }

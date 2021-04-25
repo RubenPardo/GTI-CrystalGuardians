@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: -2016410808366884580}
   m_Layer: 0
   m_Name: Muro
-  m_TagString: Untagged
+  m_TagString: Estructura
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

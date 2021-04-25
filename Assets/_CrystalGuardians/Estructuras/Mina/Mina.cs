@@ -25,10 +25,14 @@ public class Mina : Estructura
 
     public int[] generacionOroPorNivel;
 
+    public static float mejoraDeAldeaProduccionOro = 1;//100% = 1 
+
     private void generarRecursos()
     {
         //GameManager.Instance.Oro += 1 * Time.deltaTime; //mina lvl-1
-        GameManager.Instance.Oro = GameManager.Instance.Oro + generacionOroPorNivel[nivelActual] * Time.deltaTime;
+        GameManager.Instance.Oro = GameManager.Instance.Oro + generacionOroPorNivel[nivelActual] * Time.deltaTime * mejoraDeAldeaProduccionOro;
+
+       // Debug.Log("Estoy generando --> " + (generacionOroPorNivel[nivelActual] * mejoraDeAldeaProduccionOro));
     }
 
     public override void mejorar()

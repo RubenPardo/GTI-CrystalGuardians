@@ -100,9 +100,9 @@ public class GameManager : MonoBehaviour
             //Añadimos las cartas a la lista de cartas disponibles
             listaCartas = new List<Carta>();
             listaCartas.Add(new Carta("Estructura", "El coste de las estructuras se reduce un 10%", "estructuras", reducirCosteEstructuras));
-            listaCartas.Add(new Carta("Recursos", "Descripcion de carta de recursos", "recursos", escribirDebugRecursos));
-            listaCartas.Add(new Carta("Unidades", "Descripcion de carta de unidades", "unidades", escribirDebugUnidades));
-            listaCartas.Add(new Carta("Hechizos", "Descripcion de carta de hechizos", "hechizos", escribirDebugHechizos));
+            listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas rápido", "recursos", aumentarProduccionMinas20));
+            listaCartas.Add(new Carta("Unidades", "Descripcion de carta de unidades", "unidades", funcionPorDefectoUnidades));
+            listaCartas.Add(new Carta("Hechizos", "Descripcion de carta de hechizos", "hechizos", funcionPorDefectoHechizos));
 
         }
         else
@@ -121,9 +121,10 @@ public class GameManager : MonoBehaviour
     {
       
     }
-    static int escribirDebugUnidades()
+    static int funcionPorDefectoUnidades()
     {
         Debug.Log("Has seleccionado una carta de mejora de aldea de clase unidades");
+        
         
         return 0;
     }
@@ -145,14 +146,17 @@ public class GameManager : MonoBehaviour
 
         return 0;
     }
-    static int escribirDebugHechizos()
+    static int funcionPorDefectoHechizos()
     {
         Debug.Log("Has seleccionado una carta de mejora de aldea de clase hechizos");
         return 0;
     }
-    static int escribirDebugRecursos()
+    static int aumentarProduccionMinas20()
     {
-        Debug.Log("Has seleccionado una carta de mejora de aldea de clase recursos");
+        //aumenta un 20% la produccion de las minas
+        Debug.Log("Has mejorado la produccion de las minas un 20%");
+        //cambiar la variable 
+        Mina.mejoraDeAldeaProduccionOro = Mina.mejoraDeAldeaProduccionOro *  1.2f;
         return 0;
     }
 

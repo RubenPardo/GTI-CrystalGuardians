@@ -24873,7 +24873,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 772768757}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1242609364}
+        m_TargetAssemblyTypeName: LanzarHechizos, Assembly-CSharp
+        m_MethodName: lanzarRayo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &772768757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34556,14 +34568,14 @@ MonoBehaviour:
   btnHeal: {fileID: 264661496}
   texturaReadyHeal: {fileID: 2800000, guid: 6cf5c0ad0d3385541bf096d87c6b10ed, type: 3}
   texturaGrisHeal: {fileID: 2800000, guid: ad4f462d9268b4c47990949ba936f4b0, type: 3}
-  rayoBluePrint: {fileID: 0}
-  btnRayo: {fileID: 0}
-  texturaReadyRayo: {fileID: 0}
-  texturaGrisRayo: {fileID: 0}
-  buffBluePrint: {fileID: 0}
-  btnBuff: {fileID: 0}
-  texturaReadyBuff: {fileID: 0}
-  texturaGrisBuff: {fileID: 0}
+  rayoBluePrint: {fileID: 4457795882673918567, guid: 9d194658f166be0429bc02ed812983ba, type: 3}
+  btnRayo: {fileID: 772768756}
+  texturaReadyRayo: {fileID: 2800000, guid: b35251104bae7174ea2ff236cd476397, type: 3}
+  texturaGrisRayo: {fileID: 2800000, guid: f341eea19cab5144abc0bd822d5c6042, type: 3}
+  buffBluePrint: {fileID: 3763567258399597673, guid: dab939afa7f55c74bb4aa1a36af9b488, type: 3}
+  btnBuff: {fileID: 1486306440}
+  texturaReadyBuff: {fileID: 2800000, guid: 6bdb0337d22c6434aa549d7590fe9204, type: 3}
+  texturaGrisBuff: {fileID: 2800000, guid: adafb6c82245c5342ad735fefcc165c2, type: 3}
   canvasHUD: {fileID: 125604132}
 --- !u!1 &1244565526 stripped
 GameObject:
@@ -39912,7 +39924,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1486306441}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1242609364}
+        m_TargetAssemblyTypeName: LanzarHechizos, Assembly-CSharp
+        m_MethodName: lanzarBuff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1486306441
 MonoBehaviour:
   m_ObjectHideFlags: 0

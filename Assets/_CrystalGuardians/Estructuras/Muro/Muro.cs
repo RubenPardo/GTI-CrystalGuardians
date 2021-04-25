@@ -6,11 +6,6 @@ using UnityEngine.UI;
 public class Muro : Estructura
 {
 
-    public int[] capacidadUnidades;
-    public Aliado guerrero;
-    public Aliado ballestero;
-    public float distanciaSpawn = 0.5f;
-
     public Text txtNivel;
     public Text txtMejora;
     
@@ -74,9 +69,6 @@ public class Muro : Estructura
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
         nivelActual = nivelActual + 1;
 
-
-
-        
 
         // actualizar hud informacion
         setUpCanvasValues();

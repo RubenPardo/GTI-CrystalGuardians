@@ -38,6 +38,8 @@ public class Castillo : Estructura
         nivelActual = nivelActual + 1;
 
 
+
+        GameManager.Instance.NivelActualCastillo++;
         GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum - costeObsidiumConstruirMejorar[nivelActual];
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
@@ -68,7 +70,7 @@ public class Castillo : Estructura
     private void comprobarDisponibilidadMejora()
     {
 
-       btnMejorar.enabled = (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo]) 
+       btnMejorar.enabled = nivelActual<=ni(GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo]) 
         && GameManager.Instance.Obsiidum >= costeObsidiumConstruirMejorar[GameManager.Instance.NivelActualCastillo];
         
         

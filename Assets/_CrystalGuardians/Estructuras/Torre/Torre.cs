@@ -1,9 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Torre : Estructura
 {
+
+    public Text txtNivel;
+    public Text txtMejora;
+  
+    public Text txtSaludActual;
+    public Text txtSaludMejorada;
+    public Text txtDañoActual;
+    public Text txtDañoMejorada;
+    public Text txtLvlActual;
+    public Text txtLvlSiguiente;
+    public Button btnMejorar;
+    public Button btnMejorarInfo;
+    
+
+    // Storing different levels'
+    public GameObject[] levels;
+    // Counting current level
+    int current_level = 0;
 
     [Header("Atributos")]
     public int[] danyoPorNivel;
@@ -32,12 +51,22 @@ public class Torre : Estructura
 
     public GameObject bulletPrefab;
     public Transform bulletPoint;
-    
+
 
 
     public override void mejorar()
     {
-        throw new System.NotImplementedException();
+
+
+        current_level = current_level++;
+        nivelActual = nivelActual + 1;
+
+
+
+        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+
+        // actualizar hud informacion
+        setUpCanvasValues();
     }
 
     // Start is called before the first frame update
@@ -51,6 +80,7 @@ public class Torre : Estructura
             canvas.SetActive(false);
         }
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        setUpCanvasValues();
     }
 
     void UpdateTarget()
@@ -98,8 +128,18 @@ public class Torre : Estructura
 
             fireCoutDwon -= Time.deltaTime;
         }
-        
-       
+        comprobarDisponibilidadMejora();
+
+    }
+
+    private void comprobarDisponibilidadMejora()
+    {
+
+        btnMejorar.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+
+        btnMejorarInfo.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
     }
 
     void Shoot ()
@@ -117,5 +157,22 @@ public class Torre : Estructura
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    private void setUpCanvasValues()
+    {
+
+
+        
+        txtLvlActual.text = (nivelActual + 1).ToString();
+        txtLvlSiguiente.text = (nivelActual + 2).ToString();
+        txtDañoActual.text = danyoPorNivel[nivelActual].ToString();
+        txtDañoMejorada.text = danyoPorNivel[nivelActual + 1].ToString();
+        txtMejora.text = costeOroMejorar[nivelActual].ToString();
+        txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
+        txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
+        
+
+
     }
 }

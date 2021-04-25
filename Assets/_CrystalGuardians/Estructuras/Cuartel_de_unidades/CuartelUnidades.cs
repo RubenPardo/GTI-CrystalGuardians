@@ -71,8 +71,7 @@ public class CuartelUnidades : Estructura
        
         btnMejorar.enabled = GameManager.Instance.NivelActualCastillo  >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        //imgMejora.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            //&& (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+        
         btnMejorarInfo.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
     }
@@ -91,6 +90,7 @@ public class CuartelUnidades : Estructura
 
        // actualizar hud informacion
         setUpCanvasValues();
+        sumarTopeUnidades(true);
     }
 
 

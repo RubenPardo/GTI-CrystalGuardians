@@ -50,9 +50,14 @@ public class GameManager : MonoBehaviour
     public static int nivelMinimoCastilloExtractor = 0;
     public static int costeConstruirExtractor = 2160;
 
+    // hechizos --------
+    public static int costeLanzarHeal = 250 ;
+    public static int costeLanzarRayo = 500;
+    public static int costeLanzarBuff = 400;
+
     //recursos -------------
-    private float oro = 3000;
-    private float obsidium = 3000;
+    private float oro = 3000000;
+    private float obsidium = 300000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 
@@ -72,6 +77,8 @@ public class GameManager : MonoBehaviour
     public int NivelActualCastillo { get => nivelActualCastillo; set => nivelActualCastillo = value; }
     public int TopeUnidades { get; internal set; }
     private int topeUnidades = 0;
+    public int Unidades { get; internal set; }
+    private int unidades = 0;
 
     public int i = 0;
     public int y = 0;

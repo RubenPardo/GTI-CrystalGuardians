@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class showMenuEstructuraOnClick : MonoBehaviour
 {
@@ -21,7 +20,7 @@ public class showMenuEstructuraOnClick : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // mostrar y esconder menus de las estructuras si no se hace click en UI
-            if (!rayCastUI())
+            if (!Utility.rayCastUI())
             {
                 RaycastHit raycastHit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -54,7 +53,7 @@ public class showMenuEstructuraOnClick : MonoBehaviour
             }
             else
             {
-                Debug.Log("Dio UI");
+               // golpeo en UI
             }
 
            
@@ -62,23 +61,5 @@ public class showMenuEstructuraOnClick : MonoBehaviour
     }
 
     
-    private bool rayCastUI()
-    {
-
-        PointerEventData pointerData = new PointerEventData(EventSystem.current);
-
-        pointerData.position = Input.mousePosition;
-
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerData, results);
-        if (results.Count > 0)
-        {
-            //WorldUI is my layer name
-            if (results[0].gameObject.layer == LayerMask.NameToLayer("UI"))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 }

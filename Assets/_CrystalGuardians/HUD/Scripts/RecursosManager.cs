@@ -33,6 +33,7 @@ public class RecursosManager : MonoBehaviour
     private void updateUnidades()
     {
         textTopeUnidades.text = GameManager.Instance.TopeUnidades.ToString() ;
+        textActualUnidades.text = GameManager.Instance.Unidades.ToString() ;
     }
 
     private void updateObsidium()
@@ -62,7 +63,7 @@ public class RecursosManager : MonoBehaviour
 
             float cantidadRedondeada = GameManager.Instance.Oro / 1000;
             //Debug.Log(cantidadRedondeada);
-            textOro.text = cantidadRedondeada.ToString("f2") + "k";
+            //textOro.text = cantidadRedondeada.ToString("f2") + "k";
         }
         else if (GameManager.Instance.Oro >= 1000000)
         {

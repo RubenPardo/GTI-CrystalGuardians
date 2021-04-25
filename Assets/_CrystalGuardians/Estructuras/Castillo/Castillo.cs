@@ -34,15 +34,20 @@ public class Castillo : Estructura
     }
     public override void mejorar()
     {
-        current_level = current_level++;
-        nivelActual = nivelActual + 1;
+       
+            GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum - costeObsidiumConstruirMejorar[nivelActual];
+            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
+            nivelActual++;
 
-        GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum - costeObsidiumConstruirMejorar[nivelActual];
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            GameManager.Instance.NivelActualCastillo++;
 
-        // actualizar hud informacion
-        setUpCanvasValues();
+            
+
+            // actualizar hud informacion
+            setUpCanvasValues();
+        
+            
     }
 
     // Start is called before the first frame update
@@ -67,13 +72,16 @@ public class Castillo : Estructura
 
     private void comprobarDisponibilidadMejora()
     {
+        
+            btnMejorar.enabled = (nivelActual <= NivelMaximo-1 ) &&(GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
+           && GameManager.Instance.Obsiidum >= costeObsidiumConstruirMejorar[GameManager.Instance.NivelActualCastillo];
 
-       btnMejorar.enabled = (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo]) 
-        && GameManager.Instance.Obsiidum >= costeObsidiumConstruirMejorar[GameManager.Instance.NivelActualCastillo];
+
+            btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual])
+            && GameManager.Instance.Obsiidum >= costeObsidiumConstruirMejorar[nivelActual];
+
         
-        
-        btnMejorarInfo.enabled =  (GameManager.Instance.Oro >= costeOroMejorar[nivelActual])
-        && GameManager.Instance.Obsiidum >= costeObsidiumConstruirMejorar[nivelActual];
+       
     }
 
     private void setUpCanvasValues()
@@ -82,12 +90,24 @@ public class Castillo : Estructura
 
         
         txtLvlActual.text = (GameManager.Instance.NivelActualCastillo + 1).ToString();
-        txtLvlSiguiente.text = (GameManager.Instance.NivelActualCastillo + 2).ToString();
-        txtMejoraOro.text = costeOroMejorar[GameManager.Instance.NivelActualCastillo].ToString();
-        txtMejoraObsidium.text = costeObsidiumConstruirMejorar[GameManager.Instance.NivelActualCastillo + 1].ToString();
         txtSaludActual.text = vidaPorNivel[GameManager.Instance.NivelActualCastillo].ToString();
-        txtSaludMejorada.text = vidaPorNivel[GameManager.Instance.NivelActualCastillo + 1].ToString();
+       
+        if(nivelActual < NivelMaximo)
+        {
+            txtSaludMejorada.text = vidaPorNivel[GameManager.Instance.NivelActualCastillo + 1].ToString();
+            txtLvlSiguiente.text = (GameManager.Instance.NivelActualCastillo + 2).ToString();
+            txtMejoraOro.text = costeOroMejorar[GameManager.Instance.NivelActualCastillo].ToString();
+            txtMejoraObsidium.text = costeObsidiumConstruirMejorar[GameManager.Instance.NivelActualCastillo + 1].ToString();
+        }
+        else
+        {
+            txtSaludMejorada.text = "---";
+            txtLvlSiguiente.text = "---";
+            txtMejoraOro.text = "---";
+            txtMejoraObsidium.text = "---";
+        }
         
+
 
 
     }

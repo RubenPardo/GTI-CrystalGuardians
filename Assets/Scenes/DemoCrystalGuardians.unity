@@ -803,7 +803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &36353500 stripped
 GameObject:
@@ -4460,7 +4460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4623580460648917987, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4623580460648917987, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14694,8 +14694,8 @@ GameObject:
   m_Component:
   - component: {fileID: 264661495}
   - component: {fileID: 264661498}
-  - component: {fileID: 264661497}
   - component: {fileID: 264661496}
+  - component: {fileID: 264661497}
   m_Layer: 5
   m_Name: Boton Heal
   m_TagString: Untagged
@@ -14765,7 +14765,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 264661497}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1242609364}
+        m_TargetAssemblyTypeName: LanzarHechizos, Assembly-CSharp
+        m_MethodName: lanzarHeal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &264661497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14775,27 +14787,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 264661494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.93725497, g: 0.93725497, b: 0.93725497, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6cf5c0ad0d3385541bf096d87c6b10ed, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 1
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 2800000, guid: 6cf5c0ad0d3385541bf096d87c6b10ed, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!222 &264661498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23896,8 +23905,8 @@ GameObject:
   m_Component:
   - component: {fileID: 772768755}
   - component: {fileID: 772768758}
-  - component: {fileID: 772768757}
   - component: {fileID: 772768756}
+  - component: {fileID: 772768757}
   m_Layer: 5
   m_Name: Boton Rayo
   m_TagString: Untagged
@@ -23977,7 +23986,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 772768754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -23988,16 +23997,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b35251104bae7174ea2ff236cd476397, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 2800000, guid: b35251104bae7174ea2ff236cd476397, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!222 &772768758
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29614,7 +29620,7 @@ Transform:
   m_Children:
   - {fileID: 1767504038}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1061260007 stripped
 GameObject:
@@ -30712,7 +30718,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1124900464
 MonoBehaviour:
@@ -31810,7 +31816,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1188315483
 MonoBehaviour:
@@ -32793,6 +32799,7 @@ GameObject:
   - component: {fileID: 1242609361}
   - component: {fileID: 1242609360}
   - component: {fileID: 1242609359}
+  - component: {fileID: 1242609364}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -32924,13 +32931,30 @@ RectTransform:
   - {fileID: 125604131}
   - {fileID: 673813405}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1242609364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242609358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8271f56e7d445647827d77a04a74f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healBluePrint: {fileID: 5124418212847049293, guid: 3a0455394ab9ff64b88bea62f500d57e, type: 3}
+  btnHeal: {fileID: 264661496}
+  texturaReadyHeal: {fileID: 2800000, guid: 6cf5c0ad0d3385541bf096d87c6b10ed, type: 3}
+  texturaGrisHeal: {fileID: 2800000, guid: ad4f462d9268b4c47990949ba936f4b0, type: 3}
+  canvasHUD: {fileID: 125604132}
 --- !u!1 &1244565526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4623580461680549398, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -37671,8 +37695,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1486306439}
   - component: {fileID: 1486306442}
-  - component: {fileID: 1486306441}
   - component: {fileID: 1486306440}
+  - component: {fileID: 1486306441}
   m_Layer: 5
   m_Name: Boton Buff
   m_TagString: Untagged
@@ -37752,7 +37776,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1486306438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -37763,16 +37787,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6bdb0337d22c6434aa549d7590fe9204, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 2800000, guid: 6bdb0337d22c6434aa549d7590fe9204, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!222 &1486306442
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -43615,7 +43636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2052162451704548511, guid: de219af1d9e38c54dabcabadde7519f8, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2052162451704548511, guid: de219af1d9e38c54dabcabadde7519f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45724,7 +45745,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8191209120001317550, guid: 0795a3501a837de4595cd3aa2eed7cf2, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8191209120001317550, guid: 0795a3501a837de4595cd3aa2eed7cf2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -46881,6 +46902,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3491961333711486229, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20.00003
+      objectReference: {fileID: 0}
     - target: {fileID: 5047545057962889104, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: m_Name
       value: Mina

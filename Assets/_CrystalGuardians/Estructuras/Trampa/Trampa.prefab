@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookAt: {fileID: 8076399094265432057}
-  offset: {x: 0, y: -2, z: 0}
+  offset: {x: 0, y: -0.5, z: 0}
 --- !u!1 &5428710351073105378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,6 +1428,7 @@ MonoBehaviour:
   nivelMinimoCastilloParaMejorar: 0100000002000000
   vidaPorNivel: 
   vidaActual: 1
+  healthBar: {fileID: 0}
   costeOroMejorar: f4010000983a0000
   txtNivel: {fileID: 0}
   txtMejora: {fileID: 2961416651836633609}
@@ -1450,7 +1451,7 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5842723749176449981}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}

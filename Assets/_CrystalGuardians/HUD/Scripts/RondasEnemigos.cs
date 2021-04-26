@@ -39,21 +39,11 @@ public class RondasEnemigos : MonoBehaviour
 
         Button btnF = btnFinalizar.GetComponent<Button>();
         Button btnE = btnEmpezar.GetComponent<Button>();
-        btnE.onClick.AddListener(mostrarBtnF);
-        //btnF.onClick.AddListener(mostrarBtnE);
+      
 
     }
-    private void mostrarBtnF()
-    {
-        btnFinalizar.SetActive(true);
-        //btnEmpezar.SetActive(false);
-        //panelRondas.SetActive(true);
-    }
-    /*private void mostrarBtnE()
-    {
-        btnFinalizar.SetActive(false);
-        btnEmpezar.SetActive(true);
-    }*/
+   
+
     private void comprobarLanzarMejorasAldeas()
     {
         // cada 3 rondas se lanzaran las mejoras de la aldea
@@ -123,7 +113,6 @@ public class RondasEnemigos : MonoBehaviour
         {
             botonResetGame.SetActive(true);
             isRondaActive = false;
-            btnFinalizar.SetActive(false);
             btnEmpezar.SetActive(false);
 
         }
@@ -163,17 +152,13 @@ public class RondasEnemigos : MonoBehaviour
         {
             contadorRondas.text = (contadorTiempoRonda / 60).ToString("f1") + "m";
         }
-        /*else if (contadorTiempoRonda >= 36000)
-        {
-            contadorRondas.text = (contadorTiempoRonda / 36000).ToString("f1") + "h";
-        }*/
         else
         {
             contadorRondas.text = contadorTiempoRonda.ToString("f1") + "s";
 
         }
 
-        return contadorTiempoRonda == 0;
+        return contadorTiempoRonda <= 0.0f;
     }
 
   

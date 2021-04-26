@@ -853,8 +853,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CuartelUnidades, Assembly-CSharp
+      - m_Target: {fileID: 8751061238873015774}
+        m_TargetAssemblyTypeName: ExtractorObsidium, Assembly-CSharp
         m_MethodName: mejorar
         m_Mode: 1
         m_Arguments:
@@ -1365,7 +1365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookAt: {fileID: 7481260642550140853}
-  offset: {x: 0, y: -2, z: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &4949828668499261387
 GameObject:
   m_ObjectHideFlags: 0

@@ -34628,7 +34628,6 @@ GameObject:
   - component: {fileID: 1242609360}
   - component: {fileID: 1242609359}
   - component: {fileID: 1242609364}
-  - component: {fileID: 1242609365}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -34795,18 +34794,6 @@ MonoBehaviour:
   texturaReadyBuff: {fileID: 2800000, guid: 6bdb0337d22c6434aa549d7590fe9204, type: 3}
   texturaGrisBuff: {fileID: 2800000, guid: adafb6c82245c5342ad735fefcc165c2, type: 3}
   canvasHUD: {fileID: 125604132}
---- !u!114 &1242609365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242609358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b683f40338a673c44bf8f89aff6b9f4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1244565526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4623580461680549398, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -38810,7 +38797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1445833933
 RectTransform:
   m_ObjectHideFlags: 0

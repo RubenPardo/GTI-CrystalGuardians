@@ -1017,7 +1017,7 @@ MonoBehaviour:
   nivelActual: 0
   nivelMinimoCastilloParaMejorar: 0100000002000000
   vidaPorNivel: f4010000b80b000010270000
-  currentVida: 0
+  vidaActual: 0
   healthBar: {fileID: 168417142021450585}
   costeOroMejorar: 64000000e803000070170000
   txtNivel: {fileID: 0}
@@ -1617,7 +1617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookAt: {fileID: 5186471221960956992}
-  offset: {x: 0, y: -2, z: 0}
+  offset: {x: 0, y: -0.5, z: 0}
 --- !u!1 &7059443215441197785
 GameObject:
   m_ObjectHideFlags: 0

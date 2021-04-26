@@ -141,3 +141,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duracionRayo: 2.5
+  danyoHechizoRayo: 20
+  mejoraDanyoRayo: 1

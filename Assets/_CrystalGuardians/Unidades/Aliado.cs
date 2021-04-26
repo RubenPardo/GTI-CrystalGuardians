@@ -42,7 +42,7 @@ public class Aliado : MonoBehaviour
 
     }
 
-    protected void mover()
+    protected void mover(float mejoraDanyo)
     {
         if (!isMoving)
         {
@@ -139,7 +139,7 @@ public class Aliado : MonoBehaviour
                 if (attackCoutDwon <= 0f)
                 {
                     EnemigoScript enemigo = enemigoFijado.GetComponent<EnemigoScript>();
-                    enemigo.setCurrentHealth(enemigo.vidaActual - danyoPorNivel[nivelActual]);
+                    enemigo.setCurrentHealth(enemigo.vidaActual - Mathf.RoundToInt(danyoPorNivel[nivelActual] * mejoraDanyo));
                     attackCoutDwon = 1f / attackSpeed;
                 }
 

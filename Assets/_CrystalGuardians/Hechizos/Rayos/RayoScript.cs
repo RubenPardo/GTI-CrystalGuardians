@@ -6,10 +6,14 @@ public class RayoScript : MonoBehaviour
 {
 
     public float duracionRayo = 1f;//son segundos
-
+    public int danyoHechizoRayo = 20;
+    public int mejoraDanyoRayo = 1;
+    public static float aumentoRadio = 1f;//mejora de aldea
     // Start is called before the first frame update
     void Start()
     {
+
+        transform.localScale = new Vector3(transform.localScale.x * aumentoRadio, transform.localScale.y, transform.localScale.z * aumentoRadio);
         
     }
     private void OnTriggerEnter(Collider other)
@@ -17,7 +21,7 @@ public class RayoScript : MonoBehaviour
         if (other.tag.Equals("Enemigo"))
         {
             EnemigoScript enemigo = other.GetComponent<EnemigoScript>();
-            enemigo.setCurrentHealth(enemigo.vidaActual - 20);
+            enemigo.setCurrentHealth(enemigo.vidaActual - (danyoHechizoRayo * mejoraDanyoRayo));
         }
     }
 

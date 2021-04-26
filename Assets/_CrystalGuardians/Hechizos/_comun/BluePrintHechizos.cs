@@ -9,11 +9,14 @@ public class BluePrintHechizos : MonoBehaviour
     public LayerMask layerEstructuras = ~0;
     public float gridSize;
     public GameObject prefab;
+    public static float aumentoRadio = 1f;//mejora de aldea
+
     // Start is called before the first frame update
     void Start()
     {
         
         GameManager.Instance.SeEstaConstruyendo = true;
+        transform.localScale = new Vector3(transform.localScale.x * aumentoRadio, transform.localScale.y, transform.localScale.z * aumentoRadio);
         mover_blueprint();
  
     }

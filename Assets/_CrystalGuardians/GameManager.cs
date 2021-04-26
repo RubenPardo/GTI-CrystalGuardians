@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     public static int costeLanzarHeal = 250 ;
     public static int costeLanzarRayo = 500;
     public static int costeLanzarBuff = 400;
+    public static int nivelCasaHechizos;
 
     //recursos -------------
     private float oro = 99000000;
@@ -68,6 +69,9 @@ public class GameManager : MonoBehaviour
 
     public bool OroConstruido { get => oroConstruido; set => oroConstruido = value; }
     public bool ObsidiumConstruido { get => obsidiumConstruido; set => obsidiumConstruido = value; }
+
+    
+
 
 
     public GameObject castillo; // se construira al inicio

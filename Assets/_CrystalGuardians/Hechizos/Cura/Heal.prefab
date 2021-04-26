@@ -140,4 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891259e5dae44214fb1fa80d888818fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duracionHeal: 2.5
+  duracionHechizo: 5
+  statsHechizoPorNivel:
+  - 0.1
+  - 0.2
+  - 0.3
+  nivelActual: 0
+  ticksPorSegundo: 1

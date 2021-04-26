@@ -26,6 +26,7 @@ public class BluePrintHechizos : MonoBehaviour
         {
             // construir la estructura 
             Instantiate(prefab, transform.position, transform.rotation);
+            GameManager.Instance.SeEstaConstruyendo = false;
             Destroy(gameObject);
 
         }

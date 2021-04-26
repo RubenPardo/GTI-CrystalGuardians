@@ -17,6 +17,8 @@ public class Aliado : MonoBehaviour
     public HealthBarScript healthBar;
     public float attackSpeed = 1f;
     private float attackCoutDwon = 0f;
+
+    public float buffDamage = 1f;
     // movimiento
     public bool isEnemigoFijado = false;
     public bool isMoving = false;
@@ -24,7 +26,7 @@ public class Aliado : MonoBehaviour
 
     GameObject[] enemigos;
     Dictionary<GameObject, float> enemigosDistancias; // enemigo, distancia
-    protected NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     GameObject enemigoFijado;
 
@@ -139,7 +141,7 @@ public class Aliado : MonoBehaviour
                 if (attackCoutDwon <= 0f)
                 {
                     EnemigoScript enemigo = enemigoFijado.GetComponent<EnemigoScript>();
-                    enemigo.setCurrentHealth(enemigo.vidaActual - danyoPorNivel[nivelActual]);
+                    enemigo.setCurrentHealth(enemigo.vidaActual - (int)(danyoPorNivel[nivelActual]*buffDamage));
                     attackCoutDwon = 1f / attackSpeed;
                 }
 
@@ -150,11 +152,14 @@ public class Aliado : MonoBehaviour
     }
 
     //Actualiza la vida actuañl
-    public void setCurrentHealth(int health)
+    public void setCurrentHealth(int heal)
     {
-
-        healthBar.SetHeatlh(health);
-        vidaActual = health;
+        if (heal>=vidaPorNivel[nivelActual])
+        {
+            heal = vidaPorNivel[nivelActual];
+        }
+        healthBar.SetHeatlh(heal);
+        vidaActual = heal;
     }
 
     //Setea la vida actual y maxima cuando mejoras de nivel alguna estructura

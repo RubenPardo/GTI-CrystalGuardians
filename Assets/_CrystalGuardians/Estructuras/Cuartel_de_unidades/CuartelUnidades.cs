@@ -184,6 +184,7 @@ public class CuartelUnidades : Estructura
     }
     public override void cerrarMenu()
     {
+
         canvas.SetActive(false);
 
     }

@@ -33,6 +33,7 @@ public class CasaDeHechizos : Estructura
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
         nivelActual++;
+        GameManager.nivelCasaHechizos++;
         // actualizar hud informacion
         setUpCanvasValues();
         settearVida();
@@ -49,6 +50,7 @@ public class CasaDeHechizos : Estructura
         {
             canvas.SetActive(false);
         }
+        GameManager.nivelCasaHechizos = 0;
         setUpCanvasValues();
         settearVida();
     }

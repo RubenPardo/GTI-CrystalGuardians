@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2106325646576141009}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 3, y: 0.1, z: 3}
+  m_LocalScale: {x: 4, y: 0.1, z: 4}
   m_Children: []
   m_Father: {fileID: 8398345988635066078}
   m_RootOrder: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2153045851526798421}
   - component: {fileID: 1970423733262134785}
   m_Layer: 0
-  m_Name: BluePrint_Heal
+  m_Name: BluePrint_Buff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,4 +164,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   gridSize: 1
-  prefab: {fileID: 5107133909223051486, guid: 28c2175f598297f4d9f33917debe0766, type: 3}
+  prefab: {fileID: 5872815715265845162, guid: a36aed181e3351f46a00717672946c40, type: 3}

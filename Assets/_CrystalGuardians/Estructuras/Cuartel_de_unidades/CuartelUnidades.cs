@@ -56,6 +56,14 @@ public class CuartelUnidades : Estructura
         comprobarVida0();
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.TopeUnidades -= capacidadUnidades[nivelActual]; // restar tope de unidades
+        GameManager.Instance.CuartelesConstruidos--;
+    }
+
+   
+
     private void comprobarDisponibilidadCosteUnidades()
     {
         btnGenerarGuerrero.enabled = 
@@ -111,6 +119,9 @@ public class CuartelUnidades : Estructura
         }
 
     }
+
+   
+
     public void spawnUnidades(GameObject unidadAliada)
     {
         Vector3 spawnPoint = Utility.getPuntoPerimetroRectangulo(distanciaSpawn);
@@ -164,6 +175,8 @@ public class CuartelUnidades : Estructura
        
 
     }
+
+   
     public override void abrirMenu()
     {
 

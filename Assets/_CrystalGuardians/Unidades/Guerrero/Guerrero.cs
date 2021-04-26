@@ -25,4 +25,6 @@ public class Guerrero : Aliado
         comprobarVida0();
 
     }
+
+    
 }

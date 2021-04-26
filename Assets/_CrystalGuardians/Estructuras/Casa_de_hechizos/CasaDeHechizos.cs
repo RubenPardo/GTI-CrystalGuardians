@@ -32,12 +32,7 @@ public class CasaDeHechizos : Estructura
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
-        nivelActual = nivelActual ++;
-
-
-
-        
-
+        nivelActual++;
         // actualizar hud informacion
         setUpCanvasValues();
         settearVida();
@@ -67,14 +62,19 @@ public class CasaDeHechizos : Estructura
     private void comprobarDisponibilidadMejora()
     {
 
-        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+
+        btnMejorar.enabled = 
+            (nivelActual <= NivelMaximo-1) 
+            && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        
+        btnMejorarInfo.enabled = 
+            (nivelActual <= NivelMaximo-1) 
+            && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
     }
     private void setUpCanvasValues()
     {
-
 
         
         txtLvlActual.text = (nivelActual + 1).ToString();

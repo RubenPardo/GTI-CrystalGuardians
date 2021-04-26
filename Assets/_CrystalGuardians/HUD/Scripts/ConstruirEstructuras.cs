@@ -86,7 +86,7 @@ public class ConstruirEstructuras : MonoBehaviour
         // CAMBIO DE ICONO CASA DE HECHIZOS
         if(GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloCasaHechizos)
         {
-           // Debug.Log("hechizos no nivel");
+           
             // nivel insuficiente
             // cuando se haga con imagen poner esto tmb con la imagen que le toca
             // button.GetComponent<Image>().sprite = Image1;
@@ -100,7 +100,6 @@ public class ConstruirEstructuras : MonoBehaviour
         else if (GameManager.Instance.Oro < GameManager.costeConstruirCasaHechizos)
         {
             // recursos insuficiente
-            Debug.Log("hechizos no oro");
             RawImage icono = btnCasaHechizos.GetComponent<RawImage>();
             icono.texture = texturaRojaHechizos;
             habilitar(btnCasaHechizos, false);
@@ -108,9 +107,6 @@ public class ConstruirEstructuras : MonoBehaviour
         else
         {
             // disponible
-
-            Debug.Log("hechizos disponibles");
-
             RawImage icono = btnCasaHechizos.GetComponent<RawImage>();
             icono.texture = texturaReadyHechizos;
             habilitar(btnCasaHechizos, true);

@@ -103,6 +103,10 @@ public class Aliado : MonoBehaviour
 
 
                 }
+                else
+                {
+                    agent.SetDestination(enemigoFijado.transform.position); //por si el objetivo se mueve
+                }
             }
 
             if (agent.remainingDistance == 0)// para cuando se pulsa a otra direccion hay que comprobar cuando para

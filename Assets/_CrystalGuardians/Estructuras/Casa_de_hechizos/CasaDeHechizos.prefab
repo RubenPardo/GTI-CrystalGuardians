@@ -1298,17 +1298,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7895846699509648179}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: -2279893750258322161}
+        m_TargetAssemblyTypeName: openMenuController, Assembly-CSharp
+        m_MethodName: isOpen
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &5030775725231588844
 MonoBehaviour:
@@ -1756,6 +1756,7 @@ GameObject:
   - component: {fileID: 6297393104740813232}
   - component: {fileID: 8315137396632026798}
   - component: {fileID: 5902299916802056836}
+  - component: {fileID: 2585059182473429178}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1822,6 +1823,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2585059182473429178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376850065730853488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ad5adc2fdf2b548afc19a35c99da59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAt: {fileID: 8239743338382386105}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &7792199076781714472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,7 +1969,7 @@ MonoBehaviour:
   nivelActual: 0
   nivelMinimoCastilloParaMejorar: 0100000002000000
   vidaPorNivel: d80100000d02000047020000
-  currentVida: 0
+  vidaActual: 0
   healthBar: {fileID: 2818277966557733827}
   costeOroMejorar: 103b000080ca0000
   txtNivel: {fileID: 0}
@@ -1982,7 +1997,7 @@ NavMeshObstacle:
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 1, y: 0.5, z: 1}
   m_TimeToStationary: 0.5
 --- !u!114 &-2279893750258322161
 MonoBehaviour:
@@ -2024,7 +2039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8413790435389823119}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 1, y: 0.5, z: 1}
   m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_Children: []
   m_Father: {fileID: 8239743338382386105}

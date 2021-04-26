@@ -14,6 +14,7 @@ public class Ballestero : Aliado
     {
 
         agent = GetComponent<NavMeshAgent>();
+        settearVida();
     }
 
     // Update is called once per frame
@@ -21,6 +22,8 @@ public class Ballestero : Aliado
     {
 
         mover();
-
+        comprobarVida0();
     }
+
+
 }

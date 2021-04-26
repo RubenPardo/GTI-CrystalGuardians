@@ -11,11 +11,17 @@ public class HealthBarScript : MonoBehaviour
     {
         slider.maxValue = health;
         slider.value = health;
+        
     }
     public void SetHeatlh(int health)
     {
         slider.value = health;
       
+    }
+
+    public void setVisbility(bool visibility)
+    {
+        transform.gameObject.SetActive(visibility);
     }
   
 }

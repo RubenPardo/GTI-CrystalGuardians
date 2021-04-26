@@ -19,8 +19,6 @@ public class CasaDeHechizos : Estructura
 
     // Storing different levels'
     public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
     public override void abrirMenu()
     {
         canvas.SetActive(true);
@@ -32,15 +30,12 @@ public class CasaDeHechizos : Estructura
 
     public override void mejorar()
     {
-        current_level = current_level++;
-        nivelActual = nivelActual + 1;
-
-
-
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
+        nivelActual++;
         // actualizar hud informacion
         setUpCanvasValues();
+        settearVida();
     }
 
     // Start is called before the first frame update
@@ -55,34 +50,53 @@ public class CasaDeHechizos : Estructura
             canvas.SetActive(false);
         }
         setUpCanvasValues();
+        settearVida();
     }
 
     private void Update()
     {
         
         comprobarDisponibilidadMejora();
+        comprobarVida0();
     }
     private void comprobarDisponibilidadMejora()
     {
 
-        btnMejorar.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+
+        btnMejorar.enabled = 
+            (nivelActual <= NivelMaximo-1) 
+            && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        btnMejorarInfo.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        
+        btnMejorarInfo.enabled = 
+            (nivelActual <= NivelMaximo-1) 
+            && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
     }
     private void setUpCanvasValues()
     {
 
-
-        txtNivel.text = (nivelActual + 1).ToString();
-        txtLvlActual.text = (nivelActual + 1).ToString();
-        txtLvlSiguiente.text = (nivelActual + 2).ToString();
         
-       
-        txtMejora.text = costeOroMejorar[nivelActual].ToString();
+        txtLvlActual.text = (nivelActual + 1).ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
-        txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
-       
+
+
+
+
+        if (nivelActual < NivelMaximo)
+        {
+            txtLvlSiguiente.text = (nivelActual + 2).ToString();
+            txtMejora.text = costeOroMejorar[nivelActual].ToString();
+
+            txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
+        }
+        else
+        {
+            txtLvlSiguiente.text = "--------";
+            txtMejora.text = "----------";
+
+            txtSaludMejorada.text ="--------";
+        }
 
 
     }

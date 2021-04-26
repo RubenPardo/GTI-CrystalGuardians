@@ -14,11 +14,13 @@ public class RondasEnemigos : MonoBehaviour
     private bool isRondaActive = false;
 
 
-    //public int rangoSpawn = 0;
-    //public float xPos = 0;
-
-    //public float zPos = 0;
+   
     public int cantidadEnemigosPorRonda=3;
+
+    public GameObject panelMejoras;
+    public GameObject panelRondas;
+    public GameObject btnFinalizar;
+    public GameObject btnEmpezar;
 
 
     // Start is called before the first frame upd0ate
@@ -26,19 +28,31 @@ public class RondasEnemigos : MonoBehaviour
     public GameObject enemigoDistancia;
     public GameObject enemigoFuerte;
     public GameObject mina;
-    public Button btnRondas;
-    public Button btnReiniciar;
+    public GameObject castillo;
+
+
+
 
     void Start()
     {
-        //Button btn = btnRondas.GetComponent<Button>();
-       // Button btnR = btnReiniciar.GetComponent<Button>();
+
+        Button btnF = btnFinalizar.GetComponent<Button>();
+        Button btnE = btnEmpezar.GetComponent<Button>();
       
-        numeroRonda.text = numeroRnda.ToString("f0");
-        //contadorRondas.text = contadorRonda.ToString("f2");
 
     }
+   
 
+    private void comprobarLanzarMejorasAldeas()
+    {
+        // cada 3 rondas se lanzaran las mejoras de la aldea
+        if (numeroRnda % 3 == 0)
+        {
+            //lanzar mejoras de aldea
+            panelMejoras.SetActive(true);
+        }
+    }
+    
 
     public void comenzarRonda()
     {
@@ -62,12 +76,14 @@ public class RondasEnemigos : MonoBehaviour
             Destroy(listaEnemigosEnPartida[i]);
         }
 
+        comprobarLanzarMejorasAldeas();
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (updateCronometro())
         {
             comenzarRonda();
@@ -83,12 +99,8 @@ public class RondasEnemigos : MonoBehaviour
                 isRondaActive = false;
                 contadorTiempoRonda = 300.0f;
                 numeroRonda.text = numeroRnda.ToString("f0");
-                if(numeroRnda % 3 == 0)
-                {
-                    //lanzar mejoras de aldea
-                }
-                
-                
+                comprobarLanzarMejorasAldeas();
+
 
             }
         }
@@ -98,14 +110,11 @@ public class RondasEnemigos : MonoBehaviour
 
     private bool updateCronometro()
     {
+        
         contadorTiempoRonda -= Time.deltaTime;
         if (contadorTiempoRonda >= 60 && contadorTiempoRonda < 36000)
         {
             contadorRondas.text = (contadorTiempoRonda / 60).ToString("f1") + "m";
-        }
-        else if (contadorTiempoRonda >= 36000)
-        {
-            contadorRondas.text = (contadorTiempoRonda / 36000).ToString("f1") + "h";
         }
         else
         {
@@ -113,7 +122,7 @@ public class RondasEnemigos : MonoBehaviour
 
         }
 
-        return contadorTiempoRonda == 0;
+        return contadorTiempoRonda <= 0.0f;
     }
 
   

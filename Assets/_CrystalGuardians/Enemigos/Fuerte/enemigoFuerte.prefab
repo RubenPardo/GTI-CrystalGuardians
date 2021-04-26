@@ -112,6 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a60810d8f22d67438a1d8cf7a016985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nivelActual: 0
+  danyoPorNivel: de000000f600000012010000300100005201000078010000
+  vidaPorNivel: 881300005014000018150000e0150000a816000070170000
   vida: 100
   speed: 5
   rangoVision: 71

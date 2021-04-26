@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Castillo : Estructura
@@ -14,12 +15,11 @@ public class Castillo : Estructura
     public Button btnMejorarInfo;
     public Text txtMejoraOro;
     public Text txtMejoraObsidium;
-    
+
     public int[] costeObsidiumMejorar;
     // Storing different levels'
     public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
+
 
 
     public int[] costeObsidiumConstruirMejorar;
@@ -34,21 +34,29 @@ public class Castillo : Estructura
     }
     public override void mejorar()
     {
-        current_level = current_level++;
-        nivelActual = nivelActual + 1;
-
 
         GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum - costeObsidiumConstruirMejorar[nivelActual];
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
+        nivelActual++;
+
+        GameManager.Instance.NivelActualCastillo++;
+
+
+
         // actualizar hud informacion
         setUpCanvasValues();
+
+
+
+        settearVida();
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         // canvas del menu de botones
         canvas = gameObject.transform.Find("Canvas").gameObject;
         if (canvas != null)
@@ -56,39 +64,61 @@ public class Castillo : Estructura
             canvas.SetActive(false);
         }
         setUpCanvasValues();
-    }
+        settearVida();
 
+    }
     // Update is called once per frame
     private void Update()
     {
 
         comprobarDisponibilidadMejora();
+        comprobarVida0();
     }
 
     private void comprobarDisponibilidadMejora()
     {
 
-       btnMejorar.enabled = (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo]) 
-        && GameManager.Instance.Obsiidum >= costeObsidiumConstruirMejorar[GameManager.Instance.NivelActualCastillo];
-        
-        
-        btnMejorarInfo.enabled =  (GameManager.Instance.Oro >= costeOroMejorar[nivelActual])
+        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
+       && GameManager.Instance.Obsiidum >= costeObsidiumConstruirMejorar[GameManager.Instance.NivelActualCastillo];
+
+
+        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual])
         && GameManager.Instance.Obsiidum >= costeObsidiumConstruirMejorar[nivelActual];
+
+
+
     }
 
     private void setUpCanvasValues()
     {
 
 
-        
+
         txtLvlActual.text = (GameManager.Instance.NivelActualCastillo + 1).ToString();
-        txtLvlSiguiente.text = (GameManager.Instance.NivelActualCastillo + 2).ToString();
-        txtMejoraOro.text = costeOroMejorar[GameManager.Instance.NivelActualCastillo].ToString();
-        txtMejoraObsidium.text = costeObsidiumConstruirMejorar[GameManager.Instance.NivelActualCastillo + 1].ToString();
         txtSaludActual.text = vidaPorNivel[GameManager.Instance.NivelActualCastillo].ToString();
-        txtSaludMejorada.text = vidaPorNivel[GameManager.Instance.NivelActualCastillo + 1].ToString();
+
+        if (nivelActual < NivelMaximo)
+        {
+            txtSaludMejorada.text = vidaPorNivel[GameManager.Instance.NivelActualCastillo + 1].ToString();
+            txtLvlSiguiente.text = (GameManager.Instance.NivelActualCastillo + 2).ToString();
+            txtMejoraOro.text = costeOroMejorar[GameManager.Instance.NivelActualCastillo].ToString();
+            txtMejoraObsidium.text = costeObsidiumConstruirMejorar[GameManager.Instance.NivelActualCastillo + 1].ToString();
+        }
+        else
+        {
+            txtSaludMejorada.text = "---";
+            txtLvlSiguiente.text = "---";
+            txtMejoraOro.text = "---";
+            txtMejoraObsidium.text = "---";
+        }
+
         
 
 
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

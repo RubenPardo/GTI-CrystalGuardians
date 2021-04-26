@@ -29,8 +29,6 @@ public class CuartelUnidades : Estructura
 
     // Storing different levels'
     public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
 
 
     private void Start()
@@ -47,6 +45,7 @@ public class CuartelUnidades : Estructura
         }
         setUpCanvasValues();
         sumarTopeUnidades(false);
+        settearVida();
 
 
     }
@@ -54,7 +53,16 @@ public class CuartelUnidades : Estructura
     {
         comprobarDisponibilidadCosteUnidades();
         comprobarDisponibilidadMejora();
+        comprobarVida0();
     }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.TopeUnidades -= capacidadUnidades[nivelActual]; // restar tope de unidades
+        GameManager.Instance.CuartelesConstruidos--;
+    }
+
+   
 
     private void comprobarDisponibilidadCosteUnidades()
     {
@@ -68,12 +76,14 @@ public class CuartelUnidades : Estructura
     }
     private void comprobarDisponibilidadMejora()
     {
-       
-        btnMejorar.enabled = GameManager.Instance.NivelActualCastillo  >= nivelMinimoCastilloParaMejorar[nivelActual]
+
+
+        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) &&
+            GameManager.Instance.NivelActualCastillo  >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        //imgMejora.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            //&& (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        btnMejorarInfo.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        
+        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) &&
+            GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
     }
 
@@ -81,16 +91,17 @@ public class CuartelUnidades : Estructura
     public override void mejorar()
     {
 
-
-        current_level = current_level++;
-        nivelActual = nivelActual + 1;
         
-        
+        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+        nivelActual++;
 
-      GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
-       // actualizar hud informacion
+        // actualizar hud informacion
         setUpCanvasValues();
+        sumarTopeUnidades(true);
+        settearVida();
+       
+       
     }
 
 
@@ -108,15 +119,20 @@ public class CuartelUnidades : Estructura
         }
 
     }
-    public void spawnUnidades(Aliado aliado)
+
+   
+
+    public void spawnUnidades(GameObject unidadAliada)
     {
         Vector3 spawnPoint = Utility.getPuntoPerimetroRectangulo(distanciaSpawn);
-        GameObject g = Instantiate(aliado.gameObject);
+        GameObject g = Instantiate(unidadAliada); 
+        Aliado aliado = unidadAliada.GetComponent<Aliado>();
         aliado.nivelActual = nivelActual;
+        aliado.settearVida();
         GameManager.Instance.Obsiidum -= aliado.costePorNivel[nivelActual];
         
         g.transform.position = transform.position + spawnPoint;
-
+        
         GameManager.Instance.Unidades++;
         
     }
@@ -126,21 +142,41 @@ public class CuartelUnidades : Estructura
     // METODOS DE HUD ------------------------------------------
     private void setUpCanvasValues()
     {
-
-
+        // panel actual
         txtNivel.text = (nivelActual + 1).ToString();
         txtLvlActual.text = (nivelActual + 1).ToString();
-        txtLvlSiguiente.text = (nivelActual + 2).ToString();
+
         txtCapacidadActual.text = capacidadUnidades[nivelActual].ToString();
-        txtCapacidadMejorada.text = capacidadUnidades[nivelActual + 1].ToString();
-        txtMejora.text = costeOroMejorar[nivelActual].ToString();
+
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
-        txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
+
         txtCosteBallestero.text = guerrero.costePorNivel[nivelActual].ToString();
         txtCosteGuerrero.text = guerrero.costePorNivel[nivelActual].ToString();
 
 
+
+        // panel siguiente
+        if(nivelActual < NivelMaximo)
+        {
+            txtMejora.text = costeOroMejorar[nivelActual].ToString();
+            txtLvlSiguiente.text = (nivelActual + 2).ToString();
+            txtCapacidadMejorada.text = capacidadUnidades[nivelActual + 1].ToString();
+            txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
+        }
+        else
+        {
+            txtMejora.text = "Nivel Maximo Alcanzado";
+            txtLvlSiguiente.text = "----";
+            txtCapacidadMejorada.text = "----";
+            txtSaludMejorada.text = "----";
+        }
+       
+
+       
+
     }
+
+   
     public override void abrirMenu()
     {
 

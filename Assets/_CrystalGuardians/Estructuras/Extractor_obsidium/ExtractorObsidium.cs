@@ -20,9 +20,6 @@ public class ExtractorObsidium : Estructura
 
     // Storing different levels'
     public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
-
     public int[] generacionObsidiumPorNivel;
 
     public override void abrirMenu()
@@ -44,13 +41,9 @@ public class ExtractorObsidium : Estructura
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
         nivelActual = nivelActual + 1;
-
-
-
-        
-
         // actualizar hud informacion
         setUpCanvasValues();
+        settearVida();
     }
 
     // Start is called before the first frame update
@@ -64,6 +57,7 @@ public class ExtractorObsidium : Estructura
             canvas.SetActive(false);
         }
         setUpCanvasValues();
+        settearVida();
     }
 
     // Update is called once per frame
@@ -72,6 +66,7 @@ public class ExtractorObsidium : Estructura
         
         comprobarDisponibilidadMejora();
         generarRecursos();
+        comprobarVida0();
     }
     private void comprobarDisponibilidadMejora()
     {

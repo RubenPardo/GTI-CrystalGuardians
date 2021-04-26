@@ -41,8 +41,8 @@ public class Mina : Estructura
         nivelActual = nivelActual + 1;
 
 
+        settearVida();
 
-        
 
         // actualizar hud informacion
         setUpCanvasValues();
@@ -61,6 +61,9 @@ public class Mina : Estructura
             canvas.SetActive(false);
         }
         setUpCanvasValues();
+        settearVida();
+
+
     }
 
     // Update is called once per frame
@@ -69,6 +72,7 @@ public class Mina : Estructura
 
         comprobarDisponibilidadMejora();
         generarRecursos();
+        comprobarVida0();
     }
 
     public override void cerrarMenu()

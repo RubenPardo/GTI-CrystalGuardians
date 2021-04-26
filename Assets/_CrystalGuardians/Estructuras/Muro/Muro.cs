@@ -6,11 +6,6 @@ using UnityEngine.UI;
 public class Muro : Estructura
 {
 
-    public int[] capacidadUnidades;
-    public Aliado guerrero;
-    public Aliado ballestero;
-    public float distanciaSpawn = 0.5f;
-
     public Text txtNivel;
     public Text txtMejora;
     
@@ -24,8 +19,7 @@ public class Muro : Estructura
 
     // Storing different levels'
     public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
+
 
     public override void abrirMenu()
     {
@@ -49,6 +43,7 @@ public class Muro : Estructura
             canvas.SetActive(false);
         }
         setUpCanvasValues();
+        settearVida();
     }
 
     // Update is called once per frame
@@ -56,6 +51,7 @@ public class Muro : Estructura
     {
         
         comprobarDisponibilidadMejora();
+        comprobarVida0();
     }
 
     private void comprobarDisponibilidadMejora()
@@ -75,11 +71,9 @@ public class Muro : Estructura
         nivelActual = nivelActual + 1;
 
 
-
-        
-
         // actualizar hud informacion
         setUpCanvasValues();
+        settearVida();
     }
 
     private void setUpCanvasValues()

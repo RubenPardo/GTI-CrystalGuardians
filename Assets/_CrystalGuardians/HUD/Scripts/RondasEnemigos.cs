@@ -18,6 +18,10 @@ public class RondasEnemigos : MonoBehaviour
     public int cantidadEnemigosPorRonda=3;
 
     public GameObject panelMejoras;
+    public GameObject botonResetGame;
+    public GameObject panelRondas;
+    public GameObject btnFinalizar;
+    public GameObject btnEmpezar;
 
 
     // Start is called before the first frame upd0ate
@@ -25,18 +29,31 @@ public class RondasEnemigos : MonoBehaviour
     public GameObject enemigoDistancia;
     public GameObject enemigoFuerte;
     public GameObject mina;
-   
+    public GameObject castillo;
+
 
 
 
     void Start()
     {
-        
-        numeroRonda.text = numeroRnda.ToString("f0");
-        
+
+        Button btnF = btnFinalizar.GetComponent<Button>();
+        Button btnE = btnEmpezar.GetComponent<Button>();
+        btnE.onClick.AddListener(mostrarBtnF);
+        //btnF.onClick.AddListener(mostrarBtnE);
 
     }
-
+    private void mostrarBtnF()
+    {
+        btnFinalizar.SetActive(true);
+        //btnEmpezar.SetActive(false);
+        //panelRondas.SetActive(true);
+    }
+    /*private void mostrarBtnE()
+    {
+        btnFinalizar.SetActive(false);
+        btnEmpezar.SetActive(true);
+    }*/
     private void comprobarLanzarMejorasAldeas()
     {
         // cada 3 rondas se lanzaran las mejoras de la aldea
@@ -45,6 +62,29 @@ public class RondasEnemigos : MonoBehaviour
             //lanzar mejoras de aldea
             panelMejoras.SetActive(true);
         }
+    }
+    public void resetGame()
+    {
+        
+        numeroRnda = 1;
+        numeroRonda.text = numeroRnda.ToString("f0");
+        contadorTiempoRonda = 300.0f;
+        updateCronometro();
+        GameObject[] listaEnemigosEnPartida = GameObject.FindGameObjectsWithTag("Enemigo");
+        for (int i = 0; i < listaEnemigosEnPartida.Length; i++)
+        {
+            Destroy(listaEnemigosEnPartida[i]);
+        }
+        GameObject[] listaUnidadesEnPartida = GameObject.FindGameObjectsWithTag("Unidad");
+        for (int i = 0; i < listaUnidadesEnPartida.Length; i++)
+        {
+            Destroy(listaUnidadesEnPartida[i]);
+        }
+        Instantiate(mina, new Vector3(0,0,4), Quaternion.identity);
+        Instantiate(castillo, new Vector3(0, 0, 0), Quaternion.identity);
+        //panelRondas.SetActive(false);
+        btnEmpezar.SetActive(true);
+
     }
 
     public void comenzarRonda()
@@ -76,6 +116,21 @@ public class RondasEnemigos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
+        GameObject[] listaEstructurasEnPartida = GameObject.FindGameObjectsWithTag("Estructura");
+        if (listaEstructurasEnPartida.Length == 0)
+        {
+            botonResetGame.SetActive(true);
+            isRondaActive = false;
+            btnFinalizar.SetActive(false);
+            btnEmpezar.SetActive(false);
+
+        }
+        else
+        {
+            botonResetGame.SetActive(false);
+        }
         if (updateCronometro())
         {
             comenzarRonda();
@@ -102,15 +157,16 @@ public class RondasEnemigos : MonoBehaviour
 
     private bool updateCronometro()
     {
+        
         contadorTiempoRonda -= Time.deltaTime;
         if (contadorTiempoRonda >= 60 && contadorTiempoRonda < 36000)
         {
             contadorRondas.text = (contadorTiempoRonda / 60).ToString("f1") + "m";
         }
-        else if (contadorTiempoRonda >= 36000)
+        /*else if (contadorTiempoRonda >= 36000)
         {
             contadorRondas.text = (contadorTiempoRonda / 36000).ToString("f1") + "h";
-        }
+        }*/
         else
         {
             contadorRondas.text = contadorTiempoRonda.ToString("f1") + "s";

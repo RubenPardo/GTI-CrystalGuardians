@@ -21,8 +21,6 @@ public class Trampa : Estructura
 
     // Storing different levels'
     public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
     public int[] danyoPorNivel;
     public override void mejorar()
     {

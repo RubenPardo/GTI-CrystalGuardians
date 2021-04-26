@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class Torre : Estructura
 {
 
+
     public Text txtNivel;
     public Text txtMejora;
-  
+    
     public Text txtSaludActual;
     public Text txtSaludMejorada;
     public Text txtDañoActual;
@@ -21,8 +22,6 @@ public class Torre : Estructura
 
     // Storing different levels'
     public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
 
     [Header("Atributos")]
     public int[] danyoPorNivel;
@@ -62,11 +61,12 @@ public class Torre : Estructura
         nivelActual = nivelActual + 1;
 
 
+        settearVida();
 
-       
 
         // actualizar hud informacion
         setUpCanvasValues();
+        settearVida();
     }
 
     // Start is called before the first frame update
@@ -81,6 +81,7 @@ public class Torre : Estructura
         }
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         setUpCanvasValues();
+        settearVida();
     }
 
     void UpdateTarget()
@@ -129,7 +130,7 @@ public class Torre : Estructura
             fireCoutDwon -= Time.deltaTime;
         }
         comprobarDisponibilidadMejora();
-
+        comprobarVida0();
     }
 
     private void comprobarDisponibilidadMejora()
@@ -149,7 +150,8 @@ public class Torre : Estructura
 
         if (bala != null)
         {
-            bala.Seek(target);
+            bala.damage = danyoPorNivel[nivelActual];
+            bala.setTarget(target);
         }
     }
 

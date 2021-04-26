@@ -112,15 +112,12 @@ public class RondasEnemigos : MonoBehaviour
     {
         
         contadorTiempoRonda -= Time.deltaTime;
-        if (contadorTiempoRonda >= 60 && contadorTiempoRonda < 36000)
-        {
-            contadorRondas.text = (contadorTiempoRonda / 60).ToString("f1") + "m";
-        }
-        else
-        {
-            contadorRondas.text = contadorTiempoRonda.ToString("f1") + "s";
 
-        }
+        float seconds = Mathf.FloorToInt(contadorTiempoRonda % 60); 
+        float minutes = Mathf.FloorToInt(contadorTiempoRonda / 60);
+
+       
+        contadorRondas.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
         return contadorTiempoRonda <= 0.0f;
     }

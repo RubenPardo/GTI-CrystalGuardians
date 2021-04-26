@@ -26,11 +26,17 @@ public class Castillo : Estructura
 
     public override void abrirMenu()
     {
-        canvas.SetActive(true);
+        if (canvas != null)
+        {
+            canvas.SetActive(true);
+        }
     }
     public override void cerrarMenu()
     {
-        canvas.SetActive(false);
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
     public override void mejorar()
     {

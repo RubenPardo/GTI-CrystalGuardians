@@ -77,12 +77,18 @@ public class Mina : Estructura
 
     public override void cerrarMenu()
     {
-        canvas.SetActive(false);
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
 
     public override void abrirMenu()
     {
-        canvas.SetActive(true);
+        if (canvas != null)
+        {
+            canvas.SetActive(true);
+        }
     }
 
     private void comprobarDisponibilidadMejora()

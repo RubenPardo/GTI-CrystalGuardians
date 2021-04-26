@@ -173,6 +173,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("El radio de los hechizos ha aumentado");
         BluePrintHechizos.aumentoRadio *= 3f;
+        RayoScript.aumentoRadio *= 3f;
+        BuffScript.aumentoRadio *= 3f;
+        HealScript.aumentoRadio *= 3f;
         return 0;
     }
     static int aumentarProduccionMinas20()

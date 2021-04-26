@@ -18,7 +18,6 @@ public class RondasEnemigos : MonoBehaviour
     public int cantidadEnemigosPorRonda=3;
 
     public GameObject panelMejoras;
-    public GameObject botonResetGame;
     public GameObject panelRondas;
     public GameObject btnFinalizar;
     public GameObject btnEmpezar;
@@ -53,29 +52,7 @@ public class RondasEnemigos : MonoBehaviour
             panelMejoras.SetActive(true);
         }
     }
-    public void resetGame()
-    {
-        
-        numeroRnda = 1;
-        numeroRonda.text = numeroRnda.ToString("f0");
-        contadorTiempoRonda = 300.0f;
-        updateCronometro();
-        GameObject[] listaEnemigosEnPartida = GameObject.FindGameObjectsWithTag("Enemigo");
-        for (int i = 0; i < listaEnemigosEnPartida.Length; i++)
-        {
-            Destroy(listaEnemigosEnPartida[i]);
-        }
-        GameObject[] listaUnidadesEnPartida = GameObject.FindGameObjectsWithTag("Unidad");
-        for (int i = 0; i < listaUnidadesEnPartida.Length; i++)
-        {
-            Destroy(listaUnidadesEnPartida[i]);
-        }
-        Instantiate(mina, new Vector3(0,0,4), Quaternion.identity);
-        Instantiate(castillo, new Vector3(0, 0, 0), Quaternion.identity);
-        //panelRondas.SetActive(false);
-        btnEmpezar.SetActive(true);
-
-    }
+    
 
     public void comenzarRonda()
     {
@@ -107,19 +84,6 @@ public class RondasEnemigos : MonoBehaviour
     void Update()
     {
         
-
-        GameObject[] listaEstructurasEnPartida = GameObject.FindGameObjectsWithTag("Estructura");
-        if (listaEstructurasEnPartida.Length == 0)
-        {
-            botonResetGame.SetActive(true);
-            isRondaActive = false;
-            btnEmpezar.SetActive(false);
-
-        }
-        else
-        {
-            botonResetGame.SetActive(false);
-        }
         if (updateCronometro())
         {
             comenzarRonda();

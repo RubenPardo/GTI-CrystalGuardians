@@ -109,8 +109,8 @@ public class GameManager : MonoBehaviour
             listaCartas = new List<Carta>();
             listaCartas.Add(new Carta("Estructura", "El coste de las estructuras se reduce un 10%", "estructuras", reducirCosteEstructuras));
             listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas rápido", "recursos", aumentarProduccionMinas20));
-            listaCartas.Add(new Carta("Unidades", "Descripcion de carta de unidades", "unidades", funcionPorDefectoUnidades));
-            listaCartas.Add(new Carta("Hechizos", "Descripcion de carta de hechizos", "hechizos", funcionPorDefectoHechizos));
+            listaCartas.Add(new Carta("Unidades", "Tus unidades ahora hacen mas daño", "unidades", aumentoDeDañoAliados));
+            listaCartas.Add(new Carta("Hechizos", "El radio de los hechizos ha aumentado", "hechizos", aumentarRadioHechizos));
 
         }
         else
@@ -129,11 +129,12 @@ public class GameManager : MonoBehaviour
     {
       
     }
-    static int funcionPorDefectoUnidades()
+    static int aumentoDeDañoAliados()
     {
-        Debug.Log("Has seleccionado una carta de mejora de aldea de clase unidades");
-        
-        
+        Debug.Log("Tus unidades ahora hacen mas daño");
+        Guerrero.mejoraDanyo *= 5f;
+        Ballestero.mejoraDanyo *= 5f;
+
         return 0;
     }
     static int reducirCosteEstructuras()
@@ -154,9 +155,10 @@ public class GameManager : MonoBehaviour
 
         return 0;
     }
-    static int funcionPorDefectoHechizos()
+    static int aumentarRadioHechizos()
     {
-        Debug.Log("Has seleccionado una carta de mejora de aldea de clase hechizos");
+        Debug.Log("El radio de los hechizos ha aumentado");
+        BluePrintHechizos.aumentoRadio *= 3f;
         return 0;
     }
     static int aumentarProduccionMinas20()

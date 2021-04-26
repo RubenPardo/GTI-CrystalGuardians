@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class RayoScript : Hechizo
 {
+    public int mejoraDanyoRayo = 1;
+    public static float aumentoRadio = 1f;//mejora de aldea
     // Start is called before the first frame update
     void Start()
+        transform.localScale = new Vector3(transform.localScale.x * aumentoRadio, transform.localScale.y, transform.localScale.z * aumentoRadio);
     {
         spwanHechizo = Time.time;
     }
@@ -14,9 +17,10 @@ public class RayoScript : Hechizo
         if (other.tag.Equals("Enemigo"))
         {
             EnemigoScript enemigo = other.GetComponent<EnemigoScript>();
-            //El daño del rayo sera en % de vida
+            //El daï¿½o del rayo sera en % de vida
             nivelActual = GameManager.nivelCasaHechizos;
             int damageHechizo = (int) ( statsHechizoPorNivel[nivelActual] * enemigo.vidaPorNivel[enemigo.nivelActual]);
+            enemigo.setCurrentHealth(enemigo.vidaActual - (danyoHechizoRayo * mejoraDanyoRayo));
             enemigo.setCurrentHealth(enemigo.vidaActual - damageHechizo);
         }
     }

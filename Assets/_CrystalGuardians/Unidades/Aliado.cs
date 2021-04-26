@@ -44,7 +44,7 @@ public class Aliado : MonoBehaviour
 
     }
 
-    protected void mover()
+    protected void mover(float mejoraDanyo)
     {
         if (!isMoving)
         {
@@ -129,7 +129,7 @@ public class Aliado : MonoBehaviour
                 isEnemigoFijado= false;
             }
             // comprobar que el enemigo ha muerto antes de estos calculos
-            else if (Vector3.Distance(transform.position, enemigoFijado.transform.position) > (rangoAtaque+0.2)) // el 0.2 es por el tamaño de las unidades
+            else if (Vector3.Distance(transform.position, enemigoFijado.transform.position) > (rangoAtaque+0.2)) // el 0.2 es por el tamaï¿½o de las unidades
             {
                 // si el enemigo sale del rango de ataque desfijarlo
                 isAtacking = false;
@@ -141,6 +141,7 @@ public class Aliado : MonoBehaviour
                 if (attackCoutDwon <= 0f)
                 {
                     EnemigoScript enemigo = enemigoFijado.GetComponent<EnemigoScript>();
+                    enemigo.setCurrentHealth(enemigo.vidaActual - Mathf.RoundToInt(danyoPorNivel[nivelActual] * mejoraDanyo));
                     enemigo.setCurrentHealth(enemigo.vidaActual - (int)(danyoPorNivel[nivelActual]*buffDamage));
                     attackCoutDwon = 1f / attackSpeed;
                 }
@@ -151,7 +152,7 @@ public class Aliado : MonoBehaviour
         }
     }
 
-    //Actualiza la vida actuañl
+    //Actualiza la vida actuaï¿½l
     public void setCurrentHealth(int heal)
     {
         if (heal>=vidaPorNivel[nivelActual])

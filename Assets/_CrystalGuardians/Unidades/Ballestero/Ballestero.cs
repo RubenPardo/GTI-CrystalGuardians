@@ -7,7 +7,7 @@ using UnityEngine;
 public class Ballestero : Aliado
 {
 
-
+    public static float mejoraDanyo = 1f;//mejora de aldea
     // Start is called before the first frame update
 
     void Start()
@@ -21,7 +21,7 @@ public class Ballestero : Aliado
     void Update()
     {
 
-        mover();
+        mover(mejoraDanyo);
         comprobarVida0();
     }
 

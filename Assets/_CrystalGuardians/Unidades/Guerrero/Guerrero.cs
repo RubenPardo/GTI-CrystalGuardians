@@ -7,8 +7,8 @@ using System.Linq;
 public class Guerrero : Aliado
 {
 
-    
-    
+    public static float mejoraDanyo = 1f;//mejora de aldea
+
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class Guerrero : Aliado
     void Update()
     {
 
-        mover();
+        mover(mejoraDanyo);
         comprobarVida0();
 
     }

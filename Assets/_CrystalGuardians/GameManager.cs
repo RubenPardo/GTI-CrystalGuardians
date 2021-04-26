@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // cuartel de unidades -----------
     public static int nivelMinimoCastilloCuartel = 0;
     public static int costeConstruirCuartel = 400;
-    public static int topeCuartelUnidades = 4;
+    public static int topeCuartelUnidades = 2;
     private int cuartelesConstruidos = 0;
     public int CuartelesConstruidos { get => cuartelesConstruidos; set => cuartelesConstruidos = value; }
 
@@ -50,9 +50,14 @@ public class GameManager : MonoBehaviour
     public static int nivelMinimoCastilloExtractor = 0;
     public static int costeConstruirExtractor = 2160;
 
+    // hechizos --------
+    public static int costeLanzarHeal = 250 ;
+    public static int costeLanzarRayo = 500;
+    public static int costeLanzarBuff = 400;
+
     //recursos -------------
-    private float oro = 0;
-    private float obsidium = 0;
+    private float oro = 99000000;
+    private float obsidium = 99900000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 
@@ -70,11 +75,22 @@ public class GameManager : MonoBehaviour
     //atributos del castillo
     private int nivelActualCastillo = 0;
     public int NivelActualCastillo { get => nivelActualCastillo; set => nivelActualCastillo = value; }
+    public int TopeUnidades { get; internal set; }
+    private int topeUnidades = 0;
+    public int Unidades { get; internal set; }
+    private int unidades = 0;
 
     public int i = 0;
     public int y = 0;
 
+    //Mejoras de aldea
+    public List<Carta> listaCartas;
+
+    
+
     // Start is called before the first frame update
+
+
     void Start()
     {
         
@@ -83,11 +99,23 @@ public class GameManager : MonoBehaviour
             instance = this;
 
             Instantiate(castillo, transform.position, transform.rotation);
+           
+
+            //Añadimos las cartas a la lista de cartas disponibles
+            listaCartas = new List<Carta>();
+            listaCartas.Add(new Carta("Estructura", "El coste de las estructuras se reduce un 10%", "estructuras", reducirCosteEstructuras));
+            listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas rápido", "recursos", aumentarProduccionMinas20));
+            listaCartas.Add(new Carta("Unidades", "Tus unidades ahora hacen mas daño", "unidades", aumentoDeDañoAliados));
+            listaCartas.Add(new Carta("Hechizos", "El radio de los hechizos ha aumentado", "hechizos", aumentarRadioHechizos));
+
         }
         else
         {
             DestroyImmediate(gameObject);
         }
+
+        
+        
     }
 
     // Update is called once per frame
@@ -97,4 +125,46 @@ public class GameManager : MonoBehaviour
     {
       
     }
+    static int aumentoDeDañoAliados()
+    {
+        Debug.Log("Tus unidades ahora hacen mas daño");
+        Guerrero.mejoraDanyo *= 5f;
+        Ballestero.mejoraDanyo *= 5f;
+
+        return 0;
+    }
+    static int reducirCosteEstructuras()
+    {
+        Debug.Log("Las estructuras han bajado de coste un 10%");
+
+        //Debug.Log("Coste antes --> " + costeConstruirMina);
+
+        costeConstruirMina = costeConstruirMina -  10 * costeConstruirMina / 100;
+        costeConstruirExtractor = costeConstruirExtractor - 10 * costeConstruirExtractor / 100;
+        costeConstruirCuartel = costeConstruirCuartel - 10 * costeConstruirCuartel / 100;
+        costeConstruirCasaHechizos = costeConstruirCasaHechizos - 10 * costeConstruirCasaHechizos / 100;
+        costeConstruirMuro = costeConstruirMuro - 10 * costeConstruirMuro / 100;
+        costeConstruirTorre = costeConstruirTorre - 10 * costeConstruirTorre / 100;
+        costeConstruirTrampa = costeConstruirTrampa - 10 * costeConstruirTrampa / 100;
+
+        //Debug.Log("Coste despues --> " + costeConstruirMina);
+
+        return 0;
+    }
+    static int aumentarRadioHechizos()
+    {
+        Debug.Log("El radio de los hechizos ha aumentado");
+        BluePrintHechizos.aumentoRadio *= 3f;
+        return 0;
+    }
+    static int aumentarProduccionMinas20()
+    {
+        //aumenta un 20% la produccion de las minas
+        Debug.Log("Has mejorado la produccion de las minas un 20%");
+        //cambiar la variable 
+        Mina.mejoraDeAldeaProduccionOro = Mina.mejoraDeAldeaProduccionOro *  1.2f;
+        return 0;
+    }
+
+
 }

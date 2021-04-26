@@ -7,12 +7,46 @@ public abstract class Estructura : MonoBehaviour
     // todos estos atributos dependen del nivel al cual esta
     public int[] nivelMinimoCastilloParaMejorar;
     public int[] vidaPorNivel;
-    [Range(0, 1)]// min y max de la variable
-    [SerializeField] // para que se pueda modificar del editor
-    public float vidaActual = 1f;// entre 0 y 1 // la vida a mostrar será multiplicar este valor por la vida del nivel correspondiente
+
+    public int vidaActual;
+    public HealthBarScript healthBar;
     public int[] costeOroMejorar; // costes para mejorar (el primer valor es el nivel 2)
 
     public abstract void mejorar();
+    public abstract void abrirMenu();
+    public abstract void cerrarMenu();
+
+    protected GameObject canvas;
+
+    //Actualiza la vida actuañl
+    public void setCurrentHealth(int health)
+    {
+
+        healthBar.SetHeatlh(health);
+        vidaActual = health;
+    }
+
+    //Setea la vida actual y maxima cuando mejoras de nivel alguna estructura
+    public void settearVida()
+    {
+       
+        healthBar.SetMaxHealth(vidaPorNivel[nivelActual]);
+        healthBar.SetHeatlh(vidaPorNivel[nivelActual]);
+        vidaActual = vidaPorNivel[nivelActual];
+        //Debug.Log("SETEANDO -> "+ healthBar.slider.maxValue + " Current: "+ healthBar.slider.value);
+    }
+
+    public void comprobarVida0()
+    {
+        if (vidaActual < healthBar.slider.maxValue)
+        {
+            healthBar.setVisbility(true);
+        }
+        if (vidaActual <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     
 

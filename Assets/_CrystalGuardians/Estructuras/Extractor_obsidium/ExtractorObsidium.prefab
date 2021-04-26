@@ -262,7 +262,7 @@ MonoBehaviour:
   nivelActual: 0
   nivelMinimoCastilloParaMejorar: 0000000001000000010000000100000002000000
   vidaPorNivel: d80100000d0200004702000088020000d002000020030000
-  currentVida: 0
+  vidaActual: 0
   healthBar: {fileID: 961950359973153339}
   costeOroMejorar: 18150000a0320000005a0000a08c000080ca0000
   txtNivel: {fileID: 0}
@@ -296,7 +296,7 @@ NavMeshObstacle:
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 1, y: 0.5, z: 1}
   m_TimeToStationary: 0.5
 --- !u!114 &8885800548091365298
 MonoBehaviour:
@@ -468,7 +468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667222966218288450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 1, y: 0.5, z: 1}
   m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_Children: []
   m_Father: {fileID: 7481260642550140853}

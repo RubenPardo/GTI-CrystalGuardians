@@ -34807,7 +34807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b683f40338a673c44bf8f89aff6b9f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botonResetGame: {fileID: 44641379}
 --- !u!1 &1244565526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4623580461680549398, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -50365,7 +50364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5414440465539987493, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5414440465539987493, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -50373,7 +50372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5414440465539987493, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5414440465539987493, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: m_LocalRotation.w

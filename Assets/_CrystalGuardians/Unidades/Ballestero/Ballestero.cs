@@ -24,4 +24,6 @@ public class Ballestero : Aliado
         mover();
         comprobarVida0();
     }
+
+
 }

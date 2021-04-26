@@ -120,6 +120,10 @@ public class EnemigoScript : MonoBehaviour
 
 
                     }
+                    else
+                    {
+                        agent.SetDestination(objetivoFijado.transform.position); //por si el objetivo se mueve
+                    }
                 }
             }
             

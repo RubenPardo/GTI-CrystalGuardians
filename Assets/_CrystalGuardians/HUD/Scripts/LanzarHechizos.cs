@@ -24,7 +24,10 @@ public class LanzarHechizos : MonoBehaviour
     public Texture texturaGrisBuff;
 
     [Header("HUD")]
-    public Canvas canvasHUD;
+    public GameObject HUDHechizos;
+    public Text txtRayosDisponibles;
+    public Text txtHealsDisponibles;
+    public Text txtBuffsDisponibles;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,10 +36,9 @@ public class LanzarHechizos : MonoBehaviour
 
     private void comprobarDisponibilidadBotones()
     {
-        // comprobar nivel y luego los recursos para habilitar o deshabilitar los botones
 
-        /*// CAMBIO DE ICONO HEAL
-        if (GameManager.Instance.Oro < GameManager.costeLanzarHeal)
+        // CAMBIO DE ICONO HEAL
+        if (GameManager.Instance.HealsDisponibles<=0)
         {
             // recursos insuficiente
 
@@ -52,11 +54,10 @@ public class LanzarHechizos : MonoBehaviour
             icono.texture = texturaReadyHeal;
             btnHeal.interactable = true;
 
-
         }
 
         // CAMBIO DE ICONO Rayo
-        if (GameManager.Instance.Oro < GameManager.costeLanzarRayo)
+        if (GameManager.Instance.RayosDisponibles <= 0)
         {
             // recursos insuficiente
 
@@ -76,11 +77,11 @@ public class LanzarHechizos : MonoBehaviour
         }
 
         // CAMBIO DE ICONO Buff
-        if (GameManager.Instance.Oro < GameManager.costeLanzarBuff)
+        if (GameManager.Instance.BuffsDisponibles <= 0)
         {
             // recursos insuficiente
 
-            RawImage icono = btnHeal.GetComponent<RawImage>();
+            RawImage icono = btnBuff.GetComponent<RawImage>();
             icono.texture = texturaGrisBuff;
             btnBuff.interactable = false;
         }
@@ -88,33 +89,33 @@ public class LanzarHechizos : MonoBehaviour
         {
             // disponible
 
-            RawImage icono = btnHeal.GetComponent<RawImage>();
+            RawImage icono = btnBuff.GetComponent<RawImage>();
             icono.texture = texturaReadyHeal;
             btnBuff.interactable = true;
 
 
-        }*/
+        }
 
 
     }
 
     public void lanzarHeal()
     {
-
+        GameManager.Instance.HealsDisponibles--;
         Instantiate(healBluePrint);
 
     }
 
     public void lanzarRayo()
     {
-
+        GameManager.Instance.RayosDisponibles--;
         Instantiate(rayoBluePrint);
 
     }
 
     public void lanzarBuff()
     {
-
+        GameManager.Instance.BuffsDisponibles--;
         Instantiate(buffBluePrint);
 
     }
@@ -122,12 +123,28 @@ public class LanzarHechizos : MonoBehaviour
     void Update()
     {
         comprobarDisponibilidadBotones();
+        if (GameManager.Instance.CasasDeHechizosConstruidas==1)
+        {
+            habilitarCanvasHechizos(true);
+        }
+        else
+        {
+            habilitarCanvasHechizos(false);
+        }
+        actualizarHechizosDisponibles();
     }
 
-    private void habilitarCanvas(bool habilitado)
+    private void actualizarHechizosDisponibles()
+    {
+        txtBuffsDisponibles.text = GameManager.Instance.BuffsDisponibles.ToString();
+        txtRayosDisponibles.text = GameManager.Instance.RayosDisponibles.ToString();
+        txtHealsDisponibles.text = GameManager.Instance.HealsDisponibles.ToString();
+    }
+
+    private void habilitarCanvasHechizos(bool habilitado)
     {
 
-        canvasHUD.enabled = (habilitado);
+        HUDHechizos.SetActive(habilitado);
     }
 
 }

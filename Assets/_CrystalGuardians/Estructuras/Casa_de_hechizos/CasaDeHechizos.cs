@@ -10,12 +10,19 @@ public class CasaDeHechizos : Estructura
     
     public Text txtSaludActual;
     public Text txtSaludMejorada;
+
+    public Text txtCosteHeal;
+    public Text txtCosteRayo;
+    public Text txtCosteBuff;
     
     public Text txtLvlActual;
     public Text txtLvlSiguiente;
     public Button btnMejorar;
     public Button btnMejorarInfo;
-    
+    public Button btnHeal;
+    public Button btnRayo;
+    public Button btnBuff;
+
 
     // Storing different levels'
     public GameObject[] levels;
@@ -51,15 +58,19 @@ public class CasaDeHechizos : Estructura
             canvas.SetActive(false);
         }
         GameManager.nivelCasaHechizos = 0;
+        GameManager.Instance.CasasDeHechizosConstruidas++;
         setUpCanvasValues();
         settearVida();
+
+
     }
 
     private void Update()
     {
-        
         comprobarDisponibilidadMejora();
         comprobarVida0();
+        comprobarBotones();
+        
     }
     private void comprobarDisponibilidadMejora()
     {
@@ -81,7 +92,9 @@ public class CasaDeHechizos : Estructura
         
         txtLvlActual.text = (nivelActual + 1).ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
-
+        txtCosteHeal.text = GameManager.costeLanzarHeal[nivelActual].ToString();
+        txtCosteRayo.text = GameManager.costeLanzarRayo[nivelActual].ToString();
+        txtCosteBuff.text = GameManager.costeLanzarBuff[nivelActual].ToString();
 
 
 
@@ -101,5 +114,33 @@ public class CasaDeHechizos : Estructura
         }
 
 
+    }
+
+     private void comprobarBotones()
+    {
+        btnHeal.enabled = GameManager.Instance.Obsiidum>=GameManager.costeLanzarHeal[nivelActual];
+        btnBuff.enabled = GameManager.Instance.Obsiidum>=GameManager.costeLanzarBuff[nivelActual];
+        btnRayo.enabled = GameManager.Instance.Obsiidum>=GameManager.costeLanzarRayo[nivelActual];
+    }
+
+    public void generarRayo()
+    {
+        GameManager.Instance.Obsiidum -= GameManager.costeLanzarRayo[nivelActual];
+        GameManager.Instance.RayosDisponibles++;
+    }
+    public void generarHeal()
+    {
+        GameManager.Instance.Obsiidum -= GameManager.costeLanzarBuff[nivelActual];
+        GameManager.Instance.HealsDisponibles++;
+    }
+    public void generarBuff()
+    {
+        GameManager.Instance.Obsiidum -= GameManager.costeLanzarBuff[nivelActual];
+        GameManager.Instance.BuffsDisponibles++;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.CasasDeHechizosConstruidas--;
     }
 }

@@ -35,7 +35,7 @@ public class Castillo : Estructura
     public override void mejorar()
     {
 
-        GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum - costeObsidiumConstruirMejorar[nivelActual];
+        GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum - costeObsidiumMejorar[nivelActual];
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
         nivelActual++;

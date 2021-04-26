@@ -51,14 +51,26 @@ public class GameManager : MonoBehaviour
     public static int costeConstruirExtractor = 2160;
 
     // hechizos --------
-    public static int costeLanzarHeal = 250 ;
-    public static int costeLanzarRayo = 500;
-    public static int costeLanzarBuff = 400;
+    public static int[] costeLanzarHeal = { 250, 1500, 5000} ;
+    public static int[] costeLanzarRayo = { 250, 1500, 5000 };
+    public static int[] costeLanzarBuff = { 250, 1500, 5000 };
     public static int nivelCasaHechizos;
 
+    private static int healsDisponibles = 0;
+    private static int rayosDisponibles = 0;
+    private static int buffsDisponibles = 0;
+
+    public static int topeCasaHechizos=1;
+
+    private static int casasDeHechizosConstruidas = 0;
+
+    public int CasasDeHechizosConstruidas { get => casasDeHechizosConstruidas; set => casasDeHechizosConstruidas = value; }
+    public int BuffsDisponibles { get => buffsDisponibles; set => buffsDisponibles = value; }
+    public int RayosDisponibles { get => rayosDisponibles; set => rayosDisponibles = value; }
+    public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
-    private float oro = 99000000;
-    private float obsidium = 99900000;
+    private float oro = 990000000;
+    private float obsidium = 190220;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 
@@ -82,6 +94,8 @@ public class GameManager : MonoBehaviour
     public int TopeUnidades { get; internal set; }
     private int topeUnidades = 0;
     public int Unidades { get; internal set; }
+
+
     private int unidades = 0;
 
     public int i = 0;

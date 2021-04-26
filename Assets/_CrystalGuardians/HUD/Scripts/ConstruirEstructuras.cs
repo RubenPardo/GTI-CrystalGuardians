@@ -97,7 +97,7 @@ public class ConstruirEstructuras : MonoBehaviour
             habilitar(btnCasaHechizos,false);
            
         }
-        else if (GameManager.Instance.Oro < GameManager.costeConstruirCasaHechizos)
+        else if (GameManager.Instance.Oro < GameManager.costeConstruirCasaHechizos || GameManager.Instance.CasasDeHechizosConstruidas >= GameManager.topeCasaHechizos)
         {
             // recursos insuficiente
             RawImage icono = btnCasaHechizos.GetComponent<RawImage>();

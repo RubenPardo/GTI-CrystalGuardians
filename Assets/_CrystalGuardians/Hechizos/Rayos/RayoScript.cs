@@ -8,8 +8,9 @@ public class RayoScript : Hechizo
     public static float aumentoRadio = 1f;//mejora de aldea
     // Start is called before the first frame update
     void Start()
-        transform.localScale = new Vector3(transform.localScale.x * aumentoRadio, transform.localScale.y, transform.localScale.z * aumentoRadio);
+       
     {
+        transform.localScale = new Vector3(transform.localScale.x * aumentoRadio, transform.localScale.y, transform.localScale.z * aumentoRadio);
         spwanHechizo = Time.time;
     }
     private void OnTriggerEnter(Collider other)
@@ -20,8 +21,7 @@ public class RayoScript : Hechizo
             //El da�o del rayo sera en % de vida
             nivelActual = GameManager.nivelCasaHechizos;
             int damageHechizo = (int) ( statsHechizoPorNivel[nivelActual] * enemigo.vidaPorNivel[enemigo.nivelActual]);
-            enemigo.setCurrentHealth(enemigo.vidaActual - (danyoHechizoRayo * mejoraDanyoRayo));
-            enemigo.setCurrentHealth(enemigo.vidaActual - damageHechizo);
+            enemigo.setCurrentHealth(enemigo.vidaActual - damageHechizo* mejoraDanyoRayo);
         }
     }
 

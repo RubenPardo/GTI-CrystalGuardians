@@ -7,8 +7,9 @@ public class Bala : MonoBehaviour
 
     private Transform target;
     public float speed = 70f;
+    public int damage;
 
-    public void Seek(Transform _target)
+    public void setTarget(Transform _target)
     {
         target = _target;
     }
@@ -42,8 +43,8 @@ public class Bala : MonoBehaviour
 
     void HitTarget()
     {
-        enmigoScript enemigo = target.GetComponent<enmigoScript>();
-        enemigo.setCurrentHealth(enemigo.vida-20);
+        EnemigoScript enemigo = target.GetComponent<EnemigoScript>();
+        enemigo.setCurrentHealth(enemigo.vidaActual-damage);
         Destroy(gameObject);
     }
 }

@@ -84,8 +84,9 @@ public class ConstruirEstructuras : MonoBehaviour
         // comprobar nivel y luego los recursos para habilitar o deshabilitar los botones
 
         // CAMBIO DE ICONO CASA DE HECHIZOS
-        if(castillo.nivelActual < GameManager.nivelMinimoCastilloCasaHechizos)
+        if(GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloCasaHechizos)
         {
+           
             // nivel insuficiente
             // cuando se haga con imagen poner esto tmb con la imagen que le toca
             // button.GetComponent<Image>().sprite = Image1;
@@ -99,7 +100,6 @@ public class ConstruirEstructuras : MonoBehaviour
         else if (GameManager.Instance.Oro < GameManager.costeConstruirCasaHechizos)
         {
             // recursos insuficiente
-
             RawImage icono = btnCasaHechizos.GetComponent<RawImage>();
             icono.texture = texturaRojaHechizos;
             habilitar(btnCasaHechizos, false);
@@ -107,7 +107,6 @@ public class ConstruirEstructuras : MonoBehaviour
         else
         {
             // disponible
-
             RawImage icono = btnCasaHechizos.GetComponent<RawImage>();
             icono.texture = texturaReadyHechizos;
             habilitar(btnCasaHechizos, true);
@@ -116,7 +115,7 @@ public class ConstruirEstructuras : MonoBehaviour
         }
 
         // CAMBIO DE ICONO CUARTEL
-        if (castillo.nivelActual < GameManager.nivelMinimoCastilloCuartel)
+        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloCuartel)
         {
             // nivel insuficiente 
             // cuando se haga con imagen poner esto tmb con la imagen que le toca
@@ -148,7 +147,7 @@ public class ConstruirEstructuras : MonoBehaviour
 
         // CAMBIO DE ICONO MINA
         //habilitar( btnMina,castillo.nivelActual >= GameManager.nivelMinimoCastilloMina && GameManager.Instance.Oro >= GameManager.costeConstruirMina);
-        if (castillo.nivelActual < GameManager.nivelMinimoCastilloMina)
+        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloMina)
         {
             // nivel insuficiente
             // cuando se haga con imagen poner esto tmb con la imagen que le toca
@@ -180,7 +179,7 @@ public class ConstruirEstructuras : MonoBehaviour
 
         // CAMBIO DE ICONO EXTRACTOR
         //habilitar( btnExtractor,castillo.nivelActual >= GameManager.nivelMinimoCastilloExtractor && GameManager.Instance.Oro >= GameManager.costeConstruirExtractor);
-        if (castillo.nivelActual < GameManager.nivelMinimoCastilloExtractor)
+        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloExtractor)
         {
             // nivel insuficiente
             // cuando se haga con imagen poner esto tmb con la imagen que le toca
@@ -211,7 +210,7 @@ public class ConstruirEstructuras : MonoBehaviour
 
         // CAMBIO DE ICONO MURO
         //habilitar(btnMuro,castillo.nivelActual >= GameManager.nivelMinimoCastilloMuros && GameManager.Instance.Oro >= GameManager.costeConstruirMuro);
-        if (castillo.nivelActual < GameManager.nivelMinimoCastilloMuros)
+        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloMuros)
         {
             // nivel insuficiente
             // cuando se haga con imagen poner esto tmb con la imagen que le toca
@@ -241,7 +240,7 @@ public class ConstruirEstructuras : MonoBehaviour
         }
         // CAMBIO DE ICONO TORRE
         //habilitar(btnTorre,castillo.nivelActual >= GameManager.nivelMinimoCastilloTorre && GameManager.Instance.Oro >= GameManager.costeConstruirTorre);
-        if (castillo.nivelActual < GameManager.nivelMinimoCastilloTorre)
+        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloTorre)
         {
             // nivel insuficiente
             // cuando se haga con imagen poner esto tmb con la imagen que le toca
@@ -270,7 +269,7 @@ public class ConstruirEstructuras : MonoBehaviour
         }
         // CAMBIO DE ICONO TRAMPA
         //habilitar(btnTrampa,castillo.nivelActual >= GameManager.nivelMinimoCastilloTrampa && GameManager.Instance.Oro >= GameManager.costeConstruirTrampa);
-        if (castillo.nivelActual < GameManager.nivelMinimoCastilloTrampa)
+        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloTrampa)
         {
             // nivel insuficiente
             // cuando se haga con imagen poner esto tmb con la imagen que le toca

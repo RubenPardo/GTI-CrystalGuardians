@@ -20,9 +20,6 @@ public class ExtractorObsidium : Estructura
 
     // Storing different levels'
     public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
-
     public int[] generacionObsidiumPorNivel;
 
     public override void abrirMenu()
@@ -42,15 +39,11 @@ public class ExtractorObsidium : Estructura
 
     public override void mejorar()
     {
-        current_level = current_level++;
-        nivelActual = nivelActual + 1;
-
-
-
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
-
+        nivelActual++;
         // actualizar hud informacion
         setUpCanvasValues();
+        settearVida();
     }
 
     // Start is called before the first frame update
@@ -64,6 +57,7 @@ public class ExtractorObsidium : Estructura
             canvas.SetActive(false);
         }
         setUpCanvasValues();
+        settearVida();
     }
 
     // Update is called once per frame
@@ -72,13 +66,14 @@ public class ExtractorObsidium : Estructura
         
         comprobarDisponibilidadMejora();
         generarRecursos();
+        comprobarVida0();
     }
     private void comprobarDisponibilidadMejora()
     {
 
-        btnMejorar.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        btnMejorarInfo.enabled = GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
     }
 
@@ -88,13 +83,27 @@ public class ExtractorObsidium : Estructura
 
 
         txtLvlActual.text = (nivelActual + 1).ToString();
-        txtLvlSiguiente.text = (nivelActual + 2).ToString();
         txtProduccionActual.text = generacionObsidiumPorNivel[nivelActual].ToString();
-        txtProduccionMejorada.text = generacionObsidiumPorNivel[nivelActual+1].ToString();
-        txtMejora.text = costeOroMejorar[nivelActual].ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
+
+
+        if (nivelActual < NivelMaximo) { 
+        txtLvlSiguiente.text = (nivelActual + 2).ToString();
+
+        txtProduccionMejorada.text = generacionObsidiumPorNivel[nivelActual + 1].ToString();
+        txtMejora.text = costeOroMejorar[nivelActual].ToString();
+
         txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
-       
+        }
+        else
+        {
+            txtLvlSiguiente.text = "----------";
+
+            txtProduccionMejorada.text = "---------";
+            txtMejora.text = "Nivel Maximo";
+
+            txtSaludMejorada.text = "-------------";
+        }
 
 
     }

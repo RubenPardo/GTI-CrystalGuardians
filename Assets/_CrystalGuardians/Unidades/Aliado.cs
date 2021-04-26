@@ -13,8 +13,10 @@ public class Aliado : MonoBehaviour
     public float rangoVision; // casillas para ver a los enemigos
     public float rangoAtaque; // casillas para atacar a los enemigos
     public float velocidadAtaque;// ataque por segundo
-
-
+    public int vidaActual;
+    public HealthBarScript healthBar;
+    public float attackSpeed = 1f;
+    private float attackCoutDwon = 0f;
     // movimiento
     public bool isEnemigoFijado = false;
     public bool isMoving = false;
@@ -82,7 +84,11 @@ public class Aliado : MonoBehaviour
         }
         else
         {
-            if (isEnemigoFijado)
+            if (enemigoFijado== null)
+            {
+                isAtacking = false;
+                isEnemigoFijado = false;
+            }else if (isEnemigoFijado)
             {
                 if (agent.remainingDistance <= rangoAtaque)
                 {
@@ -110,23 +116,63 @@ public class Aliado : MonoBehaviour
         if (isAtacking)
         {
 
-           
+            if (enemigoFijado == null)
+            {
+                // si el enemigo ha muerto
+                isAtacking = false;
+                isEnemigoFijado= false;
+            }
             // comprobar que el enemigo ha muerto antes de estos calculos
-            if (Vector3.Distance(transform.position, enemigoFijado.transform.position) > (rangoAtaque+0.2)) // el 0.2 es por el tamaño de las unidades
+            else if (Vector3.Distance(transform.position, enemigoFijado.transform.position) > (rangoAtaque+0.2)) // el 0.2 es por el tamaño de las unidades
             {
                 // si el enemigo sale del rango de ataque desfijarlo
-                Debug.Log("Enemigo fuera de rango");
                 isAtacking = false;
                 isEnemigoFijado = false;
             }
             else
             {
-                Debug.Log("aliado atacando");
-                // si muere isEnemigoFijado
-                // isAtacking = false;
-                // isEnemigoFijado = false;
+                //Atacara pasado 1s
+                if (attackCoutDwon <= 0f)
+                {
+                    EnemigoScript enemigo = enemigoFijado.GetComponent<EnemigoScript>();
+                    enemigo.setCurrentHealth(enemigo.vidaActual - danyoPorNivel[nivelActual]);
+                    attackCoutDwon = 1f / attackSpeed;
+                }
+
+                attackCoutDwon -= Time.deltaTime;
             }
 
+        }
+    }
+
+    //Actualiza la vida actuañl
+    public void setCurrentHealth(int health)
+    {
+
+        healthBar.SetHeatlh(health);
+        vidaActual = health;
+    }
+
+    //Setea la vida actual y maxima cuando mejoras de nivel alguna estructura
+    public void settearVida()
+    {
+
+        healthBar.SetMaxHealth(vidaPorNivel[nivelActual]);
+        healthBar.SetHeatlh(vidaPorNivel[nivelActual]);
+        vidaActual = vidaPorNivel[nivelActual];
+        //Debug.Log("SETEANDO -> "+ healthBar.slider.maxValue + " Current: "+ healthBar.slider.value);
+    }
+
+    public void comprobarVida0()
+    {
+        if (vidaActual < healthBar.slider.maxValue)
+        {
+            healthBar.setVisbility(true);
+        }
+        if (vidaActual <= 0)
+        {
+            GameManager.Instance.Unidades--;
+            Destroy(gameObject);
         }
     }
 

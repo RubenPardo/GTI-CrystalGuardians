@@ -43,7 +43,7 @@ public class Bala : MonoBehaviour
 
     void HitTarget()
     {
-        enmigoScript enemigo = target.GetComponent<enmigoScript>();
+        EnemigoScript enemigo = target.GetComponent<EnemigoScript>();
         enemigo.setCurrentHealth(enemigo.vidaActual-damage);
         Destroy(gameObject);
     }

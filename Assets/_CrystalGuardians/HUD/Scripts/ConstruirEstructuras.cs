@@ -86,7 +86,7 @@ public class ConstruirEstructuras : MonoBehaviour
         // CAMBIO DE ICONO CASA DE HECHIZOS
         if(GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloCasaHechizos)
         {
-            Debug.Log("hechizos no nivel");
+           // Debug.Log("hechizos no nivel");
             // nivel insuficiente
             // cuando se haga con imagen poner esto tmb con la imagen que le toca
             // button.GetComponent<Image>().sprite = Image1;

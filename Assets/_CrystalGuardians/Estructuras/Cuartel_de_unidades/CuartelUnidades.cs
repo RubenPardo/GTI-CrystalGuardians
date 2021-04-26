@@ -29,8 +29,6 @@ public class CuartelUnidades : Estructura
 
     // Storing different levels'
     public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
 
 
     private void Start()
@@ -47,6 +45,7 @@ public class CuartelUnidades : Estructura
         }
         setUpCanvasValues();
         sumarTopeUnidades(false);
+        settearVida();
 
 
     }
@@ -54,6 +53,7 @@ public class CuartelUnidades : Estructura
     {
         comprobarDisponibilidadCosteUnidades();
         comprobarDisponibilidadMejora();
+        comprobarVida0();
     }
 
     private void comprobarDisponibilidadCosteUnidades()
@@ -91,7 +91,7 @@ public class CuartelUnidades : Estructura
         // actualizar hud informacion
         setUpCanvasValues();
         sumarTopeUnidades(true);
-        
+        settearVida();
        
        
     }
@@ -111,15 +111,17 @@ public class CuartelUnidades : Estructura
         }
 
     }
-    public void spawnUnidades(Aliado aliado)
+    public void spawnUnidades(GameObject unidadAliada)
     {
         Vector3 spawnPoint = Utility.getPuntoPerimetroRectangulo(distanciaSpawn);
-        GameObject g = Instantiate(aliado.gameObject);
+        GameObject g = Instantiate(unidadAliada); 
+        Aliado aliado = unidadAliada.GetComponent<Aliado>();
         aliado.nivelActual = nivelActual;
+        aliado.settearVida();
         GameManager.Instance.Obsiidum -= aliado.costePorNivel[nivelActual];
         
         g.transform.position = transform.position + spawnPoint;
-
+        
         GameManager.Instance.Unidades++;
         
     }

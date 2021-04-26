@@ -19,8 +19,6 @@ public class CasaDeHechizos : Estructura
 
     // Storing different levels'
     public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
     public override void abrirMenu()
     {
         canvas.SetActive(true);
@@ -42,6 +40,7 @@ public class CasaDeHechizos : Estructura
 
         // actualizar hud informacion
         setUpCanvasValues();
+        settearVida();
     }
 
     // Start is called before the first frame update
@@ -56,12 +55,14 @@ public class CasaDeHechizos : Estructura
             canvas.SetActive(false);
         }
         setUpCanvasValues();
+        settearVida();
     }
 
     private void Update()
     {
         
         comprobarDisponibilidadMejora();
+        comprobarVida0();
     }
     private void comprobarDisponibilidadMejora()
     {

@@ -16,7 +16,7 @@ public class RayoScript : MonoBehaviour
     {
         if (other.tag.Equals("Enemigo"))
         {
-            enmigoScript enemigo = other.GetComponent<enmigoScript>();
+            EnemigoScript enemigo = other.GetComponent<EnemigoScript>();
             enemigo.setCurrentHealth(enemigo.vidaActual - 20);
         }
     }

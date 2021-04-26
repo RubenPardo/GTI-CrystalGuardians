@@ -14,6 +14,7 @@ public class Guerrero : Aliado
     {
 
         agent = GetComponent<NavMeshAgent>();
+        settearVida();
     }
 
     // Update is called once per frame
@@ -21,6 +22,7 @@ public class Guerrero : Aliado
     {
 
         mover();
+        comprobarVida0();
 
     }
 }

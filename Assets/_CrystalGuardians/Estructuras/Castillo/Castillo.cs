@@ -18,8 +18,6 @@ public class Castillo : Estructura
     public int[] costeObsidiumMejorar;
     // Storing different levels'
     public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
 
 
 

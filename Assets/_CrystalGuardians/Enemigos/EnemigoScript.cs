@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enmigoScript : MonoBehaviour
+public class EnemigoScript : MonoBehaviour
 {
     [Header("Stasts Enemgio")]
     public int nivelActual;
@@ -31,7 +31,6 @@ public class enmigoScript : MonoBehaviour
     private bool isObjetivoFijado;
     private bool isAtacking;
 
-    private float ultimoAtaque=0;
 
     NavMeshAgent agent;
 
@@ -40,41 +39,14 @@ public class enmigoScript : MonoBehaviour
     {
         dir = true;
         agent = GetComponent<NavMeshAgent>();
-        vidaActual = vidaPorNivel[nivelActual];
-        healthBar.SetMaxHealth(vidaPorNivel[nivelActual]);
+        settearVida();
     }
 
     // Update is called once per frame
     void Update()
     {
         moverEnemigo();
-        //Cambiar a mover a estructuras o enemigos
-        /*float x;
-        if (dir)
-        {
-            x = transform.position.x + speed * Time.deltaTime;
-        }
-        else {
-            x = transform.position.x - speed * Time.deltaTime;
-        }
-        transform.position = new Vector3(x, transform.position.y, transform.position.z);
-
-
-        if (transform.position.x >= 8f)
-        {
-            dir = false;
-        }
-        else if (transform.position.x <= -8f) {
-
-            dir = true;
-        }*/
-
-        //-----
-        //No cambiar
-        if(vidaActual <= 0)
-        {
-            Destroy(gameObject);
-        }
+        comprobarVida0();
     }
 
     private void moverEnemigo()
@@ -165,14 +137,12 @@ public class enmigoScript : MonoBehaviour
             if (objetivoFijado == null)
             {
                 // si el enemigo ha muerto
-                Debug.Log("Objetivo ha muerto");
                 isAtacking = false;
                 isObjetivoFijado = false;
             }
             else if (Vector3.Distance(transform.position, objetivoFijado.transform.position) > rangoAtaque)
             {
                 // si el enemigo sale del rango de ataque desfijarlo
-                Debug.Log("Objetivo fuera de rango");
                 isAtacking = false;
                 isObjetivoFijado = false;
             }
@@ -180,29 +150,55 @@ public class enmigoScript : MonoBehaviour
             {
                 if (attackCoutDwon <= 0f)
                 {
-                    Estructura estructura = objetivoFijado.GetComponent<Estructura>();
-                    Debug.Log("Atacando : " + estructura.currentVida);
-                    int vidaTMP = estructura.currentVida - danyoPorNivel[nivelActual];
-                    estructura.setCurrentHealth(vidaTMP);
-
+                    Estructura estructura;
+                    Guerrero guerrero;
+                    Ballestero ballestero;
+                    Aliado aliado;
+                    if (objetivoFijado.TryGetComponent<Estructura>(out estructura))
+                    {
+                        estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
+                    }
+                    else 
+                    { 
+                        aliado = objetivoFijado.GetComponentInParent<Aliado>();
+                        aliado.setCurrentHealth(aliado.vidaActual - danyoPorNivel[nivelActual]);
+                    }
+                    
                     attackCoutDwon = 1f / attackSpeed;
-
-                    Debug.Log("Atacando : "+ estructura.currentVida);
                 }
 
                 attackCoutDwon -= Time.deltaTime;
-
-                // si muere isEnemigoFijado
-                // isAtacking = false;
-                // isEnemigoFijado = false;
             }
         }
     }
 
+    //Actualiza la vida actuañl
     public void setCurrentHealth(int health)
     {
-       
+
         healthBar.SetHeatlh(health);
         vidaActual = health;
+    }
+
+    //Setea la vida actual y maxima cuando mejoras de nivel alguna estructura
+    public void settearVida()
+    {
+
+        healthBar.SetMaxHealth(vidaPorNivel[nivelActual]);
+        healthBar.SetHeatlh(vidaPorNivel[nivelActual]);
+        vidaActual = vidaPorNivel[nivelActual];
+        //Debug.Log("SETEANDO -> "+ healthBar.slider.maxValue + " Current: "+ healthBar.slider.value);
+    }
+
+    public void comprobarVida0()
+    {
+        if (vidaActual < healthBar.slider.maxValue)
+        {
+            healthBar.setVisbility(true);
+        }
+        if (vidaActual <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

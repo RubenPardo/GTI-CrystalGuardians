@@ -90,7 +90,7 @@ public class LanzarHechizos : MonoBehaviour
             // disponible
 
             RawImage icono = btnBuff.GetComponent<RawImage>();
-            icono.texture = texturaReadyHeal;
+            icono.texture = texturaReadyBuff;
             btnBuff.interactable = true;
 
 

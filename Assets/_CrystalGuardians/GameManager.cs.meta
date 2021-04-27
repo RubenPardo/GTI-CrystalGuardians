@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2ff1829f3f6188940b95e0ef375935b1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - prefabOro: {fileID: 5047545057962889104, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
+  - prefabObsidium: {fileID: 1259565508777720743, guid: b7c74be88a2f9694db6914e4c64f881d, type: 3}
+  - castillo: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

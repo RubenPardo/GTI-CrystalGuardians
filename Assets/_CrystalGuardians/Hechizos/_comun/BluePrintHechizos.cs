@@ -27,7 +27,8 @@ public class BluePrintHechizos : MonoBehaviour
         //Boton izquierdo se lanza el hechizo
         if (Input.GetMouseButtonDown(0))
         {
-            // construir la estructura 
+            descontarHechizo();
+            // Lanzar el hechizo
             Instantiate(prefab, transform.position, transform.rotation);
             GameManager.Instance.SeEstaConstruyendo = false;
             Destroy(gameObject);
@@ -38,6 +39,29 @@ public class BluePrintHechizos : MonoBehaviour
         {
             GameManager.Instance.SeEstaConstruyendo = false;
             Destroy(gameObject);
+        }
+    }
+
+    private void descontarHechizo()
+    {
+        Transform hechizo = prefab.transform.GetChild(0);
+        HealScript heal;
+        RayoScript rayo;
+        BuffScript buff;
+        
+        if (hechizo.TryGetComponent<HealScript>(out heal))
+        {
+            GameManager.Instance.HealsDisponibles--;
+            
+        }
+        else if (hechizo.TryGetComponent<RayoScript>(out rayo))
+        {
+            GameManager.Instance.RayosDisponibles--;
+        }
+        else if (hechizo.TryGetComponent<BuffScript>(out buff))
+        {
+             GameManager.Instance.BuffsDisponibles--;
+
         }
     }
     private void mover_blueprint()

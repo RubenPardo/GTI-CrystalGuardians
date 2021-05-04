@@ -82,7 +82,6 @@ public class Aliado : MonoBehaviour
 
             }
 
-
         }
         else
         {

@@ -837,6 +837,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300476, guid: 353b40c6a1ff7dd469b9d1e4dc0f13a8, type: 3}
+--- !u!20 &31801041 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2855807874156308923, guid: c8594e4772837be4f8970588383c44e1, type: 3}
+  m_PrefabInstance: {fileID: 2855807873351890359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &32484862 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6505362721364853875, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -14603,9 +14608,10 @@ MonoBehaviour:
   cameraLimit: {x: 16, y: 16}
   scrollSpeed: 2
   minYScroll: 6
-  maxYScroll: 12
+  maxYScroll: 14
   isActive: 1
-  rotationAmount: 90
+  rotationAmount: 20
+  myCamera: {fileID: 31801041}
 --- !u!1 &244241677 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4623580462187833696, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -53684,6 +53690,10 @@ PrefabInstance:
     - target: {fileID: 2855807874156308925, guid: c8594e4772837be4f8970588383c44e1, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855807874156308925, guid: c8594e4772837be4f8970588383c44e1, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8594e4772837be4f8970588383c44e1, type: 3}

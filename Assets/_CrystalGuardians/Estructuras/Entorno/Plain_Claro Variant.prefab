@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 119520, guid: 65efeec4dd1d73d4e9410c85d8f898c3, type: 3}
       propertyPath: m_Name
-      value: Plain_Claro
+      value: Plain_Claro Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 119520, guid: 65efeec4dd1d73d4e9410c85d8f898c3, type: 3}
+      propertyPath: m_TagString
+      value: Suelo
       objectReference: {fileID: 0}
     - target: {fileID: 486272, guid: 65efeec4dd1d73d4e9410c85d8f898c3, type: 3}
       propertyPath: m_RootOrder

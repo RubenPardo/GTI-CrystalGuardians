@@ -1480,7 +1480,7 @@ MonoBehaviour:
   nivelActual: 0
   nivelMinimoCastilloParaMejorar: 
   vidaPorNivel: 8813000050c30000a0860100
-  currentVida: 0
+  vidaActual: 0
   healthBar: {fileID: 5441822313380917978}
   costeOroMejorar: c04b030000350c00
   txtSaludActual: {fileID: 3913183734627822116}

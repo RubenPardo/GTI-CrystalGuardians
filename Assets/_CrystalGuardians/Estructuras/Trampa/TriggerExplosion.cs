@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class TriggerExplosion : MonoBehaviour
 {
-   
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Trampa trampa;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,7 +13,8 @@ public class TriggerExplosion : MonoBehaviour
         if (other.tag.Equals("Enemigo"))
         {
             EnemigoScript enemigo = other.GetComponent<EnemigoScript>();
-            enemigo.setCurrentHealth(enemigo.vidaActual - 20);
+            int damage = trampa.danyoPorNivel[trampa.nivelActual];
+            enemigo.setCurrentHealth(enemigo.vidaActual - damage);
         }
 
     }

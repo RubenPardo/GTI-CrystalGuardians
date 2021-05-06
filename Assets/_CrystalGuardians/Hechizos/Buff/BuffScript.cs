@@ -10,9 +10,11 @@ public class BuffScript : Hechizo
     public float[] statsDamagePorNivel;
     public float[] statsSpeedPorNivel;
     public float[] statsAttackSpeedPorNivel;
+    internal static float aumentoRadio = 1f;
 
     void Start()
     {
+        transform.localScale = new Vector3(transform.localScale.x * aumentoRadio, transform.localScale.y, transform.localScale.z * aumentoRadio);
         spwanHechizo = Time.time;
     }
     private void OnTriggerEnter(Collider other)

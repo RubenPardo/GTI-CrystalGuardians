@@ -165,14 +165,16 @@ MonoBehaviour:
   danyoPorNivel: 41000000470000004f000000570000005f00000069000000
   vidaPorNivel: f4010000e8030000dc050000d0070000c4090000b80b0000
   rangoVision: 15
-  rangoAtaque: 1
+  rangoAtaque: 1.4
   velocidadAtaque: 1
-  vidaActual: 0
+  vidaActual: 500
   healthBar: {fileID: 1429728333258723833}
   attackSpeed: 1
+  buffDamage: 1
   isEnemigoFijado: 0
   isMoving: 0
   isAtacking: 0
+  agent: {fileID: 0}
 --- !u!195 &6560985097186517825
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -389,6 +391,14 @@ PrefabInstance:
     - target: {fileID: 4064880174248363910, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064880174248364024, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
+      propertyPath: m_Value
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064880174248364024, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
+      propertyPath: m_MaxValue
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174676661161, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_AnchorMax.x

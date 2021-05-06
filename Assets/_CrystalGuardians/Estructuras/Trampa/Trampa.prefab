@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285d6adf687527b4d83b9ba733b0ab0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trampa: {fileID: 8186570209717439544}
 --- !u!1 &2114632224805395907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,7 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade5d01d75c48f846a5c5110cb0e8a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NivelMaximo: 0
+  NivelMaximo: 1
   nivelActual: 0
   nivelMinimoCastilloParaMejorar: 0100000002000000
   vidaPorNivel: 
@@ -2385,10 +2386,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 556167052418370635}
-        m_TargetAssemblyTypeName: openMenuController, Assembly-CSharp
-        m_MethodName: isOpen
-        m_Mode: 6
+      - m_Target: {fileID: 8186570209717439544}
+        m_TargetAssemblyTypeName: Trampa, Assembly-CSharp
+        m_MethodName: mejorar
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

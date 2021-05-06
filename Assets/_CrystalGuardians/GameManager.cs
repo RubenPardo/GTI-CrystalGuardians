@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
     private float oro = 990000000;
-    private float obsidium = 9900000;
+    private float obsidium = 990000000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 
@@ -119,11 +119,11 @@ public class GameManager : MonoBehaviour
             //Instantiate(castillo, transform.position, transform.rotation);
            
 
-            //Añadimos las cartas a la lista de cartas disponibles
+            //Aï¿½adimos las cartas a la lista de cartas disponibles
             listaCartas = new List<Carta>();
             listaCartas.Add(new Carta("Estructura", "El coste de las estructuras se reduce un 10%", "estructuras", reducirCosteEstructuras));
-            listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas rápido", "recursos", aumentarProduccionMinas20));
-            listaCartas.Add(new Carta("Unidades", "Tus unidades ahora hacen mas daño", "unidades", aumentoDeDañoAliados));
+            listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas rï¿½pido", "recursos", aumentarProduccionMinas20));
+            listaCartas.Add(new Carta("Unidades", "Tus unidades ahora hacen mas daï¿½o", "unidades", aumentoDeDaï¿½oAliados));
             listaCartas.Add(new Carta("Hechizos", "El radio de los hechizos ha aumentado", "hechizos", aumentarRadioHechizos));
 
         }
@@ -143,9 +143,9 @@ public class GameManager : MonoBehaviour
     {
       
     }
-    static int aumentoDeDañoAliados()
+    static int aumentoDeDaï¿½oAliados()
     {
-        Debug.Log("Tus unidades ahora hacen mas daño");
+        Debug.Log("Tus unidades ahora hacen mas daï¿½o");
         Guerrero.mejoraDanyo *= 5f;
         Ballestero.mejoraDanyo *= 5f;
 
@@ -173,6 +173,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("El radio de los hechizos ha aumentado");
         BluePrintHechizos.aumentoRadio *= 3f;
+        RayoScript.aumentoRadio *= 3f;
+        BuffScript.aumentoRadio *= 3f;
+        HealScript.aumentoRadio *= 3f;
         return 0;
     }
     static int aumentarProduccionMinas20()

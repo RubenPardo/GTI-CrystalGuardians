@@ -90,7 +90,7 @@ public class LanzarHechizos : MonoBehaviour
             // disponible
 
             RawImage icono = btnBuff.GetComponent<RawImage>();
-            icono.texture = texturaReadyHeal;
+            icono.texture = texturaReadyBuff;
             btnBuff.interactable = true;
 
 
@@ -101,21 +101,21 @@ public class LanzarHechizos : MonoBehaviour
 
     public void lanzarHeal()
     {
-        GameManager.Instance.HealsDisponibles--;
+       
         Instantiate(healBluePrint);
 
     }
 
     public void lanzarRayo()
     {
-        GameManager.Instance.RayosDisponibles--;
+      
         Instantiate(rayoBluePrint);
 
     }
 
     public void lanzarBuff()
     {
-        GameManager.Instance.BuffsDisponibles--;
+        
         Instantiate(buffBluePrint);
 
     }

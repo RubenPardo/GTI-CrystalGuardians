@@ -25,7 +25,7 @@ public class EnemigoScript : MonoBehaviour
 
     GameObject[] estructurasUnidades;
     Dictionary<GameObject, float> dictDistancias;
-    GameObject objetivoFijado;
+    protected GameObject objetivoFijado;
 
     private bool isMoving;
     private bool isObjetivoFijado;
@@ -35,7 +35,7 @@ public class EnemigoScript : MonoBehaviour
     NavMeshAgent agent;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         dir = true;
         agent = GetComponent<NavMeshAgent>();
@@ -43,7 +43,7 @@ public class EnemigoScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         moverEnemigo();
         comprobarVida0();
@@ -55,10 +55,8 @@ public class EnemigoScript : MonoBehaviour
 
         if(!isMoving)
         {
-            
-            GameObject[] estructurasUnidades = Utility.unirDosArrays(
-                GameObject.FindGameObjectsWithTag("Estructura"), 
-                GameObject.FindGameObjectsWithTag("Unidad"));
+
+            GameObject[] estructurasUnidades = getPossibleTargets();
 
             dictDistancias = new Dictionary<GameObject, float>();
             
@@ -152,31 +150,42 @@ public class EnemigoScript : MonoBehaviour
             }
             else
             {
-                if (attackCoutDwon <= 0f)
-                {
-                    Estructura estructura;
-                    Guerrero guerrero;
-                    Ballestero ballestero;
-                    Aliado aliado;
-                    if (objetivoFijado.TryGetComponent<Estructura>(out estructura))
-                    {
-                        estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
-                    }
-                    else 
-                    { 
-                        aliado = objetivoFijado.GetComponentInParent<Aliado>();
-                        aliado.setCurrentHealth(aliado.vidaActual - danyoPorNivel[nivelActual]);
-                    }
-                    
-                    attackCoutDwon = 1f / attackSpeed;
-                }
-
-                attackCoutDwon -= Time.deltaTime;
+                attack();
             }
         }
     }
 
-    //Actualiza la vida actuañl
+    public virtual GameObject[] getPossibleTargets()
+    {
+        return Utility.unirDosArrays(
+                GameObject.FindGameObjectsWithTag("Estructura"),
+                GameObject.FindGameObjectsWithTag("Unidad"));
+    }
+    public virtual void attack()
+    {
+        if (attackCoutDwon <= 0f)
+        {
+            Estructura estructura;
+            Guerrero guerrero;
+            Ballestero ballestero;
+            Aliado aliado;
+            if (objetivoFijado.TryGetComponent<Estructura>(out estructura))
+            {
+                estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
+            }
+            else
+            {
+                aliado = objetivoFijado.GetComponentInParent<Aliado>();
+                aliado.setCurrentHealth(aliado.vidaActual - danyoPorNivel[nivelActual]);
+            }
+
+            attackCoutDwon = 1f / attackSpeed;
+        }
+
+        attackCoutDwon -= Time.deltaTime;
+    }
+
+    //Actualiza la vida actual
     public void setCurrentHealth(int health)
     {
 

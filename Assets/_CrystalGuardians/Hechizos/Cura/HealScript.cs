@@ -8,9 +8,12 @@ public class HealScript : Hechizo
     private ArrayList aliadosEnRadio;
     //ticksPorSegundo = 1 , hara un tick de sanacion cada 1s
     public float ticksPorSegundo = 1f;
+    internal static float aumentoRadio = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
+        transform.localScale = new Vector3(transform.localScale.x * aumentoRadio, transform.localScale.y, transform.localScale.z * aumentoRadio);
         aliadosEnRadio = new ArrayList();
         spwanHechizo = Time.time;
     }

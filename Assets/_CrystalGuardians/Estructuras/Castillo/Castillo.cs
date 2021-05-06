@@ -33,11 +33,17 @@ public class Castillo : Estructura
 
     public override void abrirMenu()
     {
-        canvas.SetActive(true);
+        if (canvas != null)
+        {
+            canvas.SetActive(true);
+        }
     }
     public override void cerrarMenu()
     {
-        canvas.SetActive(false);
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
     public override void mejorar()
     {
@@ -88,11 +94,11 @@ public class Castillo : Estructura
     {
 
         btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
-       && GameManager.Instance.Obsiidum >= costeObsidiumConstruirMejorar[GameManager.Instance.NivelActualCastillo];
+       && GameManager.Instance.Obsiidum >= costeObsidiumMejorar[GameManager.Instance.NivelActualCastillo];
 
 
         btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual])
-        && GameManager.Instance.Obsiidum >= costeObsidiumConstruirMejorar[nivelActual];
+        && GameManager.Instance.Obsiidum >= costeObsidiumMejorar[nivelActual];
 
 
 

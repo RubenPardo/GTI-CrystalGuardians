@@ -119,7 +119,7 @@ public class blueprint_script : MonoBehaviour
 
          // casa de hechizos
         if (prefab.GetComponent<CasaDeHechizos>()) {
-            sePuedeConstruir = ((GameManager.Instance.Oro >= GameManager.costeConstruirCasaHechizos));
+            sePuedeConstruir = ((GameManager.Instance.Oro >= GameManager.costeConstruirCasaHechizos) && GameManager.Instance.CasasDeHechizosConstruidas < GameManager.topeCasaHechizos);
            
         }
 

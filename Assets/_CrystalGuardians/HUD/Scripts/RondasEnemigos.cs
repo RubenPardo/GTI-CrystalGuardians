@@ -9,7 +9,7 @@ public class RondasEnemigos : MonoBehaviour
 {
     public Text contadorRondas;
     public Text numeroRonda;
-    private float contadorTiempoRonda = 300.0f;
+    private float contadorTiempoRonda = 90.0f;
     public int numeroRnda = 1;
     private bool isRondaActive = false;
 
@@ -67,7 +67,7 @@ public class RondasEnemigos : MonoBehaviour
     public void forzarFinalizarRonda()
     {
         isRondaActive = false;
-        contadorTiempoRonda = 300.0f;
+        contadorTiempoRonda = 90.0f;
         numeroRnda++;
         numeroRonda.text = numeroRnda.ToString("f0");
         GameObject[] listaEnemigosEnPartida = GameObject.FindGameObjectsWithTag("Enemigo");

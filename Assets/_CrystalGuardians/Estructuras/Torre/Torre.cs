@@ -28,6 +28,9 @@ public class Torre : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
+    public GameObject cannon;
+    public Material materialCannonNivel3;
+
     public override void abrirMenu()
     {
         if (canvas != null)
@@ -101,6 +104,12 @@ public class Torre : Estructura
                 // prefab nivel 3
                 prefabLvl2.SetActive(false);
                 prefabLvl3.SetActive(true);
+                Renderer cannonRender = cannon.GetComponent<Renderer>();
+                // no se puede modificar directamente, hay que referenciarlo como una copia
+                var a = cannonRender.materials;
+                a[0] = materialCannonNivel3; // cambiar el metal a por oro del cañon
+                cannonRender.materials = a;
+
             }
 
         }

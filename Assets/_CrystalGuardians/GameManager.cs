@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
     private float oro = 990000000;
-    private float obsidium = 190220;
+    private float obsidium = 990000000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 

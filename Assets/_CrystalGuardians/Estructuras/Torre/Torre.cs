@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,11 +21,15 @@ public class Torre : Estructura
     public Button btnMejorarInfo;
     
 
-    // Storing different levels'
-    public GameObject[] levels;
 
     [Header("Atributos")]
     public int[] danyoPorNivel;
+    public GameObject prefabLvl1;
+    public GameObject prefabLvl2;
+    public GameObject prefabLvl3;
+
+    public GameObject cannon;
+    public Material materialCannonNivel3;
 
     public override void abrirMenu()
     {
@@ -63,8 +68,12 @@ public class Torre : Estructura
     {
 
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
-        
-        nivelActual = nivelActual + 1;
+
+
+
+        comprobarCambiarPrefab();
+
+        nivelActual++;
 
 
         settearVida();
@@ -73,6 +82,37 @@ public class Torre : Estructura
         // actualizar hud informacion
         setUpCanvasValues();
         settearVida();
+    }
+
+    private void comprobarCambiarPrefab()
+    {
+        if (nivelActual > 0 && // para que no se salga del array
+            nivelMinimoCastilloParaMejorar[nivelActual - 1] < nivelMinimoCastilloParaMejorar[nivelActual])
+        {
+            // se cambia el prefab cuando el siguiente nivel minimo de castillo cambia
+            // si el anterior es menor 
+            if(nivelMinimoCastilloParaMejorar[nivelActual] == 1)
+            {
+                // prefab nivel 2
+                prefabLvl1.SetActive(false);
+                prefabLvl2.SetActive(true);
+
+                
+            }
+            else
+            {
+                // prefab nivel 3
+                prefabLvl2.SetActive(false);
+                prefabLvl3.SetActive(true);
+                Renderer cannonRender = cannon.GetComponent<Renderer>();
+                // no se puede modificar directamente, hay que referenciarlo como una copia
+                var a = cannonRender.materials;
+                a[0] = materialCannonNivel3; // cambiar el metal a por oro del cañon
+                cannonRender.materials = a;
+
+            }
+
+        }
     }
 
     // Start is called before the first frame update

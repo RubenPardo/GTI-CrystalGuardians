@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ee52d165c8d389b43ae684ae96421ea4
+guid: 66e2960af90ba8945a1aa29c82f7e2af
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,18 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material #11
-    second: {fileID: 2100000, guid: f847f97387401f5468a08df1b2872b7a, type: 2}
+      name: Hoja
+    second: {fileID: 2100000, guid: 319674cf8a3e3664c97375fe30a53419, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material #12
-    second: {fileID: 2100000, guid: 68a5db5cbb90fb74cbb5dd0a341a88ac, type: 2}
+      name: Mimbre
+    second: {fileID: 2100000, guid: 541b83a2a03c9ef4786b7b0da77fd718, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: "patasCa\xF1on"
-    second: {fileID: 2100000, guid: 3bdaacac661c4714a80ba87e181dc05b, type: 2}
+      name: negro
+    second: {fileID: 2100000, guid: 6d8cf1084003bd8489330e501126ebfe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: obsidium
+    second: {fileID: 2100000, guid: aeb7a8eb1576f6a4db3a6e4e3c78caef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rojo
+    second: {fileID: 2100000, guid: ee7805bb42c944946a293eea4308a57b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

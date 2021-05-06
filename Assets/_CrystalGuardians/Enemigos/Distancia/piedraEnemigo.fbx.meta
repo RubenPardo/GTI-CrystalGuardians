@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ee52d165c8d389b43ae684ae96421ea4
+guid: 3a8981ba556cffe478af60f7484b9add
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,18 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material #11
-    second: {fileID: 2100000, guid: f847f97387401f5468a08df1b2872b7a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material #12
-    second: {fileID: 2100000, guid: 68a5db5cbb90fb74cbb5dd0a341a88ac, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: "patasCa\xF1on"
-    second: {fileID: 2100000, guid: 3bdaacac661c4714a80ba87e181dc05b, type: 2}
+      name: 02 - Default
+    second: {fileID: 2100000, guid: aeb7a8eb1576f6a4db3a6e4e3c78caef, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

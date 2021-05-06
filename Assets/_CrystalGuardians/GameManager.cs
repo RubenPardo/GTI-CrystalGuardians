@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
     private float oro = 990000000;
-    private float obsidium = 190220;
+    private float obsidium = 9900000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
 
-            Instantiate(castillo, transform.position, transform.rotation);
+            //Instantiate(castillo, transform.position, transform.rotation);
            
 
             //Añadimos las cartas a la lista de cartas disponibles

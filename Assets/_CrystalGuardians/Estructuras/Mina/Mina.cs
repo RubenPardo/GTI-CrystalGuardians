@@ -17,6 +17,11 @@ public class Mina : Estructura
     public Button btnMejorar;
     public Button btnMejorarInfo;
 
+    //prefabs mina
+    public GameObject prefabNvl1;
+    public GameObject prefabNvl2;
+    public GameObject prefabNvl3;
+
 
     // Storing different levels'
     public GameObject[] levels;
@@ -39,13 +44,14 @@ public class Mina : Estructura
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
         nivelActual++;
-
+        comprobarNivelMina();
 
         settearVida();
 
 
         // actualizar hud informacion
         setUpCanvasValues();
+        
     }
 
     // Start is called before the first frame update
@@ -123,5 +129,29 @@ public class Mina : Estructura
         }
 
 
+    }
+
+    public void comprobarNivelMina()
+    {
+        //Debug.Log("estoy en " + nivelActual);
+        switch (nivelActual)
+        {
+            
+            case 1:
+
+                prefabNvl1.SetActive(false);
+                prefabNvl2.SetActive(true);
+
+                //Debug.Log("estoy a nivel 2");
+                break;
+            case 2:
+
+                //Debug.Log("estoy a nivel 3");
+
+                prefabNvl2.SetActive(false);
+                prefabNvl3.SetActive(true);
+                break;
+
+        }
     }
 }

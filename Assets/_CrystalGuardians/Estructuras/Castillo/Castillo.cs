@@ -20,6 +20,13 @@ public class Castillo : Estructura
     // Storing different levels'
     public GameObject[] levels;
 
+    //prefabs castillo 
+    public GameObject prefabNvl1;
+    public GameObject prefabNvl2;
+    public GameObject prefabNvl3;
+
+    
+
 
 
     public int[] costeObsidiumConstruirMejorar;
@@ -50,6 +57,7 @@ public class Castillo : Estructura
 
 
         settearVida();
+        comprobarNivelCastillo();
 
     }
 
@@ -73,6 +81,7 @@ public class Castillo : Estructura
 
         comprobarDisponibilidadMejora();
         comprobarVida0();
+        
     }
 
     private void comprobarDisponibilidadMejora()
@@ -92,17 +101,17 @@ public class Castillo : Estructura
     private void setUpCanvasValues()
     {
 
+        
 
-
-        txtLvlActual.text = (GameManager.Instance.NivelActualCastillo + 1).ToString();
-        txtSaludActual.text = vidaPorNivel[GameManager.Instance.NivelActualCastillo].ToString();
-
+        txtLvlActual.text = (nivelActual + 1).ToString();
+        txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
+        
         if (nivelActual < NivelMaximo)
         {
-            txtSaludMejorada.text = vidaPorNivel[GameManager.Instance.NivelActualCastillo + 1].ToString();
-            txtLvlSiguiente.text = (GameManager.Instance.NivelActualCastillo + 2).ToString();
-            txtMejoraOro.text = costeOroMejorar[GameManager.Instance.NivelActualCastillo].ToString();
-            txtMejoraObsidium.text = costeObsidiumConstruirMejorar[GameManager.Instance.NivelActualCastillo + 1].ToString();
+            txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
+            txtLvlSiguiente.text = (nivelActual + 2).ToString();
+            txtMejoraOro.text = costeOroMejorar[nivelActual].ToString();
+            txtMejoraObsidium.text = costeObsidiumConstruirMejorar[nivelActual + 1].ToString();
         }
         else
         {
@@ -120,5 +129,28 @@ public class Castillo : Estructura
     private void OnDestroy()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void comprobarNivelCastillo()
+    {
+        switch (nivelActual)
+        {
+            
+            
+            case 1:
+
+
+                prefabNvl1.SetActive(false);
+                prefabNvl2.SetActive(true);
+                
+                //Debug.Log("estoy a nivel 2");
+                break;
+            case 2:
+                
+                //Debug.Log("estoy a nivel 3");
+                
+                prefabNvl2.SetActive(false);
+                prefabNvl3.SetActive(true);
+                break;
+        }
     }
 }

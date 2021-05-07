@@ -20,7 +20,7 @@ public class enemigoDistanciaScript : EnemigoScript
 
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         base.Update();
     }
@@ -45,9 +45,9 @@ public class enemigoDistanciaScript : EnemigoScript
         }
     }
 
-    public override GameObject[] getPossibleTargets()
+    public override List<GameObject> getPossibleTargets()
     {
-        return GameObject.FindGameObjectsWithTag("Estructura");
+        return GameManager.Instance.listaEstructurasEnJuego;
     }
 
     void Shoot()

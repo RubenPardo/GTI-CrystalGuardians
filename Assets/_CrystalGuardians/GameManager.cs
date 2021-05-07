@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
     public bool OroConstruido { get => oroConstruido; set => oroConstruido = value; }
     public bool ObsidiumConstruido { get => obsidiumConstruido; set => obsidiumConstruido = value; }
 
+
+    public List<GameObject> listaEnemigosRonda = new List<GameObject>();
     
 
 

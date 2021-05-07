@@ -24,7 +24,7 @@ public class Aliado : MonoBehaviour
     public bool isMoving = false;
     public bool isAtacking = false;
 
-    GameObject[] enemigos;
+    List<GameObject> enemigos;
     Dictionary<GameObject, float> enemigosDistancias; // enemigo, distancia
     public NavMeshAgent agent;
 
@@ -57,11 +57,11 @@ public class Aliado : MonoBehaviour
     {
         if (!isMoving)
         {
-            enemigos = GameObject.FindGameObjectsWithTag("Enemigo"); // obtener todos los enemigos de la escena
+            enemigos = GameManager.Instance.listaEnemigosRonda; // obtener todos los enemigos de la escena
             enemigosDistancias = new Dictionary<GameObject, float>();
 
 
-            if (!isEnemigoFijado && enemigos.Length > 0)// intentar fijar un enemigo si hay
+            if (!isEnemigoFijado && enemigos.Count > 0)// intentar fijar un enemigo si hay
             {
 
                 foreach (GameObject enemigo in enemigos)

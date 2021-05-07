@@ -30,9 +30,18 @@ public class Aliado : MonoBehaviour
 
     GameObject enemigoFijado;
 
+    protected float mejoraDanyo;
+
     private void Start()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
+        settearVida();
+    }
+
+    protected virtual void Update()
+    {
+        mover(mejoraDanyo);
+        comprobarVida0();
     }
 
     public void setDefaultMoveFlags()

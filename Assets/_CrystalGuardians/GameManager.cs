@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
             listaCartas = new List<Carta>();
             listaCartas.Add(new Carta("Estructura", "El coste de las estructuras se reduce un 10%", "estructuras", reducirCosteEstructuras));
             listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas r�pido", "recursos", aumentarProduccionMinas20));
-            listaCartas.Add(new Carta("Unidades", "Tus unidades ahora hacen mas da�o", "unidades", aumentoDeDa�oAliados));
+            listaCartas.Add(new Carta("Unidades", "Tus unidades ahora hacen mas da�o", "unidades", aumentoDeDanyoAliados));
             listaCartas.Add(new Carta("Hechizos", "El radio de los hechizos ha aumentado", "hechizos", aumentarRadioHechizos));
 
         }
@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
     {
       
     }
-    static int aumentoDeDa�oAliados()
+    static int aumentoDeDanyoAliados()
     {
         Debug.Log("Tus unidades ahora hacen mas da�o");
         Guerrero.mejoraDanyo *= 5f;

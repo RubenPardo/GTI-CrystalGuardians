@@ -14678,13 +14678,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSpeed: 0.25
   edgeThickness: 10
-  movementTime: 15
+  movementTime: 0
   cameraLimit: {x: 16, y: 16}
   scrollSpeed: 2
   minYScroll: 6
   maxYScroll: 14
   isActive: 1
-  rotationAmount: 20
+  rotationAmount: 0
   myCamera: {fileID: 31801041}
 --- !u!1 &244241677 stripped
 GameObject:
@@ -50555,7 +50555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5414440465539987493, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5414440465539987493, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: m_LocalRotation.x
@@ -50563,7 +50563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5414440465539987493, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5414440465539987493, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: m_LocalRotation.z
@@ -50575,7 +50575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5414440465539987493, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5414440465539987493, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

@@ -132,9 +132,11 @@ public class CuartelUnidades : Estructura
         GameManager.Instance.Obsiidum -= aliado.costePorNivel[nivelActual];
         
         g.transform.position = transform.position + spawnPoint;
-        
+       
         GameManager.Instance.Unidades++;
-        
+
+        GameManager.Instance.listaAliadosEnJuego.Add(g);
+
     }
 
 

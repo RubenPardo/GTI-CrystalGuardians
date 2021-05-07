@@ -1,12 +1,21 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 7623940f8b4d0a047b9d07d915a8826c
+=======
+guid: 63875a85c3d3f1343a569b2b3ded14fb
+>>>>>>> develop
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
+<<<<<<< HEAD
     materialImportMode: 2
     materialName: 0
+=======
+    materialImportMode: 1
+    materialName: 1
+>>>>>>> develop
     materialSearch: 1
     materialLocation: 1
   animations:

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1895233810111311303}
   - component: {fileID: 508432306026006574}
   - component: {fileID: 5660920000981656188}
+  - component: {fileID: 8937848469407857194}
   m_Layer: 0
   m_Name: enemigoFuerte
   m_TagString: Enemigo
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2771845309979949986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.99, y: 1, z: -22.5}
+  m_LocalPosition: {x: 22.99, y: 2, z: -22.5}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 3084052271433420970}
@@ -115,10 +116,12 @@ MonoBehaviour:
   nivelActual: 0
   danyoPorNivel: de000000f600000012010000300100005201000078010000
   vidaPorNivel: 881300005014000018150000e0150000a816000070170000
-  vida: 100
+  vidaMaxima: 0
+  vidaActual: 0
   speed: 5
   rangoVision: 71
   rangoAtaque: 1
+  attackSpeed: 1
   healthBar: {fileID: 6004775682831433098}
 --- !u!54 &508432306026006574
 Rigidbody:
@@ -158,6 +161,29 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8937848469407857194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771845309979949986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5200a776a44a6d0449a31ed1d5f28def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nivelActual: 0
+  danyoPorNivel: 
+  vidaPorNivel: 
+  vidaMaxima: 0
+  vidaActual: 0
+  speed: 0
+  rangoVision: 0
+  rangoAtaque: 0
+  attackSpeed: 1
+  healthBar: {fileID: 0}
+  prefabAreaAttack: {fileID: 919132149155446097, guid: 568cfcfe07a7644439c957d328a69759, type: 3}
 --- !u!114 &9105441837769808657
 MonoBehaviour:
   m_ObjectHideFlags: 0

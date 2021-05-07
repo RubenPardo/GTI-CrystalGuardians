@@ -50799,6 +50799,18 @@ PrefabInstance:
       value: -20.00003
       objectReference: {fileID: 0}
     - target: {fileID: 4319135670969035619, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
+      propertyPath: prefabLvl1
+      value: 
+      objectReference: {fileID: 126621215}
+    - target: {fileID: 4319135670969035619, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
+      propertyPath: prefabLvl2
+      value: 
+      objectReference: {fileID: 295977472}
+    - target: {fileID: 4319135670969035619, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
+      propertyPath: prefabLvl3
+      value: 
+      objectReference: {fileID: 1948120091}
+    - target: {fileID: 4319135670969035619, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
       propertyPath: prefabNvl1
       value: 
       objectReference: {fileID: 126621215}

@@ -22,6 +22,7 @@ public class Castillo : Estructura
 
     //prefabs castillo 
     public GameObject prefabNvl1;
+    public GameObject terrenoEnvolvente;
     public GameObject prefabNvl2;
     public GameObject prefabNvl3;
 
@@ -146,6 +147,7 @@ public class Castillo : Estructura
 
 
                 prefabNvl1.SetActive(false);
+                terrenoEnvolvente.SetActive(false);
                 prefabNvl2.SetActive(true);
                 
                 //Debug.Log("estoy a nivel 2");

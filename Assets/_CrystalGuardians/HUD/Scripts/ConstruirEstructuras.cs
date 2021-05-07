@@ -301,7 +301,7 @@ public class ConstruirEstructuras : MonoBehaviour
  
     public void spawn_CasaDeHechizos_blueprint()
     {
-
+        
         Instantiate(CasaDeHechizos_blueprint);
 
     }

@@ -194,4 +194,9 @@ public class Aliado : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.listaAliadosEnJuego.Remove(gameObject);
+    }
+
 }

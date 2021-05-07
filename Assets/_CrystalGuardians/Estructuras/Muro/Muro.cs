@@ -21,6 +21,11 @@ public class Muro : Estructura
     public GameObject[] levels;
 
 
+    //prefabs muro
+    public GameObject prefabNvl1;
+    public GameObject prefabNvl2;
+    public GameObject prefabNvl3;
+
     public override void abrirMenu()
     {
         canvas.SetActive(true);
@@ -74,6 +79,7 @@ public class Muro : Estructura
         // actualizar hud informacion
         setUpCanvasValues();
         settearVida();
+        comprobarNivelCasa();
     }
 
     private void setUpCanvasValues()
@@ -101,5 +107,29 @@ public class Muro : Estructura
             txtSaludMejorada.text = "----------";
         }
 
+    }
+
+    public void comprobarNivelCasa()
+    {
+        switch (nivelActual)
+        {
+
+
+            case 1:
+
+
+                prefabNvl1.SetActive(false);
+                prefabNvl2.SetActive(true);
+
+                //Debug.Log("estoy a nivel 2");
+                break;
+            case 2:
+
+                //Debug.Log("estoy a nivel 3");
+
+                prefabNvl2.SetActive(false);
+                prefabNvl3.SetActive(true);
+                break;
+        }
     }
 }

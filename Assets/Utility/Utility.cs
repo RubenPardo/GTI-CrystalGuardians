@@ -8,10 +8,10 @@ public static class Utility
 {
 
 
-    public static GameObject[] unirDosArrays(GameObject[] arr1, GameObject[] arr2)
+    public static List<GameObject> unirDosArrays(List<GameObject> arr1, List<GameObject> arr2)
     {
         
-        return arr1.Concat(arr2).ToArray(); ;
+        return arr1.Concat(arr2).ToList();
     }
 
     // Devuelve un punto aleatorio dentro de un perimetro de un rectangulo de lado 2*distance

@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
     private float oro = 990000000;
-    private float obsidium = 190220;
+    private float obsidium = 990000000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 
@@ -82,6 +82,13 @@ public class GameManager : MonoBehaviour
     public bool OroConstruido { get => oroConstruido; set => oroConstruido = value; }
     public bool ObsidiumConstruido { get => obsidiumConstruido; set => obsidiumConstruido = value; }
 
+
+
+    // a medida que se van construyendo y borrando los enemigos/estructuras/aliados se iran añadiendo o borrando de estas listas
+    // asi evitamos tener que hacer el FinWithTag por cada update en los scripts de fijacion de las unidades
+    public List<GameObject> listaEnemigosRonda = new List<GameObject>();
+    public List<GameObject> listaEstructurasEnJuego = new List<GameObject>();
+    public List<GameObject> listaAliadosEnJuego = new List<GameObject>();
     
 
 

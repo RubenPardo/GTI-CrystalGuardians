@@ -10,19 +10,15 @@ public class Ballestero : Aliado
     public static float mejoraDanyo = 1f;//mejora de aldea
     // Start is called before the first frame update
 
-    void Start()
-    {
-
-        agent = GetComponent<NavMeshAgent>();
-        settearVida();
-    }
+    
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
 
-        mover(mejoraDanyo);
-        comprobarVida0();
+        base.mejoraDanyo = Ballestero.mejoraDanyo;
+        base.Update();
+
     }
 
 

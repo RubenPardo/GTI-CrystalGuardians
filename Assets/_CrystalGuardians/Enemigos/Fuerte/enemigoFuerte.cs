@@ -5,28 +5,34 @@ using UnityEngine;
 public class enemigoFuerte : EnemigoScript
 {
     [Header("Unity SetUp")]
+    //Bala a disparar
+    public GameObject areaAtaqueprefab;
+
+   
 
 
-    //Ataque a realizar
-    public GameObject prefabAreaAttack;
-
-    
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         base.Update();
     }
+
     override public void attack()
     {
-        producirAtaque();
-        
-
+        /*Metodo que invoca el ataque fuerte del enemigo
+        createAttack();
+        */
     }
-    void producirAtaque()
+
+    public override List<GameObject> getPossibleTargets()
     {
-
-        Instantiate(prefabAreaAttack);
+        return GameManager.Instance.listaEstructurasEnJuego;
     }
-    
 
+    void createAttack()
+    {
+       
+        areaAtaqueprefab.SetActive(true);
+        areaAtaqueprefab.GetComponent<TriggerScriptEnemigoFuerte>().damage = danyoPorNivel[nivelActual];
+    }
 }

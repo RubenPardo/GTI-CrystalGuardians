@@ -29,6 +29,9 @@ public class CuartelUnidades : Estructura
 
     // Storing different levels'
     public GameObject[] levels;
+    public GameObject prefabLvl1;
+    public GameObject prefabLvl2;
+    public GameObject prefabLvl3;
 
 
     private void Start()
@@ -93,15 +96,44 @@ public class CuartelUnidades : Estructura
 
         
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+
+        comprobarCambiarPrefab();
         nivelActual++;
 
 
         // actualizar hud informacion
+        //comprobarCambiarPrefab();
         setUpCanvasValues();
         sumarTopeUnidades(true);
         settearVida();
+        
        
-       
+    }
+
+    private void comprobarCambiarPrefab()
+    {
+        if (nivelActual > 0 && // para que no se salga del array
+             nivelMinimoCastilloParaMejorar[nivelActual - 1] < nivelMinimoCastilloParaMejorar[nivelActual])
+        {
+            // se cambia el prefab cuando el siguiente nivel minimo de castillo cambia
+            // si el anterior es menor 
+            if (nivelMinimoCastilloParaMejorar[nivelActual] == 1)
+            {
+                // prefab nivel 2
+                prefabLvl1.SetActive(false);
+                prefabLvl2.SetActive(true);
+
+
+            }
+            else
+            {
+                // prefab nivel 3
+                prefabLvl2.SetActive(false);
+                prefabLvl3.SetActive(true);
+               
+            }
+
+        }
     }
 
 
@@ -200,4 +232,31 @@ public class CuartelUnidades : Estructura
         }
 
     }
+    /*private void comprobarCambiarPrefab()
+    {
+        if (nivelActual > 0 && // para que no se salga del array
+            nivelMinimoCastilloParaMejorar[nivelActual - 1] < nivelMinimoCastilloParaMejorar[nivelActual])
+        {
+            // se cambia el prefab cuando el siguiente nivel minimo de castillo cambia
+            // si el anterior es menor 
+            if (nivelMinimoCastilloParaMejorar[nivelActual] == 1)
+            {
+                // prefab nivel 2
+                prefabLvl1.SetActive(false);
+                prefabLvl2.SetActive(true);
+
+
+            }
+            else
+            {
+                // prefab nivel 3
+                prefabLvl2.SetActive(false);
+                prefabLvl3.SetActive(true);
+
+
+            }
+
+        }
+
+    }*/
 }

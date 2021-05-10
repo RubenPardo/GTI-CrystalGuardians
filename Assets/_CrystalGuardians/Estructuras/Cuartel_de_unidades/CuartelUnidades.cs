@@ -157,17 +157,23 @@ public class CuartelUnidades : Estructura
     public void spawnUnidades(GameObject unidadAliada)
     {
         Vector3 spawnPoint = Utility.getPuntoPerimetroRectangulo(distanciaSpawn);
-        GameObject g = Instantiate(unidadAliada); 
+        
         Aliado aliado = unidadAliada.GetComponent<Aliado>();
 
-       /* aliado.prefabLvl1.SetActive(this.prefabLvl1.active);
-        aliado.prefabLvl2.SetActive(this.prefabLvl2.active);
-        aliado.prefabLvl3.SetActive(this.prefabLvl3.active);*/
+        aliado.prefabLvl1.SetActive(prefabLvl1.activeSelf);
+        aliado.prefabLvl2.SetActive(prefabLvl2.activeSelf);
+        aliado.prefabLvl3.SetActive(prefabLvl3.activeSelf);
+
+        Debug.Log("-----");
+        Debug.Log(prefabLvl1.activeSelf);
+        Debug.Log(prefabLvl2.activeSelf);
+        Debug.Log(prefabLvl3.activeSelf);
 
         aliado.nivelActual = nivelActual;
         aliado.settearVida();
         GameManager.Instance.Obsiidum -= aliado.costePorNivel[nivelActual];
-        
+
+        GameObject g = Instantiate(unidadAliada);
         g.transform.position = transform.position + spawnPoint;
        
         GameManager.Instance.Unidades++;

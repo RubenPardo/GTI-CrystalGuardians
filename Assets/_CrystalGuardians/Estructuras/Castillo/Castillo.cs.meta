@@ -3,7 +3,19 @@ guid: 9eec1689368b3114bbc8fd0b2e5d7cd8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - healthBar: {instanceID: 0}
+  - txtSaludActual: {instanceID: 0}
+  - txtSaludMejorada: {instanceID: 0}
+  - txtLvlActual: {instanceID: 0}
+  - txtLvlSiguiente: {instanceID: 0}
+  - btnMejorar: {instanceID: 0}
+  - btnMejorarInfo: {instanceID: 0}
+  - txtMejoraOro: {instanceID: 0}
+  - txtMejoraObsidium: {instanceID: 0}
+  - prefabNvl1: {instanceID: 0}
+  - prefabNvl2: {instanceID: 0}
+  - prefabNvl3: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

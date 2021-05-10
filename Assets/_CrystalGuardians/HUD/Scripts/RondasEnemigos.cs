@@ -17,6 +17,8 @@ public class RondasEnemigos : MonoBehaviour
    
     public int cantidadEnemigosPorRonda=3;
 
+    private GameObject[] listaSpawn;
+
     public GameObject panelMejoras;
     public GameObject panelRondas;
     public GameObject btnFinalizar;
@@ -36,9 +38,7 @@ public class RondasEnemigos : MonoBehaviour
     void Start()
     {
 
-        Button btnF = btnFinalizar.GetComponent<Button>();
-        Button btnE = btnEmpezar.GetComponent<Button>();
-      
+        listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
 
     }
    
@@ -95,6 +95,7 @@ public class RondasEnemigos : MonoBehaviour
 
             if (comprobarFinRonda())
             {
+                GameManager.Instance.listaEnemigosRonda.Clear();
                 numeroRnda++;
                 isRondaActive = false;
                 contadorTiempoRonda = 300.0f;
@@ -136,33 +137,30 @@ public class RondasEnemigos : MonoBehaviour
     private void spawn()
     {
         
-        //Generar enemigos
-        GameObject[] listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
-        
-
-       
-        
+ 
         for (int i=0; i < numeroRnda * cantidadEnemigosPorRonda; i++)
 
         {
             GameObject casilla = listaSpawn[Random.Range(0, listaSpawn.Length)];
             int meleeDistancia = Random.Range(0, 2);
+            GameObject g;
             if(meleeDistancia == 1)
             {
                 //generar melee
-                GameObject g = Instantiate(enemigoMelee);
+                g = Instantiate(enemigoMelee);
                 g.transform.position = casilla.transform.position;
                 
             }
             else
             {
                 //generar distancia
-                GameObject g = Instantiate(enemigoDistancia);
+                g = Instantiate(enemigoDistancia);
                 g.transform.position = casilla.transform.position;
             }
 
-           
-             
+
+            GameManager.Instance.listaEnemigosRonda.Add(g);
+
         }
 
         // generar enemigos fuertes

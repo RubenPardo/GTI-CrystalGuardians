@@ -9,6 +9,8 @@ TagManager:
   - Unidad
   - Enemigo
   - Estructura
+  - estructura
+  - Suelo
   layers:
   - Default
   - TransparentFX

@@ -18,14 +18,14 @@ public class EnemigoScript : MonoBehaviour
     public float rangoVision;
     public float rangoAtaque;
     public float attackSpeed = 1f;
-    private float attackCoutDwon = 0f;
+    protected float attackCoutDwon = 0f;
     private bool dir;
     [Header("HUD")]
     public HealthBarScript healthBar;
 
     GameObject[] estructurasUnidades;
     Dictionary<GameObject, float> dictDistancias;
-    GameObject objetivoFijado;
+    protected GameObject objetivoFijado;
 
     private bool isMoving;
     private bool isObjetivoFijado;
@@ -35,7 +35,7 @@ public class EnemigoScript : MonoBehaviour
     NavMeshAgent agent;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         dir = true;
         agent = GetComponent<NavMeshAgent>();
@@ -43,7 +43,7 @@ public class EnemigoScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         moverEnemigo();
         comprobarVida0();
@@ -55,17 +55,17 @@ public class EnemigoScript : MonoBehaviour
 
         if(!isMoving)
         {
-            
-            GameObject[] estructurasUnidades = Utility.unirDosArrays(
-                GameObject.FindGameObjectsWithTag("Estructura"), 
-                GameObject.FindGameObjectsWithTag("Unidad"));
+
+            List<GameObject> estructurasUnidades = getPossibleTargets();
 
             dictDistancias = new Dictionary<GameObject, float>();
             
-            if (!isObjetivoFijado && estructurasUnidades.Length > 0)// intentar fijar un enemigo
+            if (!isObjetivoFijado && estructurasUnidades.Count > 0)// intentar fijar un enemigo
             {
+              
                 foreach (GameObject objetivo in estructurasUnidades)
                 {
+                
                     // distancia enemigos
                     Vector3 pOrigen = transform.position;
                     Vector3 pEnemigo = objetivo.transform.position;
@@ -73,6 +73,7 @@ public class EnemigoScript : MonoBehaviour
                     dictDistancias.Add(objetivo, Vector3.Distance(pOrigen, pEnemigo));
 
                 }
+
                 // ordenamos por distancia de menos a mas
                 List<KeyValuePair<GameObject, float>> enemigosDistanciaOrdered = dictDistancias.ToList();
                 enemigosDistanciaOrdered.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
@@ -152,31 +153,44 @@ public class EnemigoScript : MonoBehaviour
             }
             else
             {
-                if (attackCoutDwon <= 0f)
-                {
-                    Estructura estructura;
-                    Guerrero guerrero;
-                    Ballestero ballestero;
-                    Aliado aliado;
-                    if (objetivoFijado.TryGetComponent<Estructura>(out estructura))
-                    {
-                        estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
-                    }
-                    else 
-                    { 
-                        aliado = objetivoFijado.GetComponentInParent<Aliado>();
-                        aliado.setCurrentHealth(aliado.vidaActual - danyoPorNivel[nivelActual]);
-                    }
-                    
-                    attackCoutDwon = 1f / attackSpeed;
-                }
-
-                attackCoutDwon -= Time.deltaTime;
+                attack();
             }
         }
     }
 
-    //Actualiza la vida actuañl
+    public virtual List<GameObject> getPossibleTargets()
+    {
+        return Utility.unirDosArrays(
+                GameManager.Instance.listaAliadosEnJuego,
+                GameManager.Instance.listaEstructurasEnJuego);
+    }
+    public virtual void attack()
+    {
+        if (attackCoutDwon <= 0f)
+        {
+            Estructura estructura;
+            /*
+            Guerrero guerrero;
+            Ballestero ballestero;
+            */
+            Aliado aliado;
+            if (objetivoFijado.TryGetComponent<Estructura>(out estructura))
+            {
+                estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
+            }
+            else
+            {
+                aliado = objetivoFijado.GetComponentInParent<Aliado>();
+                aliado.setCurrentHealth(aliado.vidaActual - danyoPorNivel[nivelActual]);
+            }
+
+            attackCoutDwon = 1f / attackSpeed;
+        }
+
+        attackCoutDwon -= Time.deltaTime;
+    }
+
+    //Actualiza la vida actual
     public void setCurrentHealth(int health)
     {
 
@@ -202,7 +216,13 @@ public class EnemigoScript : MonoBehaviour
         }
         if (vidaActual <= 0)
         {
+           
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.listaEnemigosRonda.Remove(gameObject);
     }
 }

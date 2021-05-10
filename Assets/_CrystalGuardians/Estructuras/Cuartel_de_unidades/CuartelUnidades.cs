@@ -127,6 +127,11 @@ public class CuartelUnidades : Estructura
         Vector3 spawnPoint = Utility.getPuntoPerimetroRectangulo(distanciaSpawn);
         GameObject g = Instantiate(unidadAliada); 
         Aliado aliado = unidadAliada.GetComponent<Aliado>();
+
+       /* aliado.prefabLvl1.SetActive(this.prefabLvl1.active);
+        aliado.prefabLvl2.SetActive(this.prefabLvl2.active);
+        aliado.prefabLvl3.SetActive(this.prefabLvl3.active);*/
+
         aliado.nivelActual = nivelActual;
         aliado.settearVida();
         GameManager.Instance.Obsiidum -= aliado.costePorNivel[nivelActual];

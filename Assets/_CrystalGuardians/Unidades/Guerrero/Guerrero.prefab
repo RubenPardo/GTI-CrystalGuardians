@@ -193,6 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1740f6d52a89b44b4016b787f42030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabLvl1: {fileID: 6767876280005752603}
+  prefabLvl2: {fileID: 200785687000052511}
+  prefabLvl3: {fileID: 7243115179136731731}
   nivelActual: 0
   costePorNivel: 2c010000b80b000070170000204e000050c30000a0860100
   danyoPorNivel: 41000000470000004f000000570000005f00000069000000
@@ -208,9 +211,6 @@ MonoBehaviour:
   isMoving: 0
   isAtacking: 0
   agent: {fileID: 0}
-  prefabLvl1: {fileID: 6767876280005752603}
-  prefabLvl2: {fileID: 200785687000052511}
-  prefabLvl3: {fileID: 7243115179136731731}
 --- !u!195 &6560985097186517825
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1
-  m_Direction: 1
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &3293728031405524322
 MeshFilter:

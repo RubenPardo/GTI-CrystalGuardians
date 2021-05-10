@@ -18,6 +18,12 @@ public class Trampa : Estructura
     public Button btnMejorar;
     public Button btnMejorarInfo;
 
+    public GameObject trampaInactivaNvl1;
+    public GameObject trampaActivaNvl1;
+    public GameObject trampaInactivaNvl2;
+    public GameObject trampaActivaNvl2;
+
+    public GameObject colliderExplosion;
 
     // Storing different levels'
     public GameObject[] levels;
@@ -32,6 +38,13 @@ public class Trampa : Estructura
 
 
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+
+        //cambio de prefab 
+        trampaInactivaNvl1.SetActive(false);
+        trampaInactivaNvl2.SetActive(true);
+
+        colliderTrampa colliderTrampa = colliderExplosion.GetComponent<colliderTrampa>();
+        colliderTrampa.rangoExplosion = trampaActivaNvl2;
 
         // actualizar hud informacion
         setUpCanvasValues();

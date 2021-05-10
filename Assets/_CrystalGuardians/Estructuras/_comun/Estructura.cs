@@ -19,6 +19,8 @@ public abstract class Estructura : MonoBehaviour
     protected GameObject canvas;
 
     //Actualiza la vida actuañl
+
+    
     public void setCurrentHealth(int health)
     {
 

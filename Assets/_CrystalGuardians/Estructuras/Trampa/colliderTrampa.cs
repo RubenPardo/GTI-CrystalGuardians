@@ -6,6 +6,7 @@ public class colliderTrampa : MonoBehaviour
 {
     public GameObject rangoExplosion;
     
+    
     private bool destruir = false;
     private float detectedTime;
     public float delayExplosion = 5f;//son segundos
@@ -30,6 +31,7 @@ public class colliderTrampa : MonoBehaviour
         if (other.tag.Equals("Enemigo"))
         {
             rangoExplosion.SetActive(true);
+            
             destruir = true;
             detectedTime = Time.time;
         }

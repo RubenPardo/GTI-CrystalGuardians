@@ -45,7 +45,13 @@ public class blueprint_script : MonoBehaviour
             // si se pulsa el izquierdo
             if (Input.GetMouseButtonDown(0)){
                 // construir la estructura 
-                Instantiate(prefab, transform.position, transform.rotation);
+                
+                GameObject estructuraConstruida = Instantiate(prefab, transform.position, transform.rotation);
+                if (!prefab.GetComponent<Trampa>())
+                {
+                    GameManager.Instance.listaEstructurasEnJuego.Add(estructuraConstruida.gameObject);
+                }
+                
                 // mina
                 if (prefab.GetComponent<Mina>())
                 {

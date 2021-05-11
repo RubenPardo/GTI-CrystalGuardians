@@ -13,17 +13,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Madera
-    second: {fileID: 2100000, guid: 7c01ace82c46ea04b9714e6ff2c1c5bc, type: 2}
+    second: {fileID: 2100000, guid: 57f87f6de96b11343945a6907c8d852e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Naranja
-    second: {fileID: 2100000, guid: 68a5db5cbb90fb74cbb5dd0a341a88ac, type: 2}
+    second: {fileID: 2100000, guid: 0dc8ee3b05f0e33498a62742bacce2ff, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Piedra
-    second: {fileID: 2100000, guid: af51329f92e537a4b8e0ae18c06168e9, type: 2}
+    second: {fileID: 2100000, guid: 3a4e28a2950df3e49a01bf83ccc1e6cd, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

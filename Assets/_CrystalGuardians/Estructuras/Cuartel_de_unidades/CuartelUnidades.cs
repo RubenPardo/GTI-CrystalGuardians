@@ -29,6 +29,9 @@ public class CuartelUnidades : Estructura
 
     // Storing different levels'
     public GameObject[] levels;
+    public GameObject prefabLvl1;
+    public GameObject prefabLvl2;
+    public GameObject prefabLvl3;
 
 
     private void Start()
@@ -93,15 +96,44 @@ public class CuartelUnidades : Estructura
 
         
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+
+        comprobarCambiarPrefab();
         nivelActual++;
 
 
         // actualizar hud informacion
+        //comprobarCambiarPrefab();
         setUpCanvasValues();
         sumarTopeUnidades(true);
         settearVida();
+        
        
-       
+    }
+
+    private void comprobarCambiarPrefab()
+    {
+        if (nivelActual > 0 && // para que no se salga del array
+             nivelMinimoCastilloParaMejorar[nivelActual - 1] < nivelMinimoCastilloParaMejorar[nivelActual])
+        {
+            // se cambia el prefab cuando el siguiente nivel minimo de castillo cambia
+            // si el anterior es menor 
+            if (nivelMinimoCastilloParaMejorar[nivelActual] == 1)
+            {
+                // prefab nivel 2
+                prefabLvl1.SetActive(false);
+                prefabLvl2.SetActive(true);
+
+
+            }
+            else
+            {
+                // prefab nivel 3
+                prefabLvl2.SetActive(false);
+                prefabLvl3.SetActive(true);
+               
+            }
+
+        }
     }
 
 
@@ -120,21 +152,32 @@ public class CuartelUnidades : Estructura
 
     }
 
-   
+    
+
 
     public void spawnUnidades(GameObject unidadAliada)
     {
         Vector3 spawnPoint = Utility.getPuntoPerimetroRectangulo(distanciaSpawn);
-        GameObject g = Instantiate(unidadAliada); 
+        
         Aliado aliado = unidadAliada.GetComponent<Aliado>();
+
+        aliado.prefabLvl1.SetActive(prefabLvl1.activeSelf);
+        aliado.prefabLvl2.SetActive(prefabLvl2.activeSelf);
+        aliado.prefabLvl3.SetActive(prefabLvl3.activeSelf);
+
+    
+
         aliado.nivelActual = nivelActual;
         aliado.settearVida();
         GameManager.Instance.Obsiidum -= aliado.costePorNivel[nivelActual];
-        
+
+        GameObject g = Instantiate(unidadAliada);
         g.transform.position = transform.position + spawnPoint;
-        
+       
         GameManager.Instance.Unidades++;
-        
+
+        GameManager.Instance.listaAliadosEnJuego.Add(g);
+
     }
 
 
@@ -192,5 +235,9 @@ public class CuartelUnidades : Estructura
             canvas.SetActive(false);
         }
 
+
+        
     }
+    
+    
 }

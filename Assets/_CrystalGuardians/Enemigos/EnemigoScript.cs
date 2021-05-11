@@ -18,7 +18,7 @@ public class EnemigoScript : MonoBehaviour
     public float rangoVision;
     public float rangoAtaque;
     public float attackSpeed = 1f;
-    private float attackCoutDwon = 0f;
+    protected float attackCoutDwon = 0f;
     private bool dir;
     [Header("HUD")]
     public HealthBarScript healthBar;
@@ -56,14 +56,16 @@ public class EnemigoScript : MonoBehaviour
         if(!isMoving)
         {
 
-            GameObject[] estructurasUnidades = getPossibleTargets();
+            List<GameObject> estructurasUnidades = getPossibleTargets();
 
             dictDistancias = new Dictionary<GameObject, float>();
             
-            if (!isObjetivoFijado && estructurasUnidades.Length > 0)// intentar fijar un enemigo
+            if (!isObjetivoFijado && estructurasUnidades.Count > 0)// intentar fijar un enemigo
             {
+              
                 foreach (GameObject objetivo in estructurasUnidades)
                 {
+                
                     // distancia enemigos
                     Vector3 pOrigen = transform.position;
                     Vector3 pEnemigo = objetivo.transform.position;
@@ -71,6 +73,7 @@ public class EnemigoScript : MonoBehaviour
                     dictDistancias.Add(objetivo, Vector3.Distance(pOrigen, pEnemigo));
 
                 }
+
                 // ordenamos por distancia de menos a mas
                 List<KeyValuePair<GameObject, float>> enemigosDistanciaOrdered = dictDistancias.ToList();
                 enemigosDistanciaOrdered.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
@@ -155,19 +158,21 @@ public class EnemigoScript : MonoBehaviour
         }
     }
 
-    public virtual GameObject[] getPossibleTargets()
+    public virtual List<GameObject> getPossibleTargets()
     {
         return Utility.unirDosArrays(
-                GameObject.FindGameObjectsWithTag("Estructura"),
-                GameObject.FindGameObjectsWithTag("Unidad"));
+                GameManager.Instance.listaAliadosEnJuego,
+                GameManager.Instance.listaEstructurasEnJuego);
     }
     public virtual void attack()
     {
         if (attackCoutDwon <= 0f)
         {
             Estructura estructura;
+            /*
             Guerrero guerrero;
             Ballestero ballestero;
+            */
             Aliado aliado;
             if (objetivoFijado.TryGetComponent<Estructura>(out estructura))
             {
@@ -211,7 +216,13 @@ public class EnemigoScript : MonoBehaviour
         }
         if (vidaActual <= 0)
         {
+           
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.listaEnemigosRonda.Remove(gameObject);
     }
 }

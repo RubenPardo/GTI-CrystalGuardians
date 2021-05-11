@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 public class Mina : Estructura
 {
@@ -16,6 +16,11 @@ public class Mina : Estructura
     public Text txtLvlSiguiente;
     public Button btnMejorar;
     public Button btnMejorarInfo;
+
+    //prefabs mina
+    public GameObject prefabLvl1;
+    public GameObject prefabLvl2;
+    public GameObject prefabLvl3;
 
 
     // Storing different levels'
@@ -32,26 +37,29 @@ public class Mina : Estructura
         //GameManager.Instance.Oro += 1 * Time.deltaTime; //mina lvl-1
         GameManager.Instance.Oro = GameManager.Instance.Oro + generacionOroPorNivel[nivelActual] * Time.deltaTime * mejoraDeAldeaProduccionOro;
 
-       // Debug.Log("Estoy generando --> " + (generacionOroPorNivel[nivelActual] * mejoraDeAldeaProduccionOro));
+        // Debug.Log("Estoy generando --> " + (generacionOroPorNivel[nivelActual] * mejoraDeAldeaProduccionOro));
     }
 
     public override void mejorar()
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+
+
+        comprobarCambiarPrefab();
         nivelActual++;
 
 
         settearVida();
 
-
         // actualizar hud informacion
         setUpCanvasValues();
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-       
+
         /*GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirMina;
         GameManager.Instance.oroConstruido = true;*/
         // canvas del menu de botones
@@ -94,10 +102,10 @@ public class Mina : Estructura
     private void comprobarDisponibilidadMejora()
     {
 
-        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) 
+        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1)
             && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) 
+        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1)
             && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
     }
@@ -106,12 +114,13 @@ public class Mina : Estructura
     {
 
 
-        
+
         txtLvlActual.text = (nivelActual + 1).ToString();
         txtProduccionActual.text = generacionOroPorNivel[nivelActual].ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
 
-        if (nivelActual < NivelMaximo) {
+        if (nivelActual < NivelMaximo)
+        {
             txtLvlSiguiente.text = (nivelActual + 2).ToString();
 
             txtProduccionMejorada.text = generacionOroPorNivel[nivelActual + 1].ToString();
@@ -128,6 +137,35 @@ public class Mina : Estructura
             txtSaludMejorada.text = "-------";
         }
 
+
+    }
+
+
+    private void comprobarCambiarPrefab()
+    {
+        if (nivelActual > 0 && // para que no se salga del array
+             nivelMinimoCastilloParaMejorar[nivelActual - 1] < nivelMinimoCastilloParaMejorar[nivelActual])
+        {
+            // se cambia el prefab cuando el siguiente nivel minimo de castillo cambia
+            // si el anterior es menor 
+            if (nivelMinimoCastilloParaMejorar[nivelActual] == 1)
+            {
+                // prefab nivel 2
+                prefabLvl1.SetActive(false);
+                prefabLvl2.SetActive(true);
+
+
+            }
+            else
+            {
+                // prefab nivel 3
+                prefabLvl2.SetActive(false);
+                prefabLvl3.SetActive(true);
+                
+
+            }
+
+        }
 
     }
 }

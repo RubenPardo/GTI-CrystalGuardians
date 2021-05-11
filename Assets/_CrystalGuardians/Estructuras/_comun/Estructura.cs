@@ -19,6 +19,8 @@ public abstract class Estructura : MonoBehaviour
     protected GameObject canvas;
 
     //Actualiza la vida actuañl
+
+    
     public void setCurrentHealth(int health)
     {
 
@@ -44,11 +46,14 @@ public abstract class Estructura : MonoBehaviour
         }
         if (vidaActual <= 0)
         {
+         
+            GameManager.Instance.listaEstructurasEnJuego.Remove(gameObject);
             Destroy(gameObject);
         }
     }
 
     
+
 
 
 }

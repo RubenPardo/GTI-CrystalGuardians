@@ -6,6 +6,10 @@ using UnityEngine.AI;
 
 public class Aliado : MonoBehaviour
 {
+    public GameObject prefabLvl1;
+    public GameObject prefabLvl2;
+    public GameObject prefabLvl3;
+
     public int nivelActual;
     public int[] costePorNivel;
     public int[] danyoPorNivel;
@@ -24,15 +28,24 @@ public class Aliado : MonoBehaviour
     public bool isMoving = false;
     public bool isAtacking = false;
 
-    GameObject[] enemigos;
+    List<GameObject> enemigos;
     Dictionary<GameObject, float> enemigosDistancias; // enemigo, distancia
     public NavMeshAgent agent;
 
     GameObject enemigoFijado;
 
+    protected float mejoraDanyo;
+
     private void Start()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
+        settearVida();
+    }
+
+    protected virtual void Update()
+    {
+        mover(mejoraDanyo);
+        comprobarVida0();
     }
 
     public void setDefaultMoveFlags()
@@ -48,11 +61,11 @@ public class Aliado : MonoBehaviour
     {
         if (!isMoving)
         {
-            enemigos = GameObject.FindGameObjectsWithTag("Enemigo"); // obtener todos los enemigos de la escena
+            enemigos = GameManager.Instance.listaEnemigosRonda; // obtener todos los enemigos de la escena
             enemigosDistancias = new Dictionary<GameObject, float>();
 
 
-            if (!isEnemigoFijado && enemigos.Length > 0)// intentar fijar un enemigo si hay
+            if (!isEnemigoFijado && enemigos.Count > 0)// intentar fijar un enemigo si hay
             {
 
                 foreach (GameObject enemigo in enemigos)
@@ -183,6 +196,11 @@ public class Aliado : MonoBehaviour
             GameManager.Instance.Unidades--;
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.listaAliadosEnJuego.Remove(gameObject);
     }
 
 }

@@ -8,42 +8,42 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Madera
-    second: {fileID: 2100000, guid: 5cf5666ce50ad3b42a9cf97d978ef72e, type: 2}
+    second: {fileID: 2100000, guid: 3ac613a8a36ce10499e76ff16cb43c97, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material #31
-    second: {fileID: 2100000, guid: b64ff8b9d9eebf047a531627d6087f69, type: 2}
+    second: {fileID: 2100000, guid: 7fc1be4f6e674c54faaba806c9e6bdfd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material #33
-    second: {fileID: 2100000, guid: fac41aaaf6be22049924d644c9e4a2b6, type: 2}
+    second: {fileID: 2100000, guid: 65a1499ba776ccc4ebdf3f993c84a557, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material #46
-    second: {fileID: 2100000, guid: 3e30ab384319f3d42b5cbdebe448c3af, type: 2}
+    second: {fileID: 2100000, guid: 0dc8ee3b05f0e33498a62742bacce2ff, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material #47
-    second: {fileID: 2100000, guid: ad45d358552073e4f867ee56cb529548, type: 2}
+    second: {fileID: 2100000, guid: 260e3953d75a91540bf5c894b9bee70c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material #59
-    second: {fileID: 2100000, guid: b64ff8b9d9eebf047a531627d6087f69, type: 2}
+    second: {fileID: 2100000, guid: 7fc1be4f6e674c54faaba806c9e6bdfd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material #60
-    second: {fileID: 2100000, guid: fac41aaaf6be22049924d644c9e4a2b6, type: 2}
+    second: {fileID: 2100000, guid: 65a1499ba776ccc4ebdf3f993c84a557, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MaterialBandera Slot #6
-    second: {fileID: 2100000, guid: fac41aaaf6be22049924d644c9e4a2b6, type: 2}
+    second: {fileID: 2100000, guid: 65a1499ba776ccc4ebdf3f993c84a557, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -8,22 +8,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Bordes
-    second: {fileID: 2100000, guid: 144df7b500826dc4cbd1f868f7c72833, type: 2}
+    second: {fileID: 2100000, guid: 65a1499ba776ccc4ebdf3f993c84a557, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ColorPinchos
-    second: {fileID: 2100000, guid: 20ca63c237db53e4595c773818d80629, type: 2}
+    second: {fileID: 2100000, guid: 65a1499ba776ccc4ebdf3f993c84a557, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material #52
-    second: {fileID: 2100000, guid: 2cdde695db909cc428d0b21f0beeb5c0, type: 2}
+    second: {fileID: 2100000, guid: 62f97574c79fc1f40aab3a3007945edd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: fondo trampa
-    second: {fileID: 2100000, guid: c66fd8e037df10043a59be4feb07d5ea, type: 2}
+    second: {fileID: 2100000, guid: 57f87f6de96b11343945a6907c8d852e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

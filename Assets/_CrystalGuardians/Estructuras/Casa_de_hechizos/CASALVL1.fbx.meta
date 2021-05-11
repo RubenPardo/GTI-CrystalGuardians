@@ -3,12 +3,37 @@ guid: 317dfc3d65efc3147ac1729581b49a5b
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: 42790c66ba2fc6b4fa62ce67b3957456, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chimenea
+    second: {fileID: 2100000, guid: 103454a5e7bf7b84f962032ec123c460, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Madera
+    second: {fileID: 2100000, guid: b95a86af4685092419aaf2c3d74c358b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pared
+    second: {fileID: 2100000, guid: f26f6eb3f3b912b44ae30f15922b9f6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ventana
+    second: {fileID: 2100000, guid: fab785659f14ad14787af784667cffdb, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

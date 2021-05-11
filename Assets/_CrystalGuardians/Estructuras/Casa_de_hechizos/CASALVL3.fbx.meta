@@ -8,17 +8,27 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 03 - Default
-    second: {fileID: 2100000, guid: fa776ff3b0aa4774c9ae7973f7f165a8, type: 2}
+    second: {fileID: 2100000, guid: 57f87f6de96b11343945a6907c8d852e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 14 - Polished Aluminum
+    second: {fileID: 2100000, guid: d1bc6179f865def4c8a486e72d3e966a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material Pared
+    second: {fileID: 2100000, guid: f26f6eb3f3b912b44ae30f15922b9f6e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Tejas
-    second: {fileID: 2100000, guid: 957337861c2730a48a820f9346e92cf4, type: 2}
+    second: {fileID: 2100000, guid: 42790c66ba2fc6b4fa62ce67b3957456, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Ventana
-    second: {fileID: 2100000, guid: 759fd25dedfb61041998700ecd9c9550, type: 2}
+    second: {fileID: 2100000, guid: fab785659f14ad14787af784667cffdb, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

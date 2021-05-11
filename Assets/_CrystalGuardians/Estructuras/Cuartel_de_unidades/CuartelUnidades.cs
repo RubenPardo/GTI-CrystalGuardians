@@ -152,7 +152,8 @@ public class CuartelUnidades : Estructura
 
     }
 
-   
+    
+
 
     public void spawnUnidades(GameObject unidadAliada)
     {
@@ -164,10 +165,7 @@ public class CuartelUnidades : Estructura
         aliado.prefabLvl2.SetActive(prefabLvl2.activeSelf);
         aliado.prefabLvl3.SetActive(prefabLvl3.activeSelf);
 
-        Debug.Log("-----");
-        Debug.Log(prefabLvl1.activeSelf);
-        Debug.Log(prefabLvl2.activeSelf);
-        Debug.Log(prefabLvl3.activeSelf);
+    
 
         aliado.nivelActual = nivelActual;
         aliado.settearVida();
@@ -237,32 +235,9 @@ public class CuartelUnidades : Estructura
             canvas.SetActive(false);
         }
 
+
+        
     }
-    /*private void comprobarCambiarPrefab()
-    {
-        if (nivelActual > 0 && // para que no se salga del array
-            nivelMinimoCastilloParaMejorar[nivelActual - 1] < nivelMinimoCastilloParaMejorar[nivelActual])
-        {
-            // se cambia el prefab cuando el siguiente nivel minimo de castillo cambia
-            // si el anterior es menor 
-            if (nivelMinimoCastilloParaMejorar[nivelActual] == 1)
-            {
-                // prefab nivel 2
-                prefabLvl1.SetActive(false);
-                prefabLvl2.SetActive(true);
-
-
-            }
-            else
-            {
-                // prefab nivel 3
-                prefabLvl2.SetActive(false);
-                prefabLvl3.SetActive(true);
-
-
-            }
-
-        }
-
-    }*/
+    
+    
 }

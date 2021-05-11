@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: broca
-    second: {fileID: 2100000, guid: 423e9a678d4f95a41b8e34080f2a81c8, type: 2}
+    second: {fileID: 2100000, guid: c44ad21e7c8046b4a8b14a5e2702f249, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

@@ -49,7 +49,7 @@ public class blueprint_script : MonoBehaviour
                 GameObject estructuraConstruida = Instantiate(prefab, transform.position, transform.rotation);
                 if (!prefab.GetComponent<Trampa>())
                 {
-                    GameManager.Instance.listaEstructurasEnJuego.Add(estructuraConstruida);
+                    GameManager.Instance.listaEstructurasEnJuego.Add(estructuraConstruida.gameObject);
                 }
                 
                 // mina

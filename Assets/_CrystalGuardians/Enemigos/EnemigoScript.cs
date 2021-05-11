@@ -18,7 +18,7 @@ public class EnemigoScript : MonoBehaviour
     public float rangoVision;
     public float rangoAtaque;
     public float attackSpeed = 1f;
-    private float attackCoutDwon = 0f;
+    protected float attackCoutDwon = 0f;
     private bool dir;
     [Header("HUD")]
     public HealthBarScript healthBar;
@@ -169,8 +169,10 @@ public class EnemigoScript : MonoBehaviour
         if (attackCoutDwon <= 0f)
         {
             Estructura estructura;
+            /*
             Guerrero guerrero;
             Ballestero ballestero;
+            */
             Aliado aliado;
             if (objetivoFijado.TryGetComponent<Estructura>(out estructura))
             {

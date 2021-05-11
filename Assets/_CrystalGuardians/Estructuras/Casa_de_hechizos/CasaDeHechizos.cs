@@ -24,8 +24,10 @@ public class CasaDeHechizos : Estructura
     public Button btnBuff;
 
 
-    // Storing different levels'
-    public GameObject[] levels;
+    public GameObject prefabNvl1;
+    public GameObject prefabNvl2;
+    public GameObject prefabNvl3;
+
     public override void abrirMenu()
     {
         if(canvas != null)
@@ -42,6 +44,7 @@ public class CasaDeHechizos : Estructura
         }
     }
 
+
     public override void mejorar()
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
@@ -51,6 +54,7 @@ public class CasaDeHechizos : Estructura
         // actualizar hud informacion
         setUpCanvasValues();
         settearVida();
+        comprobarNivelCasa();
     }
 
     // Start is called before the first frame update
@@ -70,6 +74,29 @@ public class CasaDeHechizos : Estructura
         settearVida();
 
 
+    }
+    public void comprobarNivelCasa()
+    {
+        switch (nivelActual)
+        {
+
+
+            case 1:
+
+
+                prefabNvl1.SetActive(false);
+                prefabNvl2.SetActive(true);
+
+                //Debug.Log("estoy a nivel 2");
+                break;
+            case 2:
+
+                //Debug.Log("estoy a nivel 3");
+
+                prefabNvl2.SetActive(false);
+                prefabNvl3.SetActive(true);
+                break;
+        }
     }
 
     private void Update()

@@ -6,6 +6,10 @@ using UnityEngine.AI;
 
 public class Aliado : MonoBehaviour
 {
+    public GameObject prefabLvl1;
+    public GameObject prefabLvl2;
+    public GameObject prefabLvl3;
+
     public int nivelActual;
     public int[] costePorNivel;
     public int[] danyoPorNivel;

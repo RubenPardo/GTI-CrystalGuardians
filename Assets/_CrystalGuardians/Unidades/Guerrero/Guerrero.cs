@@ -6,7 +6,7 @@ using System.Linq;
 
 public class Guerrero : Aliado
 {
-
+   
     public static float mejoraDanyo = 1f;//mejora de aldea
                                         
 
@@ -18,7 +18,12 @@ public class Guerrero : Aliado
 
         base.mejoraDanyo = Guerrero.mejoraDanyo;
         base.Update();
+       
+    }
+    
+
     }
 
 
-}
+
+

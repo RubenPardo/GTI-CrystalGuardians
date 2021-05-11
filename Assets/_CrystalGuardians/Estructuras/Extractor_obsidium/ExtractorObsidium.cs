@@ -49,9 +49,10 @@ public class ExtractorObsidium : Estructura
     public override void mejorar()
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+
+        comprobarCambiarPrefab();
         nivelActual++;
         // actualizar hud informacion
-        comprobarCambiarPrefab();
         setUpCanvasValues();
         settearVida();
     }

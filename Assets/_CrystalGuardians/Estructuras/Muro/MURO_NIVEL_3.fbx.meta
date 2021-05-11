@@ -8,12 +8,20 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 20 - Polished Aluminum
+<<<<<<< HEAD
     second: {fileID: 2100000, guid: b833c3752f5c29046b97834eb0db36f6, type: 2}
+=======
+    second: {fileID: 2100000, guid: 47dad1bd4f2f55f40af79e99931d5e7c, type: 2}
+>>>>>>> develop
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 21 - Default
+<<<<<<< HEAD
     second: {fileID: 2100000, guid: 166e9c3881deadd4a9ca0611c015a835, type: 2}
+=======
+    second: {fileID: 2100000, guid: 47dad1bd4f2f55f40af79e99931d5e7c, type: 2}
+>>>>>>> develop
   materials:
     materialImportMode: 1
     materialName: 3

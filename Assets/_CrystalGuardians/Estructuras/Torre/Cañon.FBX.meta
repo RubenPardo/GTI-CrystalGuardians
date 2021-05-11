@@ -8,17 +8,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material #11
-    second: {fileID: 2100000, guid: f847f97387401f5468a08df1b2872b7a, type: 2}
+    second: {fileID: 2100000, guid: 6ac1f0e3f5a54b74d908ae91910c9a0f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material #12
-    second: {fileID: 2100000, guid: 68a5db5cbb90fb74cbb5dd0a341a88ac, type: 2}
+    second: {fileID: 2100000, guid: 0dc8ee3b05f0e33498a62742bacce2ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #13
+    second: {fileID: 2100000, guid: c44ad21e7c8046b4a8b14a5e2702f249, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: "patasCa\xF1on"
-    second: {fileID: 2100000, guid: 3bdaacac661c4714a80ba87e181dc05b, type: 2}
+    second: {fileID: 2100000, guid: 1bdafd397d275cb49a5e2e7a97bd6f03, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

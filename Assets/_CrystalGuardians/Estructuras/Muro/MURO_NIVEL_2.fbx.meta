@@ -8,7 +8,11 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 01 - Default
+<<<<<<< HEAD
     second: {fileID: 2100000, guid: ad010ee33c77bae4e9adfa17f36b2f6d, type: 2}
+=======
+    second: {fileID: 2100000, guid: 3a4e28a2950df3e49a01bf83ccc1e6cd, type: 2}
+>>>>>>> develop
   materials:
     materialImportMode: 1
     materialName: 3

@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Ladrillos
-    second: {fileID: 2100000, guid: b64ff8b9d9eebf047a531627d6087f69, type: 2}
+    second: {fileID: 2100000, guid: 7fc1be4f6e674c54faaba806c9e6bdfd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Negro
-    second: {fileID: 2100000, guid: fac41aaaf6be22049924d644c9e4a2b6, type: 2}
+    second: {fileID: 2100000, guid: 65a1499ba776ccc4ebdf3f993c84a557, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

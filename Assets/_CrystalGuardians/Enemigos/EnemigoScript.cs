@@ -161,8 +161,8 @@ public class EnemigoScript : MonoBehaviour
     public virtual List<GameObject> getPossibleTargets()
     {
         return Utility.unirDosArrays(
-                GameManager.Instance.listaAliadosEnJuego,
-                GameManager.Instance.listaEstructurasEnJuego);
+                GameManager.listaAliadosEnJuego,
+                GameManager.listaEstructurasEnJuego);
     }
     public virtual void attack()
     {

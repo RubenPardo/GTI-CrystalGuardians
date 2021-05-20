@@ -47,7 +47,7 @@ public class enemigoDistanciaScript : EnemigoScript
 
     public override List<GameObject> getPossibleTargets()
     {
-        return GameManager.Instance.listaEstructurasEnJuego;
+        return GameManager.listaEstructurasEnJuego;
     }
 
     void Shoot()

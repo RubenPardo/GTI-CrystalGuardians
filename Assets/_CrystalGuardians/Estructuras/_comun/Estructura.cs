@@ -47,7 +47,7 @@ public abstract class Estructura : MonoBehaviour
         if (vidaActual <= 0)
         {
          
-            GameManager.Instance.listaEstructurasEnJuego.Remove(gameObject);
+            GameManager.listaEstructurasEnJuego.Remove(gameObject);
             Destroy(gameObject);
         }
     }

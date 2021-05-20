@@ -71,7 +71,8 @@ public class Castillo : Estructura
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.listaEstructurasEnJuego.Add(gameObject);
+        GameManager.listaEstructurasEnJuego.Add(this.gameObject);
+       
         // canvas del menu de botones
         canvas = gameObject.transform.Find("Canvas").gameObject;
         if (canvas != null)

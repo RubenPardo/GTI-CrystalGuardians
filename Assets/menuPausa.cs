@@ -45,4 +45,11 @@ public class menuPausa : MonoBehaviour
         Debug.Log("Saliendo del juego");
         Application.Quit();
     }
+    public void ReiniciarPartida()
+    {
+
+        Debug.Log("Partida Reiniciada");
+        //SceneManager.LoadScene("DemoCrystalGuardians");
+
+    }
 }

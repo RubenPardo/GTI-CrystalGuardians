@@ -14679,7 +14679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006d0cfabd1c31d4f95b5b31445b187c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 0.05
+  cameraSpeed: 0.2
   edgeThickness: 10
   movementTime: 15
   cameraLimit: {x: 16, y: 16}
@@ -33704,8 +33704,6 @@ MonoBehaviour:
   prefabOro: {fileID: 5047545057962889104, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
   prefabObsidium: {fileID: 1259565508777720743, guid: b7c74be88a2f9694db6914e4c64f881d, type: 3}
   listaEnemigosRonda: []
-  listaEstructurasEnJuego: []
-  listaAliadosEnJuego: []
   castillo: {fileID: 6991216279435546186, guid: e8c4b1ae296eb5e4dad88c519ae39a76, type: 3}
   i: 0
   y: 0

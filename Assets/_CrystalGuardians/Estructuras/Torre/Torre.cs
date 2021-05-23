@@ -19,7 +19,8 @@ public class Torre : Estructura
     public Text txtLvlSiguiente;
     public Button btnMejorar;
     public Button btnMejorarInfo;
-    
+   
+
 
 
     [Header("Atributos")]
@@ -31,21 +32,6 @@ public class Torre : Estructura
     public GameObject cannon;
     public Material materialCannonNivel3;
 
-    public override void abrirMenu()
-    {
-        if (canvas != null)
-        {
-            canvas.SetActive(true);
-        }
-    }
-
-    public override void cerrarMenu()
-    {
-        if (canvas != null)
-        {
-            canvas.SetActive(false);
-        }
-    }
 
     public float attackSpeed = 1f;
     private float fireCoutDwon = 0f;
@@ -61,8 +47,29 @@ public class Torre : Estructura
 
     public GameObject bulletPrefab;
     public Transform bulletPoint;
+    public GameObject posicionOrigenTorre;
+    public Material materialRangeAttack;
+
+    private GameObject rangeGameObject;
 
 
+    public override void abrirMenu()
+    {
+        if (canvas != null)
+        {
+            canvas.SetActive(true);
+            drawRangeAttack();
+        }
+    }
+
+    public override void cerrarMenu()
+    {
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+            removeRangeAttack();
+        }
+    }
 
     public override void mejorar()
     {
@@ -128,6 +135,32 @@ public class Torre : Estructura
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         setUpCanvasValues();
         settearVida();
+
+       
+    }
+
+    public void drawRangeAttack()
+    {
+        if(rangeGameObject == null)
+        {
+            rangeGameObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            rangeGameObject.GetComponent<CapsuleCollider>().enabled = false;
+            rangeGameObject.transform.parent = gameObject.transform;
+            rangeGameObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
+            rangeGameObject.transform.position = new Vector3(posicionOrigenTorre.transform.position.x, 0f, posicionOrigenTorre.transform.position.z);
+            rangeGameObject.GetComponent<MeshRenderer>().material = materialRangeAttack;
+        }
+        else
+        {
+            rangeGameObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
+            rangeGameObject.SetActive(true);
+        }
+       
+    }
+
+    public void removeRangeAttack()
+    {
+        rangeGameObject.SetActive(false);
     }
 
     void UpdateTarget()
@@ -135,8 +168,8 @@ public class Torre : Estructura
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
-        foreach(GameObject enemy in enemies){
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+        foreach (GameObject enemy in enemies){
+            float distanceToEnemy = Vector3.Distance(posicionOrigenTorre.transform.position, enemy.transform.position);
 
             if (distanceToEnemy < shortestDistance)
             {
@@ -159,6 +192,9 @@ public class Torre : Estructura
     // Update is called once per frame
     void Update()
     {
+        Animator animator = cannon.GetComponent<Animator>();
+        ParticleSystem p = bulletPoint.GetComponentInChildren<ParticleSystem>();
+        
         if (target != null)
         {
             Vector3 dir = target.position - transform.position;
@@ -166,14 +202,25 @@ public class Torre : Estructura
             Vector3 rotation = Quaternion.Lerp(rotateObject.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles; 
                 //lookRotation.eulerAngles;
             rotateObject.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
+           
             if (fireCoutDwon <= 0f)
             {
+                
+                
+                animator.speed = attackSpeed;
+                animator.SetBool("StartShot", true);
+                p.Play();
+                //ParticleSystem.EmissionModule emission = p.emission;
+                //emission.enabled = true;
                 Shoot();
                 fireCoutDwon = 1f / attackSpeed;
             }
 
             fireCoutDwon -= Time.deltaTime;
+        }
+        else
+        {
+            animator.SetBool("StartShot", false);
         }
         comprobarDisponibilidadMejora();
         comprobarVida0();
@@ -191,6 +238,8 @@ public class Torre : Estructura
 
     void Shoot ()
     {
+
+
         GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, bulletPoint.position, bulletPoint.rotation);
         Bala bala = bulletGO.GetComponent<Bala>();
 
@@ -199,12 +248,13 @@ public class Torre : Estructura
             bala.damage = danyoPorNivel[nivelActual];
             bala.setTarget(target);
         }
+        
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(posicionOrigenTorre.transform.position, range);
     }
 
     private void setUpCanvasValues()

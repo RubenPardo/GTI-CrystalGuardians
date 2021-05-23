@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> listaEnemigosRonda = new List<GameObject>();
     public static List<GameObject> listaEstructurasEnJuego = new List<GameObject>();
     public static List<GameObject> listaAliadosEnJuego = new List<GameObject>();
-    
+
 
 
 
@@ -112,6 +112,10 @@ public class GameManager : MonoBehaviour
     public List<Carta> listaCartas;
 
     
+    public bool rangoAtaqueSiempreVisible = false;
+    public bool RangoAtaqueSiempreVisible { get => rangoAtaqueSiempreVisible; set => rangoAtaqueSiempreVisible = value; }
+
+
 
     // Start is called before the first frame update
 

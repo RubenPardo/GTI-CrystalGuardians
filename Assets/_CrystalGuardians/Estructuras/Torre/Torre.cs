@@ -136,6 +136,8 @@ public class Torre : Estructura
         setUpCanvasValues();
         settearVida();
 
+        if (GameManager.Instance.rangoAtaqueSiempreVisible)
+            drawRangeAttack();
        
     }
 
@@ -160,7 +162,8 @@ public class Torre : Estructura
 
     public void removeRangeAttack()
     {
-        rangeGameObject.SetActive(false);
+        if (GameManager.Instance.rangoAtaqueSiempreVisible == false)
+            rangeGameObject.SetActive(false);
     }
 
     void UpdateTarget()

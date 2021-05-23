@@ -128,6 +128,8 @@ MonoBehaviour:
   isMoving: 0
   isAtacking: 0
   agent: {fileID: 0}
+  rangeGameObject: {fileID: 0}
+  materialRangeAttack: {fileID: 2100000, guid: 7aec64d6eb4a66c4b95369941fa89609, type: 2}
 --- !u!195 &-9178797136922613508
 NavMeshAgent:
   m_ObjectHideFlags: 0

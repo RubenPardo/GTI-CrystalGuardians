@@ -88,12 +88,11 @@ public class Castillo : Estructura
     private void comprobarDisponibilidadMejora()
     {
 
-        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
+        bool inte = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
        && GameManager.Instance.Obsiidum >= costeObsidiumMejorar[GameManager.Instance.NivelActualCastillo];
-
-
-        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual])
-        && GameManager.Instance.Obsiidum >= costeObsidiumMejorar[nivelActual];
+        
+        btnMejorar.interactable = inte;
+        btnMejorarInfo.interactable = inte;
 
 
 

@@ -75,10 +75,11 @@ public class ExtractorObsidium : Estructura
     private void comprobarDisponibilidadMejora()
     {
 
-        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        bool v = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+
+        btnMejorar.interactable = v;
+        btnMejorarInfo.enabled = v;
     }
 
     private void setUpCanvasValues()

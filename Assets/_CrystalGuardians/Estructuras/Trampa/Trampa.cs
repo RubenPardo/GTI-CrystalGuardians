@@ -67,32 +67,27 @@ public class Trampa : Estructura
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirTrampa;
-        // canvas del menu de botones
-        canvas = gameObject.transform.Find("Canvas").gameObject;
-        if (canvas != null)
-        {
-            canvas.SetActive(false);
-        }
+        base.Start();
         setUpCanvasValues();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         comprobarDisponibilidadMejora();
     }
 
     private void comprobarDisponibilidadMejora()
     {
-
-        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        bool v = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+        btnMejorar.interactable = v;
+        btnMejorarInfo.interactable = v;
     }
 
     private void setUpCanvasValues()
@@ -106,17 +101,14 @@ public class Trampa : Estructura
 
         if (nivelActual < NivelMaximo)
         {
-            txtLvlSiguiente.text = (nivelActual + 2).ToString();
 
-            txtDañoMejorada.text = danyoPorNivel[nivelActual + 1].ToString();
             txtMejora.text = costeOroMejorar[nivelActual].ToString();
         }
         else
         {
-            txtLvlSiguiente.text = "--------";
 
-            txtDañoMejorada.text = "---------";
-            txtMejora.text = "Nivel Maximo Alcanzado";
+            btnMejorar.gameObject.SetActive(false);
+            btnMejorarInfo.gameObject.SetActive(false);
         }
 
 

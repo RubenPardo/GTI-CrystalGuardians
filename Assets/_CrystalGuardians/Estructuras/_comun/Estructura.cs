@@ -53,8 +53,8 @@ public abstract class Estructura : MonoBehaviour
     public void settearVida()
     {
        
-        healthBar.SetMaxHealth(vidaPorNivel[nivelActual]);
-        healthBar.SetHeatlh(vidaPorNivel[nivelActual]);
+        healthBar?.SetMaxHealth(vidaPorNivel[nivelActual]);
+        healthBar?.SetHeatlh(vidaPorNivel[nivelActual]);
         vidaActual = vidaPorNivel[nivelActual];
         //Debug.Log("SETEANDO -> "+ healthBar.slider.maxValue + " Current: "+ healthBar.slider.value);
     }

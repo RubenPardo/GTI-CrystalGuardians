@@ -5,18 +5,15 @@ using UnityEngine.UI;
 
 public class CasaDeHechizos : Estructura
 {
-    public Text txtNivel;
     public Text txtMejora;
     
     public Text txtSaludActual;
-    public Text txtSaludMejorada;
 
     public Text txtCosteHeal;
     public Text txtCosteRayo;
     public Text txtCosteBuff;
     
     public Text txtLvlActual;
-    public Text txtLvlSiguiente;
     public Button btnMejorar;
     public Button btnMejorarInfo;
     public Button btnHeal;
@@ -107,16 +104,14 @@ public class CasaDeHechizos : Estructura
     private void comprobarDisponibilidadMejora()
     {
 
+        bool v = (nivelActual <= NivelMaximo - 1)
+            && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        btnMejorar.enabled = 
-            (nivelActual <= NivelMaximo-1) 
-            && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        
-        btnMejorarInfo.enabled = 
-            (nivelActual <= NivelMaximo-1) 
-            && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+        btnMejorar.interactable = v;
+
+
+        btnMejorarInfo.interactable = v;
     }
     private void setUpCanvasValues()
     {

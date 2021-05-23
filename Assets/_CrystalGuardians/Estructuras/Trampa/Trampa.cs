@@ -6,15 +6,10 @@ using UnityEngine.UI;
 public class Trampa : Estructura
 {
 
-    public Text txtNivel;
     public Text txtMejora;
 
-    public Text txtSaludActual;
-    public Text txtSaludMejorada;
     public Text txtDañoActual;
-    public Text txtDañoMejorada;
     public Text txtLvlActual;
-    public Text txtLvlSiguiente;
     public Button btnMejorar;
     public Button btnMejorarInfo;
 
@@ -25,15 +20,13 @@ public class Trampa : Estructura
 
     public GameObject colliderExplosion;
 
-    // Storing different levels'
-    public GameObject[] levels;
     public int[] danyoPorNivel;
     public override void mejorar()
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
         
-        nivelActual = nivelActual + 1;
+        nivelActual++;
 
 
 
@@ -70,14 +63,19 @@ public class Trampa : Estructura
     protected override void Start()
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirTrampa;
-        base.Start();
+        canvas = gameObject.transform.Find("Canvas").gameObject;
+        if (canvas != null)
+        {
+
+            canvas.SetActive(false);
+        }
         setUpCanvasValues();
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        textNivelSubMenu.text = "Nivel " + (nivelActual + 1);
         comprobarDisponibilidadMejora();
     }
 
@@ -95,7 +93,7 @@ public class Trampa : Estructura
 
 
 
-        txtLvlActual.text = (nivelActual + 1).ToString();
+        txtLvlActual.text = "Trampa Nivel "+(nivelActual + 1).ToString();
         txtDañoActual.text = danyoPorNivel[nivelActual].ToString();
 
 

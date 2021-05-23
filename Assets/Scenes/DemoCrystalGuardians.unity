@@ -17561,6 +17561,7 @@ GameObject:
   - component: {fileID: 359582354}
   - component: {fileID: 359582356}
   - component: {fileID: 359582355}
+  - component: {fileID: 359582357}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -17625,6 +17626,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359582353}
   m_CullTransparentMesh: 1
+--- !u!114 &359582357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359582353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &361923410 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4623580460626171863, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -18092,6 +18108,7 @@ GameObject:
   - component: {fileID: 393916576}
   - component: {fileID: 393916578}
   - component: {fileID: 393916577}
+  - component: {fileID: 393916579}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -18156,6 +18173,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393916575}
   m_CullTransparentMesh: 1
+--- !u!114 &393916579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393916575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &394493169 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4623580462029280849, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -32647,8 +32679,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0010071, y: -19.17}
-  m_SizeDelta: {x: 185.5515, y: 75.357}
+  m_AnchoredPosition: {x: 0.0003767, y: -19.9797}
+  m_SizeDelta: {x: 223.89, y: 76.9763}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058108771
 MonoBehaviour:
@@ -32696,7 +32728,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 687604151}
         m_TargetAssemblyTypeName: menuPausa, Assembly-CSharp
-        m_MethodName: SalirDelJuego
+        m_MethodName: ReiniciarPartida
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -34628,8 +34660,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: -108}
-  m_SizeDelta: {x: 185.5515, y: 75.357}
+  m_AnchoredPosition: {x: 0.00012112, y: -108.8096}
+  m_SizeDelta: {x: 223.89, y: 76.9763}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138880331
 MonoBehaviour:
@@ -48180,7 +48212,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Salir al men\xFA principal\n"
+  m_Text: "Salir \nal men\xFA principal\n"
 --- !u!222 &1761872432
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -52211,6 +52243,7 @@ GameObject:
   - component: {fileID: 1955935403}
   - component: {fileID: 1955935405}
   - component: {fileID: 1955935404}
+  - component: {fileID: 1955935406}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -52275,6 +52308,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955935402}
   m_CullTransparentMesh: 1
+--- !u!114 &1955935406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955935402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1960618625 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4623580462169643037, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}

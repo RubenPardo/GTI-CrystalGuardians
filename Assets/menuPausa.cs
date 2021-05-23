@@ -49,7 +49,8 @@ public class menuPausa : MonoBehaviour
     {
 
         Debug.Log("Partida Reiniciada");
-        //SceneManager.LoadScene("DemoCrystalGuardians");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Time.timeScale = 1f;
 
     }
 }

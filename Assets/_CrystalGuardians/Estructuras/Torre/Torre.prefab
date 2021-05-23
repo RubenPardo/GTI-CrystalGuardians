@@ -3148,6 +3148,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrenoEnvolvente1x1
       objectReference: {fileID: 0}
+    - target: {fileID: 5904819028773098276, guid: d1f519c411cf44a4bbda6971c0547d32, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5904819028773098279, guid: d1f519c411cf44a4bbda6971c0547d32, type: 3}
       propertyPath: m_RootOrder
       value: 3

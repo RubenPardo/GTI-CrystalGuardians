@@ -58,20 +58,17 @@ public class CasaDeHechizos : Estructura
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        // canvas del menu de botones
+        base.Start();
+
         // al empezar restar el oro
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirCasaHechizos;
-        // canvas del menu de botones
-        canvas = gameObject.transform.Find("Canvas").gameObject;
-        if (canvas != null)
-        {
-            canvas.SetActive(false);
-        }
+        
         GameManager.nivelCasaHechizos = 0;
         GameManager.Instance.CasasDeHechizosConstruidas++;
         setUpCanvasValues();
-        settearVida();
 
 
     }
@@ -99,10 +96,11 @@ public class CasaDeHechizos : Estructura
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+        setUpCanvasValues();
         comprobarDisponibilidadMejora();
-        comprobarVida0();
         comprobarBotones();
         
     }
@@ -124,7 +122,7 @@ public class CasaDeHechizos : Estructura
     {
 
         
-        txtLvlActual.text = (nivelActual + 1).ToString();
+        txtLvlActual.text = "Casa de Hechizos Nivel " + (nivelActual + 1).ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
         txtCosteHeal.text = GameManager.costeLanzarHeal[nivelActual].ToString();
         txtCosteRayo.text = GameManager.costeLanzarRayo[nivelActual].ToString();
@@ -134,18 +132,15 @@ public class CasaDeHechizos : Estructura
 
         if (nivelActual < NivelMaximo)
         {
-            txtLvlSiguiente.text = (nivelActual + 2).ToString();
-            txtMejora.text = costeOroMejorar[nivelActual].ToString();
 
-            txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
+            txtMejora.text = costeOroMejorar[nivelActual].ToString();
         }
         else
         {
-            txtLvlSiguiente.text = "--------";
-            txtMejora.text = "----------";
-
-            txtSaludMejorada.text ="--------";
+            btnMejorar.gameObject.SetActive(false);
+            btnMejorarInfo.gameObject.SetActive(false);
         }
+
 
 
     }

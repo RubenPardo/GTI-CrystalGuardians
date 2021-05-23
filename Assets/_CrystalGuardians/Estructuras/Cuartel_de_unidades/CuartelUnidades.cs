@@ -25,7 +25,6 @@ public class CuartelUnidades : Estructura
     public Button btnMejorarInfo;
     public Button btnGenerarGuerrero;
     public Button btnGenerarBallestero;
-    public Image imgMejora;
 
     // Storing different levels'
     public GameObject[] levels;
@@ -34,29 +33,24 @@ public class CuartelUnidades : Estructura
     public GameObject prefabLvl3;
 
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirCuartel;
         GameManager.Instance.CuartelesConstruidos++;
 
 
-        // canvas del menu de botones
-        canvas = gameObject.transform.Find("Canvas").gameObject;
-        if (canvas != null)
-        {
-            canvas.SetActive(false);
-        }
+        
         setUpCanvasValues();
         sumarTopeUnidades(false);
-        settearVida();
 
 
     }
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         comprobarDisponibilidadCosteUnidades();
         comprobarDisponibilidadMejora();
-        comprobarVida0();
     }
 
     private void OnDestroy()
@@ -186,8 +180,7 @@ public class CuartelUnidades : Estructura
     private void setUpCanvasValues()
     {
         // panel actual
-        txtNivel.text = (nivelActual + 1).ToString();
-        txtLvlActual.text = (nivelActual + 1).ToString();
+        txtLvlActual.text = "Cuartel de Unidades Nivel " + (nivelActual + 1).ToString();
 
         txtCapacidadActual.text = capacidadUnidades[nivelActual].ToString();
 
@@ -202,16 +195,11 @@ public class CuartelUnidades : Estructura
         if(nivelActual < NivelMaximo)
         {
             txtMejora.text = costeOroMejorar[nivelActual].ToString();
-            txtLvlSiguiente.text = (nivelActual + 2).ToString();
-            txtCapacidadMejorada.text = capacidadUnidades[nivelActual + 1].ToString();
-            txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
         }
         else
         {
-            txtMejora.text = "Nivel Maximo Alcanzado";
-            txtLvlSiguiente.text = "----";
-            txtCapacidadMejorada.text = "----";
-            txtSaludMejorada.text = "----";
+            btnMejorar.gameObject.SetActive(false);
+            btnMejorarInfo.gameObject.SetActive(false);
         }
        
 

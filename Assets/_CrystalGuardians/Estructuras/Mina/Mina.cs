@@ -9,11 +9,8 @@ public class Mina : Estructura
     public Text txtMejora;
 
     public Text txtSaludActual;
-    public Text txtSaludMejorada;
     public Text txtProduccionActual;
-    public Text txtProduccionMejorada;
     public Text txtLvlActual;
-    public Text txtLvlSiguiente;
     public Button btnMejorar;
     public Button btnMejorarInfo;
 
@@ -23,10 +20,6 @@ public class Mina : Estructura
     public GameObject prefabLvl3;
 
 
-    // Storing different levels'
-    public GameObject[] levels;
-    // Counting current level
-    int current_level = 0;
 
     public int[] generacionOroPorNivel;
 
@@ -43,44 +36,28 @@ public class Mina : Estructura
     public override void mejorar()
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
-
-
+       
         comprobarCambiarPrefab();
         nivelActual++;
-
-
         settearVida();
-
-        // actualizar hud informacion
+         // actualizar hud informacion
         setUpCanvasValues();
 
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-
-        /*GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirMina;
-        GameManager.Instance.oroConstruido = true;*/
-        // canvas del menu de botones
-        canvas = gameObject.transform.Find("Canvas").gameObject;
-        if (canvas != null)
-        {
-            canvas.SetActive(false);
-        }
+        base.Start();
         setUpCanvasValues();
-        settearVida();
-
-
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-
+        base.Update();
         comprobarDisponibilidadMejora();
         generarRecursos();
-        comprobarVida0();
     }
 
     public override void cerrarMenu()
@@ -102,12 +79,12 @@ public class Mina : Estructura
     private void comprobarDisponibilidadMejora()
     {
 
-        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1)
+        bool v = (nivelActual <= NivelMaximo - 1)
             && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1)
-            && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+
+        btnMejorar.interactable = v;
+        btnMejorarInfo.interactable = v;
     }
 
     private void setUpCanvasValues()
@@ -115,26 +92,19 @@ public class Mina : Estructura
 
 
 
-        txtLvlActual.text = (nivelActual + 1).ToString();
+        txtLvlActual.text = "Mina Nivel "+(nivelActual + 1).ToString();
         txtProduccionActual.text = generacionOroPorNivel[nivelActual].ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
 
         if (nivelActual < NivelMaximo)
         {
-            txtLvlSiguiente.text = (nivelActual + 2).ToString();
-
-            txtProduccionMejorada.text = generacionOroPorNivel[nivelActual + 1].ToString();
+         
             txtMejora.text = costeOroMejorar[nivelActual].ToString();
-            ;
-            txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
         }
         else
         {
-            txtLvlSiguiente.text = "----------";
-
-            txtProduccionMejorada.text = "-----------";
-            txtMejora.text = "----------";
-            txtSaludMejorada.text = "-------";
+            btnMejorar.gameObject.SetActive(false);
+            btnMejorarInfo.gameObject.SetActive(false);
         }
 
 

@@ -13,8 +13,8 @@ public class Torre : Estructura
     
     public Text txtSaludActual;
     public Text txtSaludMejorada;
-    public Text txtDa�oActual;
-    public Text txtDa�oMejorada;
+    public Text txtDanyoActual;
+    public Text txtDanyoMejorada;
     public Text txtLvlActual;
     public Text txtLvlSiguiente;
     public Button btnMejorar;
@@ -268,7 +268,7 @@ public class Torre : Estructura
 
         
         txtLvlActual.text = "Torre Nivel "+(nivelActual + 1).ToString();
-        txtDa�oActual.text = danyoPorNivel[nivelActual].ToString();
+        txtDanyoActual.text = danyoPorNivel[nivelActual].ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
 
 

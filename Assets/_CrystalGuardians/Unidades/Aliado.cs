@@ -9,7 +9,7 @@ public class Aliado : MonoBehaviour
     public GameObject prefabLvl1;
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
-
+    private Animator animator;
     public int nivelActual;
     public int[] costePorNivel;
     public int[] danyoPorNivel;
@@ -38,6 +38,7 @@ public class Aliado : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
         settearVida();
     }
@@ -53,7 +54,8 @@ public class Aliado : MonoBehaviour
         isEnemigoFijado = false;
         isMoving = true;
         isAtacking = false;
-
+        animator.SetBool("SeMueve", true);
+        animator.SetBool("Ataca", false);
 
     }
 
@@ -61,6 +63,7 @@ public class Aliado : MonoBehaviour
     {
         if (!isMoving)
         {
+            //animator.SetBool("SeMueve", false);
             enemigos = GameManager.Instance.listaEnemigosRonda; // obtener todos los enemigos de la escena
             enemigosDistancias = new Dictionary<GameObject, float>();
 
@@ -88,6 +91,7 @@ public class Aliado : MonoBehaviour
                     agent.SetDestination(enemigoFijado.transform.position);
                     isEnemigoFijado = true;
                     isMoving = true;
+                    animator.SetBool("SeMueve", true);
 
 
                 }
@@ -102,7 +106,9 @@ public class Aliado : MonoBehaviour
             {
                 isAtacking = false;
                 isEnemigoFijado = false;
-            }else if (isEnemigoFijado)
+                animator.SetBool("Ataca", false);
+            }
+            else if (isEnemigoFijado)
             {
                 if (agent.remainingDistance <= rangoAtaque)
                 {
@@ -111,10 +117,11 @@ public class Aliado : MonoBehaviour
                     // parar el agent y true el flag de atacar
 
                     isMoving = false;
+                    animator.SetBool("SeMueve", false);
                     agent.SetDestination(this.transform.position);
 
                     isAtacking = true;
-
+                    animator.SetBool("Ataca", true);
 
                 }
                 else
@@ -127,18 +134,20 @@ public class Aliado : MonoBehaviour
             {
 
                 isMoving = false;
-
+                animator.SetBool("SeMueve", false);
             }
         }
 
         if (isAtacking)
         {
+            
 
             if (enemigoFijado == null)
             {
                 // si el enemigo ha muerto
                 isAtacking = false;
                 isEnemigoFijado= false;
+                animator.SetBool("Ataca", false);
             }
             // comprobar que el enemigo ha muerto antes de estos calculos
             else if (Vector3.Distance(transform.position, enemigoFijado.transform.position) > (rangoAtaque+0.2)) // el 0.2 es por el tama�o de las unidades
@@ -146,6 +155,7 @@ public class Aliado : MonoBehaviour
                 // si el enemigo sale del rango de ataque desfijarlo
                 isAtacking = false;
                 isEnemigoFijado = false;
+                animator.SetBool("Ataca", false);
             }
             else
             {

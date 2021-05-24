@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 7039853618393583143}
   - component: {fileID: 2896770395211310197}
   - component: {fileID: 5264008110049839204}
+  - component: {fileID: -4776395160706341958}
   m_Layer: 0
   m_Name: enemigoDistancia
   m_TagString: Enemigo
@@ -156,6 +157,25 @@ MonoBehaviour:
   bulletPoint: {fileID: 2838882410141547578}
   rotateObject: {fileID: 972887454449850611}
   turnSpeed: 10
+--- !u!95 &-4776395160706341958
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668921592342232491}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 599d7154c4c5749478142641405b5bf3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4795742359218197542
 GameObject:
   m_ObjectHideFlags: 0

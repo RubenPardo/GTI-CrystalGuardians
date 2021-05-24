@@ -13,8 +13,8 @@ public class Torre : Estructura
     
     public Text txtSaludActual;
     public Text txtSaludMejorada;
-    public Text txtDañoActual;
-    public Text txtDañoMejorada;
+    public Text txtDaï¿½oActual;
+    public Text txtDaï¿½oMejorada;
     public Text txtLvlActual;
     public Text txtLvlSiguiente;
     public Button btnMejorar;
@@ -114,7 +114,7 @@ public class Torre : Estructura
                 Renderer cannonRender = cannon.GetComponent<Renderer>();
                 // no se puede modificar directamente, hay que referenciarlo como una copia
                 var a = cannonRender.materials;
-                a[0] = materialCannonNivel3; // cambiar el metal a por oro del cañon
+                a[0] = materialCannonNivel3; // cambiar el metal a por oro del caï¿½on
                 cannonRender.materials = a;
 
             }
@@ -123,15 +123,11 @@ public class Torre : Estructura
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirTorre;
         // canvas del menu de botones
-        canvas = gameObject.transform.Find("Canvas").gameObject;
-        if (canvas != null)
-        {
-            canvas.SetActive(false);
-        }
+        base.Start();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         setUpCanvasValues();
         settearVida();
@@ -198,8 +194,9 @@ public class Torre : Estructura
     }
 
     // Update is called once per frame
-    void Update()
+   protected override void Update()
     {
+        base.Update();
         Animator animator = cannon.GetComponent<Animator>();
         ParticleSystem p = bulletPoint.GetComponentInChildren<ParticleSystem>();
         
@@ -231,17 +228,17 @@ public class Torre : Estructura
             animator.SetBool("StartShot", false);
         }
         comprobarDisponibilidadMejora();
-        comprobarVida0();
+        
     }
 
     private void comprobarDisponibilidadMejora()
     {
 
-        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        bool v = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+        btnMejorar.interactable = v;
+        btnMejorarInfo.interactable = v;
     }
 
     void Shoot ()
@@ -270,28 +267,21 @@ public class Torre : Estructura
 
 
         
-        txtLvlActual.text = (nivelActual + 1).ToString();
-        txtDañoActual.text = danyoPorNivel[nivelActual].ToString();
+        txtLvlActual.text = "Torre Nivel "+(nivelActual + 1).ToString();
+        txtDaï¿½oActual.text = danyoPorNivel[nivelActual].ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
 
 
 
         if (nivelActual < NivelMaximo)
         {
-            txtLvlSiguiente.text = (nivelActual + 2).ToString();
 
-            txtDañoMejorada.text = danyoPorNivel[nivelActual + 1].ToString();
             txtMejora.text = costeOroMejorar[nivelActual].ToString();
 
-            txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
         }
         else{
-            txtLvlSiguiente.text = "---------------";
-
-            txtDañoMejorada.text = "---------------";
-            txtMejora.text = "Nivel Maximo Alcanzado";
-
-            txtSaludMejorada.text = "-------------";
+            btnMejorar.gameObject.SetActive(false);
+            btnMejorarInfo.gameObject.SetActive(false);
         }
 
 

@@ -31,6 +31,9 @@ public class EnemigoScript : MonoBehaviour
     private bool isObjetivoFijado;
     private bool isAtacking;
 
+    //animaciones
+    private Animator animator;
+
 
     NavMeshAgent agent;
 
@@ -40,6 +43,8 @@ public class EnemigoScript : MonoBehaviour
         dir = true;
         agent = GetComponent<NavMeshAgent>();
         settearVida();
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -85,6 +90,8 @@ public class EnemigoScript : MonoBehaviour
                     agent.SetDestination(objetivoFijado.transform.position);
                     isObjetivoFijado = true;
                     isMoving = true;
+                    animator.SetBool("atacando", false);
+
 
 
                 }
@@ -102,6 +109,7 @@ public class EnemigoScript : MonoBehaviour
             if (objetivoFijado == null)
             {
                 isAtacking = false;
+               
                 isObjetivoFijado = false;
             }
             else
@@ -118,6 +126,7 @@ public class EnemigoScript : MonoBehaviour
                         agent.SetDestination(this.transform.position);
 
                         isAtacking = true;
+                        animator.SetBool("atacando", true);
 
 
                     }
@@ -133,22 +142,26 @@ public class EnemigoScript : MonoBehaviour
             {
 
                 isMoving = false;
+                //animator.SetBool("atacando", false);
 
             }
         }
 
         if (isAtacking)
         {
+            
             if (objetivoFijado == null)
             {
                 // si el enemigo ha muerto
                 isAtacking = false;
+                //animator.SetBool("atacando", false);
                 isObjetivoFijado = false;
             }
             else if (Vector3.Distance(transform.position, objetivoFijado.transform.position) > rangoAtaque)
             {
                 // si el enemigo sale del rango de ataque desfijarlo
                 isAtacking = false;
+                //animator.SetBool("atacando", false);
                 isObjetivoFijado = false;
             }
             else

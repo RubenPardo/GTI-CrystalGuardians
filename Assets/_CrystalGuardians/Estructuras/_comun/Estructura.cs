@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Estructura : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public abstract class Estructura : MonoBehaviour
 
     public int vidaActual;
     public HealthBarScript healthBar;
+    public Text textNivelSubMenu;
     public int[] costeOroMejorar; // costes para mejorar (el primer valor es el nivel 2)
 
     public abstract void mejorar();
@@ -20,7 +22,26 @@ public abstract class Estructura : MonoBehaviour
 
     //Actualiza la vida actuañl
 
-    
+
+    protected virtual void Start()
+    {
+        
+     
+        // canvas del menu de botones
+        canvas = gameObject.transform.Find("Canvas").gameObject;
+        if (canvas != null)
+        {
+
+            canvas.SetActive(false);
+        }
+        settearVida();
+    }
+
+    protected virtual void Update()
+    {
+        textNivelSubMenu.text = "Nivel " + (nivelActual + 1);
+        comprobarVida0();
+    }
     public void setCurrentHealth(int health)
     {
 
@@ -32,8 +53,8 @@ public abstract class Estructura : MonoBehaviour
     public void settearVida()
     {
        
-        healthBar.SetMaxHealth(vidaPorNivel[nivelActual]);
-        healthBar.SetHeatlh(vidaPorNivel[nivelActual]);
+        healthBar?.SetMaxHealth(vidaPorNivel[nivelActual]);
+        healthBar?.SetHeatlh(vidaPorNivel[nivelActual]);
         vidaActual = vidaPorNivel[nivelActual];
         //Debug.Log("SETEANDO -> "+ healthBar.slider.maxValue + " Current: "+ healthBar.slider.value);
     }

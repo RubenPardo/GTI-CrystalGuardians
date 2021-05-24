@@ -69,38 +69,30 @@ public class Castillo : Estructura
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         GameManager.listaEstructurasEnJuego.Add(this.gameObject);
-       
-        // canvas del menu de botones
-        canvas = gameObject.transform.Find("Canvas").gameObject;
-        if (canvas != null)
-        {
-            canvas.SetActive(false);
-        }
-        setUpCanvasValues();
-        settearVida();
+        base.Start();
+        
 
     }
     // Update is called once per frame
-    private void Update()
+    protected override void Update()
     {
-
+        base.Update();
+        setUpCanvasValues();
         comprobarDisponibilidadMejora();
-        comprobarVida0();
-        
+
     }
 
     private void comprobarDisponibilidadMejora()
     {
 
-        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
+        bool inte = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
        && GameManager.Instance.Obsiidum >= costeObsidiumMejorar[GameManager.Instance.NivelActualCastillo];
-
-
-        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual])
-        && GameManager.Instance.Obsiidum >= costeObsidiumMejorar[nivelActual];
+        
+        btnMejorar.interactable = inte;
+        btnMejorarInfo.interactable = inte;
 
 
 
@@ -111,23 +103,20 @@ public class Castillo : Estructura
 
         
 
-        txtLvlActual.text = (nivelActual + 1).ToString();
+        txtLvlActual.text = "Castillo Nivel "+(nivelActual + 1).ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
         
         if (nivelActual < NivelMaximo)
         {
-            txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
-            txtLvlSiguiente.text = (nivelActual + 2).ToString();
             txtMejoraOro.text = costeOroMejorar[nivelActual].ToString();
             txtMejoraObsidium.text = costeObsidiumConstruirMejorar[nivelActual + 1].ToString();
         }
         else
         {
-            txtSaludMejorada.text = "---";
-            txtLvlSiguiente.text = "---";
-            txtMejoraOro.text = "---";
-            txtMejoraObsidium.text = "---";
+            btnMejorar.gameObject.SetActive(false);
+            btnMejorarInfo.gameObject.SetActive(false);
         }
+        
 
         
 

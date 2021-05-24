@@ -197,17 +197,15 @@ public class CuartelUnidades : Estructura
         // posicionar el menu en una de las dos pos, comprobar si la primera esta vacia, sinno en la segunga
         if (GameManager.Instance.isCuartelPos1Empty)
         {
-            Debug.Log("EN POS 1");
             GameManager.Instance.isCuartelPos1Empty = false;
         }
         else
         {
-            Debug.Log("EN POS 2");
             // mover el menu de unidades a la posicion 2, 80 pixeles hacia arriba
             GameManager.Instance.isCuartelPos2Empty = false;
             isInPosition1 = false;
             Vector3 pos = menuCrearUnidades.transform.position;
-            menuCrearUnidades.transform.position = new Vector3(pos.x, pos.y + 75, pos.z);
+            menuCrearUnidades.transform.position = new Vector3(pos.x, pos.y + Screen.height*0.18f, pos.z);
         }
     }
 

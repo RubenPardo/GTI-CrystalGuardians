@@ -8,12 +8,10 @@ public class Ballestero : Aliado
 {
 
     public static float mejoraDanyo = 1f;//mejora de aldea
-    // Start is called before the first frame update
-    private void Start()
+                                         // Start is called before the first frame update
+    protected override void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        settearVida();
-
+       base.Start();
         if (GameManager.Instance.rangoAtaqueSiempreVisible)
             drawRangeAttack();
     }

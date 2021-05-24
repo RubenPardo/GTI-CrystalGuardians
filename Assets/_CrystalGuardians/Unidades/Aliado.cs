@@ -9,7 +9,7 @@ public class Aliado : MonoBehaviour
     public GameObject prefabLvl1;
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
-    private Animator animator;
+    public Animator animator;
     public int nivelActual;
     public int[] costePorNivel;
     public int[] danyoPorNivel;
@@ -39,7 +39,7 @@ public class Aliado : MonoBehaviour
 
     protected float mejoraDanyo;
 
-    private void Start()
+    protected virtual void Start()
     {
         animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -66,7 +66,7 @@ public class Aliado : MonoBehaviour
     {
         if (!isMoving)
         {
-            //animator.SetBool("SeMueve", false);
+            
             enemigos = GameManager.Instance.listaEnemigosRonda; // obtener todos los enemigos de la escena
             enemigosDistancias = new Dictionary<GameObject, float>();
 

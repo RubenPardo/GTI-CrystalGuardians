@@ -34,6 +34,9 @@ public class Aliado : MonoBehaviour
 
     GameObject enemigoFijado;
 
+    public GameObject rangeGameObject;
+    public Material materialRangeAttack;
+
     protected float mejoraDanyo;
 
     private void Start()
@@ -211,6 +214,31 @@ public class Aliado : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.listaAliadosEnJuego.Remove(gameObject);
+    }
+
+    public void drawRangeAttack()
+    {
+        
+        if (rangeGameObject == null)
+        {
+            rangeGameObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            rangeGameObject.GetComponent<CapsuleCollider>().enabled = false;
+            rangeGameObject.transform.parent = gameObject.transform;
+            rangeGameObject.transform.localScale = new Vector3(rangoAtaque * 2, -0.05f, rangoAtaque * 2);
+            rangeGameObject.transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+            rangeGameObject.GetComponent<MeshRenderer>().material = materialRangeAttack;
+        }
+        else
+        {
+            rangeGameObject.transform.localScale = new Vector3(rangoAtaque * 2, 0.1f, rangoAtaque* 2);
+            rangeGameObject.SetActive(true);
+        }
+
+    }
+
+    public void removeRangeAttack()
+    {
+        rangeGameObject.SetActive(false);
     }
 
 }

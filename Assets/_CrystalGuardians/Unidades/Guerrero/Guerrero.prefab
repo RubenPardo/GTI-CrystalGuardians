@@ -249,7 +249,7 @@ MonoBehaviour:
   rangoVision: 15
   rangoAtaque: 1.4
   velocidadAtaque: 1
-  vidaActual: 3000
+  vidaActual: 1000
   healthBar: {fileID: 1429728333258723833}
   attackSpeed: 1
   buffDamage: 1
@@ -257,6 +257,8 @@ MonoBehaviour:
   isMoving: 0
   isAtacking: 0
   agent: {fileID: 0}
+  rangeGameObject: {fileID: 0}
+  materialRangeAttack: {fileID: 0}
 --- !u!195 &6560985097186517825
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -695,11 +697,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174248364024, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_Value
-      value: 3000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174248364024, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_MaxValue
-      value: 3000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174676661161, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_AnchorMax.x

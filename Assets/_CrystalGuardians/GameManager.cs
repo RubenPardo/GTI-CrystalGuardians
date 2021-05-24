@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> listaEnemigosRonda = new List<GameObject>();
     public static List<GameObject> listaEstructurasEnJuego = new List<GameObject>();
     public static List<GameObject> listaAliadosEnJuego = new List<GameObject>();
-    
+
 
 
 
@@ -99,11 +99,11 @@ public class GameManager : MonoBehaviour
     private int nivelActualCastillo = 0;
     public int NivelActualCastillo { get => nivelActualCastillo; set => nivelActualCastillo = value; }
     public int TopeUnidades { get; internal set; }
-    private int topeUnidades = 0;
+    public bool isCuartelPos1Empty = true;
+    public bool isCuartelPos2Empty = true;
     public int Unidades { get; internal set; }
 
 
-    private int unidades = 0;
 
     public int i = 0;
     public int y = 0;
@@ -112,6 +112,10 @@ public class GameManager : MonoBehaviour
     public List<Carta> listaCartas;
 
     
+    public bool rangoAtaqueSiempreVisible = false;
+    public bool RangoAtaqueSiempreVisible { get => rangoAtaqueSiempreVisible; set => rangoAtaqueSiempreVisible = value; }
+
+
 
     // Start is called before the first frame update
 

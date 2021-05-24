@@ -33858,6 +33858,7 @@ MonoBehaviour:
   castillo: {fileID: 6991216279435546186, guid: e8c4b1ae296eb5e4dad88c519ae39a76, type: 3}
   i: 0
   y: 0
+  rangoAtaqueSiempreVisible: 0
 --- !u!4 &1188315482
 Transform:
   m_ObjectHideFlags: 0

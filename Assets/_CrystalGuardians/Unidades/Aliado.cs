@@ -214,7 +214,7 @@ public class Aliado : MonoBehaviour
             rangeGameObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             rangeGameObject.GetComponent<CapsuleCollider>().enabled = false;
             rangeGameObject.transform.parent = gameObject.transform;
-            rangeGameObject.transform.localScale = new Vector3(rangoAtaque * 2, 0.1f, rangoAtaque * 2);
+            rangeGameObject.transform.localScale = new Vector3(rangoAtaque * 2, -0.05f, rangoAtaque * 2);
             rangeGameObject.transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
             rangeGameObject.GetComponent<MeshRenderer>().material = materialRangeAttack;
         }

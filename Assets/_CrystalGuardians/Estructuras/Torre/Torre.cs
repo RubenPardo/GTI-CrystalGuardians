@@ -148,9 +148,14 @@ public class Torre : Estructura
             rangeGameObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             rangeGameObject.GetComponent<CapsuleCollider>().enabled = false;
             rangeGameObject.transform.parent = gameObject.transform;
-            rangeGameObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
+            rangeGameObject.transform.localScale = new Vector3(range * 2, -0.05f, range * 2);
             rangeGameObject.transform.position = new Vector3(posicionOrigenTorre.transform.position.x, 0f, posicionOrigenTorre.transform.position.z);
             rangeGameObject.GetComponent<MeshRenderer>().material = materialRangeAttack;
+            /*var outline = rangeGameObject.AddComponent<Outline>();
+
+            outline.OutlineMode = Outline.Mode.OutlineAll;
+            outline.OutlineColor = Color.white;
+            outline.OutlineWidth = 10f;*/
         }
         else
         {

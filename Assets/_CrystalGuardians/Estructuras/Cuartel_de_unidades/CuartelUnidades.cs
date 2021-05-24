@@ -16,18 +16,18 @@ public class CuartelUnidades : Estructura
     public Text txtCosteGuerrero;
     public Text txtCosteBallestero;
     public Text txtSaludActual;
-    public Text txtSaludMejorada;
     public Text txtCapacidadActual;
-    public Text txtCapacidadMejorada;
     public Text txtLvlActual;
-    public Text txtLvlSiguiente;
     public Button btnMejorar;
     public Button btnMejorarInfo;
-    public Button btnGenerarGuerrero;
-    public Button btnGenerarBallestero;
 
-    // Storing different levels'
-    public GameObject[] levels;
+    public GameObject menuCrearUnidades;
+    private bool isInPosition1 = true;// para limpiar los flags de las posiciones del gamemanager al destruirse hay dos menus de crear unidades, si true es el que esta arriba,
+
+    public btnUnidad btnGenerarGuerrero;
+    public btnUnidad btnGenerarBallestero;
+
+  
     public GameObject prefabLvl1;
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
@@ -40,12 +40,15 @@ public class CuartelUnidades : Estructura
         GameManager.Instance.CuartelesConstruidos++;
 
 
-        
+        setUpMenuUnidades();
         setUpCanvasValues();
         sumarTopeUnidades(false);
 
+        
+
 
     }
+
     protected override void Update()
     {
         base.Update();
@@ -55,32 +58,20 @@ public class CuartelUnidades : Estructura
 
     private void OnDestroy()
     {
+        if (isInPosition1)
+        {
+            GameManager.Instance.isCuartelPos1Empty = true;
+        }
+        else
+        {
+            GameManager.Instance.isCuartelPos2Empty = true;
+        }
         GameManager.Instance.TopeUnidades -= capacidadUnidades[nivelActual]; // restar tope de unidades
         GameManager.Instance.CuartelesConstruidos--;
     }
 
    
 
-    private void comprobarDisponibilidadCosteUnidades()
-    {
-        btnGenerarGuerrero.enabled = 
-            (GameManager.Instance.Obsiidum >= guerrero.costePorNivel[nivelActual]) 
-            && GameManager.Instance.TopeUnidades > GameManager.Instance.Unidades;
-        btnGenerarBallestero.enabled = 
-            (GameManager.Instance.Obsiidum >= ballestero.costePorNivel[nivelActual])
-            && GameManager.Instance.TopeUnidades > GameManager.Instance.Unidades;
-      
-    }
-    private void comprobarDisponibilidadMejora()
-    {
-
-        bool v = (nivelActual <= NivelMaximo - 1) &&
-            GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-
-        btnMejorar.interactable = v;
-        btnMejorarInfo.interactable = v;
-    }
 
     // METODOS ------------------------------------------
     public override void mejorar()
@@ -175,17 +166,64 @@ public class CuartelUnidades : Estructura
 
 
     // METODOS DE HUD ------------------------------------------
+
+    private void comprobarDisponibilidadCosteUnidades()
+    {
+        btnGenerarGuerrero.Available =
+            (GameManager.Instance.Obsiidum >= guerrero.costePorNivel[nivelActual])
+            && GameManager.Instance.TopeUnidades > GameManager.Instance.Unidades;
+        btnGenerarBallestero.Available =
+            (GameManager.Instance.Obsiidum >= ballestero.costePorNivel[nivelActual])
+            && GameManager.Instance.TopeUnidades > GameManager.Instance.Unidades;
+
+    }
+    private void comprobarDisponibilidadMejora()
+    {
+
+        bool v = (nivelActual <= NivelMaximo - 1) &&
+            GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+
+        btnMejorar.interactable = v;
+        btnMejorarInfo.interactable = v;
+    }
+    private void setUpMenuUnidades()
+    {
+
+
+        btnGenerarBallestero.setUnidad(ballestero);
+        btnGenerarGuerrero.setUnidad(guerrero);
+
+        // posicionar el menu en una de las dos pos, comprobar si la primera esta vacia, sinno en la segunga
+        if (GameManager.Instance.isCuartelPos1Empty)
+        {
+            Debug.Log("EN POS 1");
+            GameManager.Instance.isCuartelPos1Empty = false;
+        }
+        else
+        {
+            Debug.Log("EN POS 2");
+            // mover el menu de unidades a la posicion 2, 80 pixeles hacia arriba
+            GameManager.Instance.isCuartelPos2Empty = false;
+            isInPosition1 = false;
+            Vector3 pos = menuCrearUnidades.transform.position;
+            menuCrearUnidades.transform.position = new Vector3(pos.x, pos.y + 75, pos.z);
+        }
+    }
+
+
     private void setUpCanvasValues()
     {
+
+
         // panel actual
         txtLvlActual.text = "Cuartel de Unidades Nivel " + (nivelActual + 1).ToString();
-
+        txtNivel.text = (nivelActual + 1).ToString();
         txtCapacidadActual.text = capacidadUnidades[nivelActual].ToString();
 
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
 
-        txtCosteBallestero.text = guerrero.costePorNivel[nivelActual].ToString();
-        txtCosteGuerrero.text = guerrero.costePorNivel[nivelActual].ToString();
+        
 
 
 

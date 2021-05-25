@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6927335915157520567, guid: ff21eed86bde3bb4692f21df4e8497cf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.48
+      value: -4.77
       objectReference: {fileID: 0}
     - target: {fileID: 6927335915157520567, guid: ff21eed86bde3bb4692f21df4e8497cf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -275,6 +275,10 @@ PrefabInstance:
     - target: {fileID: 7448184326527452406, guid: ff21eed86bde3bb4692f21df4e8497cf, type: 3}
       propertyPath: lengthInSec
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448184326527452406, guid: ff21eed86bde3bb4692f21df4e8497cf, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7448184326527452406, guid: ff21eed86bde3bb4692f21df4e8497cf, type: 3}
       propertyPath: ShapeModule.radius.value

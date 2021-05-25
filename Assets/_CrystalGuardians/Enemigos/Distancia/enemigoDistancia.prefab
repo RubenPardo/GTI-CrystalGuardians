@@ -328,6 +328,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemigoDistancia
       objectReference: {fileID: 0}
+    - target: {fileID: 1444916641170526962, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.271
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444916641170526962, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444916641170526962, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.422
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 96f31d58ca7e2694496edfd82746d99c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
 --- !u!4 &7810575615434254584 stripped

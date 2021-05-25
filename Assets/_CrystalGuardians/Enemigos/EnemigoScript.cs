@@ -32,7 +32,8 @@ public class EnemigoScript : MonoBehaviour
     private bool isAtacking;
 
     //animaciones
-    private Animator animator;
+    public Animator animator;
+
 
 
     NavMeshAgent agent;
@@ -45,6 +46,7 @@ public class EnemigoScript : MonoBehaviour
         settearVida();
 
         animator = GetComponentInChildren<Animator>();
+        
     }
 
     // Update is called once per frame

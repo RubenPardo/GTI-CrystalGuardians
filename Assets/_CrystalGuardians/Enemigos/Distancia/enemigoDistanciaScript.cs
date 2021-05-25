@@ -18,7 +18,7 @@ public class enemigoDistanciaScript : EnemigoScript
     //Velocidad de giro del cañon
     public float turnSpeed = 10f;
 
-
+    
     // Update is called once per frame
     protected override void Update()
     {
@@ -27,6 +27,7 @@ public class enemigoDistanciaScript : EnemigoScript
 
     override public void attack()
     {
+        animator.SetBool("atacando", true);
         if (objetivoFijado != null)
         {
             Vector3 dir = objetivoFijado.transform.position - transform.position;
@@ -52,6 +53,7 @@ public class enemigoDistanciaScript : EnemigoScript
 
     void Shoot()
     {
+        
         GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, bulletPoint.position, bulletPoint.rotation);
         BalaMortero bala = bulletGO.GetComponent<BalaMortero>();
 

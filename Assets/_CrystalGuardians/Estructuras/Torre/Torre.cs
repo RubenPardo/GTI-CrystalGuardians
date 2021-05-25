@@ -31,6 +31,9 @@ public class Torre : Estructura
     public GameObject cannon;
     public Material materialCannonNivel3;
 
+    //particulas
+    public GameObject particulasMejora;
+
     public override void abrirMenu()
     {
         if (canvas != null)
@@ -82,6 +85,11 @@ public class Torre : Estructura
         // actualizar hud informacion
         setUpCanvasValues();
         settearVida();
+
+        //emitir particulas
+        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
+        sistema.Play();
+
     }
 
     private void comprobarCambiarPrefab()

@@ -20,6 +20,9 @@ public class Trampa : Estructura
 
     public GameObject colliderExplosion;
 
+    //particulas
+    public GameObject particulasMejora;
+
     public int[] danyoPorNivel;
     public override void mejorar()
     {
@@ -41,6 +44,11 @@ public class Trampa : Estructura
 
         // actualizar hud informacion
         setUpCanvasValues();
+
+        //emitir particulas
+        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
+        sistema.Play();
+
     }
 
     public override void abrirMenu()

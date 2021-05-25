@@ -32,6 +32,9 @@ public class Castillo : Estructura
 
     public int[] costeObsidiumConstruirMejorar;
 
+    //particulas
+    public GameObject particulasMejora;
+
     public override void abrirMenu()
     {
         if (canvas != null)
@@ -65,6 +68,10 @@ public class Castillo : Estructura
 
         settearVida();
         comprobarNivelCastillo();
+
+        //emitir particulas
+        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
+        sistema.Play();
 
     }
 

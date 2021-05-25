@@ -91,7 +91,7 @@ MonoBehaviour:
   vidaMaxima: 0
   vidaActual: 0
   speed: 5
-  rangoVision: 71
+  rangoVision: 100
   rangoAtaque: 1.5
   attackSpeed: 1
   healthBar: {fileID: 7592100259447508494}

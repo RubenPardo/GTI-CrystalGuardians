@@ -17,7 +17,10 @@ public class LuzAntorcha : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (fuego != null)
+        {
+            fuego.SetActive(GameManager.Instance.lucesActivas);
+        }
         luz.enabled = GameManager.Instance.lucesActivas;
-        fuego.SetActive(GameManager.Instance.lucesActivas);
     }
 }

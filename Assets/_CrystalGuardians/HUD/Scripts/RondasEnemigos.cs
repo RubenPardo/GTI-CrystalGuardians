@@ -9,7 +9,7 @@ public class RondasEnemigos : MonoBehaviour
 {
     public Text contadorRondas;
     public Text txtOleada;
-    private float contadorTiempoRonda = 20.0f;
+    private float contadorTiempoRonda = 10.0f;
     public int numeroRnda = 1;
     private bool isRondaActive = false;
 
@@ -41,6 +41,8 @@ public class RondasEnemigos : MonoBehaviour
     private int maxOscuridad = 10;
     [SerializeField]
     private int maxLuz = 52;
+    [SerializeField]
+    private int luzAmbienteParaEncenderLuces = 20;
     private int tiempoRonda;// usado para realizar la regla de tres entre la luz y el tiempo
 
     void Start()
@@ -105,7 +107,7 @@ public class RondasEnemigos : MonoBehaviour
             if (comprobarFinRonda())
             {
                 finRonda();
-
+                
 
             }
         }
@@ -119,14 +121,14 @@ public class RondasEnemigos : MonoBehaviour
         GameManager.Instance.listaEnemigosRonda.Clear();
         numeroRnda++;
         isRondaActive = false;
-        contadorTiempoRonda = 300.0f;
+        contadorTiempoRonda = 10.0f;
         tiempoRonda = (int)contadorTiempoRonda;
         txtOleada.text = "PARA LA OLEADA " + numeroRnda.ToString("f0");
         txtOleada.color = Color.white;
         comprobarLanzarMejorasAldeas();
 
         // hacer de dia
-        Debug.Log("MAX:"+maxLuz);
+        GameManager.Instance.lucesActivas = false;
         Vector3 rotation = new Vector3(maxLuz,
                         transform.rotation.y,
                         transform.rotation.z);
@@ -160,6 +162,10 @@ public class RondasEnemigos : MonoBehaviour
         // asi si se redujo el 100% debe dar el maxOscuridad 
         float luzActual = ((maxLuz - maxOscuridad) * cocienteTiempo) + maxOscuridad;
        
+        if(luzActual <= luzAmbienteParaEncenderLuces)
+        {
+            GameManager.Instance.lucesActivas = true;
+        }
 
         Vector3 rotation = new Vector3(luzActual,
                         transform.rotation.y,

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: c9210e3ed8bf6294096264ee5fd83d87, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: ecfec73ae4dce1a4ead72a34dba63984, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1023,7 +1023,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -15106,8 +15106,9 @@ MonoBehaviour:
   mina: {fileID: 5047545057962889104, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
   castillo: {fileID: 6991216279435546186, guid: e8c4b1ae296eb5e4dad88c519ae39a76, type: 3}
   luzAmbiente: {fileID: 34475459}
-  maxOscuridad: 10
+  maxOscuridad: 8
   maxLuz: 52
+  luzAmbienteParaEncenderLuces: 10
 --- !u!114 &236390889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34976,8 +34977,6 @@ MonoBehaviour:
   castillo: {fileID: 6991216279435546186, guid: e8c4b1ae296eb5e4dad88c519ae39a76, type: 3}
   isCuartelPos1Empty: 1
   isCuartelPos2Empty: 1
-  i: 0
-  y: 0
 --- !u!4 &1188315482
 Transform:
   m_ObjectHideFlags: 0

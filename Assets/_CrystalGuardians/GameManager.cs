@@ -104,14 +104,13 @@ public class GameManager : MonoBehaviour
     public int Unidades { get; internal set; }
 
 
-
-    public int i = 0;
-    public int y = 0;
-
     //Mejoras de aldea
     public List<Carta> listaCartas;
 
-    
+    // controlar las luces para activarlas solo de noche
+    internal bool lucesActivas = false;
+
+
 
     // Start is called before the first frame update
 

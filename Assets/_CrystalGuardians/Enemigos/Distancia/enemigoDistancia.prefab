@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 7039853618393583143}
   - component: {fileID: 2896770395211310197}
   - component: {fileID: 5264008110049839204}
-  - component: {fileID: -4776395160706341958}
   m_Layer: 0
   m_Name: enemigoDistancia
   m_TagString: Enemigo
@@ -158,25 +157,6 @@ MonoBehaviour:
   bulletPoint: {fileID: 2838882410141547578}
   rotateObject: {fileID: 972887454449850611}
   turnSpeed: 10
---- !u!95 &-4776395160706341958
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4668921592342232491}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 599d7154c4c5749478142641405b5bf3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4795742359218197542
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,9 +367,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1650276953399491510, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.021480799
+      objectReference: {fileID: 0}
+    - target: {fileID: -1650276953399491510, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.49177843
+      objectReference: {fileID: 0}
+    - target: {fileID: -1650276953399491510, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.39499223
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
       propertyPath: m_Name
       value: enemigoDistancia
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_TagString
+      value: Enemigo
       objectReference: {fileID: 0}
     - target: {fileID: 1444916641170526962, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -403,10 +399,30 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.422
       objectReference: {fileID: 0}
+    - target: {fileID: 3622560965573938854, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622560965573938854, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.07125139
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622560965573938854, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.42562664
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 96f31d58ca7e2694496edfd82746d99c, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66e2960af90ba8945a1aa29c82f7e2af, type: 3}
 --- !u!4 &7810575615434254584 stripped

@@ -990,7 +990,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1041,13 +1041,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34475458}
-  m_LocalRotation: {x: 0.46391273, y: -0.0803161, z: 0.40302214, w: 0.7847978}
+  m_LocalRotation: {x: 0.44913638, y: -0.06836072, z: 0.41134655, w: 0.79018813}
   m_LocalPosition: {x: -22, y: 38.9, z: -24.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 24.002, z: 66.322}
 --- !u!1 &36353500 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6505362720994532507, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -15105,6 +15105,9 @@ MonoBehaviour:
   enemigoFuerte: {fileID: 2771845309979949986, guid: 8d088275eea3fa24fb37aec828b14777, type: 3}
   mina: {fileID: 5047545057962889104, guid: a520cf47da9bcaa42974cbc731b1edc6, type: 3}
   castillo: {fileID: 6991216279435546186, guid: e8c4b1ae296eb5e4dad88c519ae39a76, type: 3}
+  luzAmbiente: {fileID: 34475459}
+  maxOscuridad: 10
+  maxLuz: 52
 --- !u!114 &236390889
 MonoBehaviour:
   m_ObjectHideFlags: 0

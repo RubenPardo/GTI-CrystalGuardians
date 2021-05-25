@@ -9,7 +9,7 @@ public class RondasEnemigos : MonoBehaviour
 {
     public Text contadorRondas;
     public Text txtOleada;
-    private float contadorTiempoRonda = 90.0f;
+    private float contadorTiempoRonda = 20.0f;
     public int numeroRnda = 1;
     private bool isRondaActive = false;
 
@@ -33,11 +33,19 @@ public class RondasEnemigos : MonoBehaviour
     public GameObject castillo;
 
 
-
+    // control ciclo dia noche
+    [Header("Luz Ambiente")]
+    [SerializeField]
+    private Light luzAmbiente;
+    [SerializeField]
+    private int maxOscuridad = 10;
+    [SerializeField]
+    private int maxLuz = 52;
+    private int tiempoRonda;// usado para realizar la regla de tres entre la luz y el tiempo
 
     void Start()
     {
-
+        tiempoRonda = (int)contadorTiempoRonda;
         listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
 
     }
@@ -69,11 +77,8 @@ public class RondasEnemigos : MonoBehaviour
 
     public void forzarFinalizarRonda()
     {
-        isRondaActive = false;
-        contadorTiempoRonda = 90.0f;
-        numeroRnda++;
-        txtOleada.text = "PARA LA OLEADA " + numeroRnda.ToString("f0");
-        txtOleada.color = Color.white;
+        finRonda();
+
         GameObject[] listaEnemigosEnPartida = GameObject.FindGameObjectsWithTag("Enemigo");
         for (int i = 0; i < listaEnemigosEnPartida.Length; i++)
         {
@@ -96,22 +101,37 @@ public class RondasEnemigos : MonoBehaviour
         {
 
             contadorRondas.text = "";
-
+            
             if (comprobarFinRonda())
             {
-                GameManager.Instance.listaEnemigosRonda.Clear();
-                numeroRnda++;
-                isRondaActive = false;
-                contadorTiempoRonda = 300.0f;
-                txtOleada.text = "PARA LA OLEADA " + numeroRnda.ToString("f0");
-                txtOleada.color = Color.white;
-                comprobarLanzarMejorasAldeas();
+                finRonda();
 
 
             }
         }
+        else { updateLuzAmbiente(); }
         
 
+    }
+
+    private void finRonda()
+    {
+        GameManager.Instance.listaEnemigosRonda.Clear();
+        numeroRnda++;
+        isRondaActive = false;
+        contadorTiempoRonda = 300.0f;
+        tiempoRonda = (int)contadorTiempoRonda;
+        txtOleada.text = "PARA LA OLEADA " + numeroRnda.ToString("f0");
+        txtOleada.color = Color.white;
+        comprobarLanzarMejorasAldeas();
+
+        // hacer de dia
+        Debug.Log("MAX:"+maxLuz);
+        Vector3 rotation = new Vector3(maxLuz,
+                        transform.rotation.y,
+                        transform.rotation.z);
+        luzAmbiente.transform.eulerAngles = rotation;
+            
     }
 
     private bool updateCronometro()
@@ -127,8 +147,27 @@ public class RondasEnemigos : MonoBehaviour
 
         return contadorTiempoRonda <= 0.0f;
     }
+    private void updateLuzAmbiente()
+    {
+        // contadorTiempoRonda ( tmAct ) -> tiempoRonda (tmMax)
+        // luzAmbiente.rotation.x ( X ) -> maxOscuridad (luzMax)
+        // tmAct/tmMax = X/LuzMax -> X = (tmAct * luzMax) / tmMax
 
-  
+
+        float cocienteTiempo = contadorTiempoRonda / tiempoRonda;
+
+        // quitar el tanto porciento entre la resta y luego sumar el min, 
+        // asi si se redujo el 100% debe dar el maxOscuridad 
+        float luzActual = ((maxLuz - maxOscuridad) * cocienteTiempo) + maxOscuridad;
+       
+
+        Vector3 rotation = new Vector3(luzActual,
+                        transform.rotation.y,
+                        transform.rotation.z);
+        luzAmbiente.transform.eulerAngles = rotation;
+
+    }
+
     private bool comprobarFinRonda()
     {
         GameObject[] listaEnemigosEnPartida = GameObject.FindGameObjectsWithTag("Enemigo");

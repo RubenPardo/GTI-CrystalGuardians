@@ -6,7 +6,22 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 05 - Default
+    second: {fileID: 2100000, guid: 423e9a678d4f95a41b8e34080f2a81c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ceramic
+    second: {fileID: 2100000, guid: 0dc8ee3b05f0e33498a62742bacce2ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall Paint
+    second: {fileID: 2100000, guid: 260e3953d75a91540bf5c894b9bee70c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 2

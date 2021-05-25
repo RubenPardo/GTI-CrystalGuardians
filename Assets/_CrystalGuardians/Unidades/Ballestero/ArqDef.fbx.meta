@@ -10,8 +10,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 103454a5e7bf7b84f962032ec123c460, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: 04 - Default
-    second: {fileID: 239378781582670930, guid: a5630b1b3927a7f4b807fe2eaec3afcf, type: 3}
+    second: {fileID: 2100000, guid: b95a86af4685092419aaf2c3d74c358b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ceramic
+    second: {fileID: 2100000, guid: 0dc8ee3b05f0e33498a62742bacce2ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall Paint
+    second: {fileID: 2100000, guid: 260e3953d75a91540bf5c894b9bee70c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

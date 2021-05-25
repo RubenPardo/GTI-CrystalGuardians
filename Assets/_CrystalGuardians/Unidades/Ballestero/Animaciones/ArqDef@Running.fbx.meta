@@ -6,7 +6,27 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: Running
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 47dad1bd4f2f55f40af79e99931d5e7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 14 - Polished Aluminum
+    second: {fileID: 2100000, guid: d1bc6179f865def4c8a486e72d3e966a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ceramic
+    second: {fileID: 2100000, guid: 0dc8ee3b05f0e33498a62742bacce2ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall Paint
+    second: {fileID: 2100000, guid: 260e3953d75a91540bf5c894b9bee70c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

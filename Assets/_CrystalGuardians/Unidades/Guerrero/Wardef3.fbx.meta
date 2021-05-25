@@ -6,7 +6,27 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: 47dad1bd4f2f55f40af79e99931d5e7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 14 - Polished Aluminum
+    second: {fileID: 2100000, guid: 65a1499ba776ccc4ebdf3f993c84a557, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ceramic
+    second: {fileID: 2100000, guid: 0dc8ee3b05f0e33498a62742bacce2ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall Paint
+    second: {fileID: 2100000, guid: 260e3953d75a91540bf5c894b9bee70c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

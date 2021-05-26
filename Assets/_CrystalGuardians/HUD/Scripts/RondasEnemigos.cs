@@ -111,7 +111,7 @@ public class RondasEnemigos : MonoBehaviour
 
             }
         }
-        else { updateLuzAmbiente(); }
+        else if(numeroRnda % 5 == 0){ updateLuzAmbiente(); }
         
 
     }

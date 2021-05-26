@@ -32,6 +32,9 @@ public class CuartelUnidades : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
+    //particulas
+    public GameObject particulasMejora;
+
 
     protected override void Start()
     {
@@ -89,8 +92,12 @@ public class CuartelUnidades : Estructura
         setUpCanvasValues();
         sumarTopeUnidades(true);
         settearVida();
-        
-       
+
+        //emitir particulas
+        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
+        sistema.Play();
+
+
     }
 
     private void comprobarCambiarPrefab()

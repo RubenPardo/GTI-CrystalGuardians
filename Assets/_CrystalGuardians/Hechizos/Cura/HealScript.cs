@@ -16,6 +16,7 @@ public class HealScript : Hechizo
         transform.localScale = new Vector3(transform.localScale.x * aumentoRadio, transform.localScale.y, transform.localScale.z * aumentoRadio);
         aliadosEnRadio = new ArrayList();
         spwanHechizo = Time.time;
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -41,6 +42,7 @@ public class HealScript : Hechizo
         }
         else
         {
+
             if (healCoutDwon <= 0f)
             {
                 Aliado ali;

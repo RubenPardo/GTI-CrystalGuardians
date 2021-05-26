@@ -9786,6 +9786,8 @@ MonoBehaviour:
   - 0.3
   - 0.45
   nivelActual: 0
+  sistemaParticualas: {fileID: 1512690969374192511}
+  areaParticualas: {fileID: 2181616190709157361}
   mejoraDanyoRayo: 1
 --- !u!1001 &5915836740478724521
 PrefabInstance:

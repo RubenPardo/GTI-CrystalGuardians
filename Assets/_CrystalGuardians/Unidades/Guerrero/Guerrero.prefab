@@ -202,14 +202,14 @@ MonoBehaviour:
   prefabLvl2: {fileID: 4167404608437397355}
   prefabLvl3: {fileID: 1769988250544019387}
   animator: {fileID: 0}
-  nivelActual: 0
+  nivelActual: 5
   costePorNivel: 2c010000b80b000070170000204e000050c30000a0860100
   danyoPorNivel: 41000000470000004f000000570000005f00000069000000
   vidaPorNivel: f4010000e8030000dc050000d0070000c4090000b80b0000
   rangoVision: 15
   rangoAtaque: 1.4
   velocidadAtaque: 1
-  vidaActual: 500
+  vidaActual: 3000
   healthBar: {fileID: 1429728333258723833}
   attackSpeed: 1
   buffDamage: 1
@@ -506,7 +506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e83fe9b7e72df9644ae29b9aaf3ccc84, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e83fe9b7e72df9644ae29b9aaf3ccc84, type: 3}
       propertyPath: m_TagString
@@ -663,6 +663,10 @@ PrefabInstance:
       value: WarDEF 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a5630b1b3927a7f4b807fe2eaec3afcf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a5630b1b3927a7f4b807fe2eaec3afcf, type: 3}
       propertyPath: m_TagString
       value: Unidad
       objectReference: {fileID: 0}
@@ -783,11 +787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174248364024, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_Value
-      value: 500
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174248364024, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_MaxValue
-      value: 500
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174676661161, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_AnchorMax.x

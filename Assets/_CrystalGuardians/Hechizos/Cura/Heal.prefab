@@ -765,7 +765,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1.0935273
+      value: 1
       mode: 0
       spread: 0
       speed:
@@ -4869,7 +4869,7 @@ GameObject:
   - component: {fileID: 4738243730238019077}
   - component: {fileID: 6123696664275765930}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: particulasBaseHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4884,7 +4884,7 @@ Transform:
   m_GameObject: {fileID: 8578541227395944114}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 5, y: 0.1, z: 5}
   m_Children: []
   m_Father: {fileID: 4264280539514604968}
   m_RootOrder: 1
@@ -5516,7 +5516,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 0
-    type: 4
+    type: 0
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -5603,7 +5603,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.0001
       mode: 0
       spread: 0
       speed:
@@ -9785,6 +9785,8 @@ MonoBehaviour:
   - 0.2
   - 0.3
   nivelActual: 0
+  sistemaParticualas: {fileID: 4006819338141608925}
+  areaParticualas: {fileID: 4738243730238019077}
   ticksPorSegundo: 1
 --- !u!1001 &3808638257968356137
 PrefabInstance:

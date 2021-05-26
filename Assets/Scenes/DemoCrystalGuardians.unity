@@ -15244,7 +15244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contadorRondas: {fileID: 1675765648}
-  txtOleada: {fileID: 0}
+  txtOleada: {fileID: 1839444917}
   numeroRnda: 1
   cantidadEnemigosPorRonda: 3
   panelMejoras: {fileID: 1551178979}

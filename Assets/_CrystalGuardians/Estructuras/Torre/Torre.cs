@@ -13,13 +13,14 @@ public class Torre : Estructura
     
     public Text txtSaludActual;
     public Text txtSaludMejorada;
-    public Text txtDañoActual;
-    public Text txtDañoMejorada;
+    public Text txtDanyoActual;
+    public Text txtDanyoMejorada;
     public Text txtLvlActual;
     public Text txtLvlSiguiente;
     public Button btnMejorar;
     public Button btnMejorarInfo;
-    
+   
+
 
 
     [Header("Atributos")]
@@ -42,14 +43,6 @@ public class Torre : Estructura
         }
     }
 
-    public override void cerrarMenu()
-    {
-        if (canvas != null)
-        {
-            canvas.SetActive(false);
-        }
-    }
-
     public float attackSpeed = 1f;
     private float fireCoutDwon = 0f;
 
@@ -64,8 +57,29 @@ public class Torre : Estructura
 
     public GameObject bulletPrefab;
     public Transform bulletPoint;
+    public GameObject posicionOrigenTorre;
+    public Material materialRangeAttack;
+
+    private GameObject rangeGameObject;
 
 
+    public override void abrirMenu()
+    {
+        if (canvas != null)
+        {
+            canvas.SetActive(true);
+            drawRangeAttack();
+        }
+    }
+
+    public override void cerrarMenu()
+    {
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+            removeRangeAttack();
+        }
+    }
 
     public override void mejorar()
     {
@@ -115,7 +129,7 @@ public class Torre : Estructura
                 Renderer cannonRender = cannon.GetComponent<Renderer>();
                 // no se puede modificar directamente, hay que referenciarlo como una copia
                 var a = cannonRender.materials;
-                a[0] = materialCannonNivel3; // cambiar el metal a por oro del cañon
+                a[0] = materialCannonNivel3; // cambiar el metal a por oro del caï¿½on
                 cannonRender.materials = a;
 
             }
@@ -131,6 +145,41 @@ public class Torre : Estructura
         base.Start();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         setUpCanvasValues();
+        settearVida();
+
+        if (GameManager.Instance.rangoAtaqueSiempreVisible)
+            drawRangeAttack();
+       
+    }
+
+    public void drawRangeAttack()
+    {
+        if(rangeGameObject == null)
+        {
+            rangeGameObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            rangeGameObject.GetComponent<CapsuleCollider>().enabled = false;
+            rangeGameObject.transform.parent = gameObject.transform;
+            rangeGameObject.transform.localScale = new Vector3(range * 2, -0.05f, range * 2);
+            rangeGameObject.transform.position = new Vector3(posicionOrigenTorre.transform.position.x, 0f, posicionOrigenTorre.transform.position.z);
+            rangeGameObject.GetComponent<MeshRenderer>().material = materialRangeAttack;
+            /*var outline = rangeGameObject.AddComponent<Outline>();
+
+            outline.OutlineMode = Outline.Mode.OutlineAll;
+            outline.OutlineColor = Color.white;
+            outline.OutlineWidth = 10f;*/
+        }
+        else
+        {
+            rangeGameObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
+            rangeGameObject.SetActive(true);
+        }
+       
+    }
+
+    public void removeRangeAttack()
+    {
+        if (GameManager.Instance.rangoAtaqueSiempreVisible == false)
+            rangeGameObject.SetActive(false);
     }
 
     void UpdateTarget()
@@ -138,8 +187,8 @@ public class Torre : Estructura
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
-        foreach(GameObject enemy in enemies){
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+        foreach (GameObject enemy in enemies){
+            float distanceToEnemy = Vector3.Distance(posicionOrigenTorre.transform.position, enemy.transform.position);
 
             if (distanceToEnemy < shortestDistance)
             {
@@ -163,6 +212,9 @@ public class Torre : Estructura
    protected override void Update()
     {
         base.Update();
+        Animator animator = cannon.GetComponent<Animator>();
+        ParticleSystem p = bulletPoint.GetComponentInChildren<ParticleSystem>();
+        
         if (target != null)
         {
             Vector3 dir = target.position - transform.position;
@@ -170,14 +222,25 @@ public class Torre : Estructura
             Vector3 rotation = Quaternion.Lerp(rotateObject.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles; 
                 //lookRotation.eulerAngles;
             rotateObject.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
+           
             if (fireCoutDwon <= 0f)
             {
+                
+                
+                animator.speed = attackSpeed;
+                animator.SetBool("StartShot", true);
+                p.Play();
+                //ParticleSystem.EmissionModule emission = p.emission;
+                //emission.enabled = true;
                 Shoot();
                 fireCoutDwon = 1f / attackSpeed;
             }
 
             fireCoutDwon -= Time.deltaTime;
+        }
+        else
+        {
+            animator.SetBool("StartShot", false);
         }
         comprobarDisponibilidadMejora();
         
@@ -195,6 +258,8 @@ public class Torre : Estructura
 
     void Shoot ()
     {
+
+
         GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, bulletPoint.position, bulletPoint.rotation);
         Bala bala = bulletGO.GetComponent<Bala>();
 
@@ -203,12 +268,13 @@ public class Torre : Estructura
             bala.damage = danyoPorNivel[nivelActual];
             bala.setTarget(target);
         }
+        
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(posicionOrigenTorre.transform.position, range);
     }
 
     private void setUpCanvasValues()
@@ -217,7 +283,7 @@ public class Torre : Estructura
 
         
         txtLvlActual.text = "Torre Nivel "+(nivelActual + 1).ToString();
-        txtDañoActual.text = danyoPorNivel[nivelActual].ToString();
+        txtDanyoActual.text = danyoPorNivel[nivelActual].ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
 
 

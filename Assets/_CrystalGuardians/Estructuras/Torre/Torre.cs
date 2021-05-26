@@ -35,6 +35,7 @@ public class Torre : Estructura
     //particulas
     public GameObject particulasMejora;
 
+    /*
     public override void abrirMenu()
     {
         if (canvas != null)
@@ -42,6 +43,7 @@ public class Torre : Estructura
             canvas.SetActive(true);
         }
     }
+    */
 
     public float attackSpeed = 1f;
     private float fireCoutDwon = 0f;

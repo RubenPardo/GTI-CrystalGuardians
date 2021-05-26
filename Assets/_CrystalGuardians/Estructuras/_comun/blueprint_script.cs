@@ -42,6 +42,7 @@ public class blueprint_script : MonoBehaviour
         if (!hayColision && sePuedeConstruir)
         {
             mat.color = colorNormal; // color normal
+            mat.SetColor("_EmissionColor", colorNormal);
             // si se pulsa el izquierdo
             if (Input.GetMouseButtonDown(0)){
                 // construir la estructura 
@@ -71,6 +72,7 @@ public class blueprint_script : MonoBehaviour
         {
             // si no a alguna de esas dos poner en color rojo
             mat.color = colorColision;
+            mat.SetColor("_EmissionColor", colorColision);
         }
 
 

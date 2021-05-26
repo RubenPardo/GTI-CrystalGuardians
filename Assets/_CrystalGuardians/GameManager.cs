@@ -84,12 +84,12 @@ public class GameManager : MonoBehaviour
 
 
 
-    // a medida que se van construyendo y borrando los enemigos/estructuras/aliados se iran añadiendo o borrando de estas listas
+    // a medida que se van construyendo y borrando los enemigos/estructuras/aliados se iran aï¿½adiendo o borrando de estas listas
     // asi evitamos tener que hacer el FinWithTag por cada update en los scripts de fijacion de las unidades
     public List<GameObject> listaEnemigosRonda = new List<GameObject>();
     public static List<GameObject> listaEstructurasEnJuego = new List<GameObject>();
     public static List<GameObject> listaAliadosEnJuego = new List<GameObject>();
-    
+
 
 
 
@@ -99,19 +99,21 @@ public class GameManager : MonoBehaviour
     private int nivelActualCastillo = 0;
     public int NivelActualCastillo { get => nivelActualCastillo; set => nivelActualCastillo = value; }
     public int TopeUnidades { get; internal set; }
-    private int topeUnidades = 0;
+    public bool isCuartelPos1Empty = true;
+    public bool isCuartelPos2Empty = true;
     public int Unidades { get; internal set; }
 
-
-    private int unidades = 0;
-
-    public int i = 0;
-    public int y = 0;
 
     //Mejoras de aldea
     public List<Carta> listaCartas;
 
+    // controlar las luces para activarlas solo de noche
+    internal bool lucesActivas = false;
     
+    public bool rangoAtaqueSiempreVisible = false;
+    public bool RangoAtaqueSiempreVisible { get => rangoAtaqueSiempreVisible; set => rangoAtaqueSiempreVisible = value; }
+
+
 
     // Start is called before the first frame update
 

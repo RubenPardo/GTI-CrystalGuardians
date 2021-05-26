@@ -56,7 +56,7 @@ public class RondasEnemigos : MonoBehaviour
     private void comprobarLanzarMejorasAldeas()
     {
         // cada 3 rondas se lanzaran las mejoras de la aldea
-        if (numeroRnda % 5 == 0)
+        if (numeroRnda % 6 == 0)
         {
             //lanzar mejoras de aldea
             panelMejoras.SetActive(true);

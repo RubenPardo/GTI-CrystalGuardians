@@ -49,6 +49,8 @@ public class BalaMortero : MonoBehaviour
             Rigidbody rb = transform.GetComponent<Rigidbody>();
             rb.isKinematic = true;
             rangoExplosion.GetComponentInChildren<ParticleSystem>().Play();
+
+            
         }
     }
     public void setTarget(Transform _target)

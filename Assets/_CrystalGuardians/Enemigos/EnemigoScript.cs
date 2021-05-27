@@ -189,11 +189,6 @@ public class EnemigoScript : MonoBehaviour
             if (objetivoFijado.TryGetComponent<Estructura>(out Estructura estructura))
             {
                 
-                if (objetivoFijado.TryGetComponent<Castillo>(out Castillo castillo))
-                {
-                    Debug.Log("CASTILLO: "+castillo);
-                    castillo.onShakeCamera();
-                }
                 estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
             }
             else

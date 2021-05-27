@@ -39,10 +39,5 @@ public class TriggerExplosionMortero : MonoBehaviour
             
         }
 
-        if (other.TryGetComponent<Castillo>(out Castillo castillo))
-        {
-            Debug.Log("CASTILLO: " + castillo);
-            castillo.onShakeCamera();
-        }
     }
 }

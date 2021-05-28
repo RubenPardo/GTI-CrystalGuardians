@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 {
     
     public Text hudProba;
-
+    //objeto que controla la musica de la escena
+    public GameObject musicaAmbiente;
 
     // singleton
 
@@ -113,6 +114,7 @@ public class GameManager : MonoBehaviour
     public bool rangoAtaqueSiempreVisible = false;
     public bool RangoAtaqueSiempreVisible { get => rangoAtaqueSiempreVisible; set => rangoAtaqueSiempreVisible = value; }
 
+    
 
 
     // Start is called before the first frame update
@@ -134,6 +136,8 @@ public class GameManager : MonoBehaviour
             listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas r�pido", "recursos", aumentarProduccionMinas20));
             listaCartas.Add(new Carta("Unidades", "Tus unidades ahora hacen mas da�o", "unidades", aumentoDeDanyoAliados));
             listaCartas.Add(new Carta("Hechizos", "El radio de los hechizos ha aumentado", "hechizos", aumentarRadioHechizos));
+
+            
 
         }
         else

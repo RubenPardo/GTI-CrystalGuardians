@@ -51,6 +51,9 @@ public class MejorasController : MonoBehaviour
     public Text textoDeMisMejoras;
     public bool hasElegidoMejora ;
 
+    //Musica de entre rondas para cuando se seleccione una carta
+    public AudioClip musicaEntreRondas;
+
 
     private void Start()
     {
@@ -186,8 +189,10 @@ public class MejorasController : MonoBehaviour
             
             hasElegidoMejora = true;
         }
-        
 
+        AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
+        source.clip = musicaEntreRondas;
+        source.Play();
         
 
     }

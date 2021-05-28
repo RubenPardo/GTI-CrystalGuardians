@@ -14,7 +14,12 @@ public class BuffScript : Hechizo
 
     void Start()
     {
-        transform.localScale = new Vector3(transform.localScale.x * aumentoRadio, transform.localScale.y, transform.localScale.z * aumentoRadio);
+        transform.parent.localScale = new Vector3(transform.parent.localScale.x * aumentoRadio, transform.parent.localScale.y * aumentoRadio, transform.parent.localScale.z * aumentoRadio);
+        var mainAreaParticulas = areaParticualas.main;
+        mainAreaParticulas.startSize = mainAreaParticulas.startSize.constant * aumentoRadio;
+
+        var shapeSistemaParticulas = areaParticualas.shape;
+        shapeSistemaParticulas.radius = shapeSistemaParticulas.radius * aumentoRadio;
         spwanHechizo = Time.time;
     }
     private void OnTriggerEnter(Collider other)

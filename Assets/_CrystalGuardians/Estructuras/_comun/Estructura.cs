@@ -44,7 +44,13 @@ public abstract class Estructura : MonoBehaviour
     }
     public void setCurrentHealth(int health)
     {
+        if(health < vidaActual && TryGetComponent<Castillo>(out Castillo castillo))
+        {
 
+            Debug.Log("CASTILLO: " + castillo);
+            castillo.onShakeCamera();
+            
+        }
         healthBar.SetHeatlh(health);
         vidaActual = health;
     }
@@ -52,6 +58,7 @@ public abstract class Estructura : MonoBehaviour
     //Setea la vida actual y maxima cuando mejoras de nivel alguna estructura
     public void settearVida()
     {
+
        
         healthBar?.SetMaxHealth(vidaPorNivel[nivelActual]);
         healthBar?.SetHeatlh(vidaPorNivel[nivelActual]);

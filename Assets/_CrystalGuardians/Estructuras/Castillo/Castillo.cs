@@ -25,6 +25,14 @@ public class Castillo : Estructura
     
     public GameObject prefabNvl2;
     public GameObject prefabNvl3;
+
+
+    // controlador del shake camera para cuando le peguen
+    public HUDShake cameraShake;
+    
+
+
+
     public GameObject sueloSinMejora;
     public GameObject sueloConMejora;
 
@@ -164,5 +172,11 @@ public class Castillo : Estructura
                 prefabNvl3.SetActive(true);
                 break;
         }
+    }
+
+
+    public void onShakeCamera()
+    {
+        cameraShake.shouldShake = true;
     }
 }

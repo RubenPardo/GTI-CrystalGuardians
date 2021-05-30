@@ -36,7 +36,7 @@ public class btnUnidad : MonoBehaviour
         set
         {
             available = value;
-            btn.interactable = value;
+            //btn.interactable = value;
             setColor(available ? colorPrimary : Color.red);
         }
     }

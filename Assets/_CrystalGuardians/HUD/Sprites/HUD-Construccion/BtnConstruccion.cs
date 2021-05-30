@@ -24,6 +24,8 @@ public class BtnConstruccion : MonoBehaviour
     private bool enoughLevel = false;
     private Color colorPrimary = new Color(208, 156, 45);
 
+    public string textNoSePuedeConstruir;
+
    
     public bool Selected
     {
@@ -43,15 +45,23 @@ public class BtnConstruccion : MonoBehaviour
         }
     }
 
-  
+
     public bool Available
     {
         get => available;
         set
         {
             available = value;
-            btn.interactable = value;
-            setColor(available ? colorPrimary : Color.red);
+            //btn.interactable = value;
+            if (!enoughLevel)
+            {
+                setColor(available ? colorPrimary : Color.gray);
+            }
+            else if(available==false)
+            {
+                setColor(available ? colorPrimary : Color.red);
+            }
+            
         }
     }
 
@@ -61,7 +71,7 @@ public class BtnConstruccion : MonoBehaviour
         set
         {
             enoughLevel = value;
-            btn.interactable = value;
+            //btn.interactable = value;
             setColor(enoughLevel ? colorPrimary : Color.gray);
         }
     }
@@ -78,7 +88,6 @@ public class BtnConstruccion : MonoBehaviour
         cBtn = newC;
         btn.image.color = cBtn;
     }
-
 
     private void Start()
     {

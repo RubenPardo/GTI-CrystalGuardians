@@ -89,7 +89,7 @@ public class RondasEnemigos : MonoBehaviour
 
     public void comenzarRonda()
     {
-        
+        //
         if (!isRondaActive)
         {
 
@@ -238,7 +238,7 @@ public class RondasEnemigos : MonoBehaviour
     {
         
  
-        for (int i=0; i < numeroRnda * cantidadEnemigosPorRonda; i++)
+       for (int i=0; i < numeroRnda * cantidadEnemigosPorRonda; i++)
 
         {
             GameObject casilla = listaSpawn[Random.Range(0, listaSpawn.Length)];
@@ -287,4 +287,7 @@ public class RondasEnemigos : MonoBehaviour
        
 
     }
+
+
+
 }

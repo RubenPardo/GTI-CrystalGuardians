@@ -6,7 +6,7 @@ public class enemigoFuerte : EnemigoScript
 {
     [Header("Unity SetUp")]
     //Bala a disparar
-    public GameObject areaAtaqueprefab;
+    public AnimacionController AnimacionController;
 
    
 
@@ -15,24 +15,18 @@ public class enemigoFuerte : EnemigoScript
     protected override void Update()
     {
         base.Update();
+        AnimacionController.damage = danyoPorNivel[nivelActual];
     }
 
     override public void attack()
     {
         /*Metodo que invoca el ataque fuerte del enemigo
-        createAttack();
+        //El ataque se produce al terminar la animacion
         */
     }
 
     public override List<GameObject> getPossibleTargets()
     {
         return GameManager.listaEstructurasEnJuego;
-    }
-
-    void createAttack()
-    {
-       
-        areaAtaqueprefab.SetActive(true);
-        areaAtaqueprefab.GetComponent<TriggerScriptEnemigoFuerte>().damage = danyoPorNivel[nivelActual];
     }
 }

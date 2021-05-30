@@ -54,7 +54,7 @@ public class Castillo : Estructura
     }
     public override void mejorar()
     {
-
+        //if()//comprobacion oro o obsidium - nivel castillo 
         GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum - costeObsidiumMejorar[nivelActual];
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 

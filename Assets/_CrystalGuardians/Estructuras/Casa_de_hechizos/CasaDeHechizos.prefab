@@ -982,6 +982,7 @@ MonoBehaviour:
   prefabNvl2: {fileID: 9052848949169500723}
   prefabNvl3: {fileID: 8233998337275509697}
   particulasMejora: {fileID: 6284671169476130552}
+  textAviso: {fileID: 0}
 --- !u!208 &3953677765480195473
 NavMeshObstacle:
   m_ObjectHideFlags: 0

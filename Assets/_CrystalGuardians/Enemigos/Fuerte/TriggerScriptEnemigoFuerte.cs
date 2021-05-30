@@ -13,7 +13,8 @@ public class TriggerScriptEnemigoFuerte : MonoBehaviour
     {
         if (destruir && Time.time - detectedTime > delayAtaque)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
     }
@@ -21,7 +22,9 @@ public class TriggerScriptEnemigoFuerte : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
-        if (other.tag.Equals("Estructura") || other.tag.Equals("Aliado"))
+        if ((other.GetComponentInParent<Estructura>()!=null && other.GetComponentInParent<Estructura>().tag.Equals("Estructura")  )
+            || other.tag.Equals("Estructura") 
+            || other.tag.Equals("Aliado"))
         {
             
             destruir = true;

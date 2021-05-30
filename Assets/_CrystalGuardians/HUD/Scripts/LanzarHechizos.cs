@@ -23,12 +23,6 @@ public class LanzarHechizos : MonoBehaviour
     public Text txtHealsDisponibles;
     public Text txtBuffsDisponibles;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     private void comprobarDisponibilidadBotones()
     {
 
@@ -41,22 +35,43 @@ public class LanzarHechizos : MonoBehaviour
 
     public void lanzarHeal()
     {
+       if (GameManager.Instance.HealsDisponibles > 0)
+        {
+            Instantiate(healBluePrint);
+        }
+        else
+        {
+            GameManager.Instance.ShowMessage("Antes debes generar el hechizo!");
+        }
        
-        Instantiate(healBluePrint);
 
     }
 
     public void lanzarRayo()
     {
-      
-        Instantiate(rayoBluePrint);
+
+        if (GameManager.Instance.RayosDisponibles > 0)
+        {
+            Instantiate(rayoBluePrint);
+        }
+        else
+        {
+            GameManager.Instance.ShowMessage("Antes debes generar el hechizo!");
+        }
 
     }
 
     public void lanzarBuff()
     {
-        
-        Instantiate(buffBluePrint);
+
+        if (GameManager.Instance.BuffsDisponibles > 0)
+        {
+            Instantiate(buffBluePrint);
+        }
+        else
+        {
+            GameManager.Instance.ShowMessage("Antes debes generar el hechizo!");
+        }
 
     }
     // Update is called once per frame
@@ -79,5 +94,6 @@ public class LanzarHechizos : MonoBehaviour
 
         HUDHechizos.SetActive(habilitado);
     }
+
 
 }

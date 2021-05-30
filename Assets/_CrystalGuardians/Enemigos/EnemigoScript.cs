@@ -98,11 +98,6 @@ public class EnemigoScript : MonoBehaviour
 
 
             }
-
-
-
-
-
         }
         else
         {
@@ -111,6 +106,7 @@ public class EnemigoScript : MonoBehaviour
                 isAtacking = false;
                
                 isObjetivoFijado = false;
+                isMoving = false;
             }
             else
             {
@@ -176,6 +172,12 @@ public class EnemigoScript : MonoBehaviour
         return Utility.unirDosArrays(
                 GameManager.listaAliadosEnJuego,
                 GameManager.listaEstructurasEnJuego);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, rangoAtaque);
     }
     public virtual void attack()
     {

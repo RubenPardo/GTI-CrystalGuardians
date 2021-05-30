@@ -31,7 +31,7 @@ public class btnHechizo : MonoBehaviour
         set
         {
             available = value;
-            btn.interactable = value;
+            //btn.interactable = value;
             setColor(available ? colorPrimary : Color.red);
         }
     }
@@ -53,11 +53,5 @@ public class btnHechizo : MonoBehaviour
         textPrecio.text = strPrecio;
         imgHechizo.sprite = paramImgHechizo;
         setColor(colorPrimary);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -147,27 +147,55 @@ public class CuartelUnidades : Estructura
 
     public void spawnUnidades(GameObject unidadAliada)
     {
-        Vector3 spawnPoint = Utility.getPuntoPerimetroRectangulo(distanciaSpawn);
-        
-        Aliado aliado = unidadAliada.GetComponent<Aliado>();
+        bool spawnDisponible = true;
+        Ballestero ballesteroPrefab;
+        Guerrero guerreroPrefab;
 
-        aliado.prefabLvl1.SetActive(prefabLvl1.activeSelf);
-        aliado.prefabLvl2.SetActive(prefabLvl2.activeSelf);
-        aliado.prefabLvl3.SetActive(prefabLvl3.activeSelf);
+        if (GameManager.Instance.Unidades >= GameManager.Instance.TopeUnidades)
+        {
+            GameManager.Instance.ShowMessage("No puedes crear más unidades!");
+            spawnDisponible = false;
+        }
+        else if (unidadAliada.TryGetComponent<Ballestero>(out ballesteroPrefab))
+        {
+            if (GameManager.Instance.Obsiidum < ballestero.costePorNivel[nivelActual])
+            {
+                spawnDisponible = false;
+                GameManager.Instance.ShowMessage("Obsidium insuficiente!");
+            }
+        }
+        else if (unidadAliada.TryGetComponent<Guerrero>(out guerreroPrefab))
+        {
+            if (GameManager.Instance.Obsiidum < guerrero.costePorNivel[nivelActual])
+            {
+                spawnDisponible = false;
+                GameManager.Instance.ShowMessage("Obsidium insuficiente!");
+            }
+        }
 
-    
+        if (spawnDisponible)
+        {
+            Vector3 spawnPoint = Utility.getPuntoPerimetroRectangulo(distanciaSpawn);
 
-        aliado.nivelActual = nivelActual;
-        aliado.settearVida();
-        GameManager.Instance.Obsiidum -= aliado.costePorNivel[nivelActual];
+            Aliado aliado = unidadAliada.GetComponent<Aliado>();
 
-        GameObject g = Instantiate(unidadAliada);
-        g.transform.position = transform.position + spawnPoint;
-       
-        GameManager.Instance.Unidades++;
+            aliado.prefabLvl1.SetActive(prefabLvl1.activeSelf);
+            aliado.prefabLvl2.SetActive(prefabLvl2.activeSelf);
+            aliado.prefabLvl3.SetActive(prefabLvl3.activeSelf);
 
-        GameManager.listaAliadosEnJuego.Add(g);
 
+
+            aliado.nivelActual = nivelActual;
+            aliado.settearVida();
+            GameManager.Instance.Obsiidum -= aliado.costePorNivel[nivelActual];
+
+            GameObject g = Instantiate(unidadAliada);
+            g.transform.position = transform.position + spawnPoint;
+
+            GameManager.Instance.Unidades++;
+
+            GameManager.listaAliadosEnJuego.Add(g);
+        }
     }
 
 

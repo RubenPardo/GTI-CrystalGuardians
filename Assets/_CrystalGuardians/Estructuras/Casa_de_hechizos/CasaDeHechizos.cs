@@ -28,6 +28,10 @@ public class CasaDeHechizos : Estructura
     //particulas
     public GameObject particulasMejora;
 
+
+    public GameObject textoAvisoRonda;
+
+
     public override void abrirMenu()
     {
         if(canvas != null)
@@ -47,6 +51,7 @@ public class CasaDeHechizos : Estructura
 
     public override void mejorar()
     {
+
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
         nivelActual++;
@@ -80,14 +85,9 @@ public class CasaDeHechizos : Estructura
     {
         switch (nivelActual)
         {
-
-
             case 1:
-
-
                 prefabNvl1.SetActive(false);
                 prefabNvl2.SetActive(true);
-
                 //Debug.Log("estoy a nivel 2");
                 break;
             case 2:
@@ -105,7 +105,6 @@ public class CasaDeHechizos : Estructura
         base.Update();
         setUpCanvasValues();
         comprobarDisponibilidadMejora();
-        comprobarBotones();
         
     }
     private void comprobarDisponibilidadMejora()
@@ -147,31 +146,48 @@ public class CasaDeHechizos : Estructura
 
     }
 
-     private void comprobarBotones()
-    {
-        btnHeal.enabled = GameManager.Instance.Obsiidum>=GameManager.costeLanzarHeal[nivelActual];
-        btnBuff.enabled = GameManager.Instance.Obsiidum>=GameManager.costeLanzarBuff[nivelActual];
-        btnRayo.enabled = GameManager.Instance.Obsiidum>=GameManager.costeLanzarRayo[nivelActual];
-    }
-
     public void generarRayo()
     {
-        GameManager.Instance.Obsiidum -= GameManager.costeLanzarRayo[nivelActual];
-        GameManager.Instance.RayosDisponibles++;
+        if (obsidiumSuficienteLanzarHechizo(GameManager.costeLanzarRayo[nivelActual]) )
+        {
+            GameManager.Instance.Obsiidum -= GameManager.costeLanzarRayo[nivelActual];
+            GameManager.Instance.RayosDisponibles++;
+        }
+       
     }
     public void generarHeal()
     {
-        GameManager.Instance.Obsiidum -= GameManager.costeLanzarBuff[nivelActual];
-        GameManager.Instance.HealsDisponibles++;
+        if (obsidiumSuficienteLanzarHechizo(GameManager.costeLanzarHeal[nivelActual]))
+        {
+            GameManager.Instance.Obsiidum -= GameManager.costeLanzarHeal[nivelActual];
+            GameManager.Instance.HealsDisponibles++;
+        }
+           
     }
     public void generarBuff()
     {
-        GameManager.Instance.Obsiidum -= GameManager.costeLanzarBuff[nivelActual];
-        GameManager.Instance.BuffsDisponibles++;
+        if (obsidiumSuficienteLanzarHechizo(GameManager.costeLanzarBuff[nivelActual])){
+            GameManager.Instance.Obsiidum -= GameManager.costeLanzarBuff[nivelActual];
+            GameManager.Instance.BuffsDisponibles++;
+        }
+    }
+
+    private bool obsidiumSuficienteLanzarHechizo(int costeHechizo)
+    {
+        bool suficiente= true;
+        if(GameManager.Instance.Obsiidum< costeHechizo)
+        {
+            suficiente = false;
+            GameManager.Instance.ShowMessage("Obsidium insifuciente para crear el hechizo!");
+        }
+
+
+        return suficiente;
     }
 
     private void OnDestroy()
     {
         GameManager.Instance.CasasDeHechizosConstruidas--;
     }
+
 }

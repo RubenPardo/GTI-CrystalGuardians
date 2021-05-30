@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     //objeto que controla la musica de la escena
     public GameObject musicaAmbiente;
 
+    public GameObject textoAviso;
+    public float timeDelayAviso;
     // singleton
 
     static GameManager instance;
@@ -199,6 +201,18 @@ public class GameManager : MonoBehaviour
         Mina.mejoraDeAldeaProduccionOro = Mina.mejoraDeAldeaProduccionOro *  1.2f;
         return 0;
     }
+    public void ShowMessage(string text)
+    {
+        StartCoroutine(AvisoEmpezorRonda(text));
+    }
+    IEnumerator AvisoEmpezorRonda(string text)
+    {
+        textoAviso.GetComponent<Text>().text = text;
+        timeDelayAviso = 1.5f;
+        textoAviso.SetActive(true);
+        yield return new WaitForSeconds(timeDelayAviso);
+        textoAviso.SetActive(false);
+        yield return new WaitForSeconds(timeDelayAviso);
 
-
+    }
 }

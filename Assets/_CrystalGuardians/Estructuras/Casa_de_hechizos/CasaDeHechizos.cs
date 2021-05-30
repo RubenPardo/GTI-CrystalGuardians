@@ -25,8 +25,12 @@ public class CasaDeHechizos : Estructura
     public GameObject prefabNvl2;
     public GameObject prefabNvl3;
 
-    //particulas
-    public GameObject particulasMejora;
+    public GameObject sueloSinMejora;
+    public GameObject sueloConMejora;
+
+
+//particulas
+public GameObject particulasMejora;
 
 
     public GameObject textoAvisoRonda;
@@ -118,6 +122,19 @@ public class CasaDeHechizos : Estructura
 
 
         btnMejorarInfo.interactable = v;
+
+        
+            if (v)
+            {
+                 sueloConMejora.SetActive(true);
+                 sueloSinMejora.SetActive(false);
+            }
+            else
+            {
+                sueloConMejora.SetActive(false);
+                sueloSinMejora.SetActive(true);
+            }
+
     }
     private void setUpCanvasValues()
     {

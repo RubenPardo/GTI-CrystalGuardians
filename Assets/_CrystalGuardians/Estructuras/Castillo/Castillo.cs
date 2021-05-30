@@ -33,11 +33,14 @@ public class Castillo : Estructura
 
 
 
+    public GameObject sueloSinMejora;
+    public GameObject sueloConMejora;
+
     public int[] costeObsidiumConstruirMejorar;
 
     //particulas
     public GameObject particulasMejora;
-
+    bool possibleSueloMejora = false;
     public override void abrirMenu()
     {
         if (canvas != null)
@@ -97,13 +100,22 @@ public class Castillo : Estructura
 
     private void comprobarDisponibilidadMejora()
     {
-
+       
         bool inte = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
        && GameManager.Instance.Obsiidum >= costeObsidiumMejorar[GameManager.Instance.NivelActualCastillo];
         
         btnMejorar.interactable = inte;
         btnMejorarInfo.interactable = inte;
-
+        if (inte)
+        {
+            sueloConMejora.SetActive(true);
+            sueloSinMejora.SetActive(false);
+        }
+        else
+        {
+            sueloConMejora.SetActive(false);
+            sueloSinMejora.SetActive(true);
+        }
 
 
     }

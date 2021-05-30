@@ -21,8 +21,13 @@ public class Muro : Estructura
     public GameObject prefabNvl2;
     public GameObject prefabNvl3;
 
-    //particulas
-    public GameObject particulasMejora;
+    //prfab suelo
+    public GameObject sueloConMejora;
+        
+
+
+//particulas
+public GameObject particulasMejora;
 
     public override void abrirMenu()
     {
@@ -59,6 +64,17 @@ public class Muro : Estructura
         
         btnMejorar.interactable = enable;
         btnMejorarInfo.interactable = enable;
+
+
+        if (enable)
+        {
+            sueloConMejora.SetActive(true);
+        }
+        else
+        {
+            sueloConMejora.SetActive(false);
+        }
+
     }
     public override void mejorar()
     {

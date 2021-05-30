@@ -29,7 +29,12 @@ public class Torre : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
-    public GameObject cannon;
+    public GameObject sueloSinMejora;
+    public GameObject sueloConMejora;
+        
+
+
+public GameObject cannon;
     public Material materialCannonNivel3;
 
     //particulas
@@ -256,6 +261,19 @@ public class Torre : Estructura
 
         btnMejorar.interactable = v;
         btnMejorarInfo.interactable = v;
+
+            
+        if (v)
+        {
+            sueloConMejora.SetActive(true);
+            sueloSinMejora.SetActive(false);
+        }
+        else
+        {
+            sueloConMejora.SetActive(false);
+            sueloSinMejora.SetActive(true);
+        }
+
     }
 
     void Shoot ()

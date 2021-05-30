@@ -19,9 +19,13 @@ public class Mina : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
+    public GameObject sueloSinMejora;
+    public GameObject sueloConMejora;
+        
 
 
-    public int[] generacionOroPorNivel;
+
+public int[] generacionOroPorNivel;
 
     public static float mejoraDeAldeaProduccionOro = 1;//100% = 1 
 
@@ -91,6 +95,19 @@ public class Mina : Estructura
 
         btnMejorar.interactable = v;
         btnMejorarInfo.interactable = v;
+
+
+        if (v)
+        {
+            sueloConMejora.SetActive(true);
+            sueloSinMejora.SetActive(false);
+        }
+        else
+        {
+            sueloConMejora.SetActive(false);
+            sueloSinMejora.SetActive(true);
+        }
+
     }
 
     private void setUpCanvasValues()

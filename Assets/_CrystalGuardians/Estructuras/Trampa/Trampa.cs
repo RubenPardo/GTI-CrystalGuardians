@@ -18,7 +18,11 @@ public class Trampa : Estructura
     public GameObject trampaInactivaNvl2;
     public GameObject trampaActivaNvl2;
 
-    public GameObject colliderExplosion;
+    public GameObject sueloConMejora;
+        
+
+
+public GameObject colliderExplosion;
 
     //particulas
     public GameObject particulasMejora;
@@ -94,6 +98,19 @@ public class Trampa : Estructura
 
         btnMejorar.interactable = v;
         btnMejorarInfo.interactable = v;
+
+
+        if (v)
+        {
+            sueloConMejora.SetActive(true);
+            
+        }
+        else
+        {
+            sueloConMejora.SetActive(false);
+            
+        }
+
     }
 
     private void setUpCanvasValues()

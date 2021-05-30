@@ -21,8 +21,13 @@ public class ExtractorObsidium : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
-    // Storing different levels'
-    public GameObject[] levels;
+    public GameObject sueloSinMejora;
+    public GameObject sueloConMejora;
+
+
+
+// Storing different levels'
+public GameObject[] levels;
     public int[] generacionObsidiumPorNivel;
 
     //particulas
@@ -87,6 +92,19 @@ public class ExtractorObsidium : Estructura
 
         btnMejorar.interactable = v;
         btnMejorarInfo.enabled = v;
+
+        
+        if (v)
+        {
+            sueloConMejora.SetActive(true);
+            sueloSinMejora.SetActive(false);
+        }
+        else
+        {
+            sueloConMejora.SetActive(false);
+            sueloSinMejora.SetActive(true);
+        }
+
     }
 
     private void setUpCanvasValues()
@@ -143,4 +161,5 @@ public class ExtractorObsidium : Estructura
 
 
     }
+    
 }

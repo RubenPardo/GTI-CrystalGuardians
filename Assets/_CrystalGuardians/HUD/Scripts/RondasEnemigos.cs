@@ -45,10 +45,25 @@ public class RondasEnemigos : MonoBehaviour
     private int luzAmbienteParaEncenderLuces = 20;
     private int tiempoRonda;// usado para realizar la regla de tres entre la luz y el tiempo
 
+    
+
+    //musica para las rondas
+
+    
+    public AudioClip musicaRondaNormal;
+    public AudioClip musicaRondaBoss;
+    public AudioClip musicaEntreRondas;
+
+    public AudioSource sonidoCuerno;
+    public AudioSource sonidoRugido;
+    public AudioSource sonidoVictoria;
+    public AudioSource sonidoMejora;
+
     void Start()
     {
         tiempoRonda = (int)contadorTiempoRonda;
         listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
+        
 
     }
    
@@ -56,18 +71,44 @@ public class RondasEnemigos : MonoBehaviour
     private void comprobarLanzarMejorasAldeas()
     {
         // cada 3 rondas se lanzaran las mejoras de la aldea
-        if (numeroRnda % 3 == 0)
+        if (numeroRnda % 6 == 0)
         {
+            //lanzamos la musica de mejoras
+            
+            sonidoMejora.Play();
+            
+
+
             //lanzar mejoras de aldea
             panelMejoras.SetActive(true);
+
+            
         }
     }
     
 
     public void comenzarRonda()
     {
+        
         if (!isRondaActive)
         {
+
+            if (numeroRnda % 5 == 0)
+            {
+                AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
+                sonidoRugido.Play();
+                source.clip = musicaRondaBoss;
+                source.Play();
+
+            }
+            else
+            {
+                AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
+                sonidoCuerno.Play();
+                source.clip = musicaRondaNormal;
+                source.Play();
+            }
+
             spawn();
             isRondaActive = true;
             contadorRondas.text = "";
@@ -111,7 +152,7 @@ public class RondasEnemigos : MonoBehaviour
 
             }
         }
-        else { updateLuzAmbiente(); }
+        else if(numeroRnda % 5 == 0){ updateLuzAmbiente(); }
         
 
     }
@@ -133,7 +174,16 @@ public class RondasEnemigos : MonoBehaviour
                         transform.rotation.y,
                         transform.rotation.z);
         luzAmbiente.transform.eulerAngles = rotation;
-            
+
+        AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
+        if (numeroRnda%3 != 0)
+        {
+            sonidoVictoria.Play();
+        }
+        
+        source.clip = musicaEntreRondas;
+        source.Play();
+
     }
 
     private bool updateCronometro()

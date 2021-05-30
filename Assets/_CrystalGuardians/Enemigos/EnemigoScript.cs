@@ -181,14 +181,14 @@ public class EnemigoScript : MonoBehaviour
     {
         if (attackCoutDwon <= 0f)
         {
-            Estructura estructura;
             /*
             Guerrero guerrero;
             Ballestero ballestero;
             */
             Aliado aliado;
-            if (objetivoFijado.TryGetComponent<Estructura>(out estructura))
+            if (objetivoFijado.TryGetComponent<Estructura>(out Estructura estructura))
             {
+                
                 estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
             }
             else

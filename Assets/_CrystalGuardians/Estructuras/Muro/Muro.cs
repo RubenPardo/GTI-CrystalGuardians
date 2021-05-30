@@ -21,6 +21,9 @@ public class Muro : Estructura
     public GameObject prefabNvl2;
     public GameObject prefabNvl3;
 
+    //particulas
+    public GameObject particulasMejora;
+
     public override void abrirMenu()
     {
         canvas.SetActive(true);
@@ -69,6 +72,11 @@ public class Muro : Estructura
         settearVida();
         // actualizar hud informacion
         setUpCanvasValues();
+
+        //emitir particulas
+        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
+        sistema.Play();
+
     }
 
     private void setUpCanvasValues()

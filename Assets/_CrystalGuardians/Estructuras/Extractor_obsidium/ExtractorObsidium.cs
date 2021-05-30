@@ -25,6 +25,9 @@ public class ExtractorObsidium : Estructura
     public GameObject[] levels;
     public int[] generacionObsidiumPorNivel;
 
+    //particulas
+    public GameObject particulasMejora;
+
     public override void abrirMenu()
     {
         if (canvas != null)
@@ -55,6 +58,10 @@ public class ExtractorObsidium : Estructura
         // actualizar hud informacion
         setUpCanvasValues();
         settearVida();
+
+        //emitir particulas
+        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
+        sistema.Play();
     }
 
     // Start is called before the first frame update

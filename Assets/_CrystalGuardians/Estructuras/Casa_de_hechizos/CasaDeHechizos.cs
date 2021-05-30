@@ -25,6 +25,9 @@ public class CasaDeHechizos : Estructura
     public GameObject prefabNvl2;
     public GameObject prefabNvl3;
 
+    //particulas
+    public GameObject particulasMejora;
+
     public override void abrirMenu()
     {
         if(canvas != null)
@@ -52,6 +55,10 @@ public class CasaDeHechizos : Estructura
         setUpCanvasValues();
         settearVida();
         comprobarNivelCasa();
+
+        //emitir particulas
+        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
+        sistema.Play();
     }
 
     // Start is called before the first frame update

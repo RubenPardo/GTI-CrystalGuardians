@@ -25,6 +25,9 @@ public class Mina : Estructura
 
     public static float mejoraDeAldeaProduccionOro = 1;//100% = 1 
 
+    //particulas
+    public GameObject particulasMejora;
+
     private void generarRecursos()
     {
         //GameManager.Instance.Oro += 1 * Time.deltaTime; //mina lvl-1
@@ -43,6 +46,9 @@ public class Mina : Estructura
          // actualizar hud informacion
         setUpCanvasValues();
 
+        //emitir particulas
+        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
+        sistema.Play();
     }
 
     // Start is called before the first frame update

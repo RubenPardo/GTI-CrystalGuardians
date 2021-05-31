@@ -19,8 +19,6 @@ public class Mina : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
-    public GameObject sueloSinMejora;
-    public GameObject sueloConMejora;
         
 
 
@@ -29,8 +27,6 @@ public int[] generacionOroPorNivel;
 
     public static float mejoraDeAldeaProduccionOro = 1;//100% = 1 
 
-    //particulas
-    public GameObject particulasMejora;
 
     private void generarRecursos()
     {
@@ -51,8 +47,7 @@ public int[] generacionOroPorNivel;
         setUpCanvasValues();
 
         //emitir particulas
-        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
-        sistema.Play();
+        sistemaParticulasMejorar.Play();
     }
 
     // Start is called before the first frame update
@@ -97,15 +92,13 @@ public int[] generacionOroPorNivel;
         btnMejorarInfo.interactable = v;
 
 
-        if (v)
+        if (v && !sistemaParticulasPosibleMejora.isEmitting)
         {
-            sueloConMejora.SetActive(true);
-            sueloSinMejora.SetActive(false);
+            sistemaParticulasPosibleMejora.Play();
         }
-        else
+        else if (!v)
         {
-            sueloConMejora.SetActive(false);
-            sueloSinMejora.SetActive(true);
+            sistemaParticulasPosibleMejora.Stop();
         }
 
     }

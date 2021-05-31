@@ -18,14 +18,13 @@ public class Trampa : Estructura
     public GameObject trampaInactivaNvl2;
     public GameObject trampaActivaNvl2;
 
-    public GameObject sueloConMejora;
+   
         
 
 
-public GameObject colliderExplosion;
+    public GameObject colliderExplosion;
 
-    //particulas
-    public GameObject particulasMejora;
+   
 
     public int[] danyoPorNivel;
     public override void mejorar()
@@ -50,8 +49,7 @@ public GameObject colliderExplosion;
         setUpCanvasValues();
 
         //emitir particulas
-        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
-        sistema.Play();
+        sistemaParticulasMejorar.Play();
 
     }
 
@@ -100,15 +98,13 @@ public GameObject colliderExplosion;
         btnMejorarInfo.interactable = v;
 
 
-        if (v)
+        if (v && !sistemaParticulasPosibleMejora.isEmitting)
         {
-            sueloConMejora.SetActive(true);
-            
+            sistemaParticulasPosibleMejora.Play();
         }
-        else
+        else if (!v)
         {
-            sueloConMejora.SetActive(false);
-            
+            sistemaParticulasPosibleMejora.Stop();
         }
 
     }

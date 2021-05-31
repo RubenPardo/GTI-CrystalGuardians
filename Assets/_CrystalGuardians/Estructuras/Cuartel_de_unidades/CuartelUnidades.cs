@@ -31,13 +31,7 @@ public class CuartelUnidades : Estructura
     public GameObject prefabLvl1;
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
-    public GameObject sueloSinMejora;
-    public GameObject sueloConMejora;
 
-
-
-//particulas
-public GameObject particulasMejora;
 
 
     protected override void Start()
@@ -98,8 +92,7 @@ public GameObject particulasMejora;
         settearVida();
 
         //emitir particulas
-        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
-        sistema.Play();
+        sistemaParticulasMejorar.Play();
 
 
     }
@@ -227,15 +220,13 @@ public GameObject particulasMejora;
         btnMejorarInfo.interactable = v;
 
 
-        if (v)
+        if (v && !sistemaParticulasPosibleMejora.isEmitting)
         {
-            sueloConMejora.SetActive(true);
-            sueloSinMejora.SetActive(false);
+            sistemaParticulasPosibleMejora.Play();
         }
-        else
+        else if (!v)
         {
-            sueloConMejora.SetActive(false);
-            sueloSinMejora.SetActive(true);
+            sistemaParticulasPosibleMejora.Stop();
         }
 
     }

@@ -10,7 +10,15 @@ public abstract class Estructura : MonoBehaviour
     public int[] vidaPorNivel;
 
     public int vidaActual;
+    //particulas
     public GameObject particulasDestruccion;
+    protected ParticleSystem sistemaParticulasDestruccion;
+    public GameObject particulasPosibleMejora;
+    protected ParticleSystem sistemaParticulasPosibleMejora;
+    public GameObject particulasMejora;
+    protected ParticleSystem sistemaParticulasMejorar;
+
+
     public HealthBarScript healthBar;
     public Text textNivelSubMenu;
     public int[] costeOroMejorar; // costes para mejorar (el primer valor es el nivel 2)
@@ -35,6 +43,12 @@ public abstract class Estructura : MonoBehaviour
 
             canvas.SetActive(false);
         }
+
+
+        sistemaParticulasMejorar = particulasMejora.GetComponent<ParticleSystem>();
+        sistemaParticulasPosibleMejora = particulasPosibleMejora.GetComponent<ParticleSystem>();
+        sistemaParticulasDestruccion = particulasDestruccion.GetComponent<ParticleSystem>();
+
         settearVida();
     }
 
@@ -48,7 +62,7 @@ public abstract class Estructura : MonoBehaviour
         if(health < vidaActual && TryGetComponent<Castillo>(out Castillo castillo))
         {
 
-            Debug.Log("CASTILLO: " + castillo);
+            
             castillo.onShakeCamera();
             
         }

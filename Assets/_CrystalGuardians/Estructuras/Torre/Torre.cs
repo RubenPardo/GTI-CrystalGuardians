@@ -29,16 +29,12 @@ public class Torre : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
-    public GameObject sueloSinMejora;
-    public GameObject sueloConMejora;
         
 
 
 public GameObject cannon;
     public Material materialCannonNivel3;
 
-    //particulas
-    public GameObject particulasMejora;
 
     /*
     public override void abrirMenu()
@@ -108,8 +104,7 @@ public GameObject cannon;
         settearVida();
 
         //emitir particulas
-        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
-        sistema.Play();
+        sistemaParticulasMejorar.Play();
 
     }
 
@@ -262,16 +257,14 @@ public GameObject cannon;
         btnMejorar.interactable = v;
         btnMejorarInfo.interactable = v;
 
-            
-        if (v)
+
+        if (v && !sistemaParticulasPosibleMejora.isEmitting)
         {
-            sueloConMejora.SetActive(true);
-            sueloSinMejora.SetActive(false);
+            sistemaParticulasPosibleMejora.Play();
         }
-        else
+        else if (!v)
         {
-            sueloConMejora.SetActive(false);
-            sueloSinMejora.SetActive(true);
+            sistemaParticulasPosibleMejora.Stop();
         }
 
     }

@@ -25,12 +25,9 @@ public class CasaDeHechizos : Estructura
     public GameObject prefabNvl2;
     public GameObject prefabNvl3;
 
-    public GameObject sueloSinMejora;
-    public GameObject sueloConMejora;
 
 
-//particulas
-public GameObject particulasMejora;
+  
 
 
     public GameObject textoAvisoRonda;
@@ -66,8 +63,7 @@ public GameObject particulasMejora;
         comprobarNivelCasa();
 
         //emitir particulas
-        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
-        sistema.Play();
+        sistemaParticulasMejorar.Play();
     }
 
     // Start is called before the first frame update
@@ -75,7 +71,6 @@ public GameObject particulasMejora;
     {
         // canvas del menu de botones
         base.Start();
-
         // al empezar restar el oro
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirCasaHechizos;
         
@@ -124,16 +119,17 @@ public GameObject particulasMejora;
         btnMejorarInfo.interactable = v;
 
         
-            if (v)
-            {
-                 sueloConMejora.SetActive(true);
-                 sueloSinMejora.SetActive(false);
-            }
-            else
-            {
-                sueloConMejora.SetActive(false);
-                sueloSinMejora.SetActive(true);
-            }
+            
+        
+        if (v && !sistemaParticulasPosibleMejora.isEmitting)
+        {
+            sistemaParticulasPosibleMejora.Play();
+        }
+        else if (!v){
+            sistemaParticulasPosibleMejora.Stop();
+        }
+            
+           
 
     }
     private void setUpCanvasValues()

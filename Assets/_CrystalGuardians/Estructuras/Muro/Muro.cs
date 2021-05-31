@@ -21,13 +21,9 @@ public class Muro : Estructura
     public GameObject prefabNvl2;
     public GameObject prefabNvl3;
 
-    //prfab suelo
-    public GameObject sueloConMejora;
         
 
 
-//particulas
-public GameObject particulasMejora;
 
     public override void abrirMenu()
     {
@@ -65,14 +61,13 @@ public GameObject particulasMejora;
         btnMejorar.interactable = enable;
         btnMejorarInfo.interactable = enable;
 
-
-        if (enable)
+        if (enable && !sistemaParticulasPosibleMejora.isEmitting)
         {
-            sueloConMejora.SetActive(true);
+            sistemaParticulasPosibleMejora.Play();
         }
-        else
+        else if (!enable)
         {
-            sueloConMejora.SetActive(false);
+            sistemaParticulasPosibleMejora.Stop();
         }
 
     }
@@ -90,8 +85,7 @@ public GameObject particulasMejora;
         setUpCanvasValues();
 
         //emitir particulas
-        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
-        sistema.Play();
+        sistemaParticulasMejorar.Play();
 
     }
 

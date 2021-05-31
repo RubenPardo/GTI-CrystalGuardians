@@ -17,12 +17,9 @@ public class Castillo : Estructura
     public Text txtMejoraObsidium;
 
     public int[] costeObsidiumMejorar;
-    // Storing different levels'
-    public GameObject[] levels;
 
     //prefabs castillo 
     public GameObject prefabNvl1;
-    
     public GameObject prefabNvl2;
     public GameObject prefabNvl3;
 
@@ -32,14 +29,8 @@ public class Castillo : Estructura
     
 
 
-
-    public GameObject sueloSinMejora;
-    public GameObject sueloConMejora;
-
     public int[] costeObsidiumConstruirMejorar;
 
-    //particulas
-    public GameObject particulasMejora;
     bool possibleSueloMejora = false;
     public override void abrirMenu()
     {
@@ -76,8 +67,8 @@ public class Castillo : Estructura
         comprobarNivelCastillo();
 
         //emitir particulas
-        ParticleSystem sistema = particulasMejora.GetComponent<ParticleSystem>();
-        sistema.Play();
+       
+        sistemaParticulasMejorar.Play();
 
     }
 
@@ -106,15 +97,14 @@ public class Castillo : Estructura
         
         btnMejorar.interactable = inte;
         btnMejorarInfo.interactable = inte;
-        if (inte)
+
+        if (inte && !sistemaParticulasPosibleMejora.isEmitting)
         {
-            sueloConMejora.SetActive(true);
-            sueloSinMejora.SetActive(false);
+            sistemaParticulasPosibleMejora.Play();
         }
-        else
+        else if (!inte)
         {
-            sueloConMejora.SetActive(false);
-            sueloSinMejora.SetActive(true);
+            sistemaParticulasPosibleMejora.Stop();
         }
 
 

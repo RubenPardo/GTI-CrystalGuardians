@@ -36898,9 +36898,7 @@ MonoBehaviour:
   prefabBtnTrampa: {fileID: 572098822}
   prefabBtnMuro: {fileID: 237497872}
   prefabBtnCasaHechizos: {fileID: 210718034}
-  textoAvisoRonda: {fileID: 537189978}
   canvasHUD: {fileID: 125604132}
-  timeDelay: 0
 --- !u!114 &1242609360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56754,6 +56752,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 218247024}
     m_Modifications:
+    - target: {fileID: 43640402811639640, guid: e3462b80792b0da4b8ed6bedb3414d9d, type: 3}
+      propertyPath: m_Color.a
+      value: 0.7254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 43640402811639640, guid: e3462b80792b0da4b8ed6bedb3414d9d, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 43640402811639640, guid: e3462b80792b0da4b8ed6bedb3414d9d, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 43640402811639640, guid: e3462b80792b0da4b8ed6bedb3414d9d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 43640402811639646, guid: e3462b80792b0da4b8ed6bedb3414d9d, type: 3}
       propertyPath: m_Name
       value: Aviso

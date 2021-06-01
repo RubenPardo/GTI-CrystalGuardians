@@ -10,6 +10,11 @@ public class enemigoFuerte : EnemigoScript
 
    
 
+    protected override void Start()
+    {
+    
+        base.Start();
+    }
 
     // Update is called once per frame
     protected override void Update()
@@ -28,5 +33,12 @@ public class enemigoFuerte : EnemigoScript
     public override List<GameObject> getPossibleTargets()
     {
         return GameManager.listaEstructurasEnJuego;
+    }
+
+    protected override void OnDestroy()
+    {
+       
+        GameManager.Instance.listaEnemigosRonda.Remove(gameObject);
+        base.OnDestroy();
     }
 }

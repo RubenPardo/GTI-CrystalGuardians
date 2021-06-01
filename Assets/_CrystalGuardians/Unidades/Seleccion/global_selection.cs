@@ -41,102 +41,106 @@ public class global_selection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //1. when left mouse button clicked (but not released)
-        if (Input.GetMouseButtonDown(0))
+        if (!Utility.rayCastUI())
         {
-            p1 = Input.mousePosition;
-        }
-
-        //2. while left mouse button held
-        if (Input.GetMouseButton(0))
-        {
-            if ((p1 - Input.mousePosition).magnitude > 40)
+            //1. when left mouse button clicked (but not released)
+            if (Input.GetMouseButtonDown(0))
             {
-                dragSelect = true;
+                p1 = Input.mousePosition;
             }
-        }
 
-        //3. when mouse button comes up
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (dragSelect == false) //single select
+            //2. while left mouse button held
+            if (Input.GetMouseButton(0))
             {
-                Ray ray = Camera.main.ScreenPointToRay(p1);
-
-                if (Physics.Raycast(ray, out hit, 50000.0f))
+                if ((p1 - Input.mousePosition).magnitude > 40)
                 {
-                  
+                    dragSelect = true;
+                }
+            }
 
-                    if (hit.transform.gameObject.tag.Equals(TagUnidades))
+            //3. when mouse button comes up
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (dragSelect == false) //single select
+                {
+                    Ray ray = Camera.main.ScreenPointToRay(p1);
+
+                    if (Physics.Raycast(ray, out hit, 50000.0f))
                     {
-                        if (Input.GetKey(KeyCode.LeftShift)) //inclusive select
+
+
+                        if (hit.transform.gameObject.tag.Equals(TagUnidades))
                         {
+                            if (Input.GetKey(KeyCode.LeftShift)) //inclusive select
+                            {
 
-                            selected_table.addSelected(hit.transform.gameObject);
+                                selected_table.addSelected(hit.transform.gameObject);
 
 
+                            }
+                            else //exclusive selected
+                            {
+                                selected_table.deselectAll();
+                                selected_table.addSelected(hit.transform.gameObject);
+                            }
                         }
-                        else //exclusive selected
+                    }
+                    else //if we didnt hit something
+                    {
+                        if (Input.GetKey(KeyCode.LeftShift))
+                        {
+                            //do nothing
+                        }
+                        else
                         {
                             selected_table.deselectAll();
-                            selected_table.addSelected(hit.transform.gameObject);
                         }
                     }
                 }
-                else //if we didnt hit something
+                else //marquee select
                 {
-                    if (Input.GetKey(KeyCode.LeftShift))
+                    verts = new Vector3[4];
+                    vecs = new Vector3[4];
+                    int i = 0;
+                    p2 = Input.mousePosition;
+                    corners = getBoundingBox(p1, p2);
+
+                    foreach (Vector2 corner in corners)
                     {
-                        //do nothing
+                        Ray ray = Camera.main.ScreenPointToRay(corner);
+
+                        if (Physics.Raycast(ray, out hit, 50000.0f, (1 << 8)))
+                        {
+                            verts[i] = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+                            vecs[i] = ray.origin - hit.point;
+                            Debug.DrawLine(Camera.main.ScreenToWorldPoint(corner), hit.point, Color.red, 1.0f);
+                        }
+                        i++;
                     }
-                    else
+
+                    //generate the mesh
+                    selectionMesh = generateSelectionMesh(verts, vecs);
+
+                    selectionBox = gameObject.AddComponent<MeshCollider>();
+
+                    selectionBox.sharedMesh = selectionMesh;
+                    selectionBox.convex = true;
+                    selectionBox.isTrigger = true;
+
+                    if (!Input.GetKey(KeyCode.LeftShift))
                     {
                         selected_table.deselectAll();
                     }
-                }
+
+                    Destroy(selectionBox, 0.02f);
+
+                }//end marquee select
+
+                dragSelect = false;
+
             }
-            else //marquee select
-            {
-                verts = new Vector3[4];
-                vecs = new Vector3[4];
-                int i = 0;
-                p2 = Input.mousePosition;
-                corners = getBoundingBox(p1, p2);
-
-                foreach (Vector2 corner in corners)
-                {
-                    Ray ray = Camera.main.ScreenPointToRay(corner);
-
-                    if (Physics.Raycast(ray, out hit, 50000.0f, (1 << 8)))
-                    {
-                        verts[i] = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-                        vecs[i] = ray.origin - hit.point;
-                        Debug.DrawLine(Camera.main.ScreenToWorldPoint(corner), hit.point, Color.red, 1.0f);
-                    }
-                    i++;
-                }
-
-                //generate the mesh
-                selectionMesh = generateSelectionMesh(verts, vecs);
-              
-                selectionBox = gameObject.AddComponent<MeshCollider>();
-
-                selectionBox.sharedMesh = selectionMesh;
-                selectionBox.convex = true;
-                selectionBox.isTrigger = true;
-
-                if (!Input.GetKey(KeyCode.LeftShift))
-                {
-                    selected_table.deselectAll();
-                }
-
-                Destroy(selectionBox, 0.02f);
-
-            }//end marquee select
-
-            dragSelect = false;
-
         }
+       
 
     }
 

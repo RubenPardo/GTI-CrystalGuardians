@@ -72,6 +72,8 @@ public class Trampa : Estructura
     // Start is called before the first frame update
     protected override void Start()
     {
+        sistemaParticulasMejorar = particulasMejora.GetComponent<ParticleSystem>();
+        sistemaParticulasPosibleMejora = particulasPosibleMejora.GetComponent<ParticleSystem>();
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirTrampa;
         canvas = gameObject.transform.Find("Canvas").gameObject;
         if (canvas != null)

@@ -38,7 +38,7 @@ public class EnemigoScript : MonoBehaviour
     NavMeshAgent agent;
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         dir = true;
         agent = GetComponent<NavMeshAgent>();
@@ -236,7 +236,7 @@ public class EnemigoScript : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         GameManager.Instance.listaEnemigosRonda.Remove(gameObject);
     }

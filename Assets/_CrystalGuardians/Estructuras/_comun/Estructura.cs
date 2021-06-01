@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Estructura : MonoBehaviour
 {
@@ -9,7 +10,17 @@ public abstract class Estructura : MonoBehaviour
     public int[] vidaPorNivel;
 
     public int vidaActual;
+    //particulas
+    public GameObject particulasDestruccion;
+    protected ParticleSystem sistemaParticulasDestruccion;
+    public GameObject particulasPosibleMejora;
+    protected ParticleSystem sistemaParticulasPosibleMejora;
+    public GameObject particulasMejora;
+    protected ParticleSystem sistemaParticulasMejorar;
+
+
     public HealthBarScript healthBar;
+    public Text textNivelSubMenu;
     public int[] costeOroMejorar; // costes para mejorar (el primer valor es el nivel 2)
 
     public abstract void mejorar();
@@ -20,10 +31,41 @@ public abstract class Estructura : MonoBehaviour
 
     //Actualiza la vida actuañl
 
-    
+
+    protected virtual void Start()
+    {
+        
+     
+        // canvas del menu de botones
+        canvas = gameObject.transform.Find("Canvas").gameObject;
+        if (canvas != null)
+        {
+
+            canvas.SetActive(false);
+        }
+
+
+        sistemaParticulasMejorar = particulasMejora.GetComponent<ParticleSystem>();
+        sistemaParticulasPosibleMejora = particulasPosibleMejora.GetComponent<ParticleSystem>();
+        sistemaParticulasDestruccion = particulasDestruccion.GetComponent<ParticleSystem>();
+
+        settearVida();
+    }
+
+    protected virtual void Update()
+    {
+        textNivelSubMenu.text = "Nivel " + (nivelActual + 1);
+        comprobarVida0();
+    }
     public void setCurrentHealth(int health)
     {
+        if(health < vidaActual && TryGetComponent<Castillo>(out Castillo castillo))
+        {
 
+            
+            castillo.onShakeCamera();
+            
+        }
         healthBar.SetHeatlh(health);
         vidaActual = health;
     }
@@ -31,9 +73,10 @@ public abstract class Estructura : MonoBehaviour
     //Setea la vida actual y maxima cuando mejoras de nivel alguna estructura
     public void settearVida()
     {
+
        
-        healthBar.SetMaxHealth(vidaPorNivel[nivelActual]);
-        healthBar.SetHeatlh(vidaPorNivel[nivelActual]);
+        healthBar?.SetMaxHealth(vidaPorNivel[nivelActual]);
+        healthBar?.SetHeatlh(vidaPorNivel[nivelActual]);
         vidaActual = vidaPorNivel[nivelActual];
         //Debug.Log("SETEANDO -> "+ healthBar.slider.maxValue + " Current: "+ healthBar.slider.value);
     }
@@ -46,11 +89,15 @@ public abstract class Estructura : MonoBehaviour
         }
         if (vidaActual <= 0)
         {
-         
+            GameObject go =  Instantiate(particulasDestruccion);
+            go.transform.position = transform.position;
+            go.GetComponentInChildren<ParticleSystem>().Play();
+
             GameManager.listaEstructurasEnJuego.Remove(gameObject);
             Destroy(gameObject);
         }
     }
+    
 
     
 

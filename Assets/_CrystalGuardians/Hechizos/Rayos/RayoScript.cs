@@ -6,11 +6,20 @@ public class RayoScript : Hechizo
 {
     public int mejoraDanyoRayo = 1;
     public static float aumentoRadio = 1f;//mejora de aldea
-    // Start is called before the first frame update
+                                          // Start is called before the first frame update
+    public AudioSource sonidoHechizoRayo;
+
     void Start()
        
     {
-        transform.localScale = new Vector3(transform.localScale.x * aumentoRadio, transform.localScale.y, transform.localScale.z * aumentoRadio);
+        sonidoHechizoRayo.Play();
+
+        transform.parent.localScale = new Vector3(transform.parent.localScale.x * aumentoRadio, transform.parent.localScale.y * aumentoRadio, transform.parent.localScale.z * aumentoRadio);
+        var mainAreaParticulas = areaParticualas.main;
+        mainAreaParticulas.startSize = mainAreaParticulas.startSize.constant * aumentoRadio;
+
+        var shapeSistemaParticulas = areaParticualas.shape;
+        shapeSistemaParticulas.radius = shapeSistemaParticulas.radius * aumentoRadio;
         spwanHechizo = Time.time;
     }
     private void OnTriggerEnter(Collider other)

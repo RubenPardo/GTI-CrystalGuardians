@@ -17,21 +17,21 @@ public class Castillo : Estructura
     public Text txtMejoraObsidium;
 
     public int[] costeObsidiumMejorar;
-    // Storing different levels'
-    public GameObject[] levels;
 
     //prefabs castillo 
     public GameObject prefabNvl1;
-    
     public GameObject prefabNvl2;
     public GameObject prefabNvl3;
 
-    
 
+    // controlador del shake camera para cuando le peguen
+    public HUDShake cameraShake;
+    
 
 
     public int[] costeObsidiumConstruirMejorar;
 
+    bool possibleSueloMejora = false;
     public override void abrirMenu()
     {
         if (canvas != null)
@@ -48,7 +48,7 @@ public class Castillo : Estructura
     }
     public override void mejorar()
     {
-
+        //if()//comprobacion oro o obsidium - nivel castillo 
         GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum - costeObsidiumMejorar[nivelActual];
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
@@ -66,42 +66,46 @@ public class Castillo : Estructura
         settearVida();
         comprobarNivelCastillo();
 
+        //emitir particulas
+       
+        sistemaParticulasMejorar.Play();
+
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         GameManager.listaEstructurasEnJuego.Add(this.gameObject);
-       
-        // canvas del menu de botones
-        canvas = gameObject.transform.Find("Canvas").gameObject;
-        if (canvas != null)
-        {
-            canvas.SetActive(false);
-        }
-        setUpCanvasValues();
-        settearVida();
+        base.Start();
+        
 
     }
     // Update is called once per frame
-    private void Update()
+    protected override void Update()
     {
-
+        base.Update();
+        setUpCanvasValues();
         comprobarDisponibilidadMejora();
-        comprobarVida0();
-        
+
     }
 
     private void comprobarDisponibilidadMejora()
     {
-
-        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
+       
+        bool inte = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
        && GameManager.Instance.Obsiidum >= costeObsidiumMejorar[GameManager.Instance.NivelActualCastillo];
+        
+        btnMejorar.interactable = inte;
+        btnMejorarInfo.interactable = inte;
 
-
-        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual])
-        && GameManager.Instance.Obsiidum >= costeObsidiumMejorar[nivelActual];
-
+        if (inte && !sistemaParticulasPosibleMejora.isEmitting)
+        {
+            sistemaParticulasPosibleMejora.Play();
+        }
+        else if (!inte)
+        {
+            sistemaParticulasPosibleMejora.Stop();
+        }
 
 
     }
@@ -111,23 +115,20 @@ public class Castillo : Estructura
 
         
 
-        txtLvlActual.text = (nivelActual + 1).ToString();
+        txtLvlActual.text = "Castillo Nivel "+(nivelActual + 1).ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
         
         if (nivelActual < NivelMaximo)
         {
-            txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
-            txtLvlSiguiente.text = (nivelActual + 2).ToString();
             txtMejoraOro.text = costeOroMejorar[nivelActual].ToString();
             txtMejoraObsidium.text = costeObsidiumConstruirMejorar[nivelActual + 1].ToString();
         }
         else
         {
-            txtSaludMejorada.text = "---";
-            txtLvlSiguiente.text = "---";
-            txtMejoraOro.text = "---";
-            txtMejoraObsidium.text = "---";
+            btnMejorar.gameObject.SetActive(false);
+            btnMejorarInfo.gameObject.SetActive(false);
         }
+        
 
         
 
@@ -161,5 +162,11 @@ public class Castillo : Estructura
                 prefabNvl3.SetActive(true);
                 break;
         }
+    }
+
+
+    public void onShakeCamera()
+    {
+        cameraShake.shouldShake = true;
     }
 }

@@ -6,15 +6,10 @@ using UnityEngine.UI;
 public class Trampa : Estructura
 {
 
-    public Text txtNivel;
     public Text txtMejora;
 
-    public Text txtSaludActual;
-    public Text txtSaludMejorada;
     public Text txtDañoActual;
-    public Text txtDañoMejorada;
     public Text txtLvlActual;
-    public Text txtLvlSiguiente;
     public Button btnMejorar;
     public Button btnMejorarInfo;
 
@@ -23,17 +18,21 @@ public class Trampa : Estructura
     public GameObject trampaInactivaNvl2;
     public GameObject trampaActivaNvl2;
 
+   
+        
+
+
     public GameObject colliderExplosion;
 
-    // Storing different levels'
-    public GameObject[] levels;
+   
+
     public int[] danyoPorNivel;
     public override void mejorar()
     {
         GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
         
-        nivelActual = nivelActual + 1;
+        nivelActual++;
 
 
 
@@ -48,6 +47,10 @@ public class Trampa : Estructura
 
         // actualizar hud informacion
         setUpCanvasValues();
+
+        //emitir particulas
+        sistemaParticulasMejorar.Play();
+
     }
 
     public override void abrirMenu()
@@ -67,32 +70,45 @@ public class Trampa : Estructura
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        sistemaParticulasMejorar = particulasMejora.GetComponent<ParticleSystem>();
+        sistemaParticulasPosibleMejora = particulasPosibleMejora.GetComponent<ParticleSystem>();
         GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirTrampa;
-        // canvas del menu de botones
         canvas = gameObject.transform.Find("Canvas").gameObject;
         if (canvas != null)
         {
+
             canvas.SetActive(false);
         }
         setUpCanvasValues();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        textNivelSubMenu.text = "Nivel " + (nivelActual + 1);
         comprobarDisponibilidadMejora();
     }
 
     private void comprobarDisponibilidadMejora()
     {
-
-        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        bool v = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+        btnMejorar.interactable = v;
+        btnMejorarInfo.interactable = v;
+
+
+        if (v && !sistemaParticulasPosibleMejora.isEmitting)
+        {
+            sistemaParticulasPosibleMejora.Play();
+        }
+        else if (!v)
+        {
+            sistemaParticulasPosibleMejora.Stop();
+        }
+
     }
 
     private void setUpCanvasValues()
@@ -100,23 +116,20 @@ public class Trampa : Estructura
 
 
 
-        txtLvlActual.text = (nivelActual + 1).ToString();
+        txtLvlActual.text = "Trampa Nivel "+(nivelActual + 1).ToString();
         txtDañoActual.text = danyoPorNivel[nivelActual].ToString();
 
 
         if (nivelActual < NivelMaximo)
         {
-            txtLvlSiguiente.text = (nivelActual + 2).ToString();
 
-            txtDañoMejorada.text = danyoPorNivel[nivelActual + 1].ToString();
             txtMejora.text = costeOroMejorar[nivelActual].ToString();
         }
         else
         {
-            txtLvlSiguiente.text = "--------";
 
-            txtDañoMejorada.text = "---------";
-            txtMejora.text = "Nivel Maximo Alcanzado";
+            btnMejorar.gameObject.SetActive(false);
+            btnMejorarInfo.gameObject.SetActive(false);
         }
 
 

@@ -8,8 +8,8 @@ using Random = UnityEngine.Random;
 public class RondasEnemigos : MonoBehaviour
 {
     public Text contadorRondas;
-    public Text numeroRonda;
-    private float contadorTiempoRonda = 90.0f;
+    public Text txtOleada;
+    private float contadorTiempoRonda = 10.0f;
     public int numeroRnda = 1;
     private bool isRondaActive = false;
 
@@ -33,12 +33,37 @@ public class RondasEnemigos : MonoBehaviour
     public GameObject castillo;
 
 
+    // control ciclo dia noche
+    [Header("Luz Ambiente")]
+    [SerializeField]
+    private Light luzAmbiente;
+    [SerializeField]
+    private int maxOscuridad = 10;
+    [SerializeField]
+    private int maxLuz = 52;
+    [SerializeField]
+    private int luzAmbienteParaEncenderLuces = 20;
+    private int tiempoRonda;// usado para realizar la regla de tres entre la luz y el tiempo
 
+    
+
+    //musica para las rondas
+
+    
+    public AudioClip musicaRondaNormal;
+    public AudioClip musicaRondaBoss;
+    public AudioClip musicaEntreRondas;
+
+    public AudioSource sonidoCuerno;
+    public AudioSource sonidoRugido;
+    public AudioSource sonidoVictoria;
+    public AudioSource sonidoMejora;
 
     void Start()
     {
-
+        tiempoRonda = (int)contadorTiempoRonda;
         listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
+        
 
     }
    
@@ -46,30 +71,57 @@ public class RondasEnemigos : MonoBehaviour
     private void comprobarLanzarMejorasAldeas()
     {
         // cada 3 rondas se lanzaran las mejoras de la aldea
-        if (numeroRnda % 3 == 0)
+        if (numeroRnda % 6 == 0)
         {
+            //lanzamos la musica de mejoras
+            
+            sonidoMejora.Play();
+            
+
+
             //lanzar mejoras de aldea
             panelMejoras.SetActive(true);
+
+            
         }
     }
     
 
     public void comenzarRonda()
     {
+        //
         if (!isRondaActive)
         {
+
+            if (numeroRnda % 5 == 0)
+            {
+                AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
+                sonidoRugido.Play();
+                source.clip = musicaRondaBoss;
+                source.Play();
+
+            }
+            else
+            {
+                AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
+                sonidoCuerno.Play();
+                source.clip = musicaRondaNormal;
+                source.Play();
+            }
+
             spawn();
             isRondaActive = true;
+            contadorRondas.text = "";
+            txtOleada.text = "OLEADA " + numeroRnda.ToString("f0");
+            txtOleada.color = Color.red;
         }
        
     }
 
     public void forzarFinalizarRonda()
     {
-        isRondaActive = false;
-        contadorTiempoRonda = 90.0f;
-        numeroRnda++;
-        numeroRonda.text = numeroRnda.ToString("f0");
+        finRonda();
+
         GameObject[] listaEnemigosEnPartida = GameObject.FindGameObjectsWithTag("Enemigo");
         for (int i = 0; i < listaEnemigosEnPartida.Length; i++)
         {
@@ -91,21 +143,46 @@ public class RondasEnemigos : MonoBehaviour
         if (isRondaActive)
         {
 
-            contadorRondas.text = "--:--";
-
+            contadorRondas.text = "";
+            
             if (comprobarFinRonda())
             {
-                GameManager.Instance.listaEnemigosRonda.Clear();
-                numeroRnda++;
-                isRondaActive = false;
-                contadorTiempoRonda = 300.0f;
-                numeroRonda.text = numeroRnda.ToString("f0");
-                comprobarLanzarMejorasAldeas();
-
+                finRonda();
+                
 
             }
         }
+        else if(numeroRnda % 5 == 0){ updateLuzAmbiente(); }
         
+
+    }
+
+    private void finRonda()
+    {
+        GameManager.Instance.listaEnemigosRonda.Clear();
+        numeroRnda++;
+        isRondaActive = false;
+        contadorTiempoRonda = 10.0f;
+        tiempoRonda = (int)contadorTiempoRonda;
+        txtOleada.text = "PARA LA OLEADA " + numeroRnda.ToString("f0");
+        txtOleada.color = Color.white;
+        comprobarLanzarMejorasAldeas();
+
+        // hacer de dia
+        GameManager.Instance.lucesActivas = false;
+        Vector3 rotation = new Vector3(maxLuz,
+                        transform.rotation.y,
+                        transform.rotation.z);
+        luzAmbiente.transform.eulerAngles = rotation;
+
+        AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
+        if (numeroRnda%3 != 0)
+        {
+            sonidoVictoria.Play();
+        }
+        
+        source.clip = musicaEntreRondas;
+        source.Play();
 
     }
 
@@ -122,8 +199,31 @@ public class RondasEnemigos : MonoBehaviour
 
         return contadorTiempoRonda <= 0.0f;
     }
+    private void updateLuzAmbiente()
+    {
+        // contadorTiempoRonda ( tmAct ) -> tiempoRonda (tmMax)
+        // luzAmbiente.rotation.x ( X ) -> maxOscuridad (luzMax)
+        // tmAct/tmMax = X/LuzMax -> X = (tmAct * luzMax) / tmMax
 
-  
+
+        float cocienteTiempo = contadorTiempoRonda / tiempoRonda;
+
+        // quitar el tanto porciento entre la resta y luego sumar el min, 
+        // asi si se redujo el 100% debe dar el maxOscuridad 
+        float luzActual = ((maxLuz - maxOscuridad) * cocienteTiempo) + maxOscuridad;
+       
+        if(luzActual <= luzAmbienteParaEncenderLuces)
+        {
+            GameManager.Instance.lucesActivas = true;
+        }
+
+        Vector3 rotation = new Vector3(luzActual,
+                        transform.rotation.y,
+                        transform.rotation.z);
+        luzAmbiente.transform.eulerAngles = rotation;
+
+    }
+
     private bool comprobarFinRonda()
     {
         GameObject[] listaEnemigosEnPartida = GameObject.FindGameObjectsWithTag("Enemigo");
@@ -138,7 +238,7 @@ public class RondasEnemigos : MonoBehaviour
     {
         
  
-        for (int i=0; i < numeroRnda * cantidadEnemigosPorRonda; i++)
+       for (int i=0; i < numeroRnda * cantidadEnemigosPorRonda; i++)
 
         {
             GameObject casilla = listaSpawn[Random.Range(0, listaSpawn.Length)];
@@ -187,4 +287,7 @@ public class RondasEnemigos : MonoBehaviour
        
 
     }
+
+
+
 }

@@ -7,131 +7,79 @@ public class LanzarHechizos : MonoBehaviour
 {
     [Header("Heal")]
     public GameObject healBluePrint;
-    public Button btnHeal;
-    public Texture texturaReadyHeal;
-    public Texture texturaGrisHeal;
+    public GameObject btnHeal;
 
     [Header("Rayo")]
     public GameObject rayoBluePrint;
-    public Button btnRayo;
-    public Texture texturaReadyRayo;
-    public Texture texturaGrisRayo;
+    public GameObject btnRayo;
 
     [Header("Heal")]
     public GameObject buffBluePrint;
-    public Button btnBuff;
-    public Texture texturaReadyBuff;
-    public Texture texturaGrisBuff;
+    public GameObject btnBuff;
 
     [Header("HUD")]
     public GameObject HUDHechizos;
     public Text txtRayosDisponibles;
     public Text txtHealsDisponibles;
     public Text txtBuffsDisponibles;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     private void comprobarDisponibilidadBotones()
     {
 
-        // CAMBIO DE ICONO HEAL
-        if (GameManager.Instance.HealsDisponibles<=0)
-        {
-            // recursos insuficiente
-
-            RawImage icono = btnHeal.GetComponent<RawImage>();
-            icono.texture = texturaGrisHeal;
-            btnHeal.interactable = false;
-        }
-        else
-        {
-            // disponible
-
-            RawImage icono = btnHeal.GetComponent<RawImage>();
-            icono.texture = texturaReadyHeal;
-            btnHeal.interactable = true;
-
-        }
-
-        // CAMBIO DE ICONO Rayo
-        if (GameManager.Instance.RayosDisponibles <= 0)
-        {
-            // recursos insuficiente
-
-            RawImage icono = btnRayo.GetComponent<RawImage>();
-            icono.texture = texturaGrisRayo;
-            btnRayo.interactable = false;
-        }
-        else
-        {
-            // disponible
-
-            RawImage icono = btnRayo.GetComponent<RawImage>();
-            icono.texture = texturaReadyRayo;
-            btnRayo.interactable = true;
-
-
-        }
-
-        // CAMBIO DE ICONO Buff
-        if (GameManager.Instance.BuffsDisponibles <= 0)
-        {
-            // recursos insuficiente
-
-            RawImage icono = btnBuff.GetComponent<RawImage>();
-            icono.texture = texturaGrisBuff;
-            btnBuff.interactable = false;
-        }
-        else
-        {
-            // disponible
-
-            RawImage icono = btnBuff.GetComponent<RawImage>();
-            icono.texture = texturaReadyBuff;
-            btnBuff.interactable = true;
-
-
-        }
-
+        btnRayo.GetComponent<btnHechizo>().Available = GameManager.Instance.RayosDisponibles > 0;
+        btnHeal.GetComponent<btnHechizo>().Available = GameManager.Instance.HealsDisponibles > 0;
+        btnBuff.GetComponent<btnHechizo>().Available = GameManager.Instance.BuffsDisponibles > 0;
+       
 
     }
 
     public void lanzarHeal()
     {
+       if (GameManager.Instance.HealsDisponibles > 0)
+        {
+            Instantiate(healBluePrint);
+        }
+        else
+        {
+            GameManager.Instance.ShowMessage("Antes debes generar el hechizo!");
+        }
        
-        Instantiate(healBluePrint);
 
     }
 
     public void lanzarRayo()
     {
-      
-        Instantiate(rayoBluePrint);
+
+        if (GameManager.Instance.RayosDisponibles > 0)
+        {
+            Instantiate(rayoBluePrint);
+        }
+        else
+        {
+            GameManager.Instance.ShowMessage("Antes debes generar el hechizo!");
+        }
 
     }
 
     public void lanzarBuff()
     {
-        
-        Instantiate(buffBluePrint);
+
+        if (GameManager.Instance.BuffsDisponibles > 0)
+        {
+            Instantiate(buffBluePrint);
+        }
+        else
+        {
+            GameManager.Instance.ShowMessage("Antes debes generar el hechizo!");
+        }
 
     }
     // Update is called once per frame
     void Update()
     {
         comprobarDisponibilidadBotones();
-        if (GameManager.Instance.CasasDeHechizosConstruidas==1)
-        {
-            habilitarCanvasHechizos(true);
-        }
-        else
-        {
-            habilitarCanvasHechizos(false);
-        }
         actualizarHechizosDisponibles();
+        
     }
 
     private void actualizarHechizosDisponibles()
@@ -146,5 +94,6 @@ public class LanzarHechizos : MonoBehaviour
 
         HUDHechizos.SetActive(habilitado);
     }
+
 
 }

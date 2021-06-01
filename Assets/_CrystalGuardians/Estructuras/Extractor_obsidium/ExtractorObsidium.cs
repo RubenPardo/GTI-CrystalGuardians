@@ -21,9 +21,14 @@ public class ExtractorObsidium : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
-    // Storing different levels'
-    public GameObject[] levels;
+
+
+
+// Storing different levels'
+public GameObject[] levels;
     public int[] generacionObsidiumPorNivel;
+
+  
 
     public override void abrirMenu()
     {
@@ -55,37 +60,45 @@ public class ExtractorObsidium : Estructura
         // actualizar hud informacion
         setUpCanvasValues();
         settearVida();
+
+        //emitir particulas
+        sistemaParticulasMejorar.Play();
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        //GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirExtractor;
-        // canvas del menu de botones
-        canvas = gameObject.transform.Find("Canvas").gameObject;
-        if (canvas != null)
-        {
-            canvas.SetActive(false);
-        }
+        base.Start();
         setUpCanvasValues();
-        settearVida();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
         comprobarDisponibilidadMejora();
         generarRecursos();
-        comprobarVida0();
     }
+
     private void comprobarDisponibilidadMejora()
     {
 
-        btnMejorar.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        bool v = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-        btnMejorarInfo.enabled = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+
+        btnMejorar.interactable = v;
+        btnMejorarInfo.enabled = v;
+
+
+        if (v && !sistemaParticulasPosibleMejora.isEmitting)
+        {
+            sistemaParticulasPosibleMejora.Play();
+        }
+        else if (!v)
+        {
+            sistemaParticulasPosibleMejora.Stop();
+        }
+
     }
 
     private void setUpCanvasValues()
@@ -93,27 +106,22 @@ public class ExtractorObsidium : Estructura
 
 
 
-        txtLvlActual.text = (nivelActual + 1).ToString();
+        txtLvlActual.text = "Extractor Obsidium Nivel " + (nivelActual + 1).ToString();
         txtProduccionActual.text = generacionObsidiumPorNivel[nivelActual].ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
 
 
         if (nivelActual < NivelMaximo) { 
-        txtLvlSiguiente.text = (nivelActual + 2).ToString();
 
-        txtProduccionMejorada.text = generacionObsidiumPorNivel[nivelActual + 1].ToString();
-        txtMejora.text = costeOroMejorar[nivelActual].ToString();
 
-        txtSaludMejorada.text = vidaPorNivel[nivelActual + 1].ToString();
+            txtMejora.text = costeOroMejorar[nivelActual].ToString();
+
+            
         }
         else
         {
-            txtLvlSiguiente.text = "----------";
-
-            txtProduccionMejorada.text = "---------";
-            txtMejora.text = "Nivel Maximo";
-
-            txtSaludMejorada.text = "-------------";
+            btnMejorar.gameObject.SetActive(false);
+            btnMejorarInfo.gameObject.SetActive(false);
         }
 
 
@@ -147,4 +155,5 @@ public class ExtractorObsidium : Estructura
 
 
     }
+    
 }

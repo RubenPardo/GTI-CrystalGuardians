@@ -31,15 +31,20 @@ public class EnemigoScript : MonoBehaviour
     private bool isObjetivoFijado;
     private bool isAtacking;
 
+    //animaciones
+    private Animator animator;
+
 
     NavMeshAgent agent;
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         dir = true;
         agent = GetComponent<NavMeshAgent>();
         settearVida();
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -85,24 +90,23 @@ public class EnemigoScript : MonoBehaviour
                     agent.SetDestination(objetivoFijado.transform.position);
                     isObjetivoFijado = true;
                     isMoving = true;
+                    animator.SetBool("atacando", false);
+
 
 
                 }
 
 
             }
-
-
-
-
-
         }
         else
         {
             if (objetivoFijado == null)
             {
                 isAtacking = false;
+               
                 isObjetivoFijado = false;
+                isMoving = false;
             }
             else
             {
@@ -118,6 +122,7 @@ public class EnemigoScript : MonoBehaviour
                         agent.SetDestination(this.transform.position);
 
                         isAtacking = true;
+                        animator.SetBool("atacando", true);
 
 
                     }
@@ -133,22 +138,26 @@ public class EnemigoScript : MonoBehaviour
             {
 
                 isMoving = false;
+                //animator.SetBool("atacando", false);
 
             }
         }
 
         if (isAtacking)
         {
+            
             if (objetivoFijado == null)
             {
                 // si el enemigo ha muerto
                 isAtacking = false;
+                //animator.SetBool("atacando", false);
                 isObjetivoFijado = false;
             }
             else if (Vector3.Distance(transform.position, objetivoFijado.transform.position) > rangoAtaque)
             {
                 // si el enemigo sale del rango de ataque desfijarlo
                 isAtacking = false;
+                //animator.SetBool("atacando", false);
                 isObjetivoFijado = false;
             }
             else
@@ -164,18 +173,24 @@ public class EnemigoScript : MonoBehaviour
                 GameManager.listaAliadosEnJuego,
                 GameManager.listaEstructurasEnJuego);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, rangoAtaque);
+    }
     public virtual void attack()
     {
         if (attackCoutDwon <= 0f)
         {
-            Estructura estructura;
             /*
             Guerrero guerrero;
             Ballestero ballestero;
             */
             Aliado aliado;
-            if (objetivoFijado.TryGetComponent<Estructura>(out estructura))
+            if (objetivoFijado.TryGetComponent<Estructura>(out Estructura estructura))
             {
+                
                 estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
             }
             else
@@ -221,7 +236,7 @@ public class EnemigoScript : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         GameManager.Instance.listaEnemigosRonda.Remove(gameObject);
     }

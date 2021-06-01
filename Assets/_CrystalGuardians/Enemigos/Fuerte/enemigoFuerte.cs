@@ -6,21 +6,27 @@ public class enemigoFuerte : EnemigoScript
 {
     [Header("Unity SetUp")]
     //Bala a disparar
-    public GameObject areaAtaqueprefab;
+    public AnimacionController AnimacionController;
 
    
 
+    protected override void Start()
+    {
+    
+        base.Start();
+    }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
+        AnimacionController.damage = danyoPorNivel[nivelActual];
     }
 
     override public void attack()
     {
         /*Metodo que invoca el ataque fuerte del enemigo
-        createAttack();
+        //El ataque se produce al terminar la animacion
         */
     }
 
@@ -29,10 +35,10 @@ public class enemigoFuerte : EnemigoScript
         return GameManager.listaEstructurasEnJuego;
     }
 
-    void createAttack()
+    protected override void OnDestroy()
     {
        
-        areaAtaqueprefab.SetActive(true);
-        areaAtaqueprefab.GetComponent<TriggerScriptEnemigoFuerte>().damage = danyoPorNivel[nivelActual];
+        GameManager.Instance.listaEnemigosRonda.Remove(gameObject);
+        base.OnDestroy();
     }
 }

@@ -13,49 +13,22 @@ public class ConstruirEstructuras : MonoBehaviour
     public GameObject Muro_blueprint;
     public GameObject Torre_blueprint;
     public GameObject Trampa_blueprint;
-   
-    public Button btnCasaHechizos;
-    public Button btnCuartel;
-    public Button btnMina;
-    public Button btnExtractor;
-    public Button btnMuro;
-    public Button btnTorre;
-    public Button btnTrampa;
 
-    public Texture texturaReadyMina;
-    public Texture texturaGrisMina;
-    public Texture texturaRojaMina;
-    public Texture texturaReadyExtractor;
-    public Texture texturaGrisExtractor;
-    public Texture texturaRojaExtractor;
-    public Texture texturaReadyCuartel;
-    public Texture texturaGrisCuartel;
-    public Texture texturaRojaCuartel;
-    public Texture texturaReadyTorre;
-    public Texture texturaGrisTorre;
-    public Texture texturaRojaTorre;
-    public Texture texturaReadyTrampa;
-    public Texture texturaGrisTrampa;
-    public Texture texturaRojaTrampa;
-    public Texture texturaReadyMuro;
-    public Texture texturaGrisMuro;
-    public Texture texturaRojaMuro;
-    public Texture texturaReadyHechizos;
-    public Texture texturaGrisHechizos;
-    public Texture texturaRojaHechizos;
-
+    public GameObject prefabBtnMina;
+    public GameObject prefabBtnExtractor;
+    public GameObject prefabBtnCuartel;
+    public GameObject prefabBtnTorre;
+    public GameObject prefabBtnTrampa;
+    public GameObject prefabBtnMuro;
+    public GameObject prefabBtnCasaHechizos;
 
     public Canvas canvasHUD;
 
-    private Castillo castillo;
-    
+
 
     private void Start()
     {
-        // coger los botones y deshabilitar los que requieran un nivel superior al del castillo 
-        // y deshabilitar los que no puedes construir por recursos
-    
-        castillo = GameManager.Instance.castillo.GetComponent<Castillo>();
+       
         comprobarDisponibilidadBotones();
 
     }
@@ -69,10 +42,6 @@ public class ConstruirEstructuras : MonoBehaviour
         
     }
 
-    private void habilitar(Button btn, bool hablitado)
-    {
-        btn.interactable = hablitado;
-    }
     private void habilitarCanvas(bool habilitado)
     {
 
@@ -84,263 +53,224 @@ public class ConstruirEstructuras : MonoBehaviour
         // comprobar nivel y luego los recursos para habilitar o deshabilitar los botones
 
         // CAMBIO DE ICONO CASA DE HECHIZOS
-        if(GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloCasaHechizos)
-        {
-           
-            // nivel insuficiente
-            // cuando se haga con imagen poner esto tmb con la imagen que le toca
-            // button.GetComponent<Image>().sprite = Image1;
 
-            RawImage icono = btnCasaHechizos.GetComponent<RawImage>();
-            icono.texture = texturaGrisHechizos;
-
-            habilitar(btnCasaHechizos,false);
-           
-        }
-        else if (GameManager.Instance.Oro < GameManager.costeConstruirCasaHechizos || GameManager.Instance.CasasDeHechizosConstruidas >= GameManager.topeCasaHechizos)
+          
+        if (suficienteNivel(GameManager.nivelMinimoCastilloCasaHechizos, prefabBtnCasaHechizos)
+            && oroSufcienteParaConstruir(GameManager.costeConstruirCasaHechizos, prefabBtnCasaHechizos) 
+            && topeEstructuasNoAlcanzado(GameManager.Instance.CasasDeHechizosConstruidas, GameManager.topeCasaHechizos,prefabBtnCasaHechizos))
         {
-            // recursos insuficiente
-            RawImage icono = btnCasaHechizos.GetComponent<RawImage>();
-            icono.texture = texturaRojaHechizos;
-            habilitar(btnCasaHechizos, false);
+            habilitar(prefabBtnCasaHechizos, true);
         }
         else
         {
-            // disponible
-            RawImage icono = btnCasaHechizos.GetComponent<RawImage>();
-            icono.texture = texturaReadyHechizos;
-            habilitar(btnCasaHechizos, true);
-
-            
+            habilitar(prefabBtnCasaHechizos, false);
         }
 
         // CAMBIO DE ICONO CUARTEL
-        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloCuartel)
+        if (suficienteNivel(GameManager.nivelMinimoCastilloCuartel, prefabBtnCuartel)
+          && oroSufcienteParaConstruir(GameManager.costeConstruirCuartel, prefabBtnCuartel)
+          && topeEstructuasNoAlcanzado(GameManager.Instance.CuartelesConstruidos, GameManager.topeCuartelUnidades, prefabBtnCuartel))
         {
-            // nivel insuficiente 
-            // cuando se haga con imagen poner esto tmb con la imagen que le toca
-
-            RawImage icono = btnCuartel.GetComponent<RawImage>();
-            icono.texture = texturaGrisCuartel;
-
-
-            habilitar(btnCuartel, false);
-        }
-        else if (GameManager.Instance.Oro < GameManager.costeConstruirCuartel || GameManager.Instance.CuartelesConstruidos >= GameManager.topeCuartelUnidades)
-        {
-            // recursos insuficiente o tope de cuarteles construidos
-
-            RawImage icono = btnCuartel.GetComponent<RawImage>();
-            icono.texture = texturaRojaCuartel;
-
-            habilitar(btnCuartel, false);
+            habilitar(prefabBtnCuartel, true);
         }
         else
         {
-            // disponible
-
-            RawImage icono = btnCuartel.GetComponent<RawImage>();
-            icono.texture = texturaReadyCuartel;
-
-            habilitar(btnCuartel, true);
+            habilitar(prefabBtnCuartel, false);
         }
+
 
         // CAMBIO DE ICONO MINA
-        //habilitar( btnMina,castillo.nivelActual >= GameManager.nivelMinimoCastilloMina && GameManager.Instance.Oro >= GameManager.costeConstruirMina);
-        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloMina)
+
+        if (suficienteNivel(GameManager.nivelMinimoCastilloMina, prefabBtnMina)
+             && oroSufcienteParaConstruir(GameManager.costeConstruirMina, prefabBtnMina))
         {
-            // nivel insuficiente
-            // cuando se haga con imagen poner esto tmb con la imagen que le toca
-
-            RawImage icono = btnMina.GetComponent<RawImage>();
-            icono.texture =  texturaGrisMina;
-
-
-            habilitar(btnMina, false);
-        }
-        else if (GameManager.Instance.Oro < GameManager.costeConstruirMina)
-        {
-            // recursos insuficiente
-
-            RawImage icono = btnMina.GetComponent<RawImage>();
-            icono.texture = texturaRojaMina;
-
-            habilitar(btnMina, false);
+            habilitar(prefabBtnMina, true);
         }
         else
         {
-            // disponible
-
-            RawImage icono = btnMina.GetComponent<RawImage>();
-            icono.texture = texturaReadyMina;
-
-            habilitar(btnMina, true);
+            habilitar(prefabBtnMina, false);
         }
+
 
         // CAMBIO DE ICONO EXTRACTOR
-        //habilitar( btnExtractor,castillo.nivelActual >= GameManager.nivelMinimoCastilloExtractor && GameManager.Instance.Oro >= GameManager.costeConstruirExtractor);
-        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloExtractor)
+        if (suficienteNivel(GameManager.nivelMinimoCastilloExtractor, prefabBtnExtractor)
+            && oroSufcienteParaConstruir(GameManager.costeConstruirExtractor, prefabBtnExtractor))
         {
-            // nivel insuficiente
-            // cuando se haga con imagen poner esto tmb con la imagen que le toca
-            // button.GetComponent<Image>().sprite = Image1;
-
-            RawImage icono = btnExtractor.GetComponent<RawImage>();
-            icono.texture = texturaGrisExtractor;
-
-            habilitar(btnExtractor, false);
-
-        }
-        else if (GameManager.Instance.Oro < GameManager.costeConstruirExtractor)
-        {
-            // recursos insuficiente
-
-            RawImage icono = btnExtractor.GetComponent<RawImage>();
-            icono.texture = texturaRojaExtractor;
-            habilitar(btnExtractor, false);
+            habilitar(prefabBtnExtractor, true);
         }
         else
         {
-            // disponible
-
-            RawImage icono = btnExtractor.GetComponent<RawImage>();
-            icono.texture = texturaReadyExtractor;
-            habilitar(btnExtractor, true);
+            habilitar(prefabBtnExtractor, false);
         }
+
+
 
         // CAMBIO DE ICONO MURO
-        //habilitar(btnMuro,castillo.nivelActual >= GameManager.nivelMinimoCastilloMuros && GameManager.Instance.Oro >= GameManager.costeConstruirMuro);
-        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloMuros)
+        if (suficienteNivel(GameManager.nivelMinimoCastilloMuros, prefabBtnMuro)
+            && oroSufcienteParaConstruir(GameManager.costeConstruirMuro, prefabBtnMuro))
         {
-            // nivel insuficiente
-            // cuando se haga con imagen poner esto tmb con la imagen que le toca
-            // button.GetComponent<Image>().sprite = Image1;
-
-            RawImage icono = btnMuro.GetComponent<RawImage>();
-            icono.texture = texturaGrisMuro;
-
-            habilitar(btnMuro, false);
-
-        }
-        else if (GameManager.Instance.Oro < GameManager.costeConstruirMuro)
-        {
-            // recursos insuficiente
-
-            RawImage icono = btnMuro.GetComponent<RawImage>();
-            icono.texture = texturaRojaMuro;
-            habilitar(btnMuro, false);
+            habilitar(prefabBtnMuro, true);
         }
         else
         {
-            // disponible
-
-            RawImage icono = btnMuro.GetComponent<RawImage>();
-            icono.texture = texturaReadyMuro;
-            habilitar(btnMuro, true);
+            habilitar(prefabBtnMuro, false);
         }
+
         // CAMBIO DE ICONO TORRE
-        //habilitar(btnTorre,castillo.nivelActual >= GameManager.nivelMinimoCastilloTorre && GameManager.Instance.Oro >= GameManager.costeConstruirTorre);
-        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloTorre)
+        if (suficienteNivel(GameManager.nivelMinimoCastilloTorre, prefabBtnTorre)
+            && oroSufcienteParaConstruir(GameManager.costeConstruirTorre, prefabBtnTorre))
         {
-            // nivel insuficiente
-            // cuando se haga con imagen poner esto tmb con la imagen que le toca
-            // button.GetComponent<Image>().sprite = Image1;
-
-            RawImage icono = btnTorre.GetComponent<RawImage>();
-            icono.texture = texturaGrisTorre;
-
-            habilitar(btnTorre, false);
-
-        }
-        else if (GameManager.Instance.Oro < GameManager.costeConstruirTorre)
-        {
-            // recursos insuficiente
-
-            RawImage icono = btnTorre.GetComponent<RawImage>();
-            icono.texture = texturaRojaTorre;
-            habilitar(btnTorre, false);
+            habilitar(prefabBtnTorre, true);
         }
         else
         {
-            // disponible
-            RawImage icono = btnTorre.GetComponent<RawImage>();
-            icono.texture = texturaReadyTorre;
-            habilitar(btnTorre, true);
+            habilitar(prefabBtnTorre, false);
         }
+
+
         // CAMBIO DE ICONO TRAMPA
-        //habilitar(btnTrampa,castillo.nivelActual >= GameManager.nivelMinimoCastilloTrampa && GameManager.Instance.Oro >= GameManager.costeConstruirTrampa);
-        if (GameManager.Instance.NivelActualCastillo < GameManager.nivelMinimoCastilloTrampa)
+        if (suficienteNivel(GameManager.nivelMinimoCastilloTrampa, prefabBtnTrampa)
+            && oroSufcienteParaConstruir(GameManager.costeConstruirTrampa, prefabBtnTrampa))
         {
-            // nivel insuficiente
-            // cuando se haga con imagen poner esto tmb con la imagen que le toca
-            // button.GetComponent<Image>().sprite = Image1;
-
-            RawImage icono = btnTrampa.GetComponent<RawImage>();
-            icono.texture = texturaGrisTrampa;
-
-            habilitar(btnTrampa, false);
-
-        }
-        else if (GameManager.Instance.Oro < GameManager.costeConstruirTrampa)
-        {
-            // recursos insuficiente
-
-            RawImage icono = btnTrampa.GetComponent<RawImage>();
-            icono.texture = texturaRojaTrampa;
-            habilitar(btnTrampa, false);
+            habilitar(prefabBtnTrampa, true);
         }
         else
         {
-            // disponible
-            RawImage icono = btnTrampa.GetComponent<RawImage>();
-            icono.texture = texturaReadyTrampa;
-            habilitar(btnTrampa, true);
+            habilitar(prefabBtnTrampa, false);
         }
+    }
 
-    }
- 
-    public void spawn_CasaDeHechizos_blueprint()
+    private bool suficienteNivel(int nivelCastilloRequerido, GameObject prefabBtn)
     {
-        
-        Instantiate(CasaDeHechizos_blueprint);
+        bool suficienteNivelConstruir = true;
+        if (nivelCastilloRequerido > GameManager.Instance.NivelActualCastillo )
+        {
+            suficienteNivelConstruir = false;
+            prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = false;
+            prefabBtn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "Nivel de castillo insuficiente!";
+        }
+        else
+        {
+            prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = true;
+        }
+        return suficienteNivelConstruir;
+    }
 
-    }
-    public void spawn_CuartelUnidades_blueprint()
+    private void habilitar(GameObject prefabBtn, bool v)
     {
-         
-       
-        Instantiate(CuartelUnidades_blueprint);
-       
+        prefabBtn.GetComponent<BtnConstruccion>().Available = v;
     }
-    public void spawn_Mina()
+
+    public void spawn_CasaDeHechizos_blueprint(BtnConstruccion btn)
+    {
+        if (btn.Available)
+        {
+            Instantiate(CasaDeHechizos_blueprint);
+        }
+        else
+        {
+            showMessage(btn.textNoSePuedeConstruir);
+        }
+    }
+    public void spawn_CuartelUnidades_blueprint(BtnConstruccion btn)
     {
 
-        GameManager.Instance.oroConstruido = true;
-        Instantiate(Mina_blueprint);
-        
+        if (btn.Available)
+        {
+            Instantiate(CuartelUnidades_blueprint);
+        }
+        else
+        {
+            showMessage(btn.textNoSePuedeConstruir);
+        }
     }
-    public void spawn_Extractor()
-    {  
-        Instantiate(Extractor_blueprint);
-        
-    }
-    public void spawn_Muro()
+    public void spawn_Mina(BtnConstruccion btn)
     {
-        
-    
-        Instantiate(Muro_blueprint);
+        if (btn.Available)
+        {
+            GameManager.Instance.oroConstruido = true;
+            Instantiate(Mina_blueprint);
+        }
+        else
+        {
+            showMessage(btn.textNoSePuedeConstruir);
+
+        }
     }
-    public void spawn_Torre()
+    public void spawn_Extractor(BtnConstruccion btn)
     {
-   
-        Instantiate(Torre_blueprint);
- 
+        if (btn.Available)
+        {
+            Instantiate(Extractor_blueprint);
+        }
+        else
+        {
+            showMessage(btn.textNoSePuedeConstruir);
+
+        }
     }
-    public void spawn_Trampa()
+    public void spawn_Muro(BtnConstruccion btn)
     {
-      
-        
-        Instantiate(Trampa_blueprint);
-        
+        if (btn.Available)
+        {
+            Instantiate(Muro_blueprint);
+        }
+        else
+        {
+            showMessage(btn.textNoSePuedeConstruir);
+        }
+    }
+    public void spawn_Torre(BtnConstruccion btn)
+    {
+        if (btn.Available)
+        {
+            Instantiate(Torre_blueprint);
+        }
+        else
+        {
+            showMessage(btn.textNoSePuedeConstruir);
+
+        }
+    }
+    public void spawn_Trampa(BtnConstruccion btn)
+    {
+        if (btn.Available)
+        {
+            Instantiate(Trampa_blueprint);
+        }
+        else
+        {
+            showMessage(btn.textNoSePuedeConstruir);
+
+        }
+    }
+
+
+
+    private bool oroSufcienteParaConstruir(int costeOro, GameObject btn) {
+        bool oroDisponible = true;
+
+        if (GameManager.Instance.Oro < costeOro)
+        {
+            btn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "Oro insuficiente!";
+            oroDisponible = false;
+        }
+        return oroDisponible;
+    }
+
+    private bool topeEstructuasNoAlcanzado(int estrcuturasActuales,int topeEstructuras, GameObject btn)
+    {
+        bool sePuedeConstruir = true;
+
+        if (estrcuturasActuales >= topeEstructuras)
+        {
+            btn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "No puedes construir mas estrscturas de ese tipo!";
+            sePuedeConstruir = false;
+        }
+        return sePuedeConstruir;
+    }
+    private void showMessage(String text)
+    {
+        GameManager.Instance.ShowMessage(text);
     }
 }

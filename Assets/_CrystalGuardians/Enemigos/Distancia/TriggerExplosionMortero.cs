@@ -26,6 +26,8 @@ public class TriggerExplosionMortero : MonoBehaviour
             estructura = other.GetComponent<Estructura>();
             int damage = bala.damage;
             estructura.setCurrentHealth(estructura.vidaActual - damage);
+
+            
                  
         }else if(other.transform.parent != null && other.transform.parent.CompareTag("Estructura"))
         {
@@ -36,5 +38,6 @@ public class TriggerExplosionMortero : MonoBehaviour
             estructura.setCurrentHealth(estructura.vidaActual - damage);
             
         }
+
     }
 }

@@ -10,6 +10,7 @@ public class BalaMortero : MonoBehaviour
     private Transform origin;
     public float secondsOnAir = 20f;
     public GameObject rangoExplosion;
+    public GameObject bala;
 
     void Start()
     {
@@ -43,9 +44,12 @@ public class BalaMortero : MonoBehaviour
         if (other.transform.CompareTag("Estructura") || ( other.transform.parent !=null && other.transform.parent.CompareTag("Estructura") )
             || other.transform.CompareTag("Suelo"))
         {
+            bala.SetActive(false);
             rangoExplosion.SetActive(true);
             Rigidbody rb = transform.GetComponent<Rigidbody>();
             rb.isKinematic = true;
+            rangoExplosion.GetComponentInChildren<ParticleSystem>().Play();
+
             
         }
     }

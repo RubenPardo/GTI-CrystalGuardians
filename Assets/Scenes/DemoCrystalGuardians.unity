@@ -56768,9 +56768,17 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 43640402811639640, guid: e3462b80792b0da4b8ed6bedb3414d9d, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 43640402811639646, guid: e3462b80792b0da4b8ed6bedb3414d9d, type: 3}
       propertyPath: m_Name
       value: Aviso
+      objectReference: {fileID: 0}
+    - target: {fileID: 43640402811639646, guid: e3462b80792b0da4b8ed6bedb3414d9d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 43640402811639647, guid: e3462b80792b0da4b8ed6bedb3414d9d, type: 3}
       propertyPath: m_Pivot.x

@@ -27,9 +27,11 @@ public class EnemigoScript : MonoBehaviour
     Dictionary<GameObject, float> dictDistancias;
     protected GameObject objetivoFijado;
 
+
     private bool isMoving;
     private bool isObjetivoFijado;
     private bool isAtacking;
+    public bool canAttack = true;
 
     //animaciones
     private Animator animator;
@@ -54,7 +56,7 @@ public class EnemigoScript : MonoBehaviour
         comprobarVida0();
     }
 
-    private void moverEnemigo()
+    protected void moverEnemigo()
     {
        
 
@@ -162,7 +164,8 @@ public class EnemigoScript : MonoBehaviour
             }
             else
             {
-                attack();
+                 attack();
+                
             }
         }
     }
@@ -183,20 +186,20 @@ public class EnemigoScript : MonoBehaviour
     {
         if (attackCoutDwon <= 0f)
         {
-            /*
-            Guerrero guerrero;
-            Ballestero ballestero;
-            */
-            Aliado aliado;
-            if (objetivoFijado.TryGetComponent<Estructura>(out Estructura estructura))
+            
+            if (canAttack)
             {
-                
-                estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
-            }
-            else
-            {
-                aliado = objetivoFijado.GetComponentInParent<Aliado>();
-                aliado.setCurrentHealth(aliado.vidaActual - danyoPorNivel[nivelActual]);
+                Aliado aliado;
+                if (objetivoFijado.TryGetComponent<Estructura>(out Estructura estructura))
+                {
+
+                    estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
+                }
+                else
+                {
+                    aliado = objetivoFijado.GetComponentInParent<Aliado>();
+                    aliado.setCurrentHealth(aliado.vidaActual - danyoPorNivel[nivelActual]);
+                }
             }
 
             attackCoutDwon = 1f / attackSpeed;

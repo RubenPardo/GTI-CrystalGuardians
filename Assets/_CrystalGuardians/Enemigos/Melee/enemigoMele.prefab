@@ -92,7 +92,7 @@ MonoBehaviour:
   vidaActual: 0
   speed: 5
   rangoVision: 100
-  rangoAtaque: 1.5
+  rangoAtaque: 2
   attackSpeed: 1
   healthBar: {fileID: 7592100259447508494}
 --- !u!54 &4397731089738922922
@@ -120,7 +120,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2053117798627461158}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50

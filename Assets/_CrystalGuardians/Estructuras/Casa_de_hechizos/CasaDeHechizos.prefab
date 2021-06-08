@@ -745,7 +745,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!114 &3791302438691050678
 MonoBehaviour:
@@ -843,7 +843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: 205}
+  m_AnchoredPosition: {x: -33, y: 190}
   m_SizeDelta: {x: 368.7321, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4827419394771621383
@@ -2323,6 +2323,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8239743338382386105}
     m_Modifications:
+    - target: {fileID: 817557065892486861, guid: b1178509441505b4483667075b73c654, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 1140265845303996390, guid: b1178509441505b4483667075b73c654, type: 3}
       propertyPath: m_Texture
       value: 

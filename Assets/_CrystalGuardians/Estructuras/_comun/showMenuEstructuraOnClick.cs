@@ -42,6 +42,7 @@ public class showMenuEstructuraOnClick : MonoBehaviour
                         {
                             // se hizo click en otra cosa que no es una estructura
                             estructuraAnterior?.cerrarMenu();
+
                         }
                     }
                 }
@@ -49,11 +50,13 @@ public class showMenuEstructuraOnClick : MonoBehaviour
                 {
                     // se hizo click en otra cosa que no es una estructura
                     estructuraAnterior?.cerrarMenu();
+
                 }
             }
             else
             {
                // golpeo en UI
+
             }
 
            

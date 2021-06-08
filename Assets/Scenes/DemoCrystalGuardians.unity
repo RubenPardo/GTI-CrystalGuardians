@@ -14718,7 +14718,7 @@ RectTransform:
   - {fileID: 636078063}
   - {fileID: 537189979}
   m_Father: {fileID: 1242609363}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -36971,8 +36971,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 218247024}
   - {fileID: 1770908950}
+  - {fileID: 218247024}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48438,7 +48438,7 @@ GameObject:
   - component: {fileID: 1770908950}
   - component: {fileID: 1770908952}
   - component: {fileID: 1770908951}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: PanelGolpe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48457,7 +48457,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1242609363}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

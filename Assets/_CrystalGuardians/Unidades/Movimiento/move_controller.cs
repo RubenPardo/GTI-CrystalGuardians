@@ -8,6 +8,7 @@ public class move_controller : MonoBehaviour
 
     private global_selection global_selection;
     RaycastHit hit;
+    public GameObject flechasMovimiento;
 
     void Start()
     {
@@ -43,8 +44,16 @@ public class move_controller : MonoBehaviour
 
                     
                 }
-                
+                if (k > 0)
+                {
+                    GameObject go = Instantiate(flechasMovimiento);
+                    Vector3 pos = new Vector3(hit.point.x, 2, hit.point.z);
+                    go.transform.position = pos;
+                    Destroy(go, 0.5f);
+                }
+
             }
+
                 
         }
     }

@@ -34375,6 +34375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f6b638acc6030458071f7086d7d647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flechasMovimiento: {fileID: 2290213606601328470, guid: c9ecffc81014bf7439963099ec4f3d75, type: 3}
 --- !u!1 &1128140503 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6505362721177315436, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}

@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject musicaAmbiente;
 
     public GameObject textoAviso;
-    public float timeDelayAviso;
+    public GameObject hudPrincipal;
+    public GameObject textoAvisoFlotante;
     // singleton
 
     static GameManager instance;
@@ -203,16 +204,8 @@ public class GameManager : MonoBehaviour
     }
     public void ShowMessage(string text)
     {
-        StartCoroutine(AvisoEmpezorRonda(text));
-    }
-    IEnumerator AvisoEmpezorRonda(string text)
-    {
-        textoAviso.GetComponent<Text>().text = text;
-        timeDelayAviso = 1.5f;
-        textoAviso.SetActive(true);
-        yield return new WaitForSeconds(timeDelayAviso);
-        textoAviso.SetActive(false);
-        yield return new WaitForSeconds(timeDelayAviso);
 
+        GameObject go = Instantiate(textoAvisoFlotante, hudPrincipal.transform);
+        go.GetComponent<Text>().text = text;
     }
 }

@@ -50,6 +50,7 @@ public class blueprint_script : MonoBehaviour
                 if (!prefab.GetComponent<Trampa>())
                 {
                     GameManager.listaEstructurasEnJuego.Add(estructuraConstruida.gameObject);
+                    GameManager.Instance.EstructurasTotalesConstruidas++;
                 }
 
                 // mina

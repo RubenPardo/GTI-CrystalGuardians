@@ -31,6 +31,7 @@ public class BluePrintHechizos : MonoBehaviour
             // Lanzar el hechizo
             Instantiate(prefab, transform.position, transform.rotation);
             GameManager.Instance.SeEstaLanzandoHechizo(false);
+            GameManager.Instance.HechizosTotalesLanzados++;
             Destroy(gameObject);
 
         }

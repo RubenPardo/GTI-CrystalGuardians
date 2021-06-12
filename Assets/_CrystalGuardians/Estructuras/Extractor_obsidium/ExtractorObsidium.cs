@@ -49,6 +49,8 @@ public GameObject[] levels;
     private void generarRecursos()
     {
         GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum + generacionObsidiumPorNivel[nivelActual] * Time.deltaTime;
+        GameManager.Instance.ObsidiumTotalGenerado = GameManager.Instance.ObsidiumTotalGenerado +  (int)(generacionObsidiumPorNivel[nivelActual] * Time.deltaTime);
+
     }
 
     public override void mejorar()

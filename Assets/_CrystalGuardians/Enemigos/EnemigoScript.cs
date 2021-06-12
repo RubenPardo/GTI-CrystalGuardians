@@ -227,13 +227,13 @@ public class EnemigoScript : MonoBehaviour
         }
         if (vidaActual <= 0)
         {
-           
             Destroy(gameObject);
         }
     }
 
     protected virtual void OnDestroy()
     {
+        GameManager.Instance.EnemigosTotalesEliminados++;
         GameManager.Instance.listaEnemigosRonda.Remove(gameObject);
     }
 }

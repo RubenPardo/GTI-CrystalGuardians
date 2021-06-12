@@ -153,6 +153,8 @@ MonoBehaviour:
   rangoAtaque: 15
   attackSpeed: 0.35
   healthBar: {fileID: 3884911336853371779}
+  objetivoFijado: {fileID: 0}
+  canAttack: 1
   bulletPrefab: {fileID: 9069983044446178571, guid: d86ce326b6d1b974897aaf88b3136a18, type: 3}
   bulletPoint: {fileID: 2838882410141547578}
   rotateObject: {fileID: 972887454449850611}
@@ -999,7 +1001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4064880173633874498, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 68.5816
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4064880173633874498, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_LocalPosition.x

@@ -8,7 +8,7 @@ public class menuPausa : MonoBehaviour
     public static bool juegoPausado = false;
     public GameObject menuPausaUI;
     public GameObject HUD;
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -42,15 +42,14 @@ public class menuPausa : MonoBehaviour
     
     public void SalirDelJuego()
     {
-        Debug.Log("Saliendo del juego");
-        Application.Quit();
+       
+        SceneManager.LoadScene("MainMenu",LoadSceneMode.Single);
     }
     public void ReiniciarPartida()
     {
 
-        Debug.Log("Partida Reiniciada");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        //Time.timeScale = 1f;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
 }

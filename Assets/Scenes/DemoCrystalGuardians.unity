@@ -15350,6 +15350,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9136941054596788475, guid: e8c4b1ae296eb5e4dad88c519ae39a76, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136941054596788475, guid: e8c4b1ae296eb5e4dad88c519ae39a76, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9171828577869393282, guid: e8c4b1ae296eb5e4dad88c519ae39a76, type: 3}
       propertyPath: cameraShake
       value: 
@@ -24289,6 +24297,7 @@ GameObject:
   - component: {fileID: 636078063}
   - component: {fileID: 636078065}
   - component: {fileID: 636078064}
+  - component: {fileID: 636078066}
   m_Layer: 5
   m_Name: MenuPausa
   m_TagString: Untagged
@@ -24354,6 +24363,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636078062}
   m_CullTransparentMesh: 1
+--- !u!114 &636078066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636078062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89b983e9a63a0d4aa2527fe2df31a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPausaUI: {fileID: 636078062}
+  HUD: {fileID: 7218703}
 --- !u!1 &637071134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6505362721311247245, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -33549,7 +33572,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 636078066}
         m_TargetAssemblyTypeName: menuPausa, Assembly-CSharp
         m_MethodName: ReiniciarPartida
         m_Mode: 1
@@ -35311,7 +35334,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 636078066}
         m_TargetAssemblyTypeName: menuPausa, Assembly-CSharp
         m_MethodName: SalirDelJuego
         m_Mode: 1
@@ -44065,10 +44088,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1743735333}
-        m_TargetAssemblyTypeName: openMenuController, Assembly-CSharp
-        m_MethodName: isOpen
-        m_Mode: 6
+      - m_Target: {fileID: 636078066}
+        m_TargetAssemblyTypeName: menuPausa, Assembly-CSharp
+        m_MethodName: Continuar
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

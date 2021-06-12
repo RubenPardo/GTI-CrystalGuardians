@@ -210,6 +210,8 @@ public class CuartelUnidades : Estructura
             GameManager.Instance.Unidades++;
 
             GameManager.listaAliadosEnJuego.Add(g);
+
+            GameManager.Instance.UnidadesAliadasTotalesGeneradas++;
         }
     }
 

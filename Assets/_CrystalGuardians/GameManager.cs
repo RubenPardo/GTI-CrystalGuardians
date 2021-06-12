@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     
-    public Text hudProba;
+    public GameObject hudGameOver;
     //objeto que controla la musica de la escena
     public GameObject musicaAmbiente;
 
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
     public int RayosDisponibles { get => rayosDisponibles; set => rayosDisponibles = value; }
     public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
-    private float oro = 990000000;
+    private float oro = 3150;
     private float obsidium = 990000000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
@@ -139,8 +139,27 @@ public class GameManager : MonoBehaviour
     public bool rangoAtaqueSiempreVisible = false;
     public bool RangoAtaqueSiempreVisible { get => rangoAtaqueSiempreVisible; set => rangoAtaqueSiempreVisible = value; }
 
-    
+    //Estadisticas generales para pantalla de derrota
+    private float oroTotalGenerado = 0;
+    public float OroTotalGenerado { get => oroTotalGenerado; set => oroTotalGenerado = value; }
 
+    private float obsidiumTotalGenerado = 0;
+    public float ObsidiumTotalGenerado { get => obsidiumTotalGenerado; set => obsidiumTotalGenerado = value; }
+
+    private int unidadesAliadasTotalesGeneradas = 0;
+    public int UnidadesAliadasTotalesGeneradas { get => unidadesAliadasTotalesGeneradas; set => unidadesAliadasTotalesGeneradas = value; }
+
+    private int enemigosTotalesEliminados = 0;
+    public int EnemigosTotalesEliminados { get => enemigosTotalesEliminados; set => enemigosTotalesEliminados = value; }
+
+    private int hechizosTotalesLanzados = 0;
+    public int HechizosTotalesLanzados { get => hechizosTotalesLanzados; set => hechizosTotalesLanzados = value; }
+
+    private int estructurasTotalesConstruidas = 0;
+    public int EstructurasTotalesConstruidas { get => estructurasTotalesConstruidas; set => estructurasTotalesConstruidas = value; }
+
+    private int rondaMaximaAlcanzada = 0;
+    public int RondaMaximaAlcanzada { get => rondaMaximaAlcanzada; set => rondaMaximaAlcanzada = value; }
 
     // Start is called before the first frame update
 
@@ -232,5 +251,11 @@ public class GameManager : MonoBehaviour
         GameObject go = Instantiate(textoAvisoFlotante);
         go.GetComponentInChildren<Text>().text = text;
         Destroy(go, duracionAviso);
+    }
+
+    public void GameOver()
+    {
+        hudGameOver.SetActive(true);
+        hudGameOver.GetComponent<GameOver>().UpdateStats();
     }
 }

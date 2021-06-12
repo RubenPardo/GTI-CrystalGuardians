@@ -236,8 +236,8 @@ public class RondasEnemigos : MonoBehaviour
   
     private void spawn()
     {
-        
- 
+
+        GameManager.Instance.RondaMaximaAlcanzada = numeroRnda;
        for (int i=0; i < numeroRnda * cantidadEnemigosPorRonda; i++)
 
         {

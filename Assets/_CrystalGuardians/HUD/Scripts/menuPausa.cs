@@ -48,7 +48,7 @@ public class menuPausa : MonoBehaviour
     public void ReiniciarPartida()
     {
 
-
+        Continuar();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }

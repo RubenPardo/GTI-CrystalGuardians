@@ -152,7 +152,8 @@ public class Castillo : Estructura
 
     private void OnDestroy()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        GameManager.Instance.GameOver();
     }
     public void comprobarNivelCastillo()
     {

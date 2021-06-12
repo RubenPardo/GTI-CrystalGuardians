@@ -32,8 +32,8 @@ public int[] generacionOroPorNivel;
     {
         //GameManager.Instance.Oro += 1 * Time.deltaTime; //mina lvl-1
         GameManager.Instance.Oro = GameManager.Instance.Oro + generacionOroPorNivel[nivelActual] * Time.deltaTime * mejoraDeAldeaProduccionOro;
+        GameManager.Instance.OroTotalGenerado = GameManager.Instance.OroTotalGenerado + generacionOroPorNivel[nivelActual] * Time.deltaTime * mejoraDeAldeaProduccionOro;
 
-        // Debug.Log("Estoy generando --> " + (generacionOroPorNivel[nivelActual] * mejoraDeAldeaProduccionOro));
     }
 
     public override void mejorar()

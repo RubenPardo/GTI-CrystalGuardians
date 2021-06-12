@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2986886771448828381}
   - component: {fileID: 4930362190527396412}
   - component: {fileID: 2019168523745519063}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: "particulasCosntrucci\xF3n"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

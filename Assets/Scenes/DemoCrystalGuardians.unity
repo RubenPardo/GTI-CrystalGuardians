@@ -1369,6 +1369,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4402953343244809906, guid: 732998678f81b0e4990bcda40531a325, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5309516325401425213, guid: 732998678f81b0e4990bcda40531a325, type: 3}
       propertyPath: strPrecio
       value: 400
@@ -14716,6 +14720,7 @@ RectTransform:
   - {fileID: 2082053366}
   - {fileID: 1448800387}
   - {fileID: 636078063}
+  - {fileID: 1989299669}
   m_Father: {fileID: 1242609363}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23826,6 +23831,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3772843002880471620, guid: 732998678f81b0e4990bcda40531a325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402953343244809906, guid: 732998678f81b0e4990bcda40531a325, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5309516325401425213, guid: 732998678f81b0e4990bcda40531a325, type: 3}
@@ -35692,9 +35701,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hudProba: {fileID: 0}
   musicaAmbiente: {fileID: 660775139}
-  textoAviso: {fileID: 0}
+  textoAvisoSalirConstruccion: {fileID: 1989299668}
+  duracionAviso: 3
   hudPrincipal: {fileID: 1242609358}
-  textoAvisoFlotante: {fileID: 43640402811639646, guid: e3462b80792b0da4b8ed6bedb3414d9d, type: 3}
+  textoAvisoFlotante: {fileID: 5101137510572195581, guid: c890626367d42504ba2f2a170baff992, type: 3}
   seEstaConstruyendo: 0
   oroConstruido: 0
   obsidiumConstruido: 0
@@ -48299,7 +48309,7 @@ Terrain:
   m_GameObject: {fileID: 1767504037}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: b7cacc99ac3dd1c42b1f112d4c473db8, type: 2}
+  m_TerrainData: {fileID: 0}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -53115,6 +53125,85 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300476, guid: 353b40c6a1ff7dd469b9d1e4dc0f13a8, type: 3}
+--- !u!1 &1989299668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1989299669}
+  - component: {fileID: 1989299671}
+  - component: {fileID: 1989299670}
+  m_Layer: 5
+  m_Name: AvisoSalirConstruccion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1989299669
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989299668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 218247024}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0, y: 147}
+  m_SizeDelta: {x: 288.2641, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1989299670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989299668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 12
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 1
+    m_MaxSize: 20
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Click derecho para salir del modo construccion
+--- !u!222 &1989299671
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989299668}
+  m_CullTransparentMesh: 1
 --- !u!1 &1990334890 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4623580460937681150, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}

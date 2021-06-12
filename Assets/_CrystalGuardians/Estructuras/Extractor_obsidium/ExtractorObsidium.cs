@@ -53,16 +53,41 @@ public GameObject[] levels;
 
     public override void mejorar()
     {
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
-        comprobarCambiarPrefab();
-        nivelActual++;
-        // actualizar hud informacion
-        setUpCanvasValues();
-        settearVida();
+        bool mejoraDisponible = true;
 
-        //emitir particulas
-        sistemaParticulasMejorar.Play();
+        if ((nivelActual <= NivelMaximo - 1))
+        {
+            if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
+            {
+                GameManager.Instance.ShowMessage("Nivel de castillo insuficiente!");
+                mejoraDisponible = false;
+
+            }
+            else if((GameManager.Instance.Oro < costeOroMejorar[nivelActual]))
+            {
+                mejoraDisponible = false;
+                GameManager.Instance.ShowMessage("Oro insuficiente");
+            }
+        }
+        else
+        {
+            mejoraDisponible = false;
+        }
+
+        if (mejoraDisponible)
+        {
+            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            comprobarCambiarPrefab();
+            nivelActual++;
+
+            // actualizar hud informacion
+            setUpCanvasValues();
+            settearVida();
+
+            //emitir particulas
+            sistemaParticulasMejorar.Play();
+        }
     }
 
     // Start is called before the first frame update
@@ -83,19 +108,18 @@ public GameObject[] levels;
     private void comprobarDisponibilidadMejora()
     {
 
-        bool v = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        btnMejorar.interactable = v;
-        btnMejorarInfo.enabled = v;
 
-
-        if (v && !sistemaParticulasPosibleMejora.isEmitting)
+        if (mejoraDisponible && !sistemaParticulasPosibleMejora.isEmitting)
         {
+            enableButtonEstructura(btnMejorar, btnMejorarInfo);
             sistemaParticulasPosibleMejora.Play();
         }
-        else if (!v)
+        else if (!mejoraDisponible)
         {
+            disableButtonEstructura(btnMejorar, btnMejorarInfo);
             sistemaParticulasPosibleMejora.Stop();
         }
 

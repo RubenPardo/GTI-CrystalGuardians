@@ -26,6 +26,8 @@ public abstract class Estructura : MonoBehaviour
     public abstract void mejorar();
     public abstract void abrirMenu();
     public abstract void cerrarMenu();
+    public Color colorPrimary = new Color(208, 156, 45);
+
 
     protected GameObject canvas;
 
@@ -97,10 +99,20 @@ public abstract class Estructura : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
 
-    
+    protected void disableButtonEstructura(Button btnMejorar, Button btnMejorarInfo)
+    {
+        btnMejorar.GetComponent<RawImage>().color = Color.gray;
+        btnMejorarInfo.GetComponentInChildren<RawImage>().color = Color.gray;
 
 
+    }
 
+    protected void enableButtonEstructura(Button btnMejorar, Button btnMejorarInfo)
+    {
+
+        btnMejorar.GetComponent<RawImage>().color = colorPrimary;
+
+        btnMejorarInfo.GetComponentInChildren<RawImage>().color = colorPrimary;
+    }
 }

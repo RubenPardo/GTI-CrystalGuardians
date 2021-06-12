@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     //objeto que controla la musica de la escena
     public GameObject musicaAmbiente;
 
-    public GameObject textoAviso;
+    public GameObject textoAvisoSalirConstruccion;
+    public float duracionAviso = 3f;
     public GameObject hudPrincipal;
     public GameObject textoAvisoFlotante;
     // singleton
@@ -19,7 +20,28 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => instance; set => instance = value; }
 
     public bool seEstaConstruyendo = false; // cuando se pulsa un boton poner a true y deshabilitar todo hasta que se deje de construir
-    public bool SeEstaConstruyendo { get => seEstaConstruyendo; set => seEstaConstruyendo = value; }
+    public bool SeEstaConstruyendo { get => seEstaConstruyendo; 
+        set {
+            seEstaConstruyendo = value;
+            textoAvisoSalirConstruccion.SetActive(value);
+            textoAvisoSalirConstruccion.GetComponent<Text>().text = "Click derecho para salir del modo construccion";
+        } 
+    }
+
+    public void SeEstaLanzandoHechizo(bool state)
+    {
+        seEstaConstruyendo = state;
+        textoAvisoSalirConstruccion.SetActive(state);
+        textoAvisoSalirConstruccion.GetComponent<Text>().text = "Click derecho para salir del modo lanzamiento";
+    }
+
+    public void SeEstaDesplazandoUnidades(bool state)
+    {
+        //seEstaConstruyendo = state;
+        textoAvisoSalirConstruccion.SetActive(state);
+        textoAvisoSalirConstruccion.GetComponent<Text>().text = "Click derecho para desplazar a las unidaes";
+    }
+
 
     // casa de hechizos -----------
     public static int nivelMinimoCastilloCasaHechizos = 1;
@@ -205,7 +227,10 @@ public class GameManager : MonoBehaviour
     public void ShowMessage(string text)
     {
 
-        GameObject go = Instantiate(textoAvisoFlotante, hudPrincipal.transform);
-        go.GetComponent<Text>().text = text;
+        //GameObject go = Instantiate(textoAvisoFlotante, hudPrincipal.transform);
+        //go.GetComponent<Text>().text = text;
+        GameObject go = Instantiate(textoAvisoFlotante);
+        go.GetComponentInChildren<Text>().text = text;
+        Destroy(go, duracionAviso);
     }
 }

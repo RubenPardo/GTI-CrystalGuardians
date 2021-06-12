@@ -46,10 +46,13 @@ public class move_controller : MonoBehaviour
                 }
                 if (k > 0)
                 {
+                    global_selection.selected_table.deselectAll();
                     GameObject go = Instantiate(flechasMovimiento);
                     Vector3 pos = new Vector3(hit.point.x, 2, hit.point.z);
                     go.transform.position = pos;
                     Destroy(go, 0.5f);
+
+
                 }
 
             }

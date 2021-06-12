@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3935127351217468031}
   - component: {fileID: 4306171808048434703}
   - component: {fileID: 2925580805824629770}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: particulasMejora
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -29,27 +29,46 @@ public class Trampa : Estructura
     public int[] danyoPorNivel;
     public override void mejorar()
     {
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
+
+        bool mejoraDisponible = true;
+
+        if (nivelActual <= NivelMaximo - 1)
+        {
+            if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
+            {
+                mejoraDisponible = false;
+                GameManager.Instance.ShowMessage("Nivel de castillo insuficiente!");
+            }else if (GameManager.Instance.Oro >= costeOroMejorar[nivelActual])
+            {
+                mejoraDisponible = false;
+                GameManager.Instance.ShowMessage("Oro insuficiente!");
+            }
+        }
+        else
+        {
+            mejoraDisponible = false;
+        }
+
+        if (mejoraDisponible)
+        {
+            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            nivelActual++;
+            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+
+            //cambio de prefab 
+            trampaInactivaNvl1.SetActive(false);
+            trampaInactivaNvl2.SetActive(true);
+            colliderTrampa colliderTrampa = colliderExplosion.GetComponent<colliderTrampa>();
+            colliderTrampa.rangoExplosion = trampaActivaNvl2;
+
+            // actualizar hud informacion
+            setUpCanvasValues();
+
+            //emitir particulas
+            sistemaParticulasMejorar.Play();
+        }
         
-        nivelActual++;
-
-
-
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
-
-        //cambio de prefab 
-        trampaInactivaNvl1.SetActive(false);
-        trampaInactivaNvl2.SetActive(true);
-
-        colliderTrampa colliderTrampa = colliderExplosion.GetComponent<colliderTrampa>();
-        colliderTrampa.rangoExplosion = trampaActivaNvl2;
-
-        // actualizar hud informacion
-        setUpCanvasValues();
-
-        //emitir particulas
-        sistemaParticulasMejorar.Play();
 
     }
 
@@ -93,19 +112,18 @@ public class Trampa : Estructura
 
     private void comprobarDisponibilidadMejora()
     {
-        bool v = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        btnMejorar.interactable = v;
-        btnMejorarInfo.interactable = v;
-
-
-        if (v && !sistemaParticulasPosibleMejora.isEmitting)
+        if (mejoraDisponible)
         {
-            sistemaParticulasPosibleMejora.Play();
+            enableButtonEstructura(btnMejorar, btnMejorarInfo);
+            if(!sistemaParticulasPosibleMejora.isEmitting)
+                sistemaParticulasPosibleMejora.Play();
         }
-        else if (!v)
+        else if (!mejoraDisponible)
         {
+            disableButtonEstructura(btnMejorar, btnMejorarInfo);
             sistemaParticulasPosibleMejora.Stop();
         }
 

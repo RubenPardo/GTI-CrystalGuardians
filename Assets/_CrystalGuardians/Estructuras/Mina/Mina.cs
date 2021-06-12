@@ -38,16 +38,38 @@ public int[] generacionOroPorNivel;
 
     public override void mejorar()
     {
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
-       
-        comprobarCambiarPrefab();
-        nivelActual++;
-        settearVida();
-         // actualizar hud informacion
-        setUpCanvasValues();
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1)
+    && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+    && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        //emitir particulas
-        sistemaParticulasMejorar.Play();
+        if ((nivelActual <= NivelMaximo - 1))
+        {
+            if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
+            {
+                GameManager.Instance.ShowMessage("Nivel de castillo insuficiente!");
+
+            }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual])
+            {
+                GameManager.Instance.ShowMessage("Oro insuficiente!");
+            }
+        }
+        else
+        {
+            mejoraDisponible = false;
+        }
+        if (mejoraDisponible)
+        {
+            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            comprobarCambiarPrefab();
+            nivelActual++;
+            settearVida();
+
+            // actualizar hud informacion
+            setUpCanvasValues();
+
+            //emitir particulas
+            sistemaParticulasMejorar.Play();
+        }
     }
 
     // Start is called before the first frame update
@@ -84,20 +106,22 @@ public int[] generacionOroPorNivel;
     private void comprobarDisponibilidadMejora()
     {
 
-        bool v = (nivelActual <= NivelMaximo - 1)
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1)
             && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        btnMejorar.interactable = v;
-        btnMejorarInfo.interactable = v;
 
-
-        if (v && !sistemaParticulasPosibleMejora.isEmitting)
+        if (mejoraDisponible)
         {
-            sistemaParticulasPosibleMejora.Play();
+            enableButtonEstructura(btnMejorar, btnMejorarInfo);
+            if (!sistemaParticulasPosibleMejora.isEmitting)
+            {
+                sistemaParticulasPosibleMejora.Play();
+            }
         }
-        else if (!v)
+        else if (!mejoraDisponible)
         {
+            disableButtonEstructura(btnMejorar, btnMejorarInfo);
             sistemaParticulasPosibleMejora.Stop();
         }
 

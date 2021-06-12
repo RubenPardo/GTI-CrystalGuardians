@@ -973,6 +973,7 @@ MonoBehaviour:
   healthBar: {fileID: 9020561424629746580}
   textNivelSubMenu: {fileID: 1464613048161185369}
   costeOroMejorar: 103b000080ca0000
+  colorPrimary: {r: 208, g: 156, b: 45, a: 1}
   txtMejora: {fileID: 6167534528127201637}
   txtSaludActual: {fileID: 2267751891581033898}
   txtCosteHeal: {fileID: 7534407057182888547}
@@ -1957,6 +1958,18 @@ PrefabInstance:
     - target: {fileID: 4381010676169033069, guid: 42b3df61ba1220f478463d5f167827c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259741031028942053, guid: 42b3df61ba1220f478463d5f167827c5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.06132078
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259741031028942053, guid: 42b3df61ba1220f478463d5f167827c5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.7618277
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259741031028942053, guid: 42b3df61ba1220f478463d5f167827c5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6259741031028942053, guid: 42b3df61ba1220f478463d5f167827c5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

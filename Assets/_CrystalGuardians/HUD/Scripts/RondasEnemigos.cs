@@ -63,8 +63,6 @@ public class RondasEnemigos : MonoBehaviour
     {
         tiempoRonda = (int)contadorTiempoRonda;
         listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
-        
-
     }
    
 
@@ -74,10 +72,7 @@ public class RondasEnemigos : MonoBehaviour
         if (numeroRnda % 6 == 0)
         {
             //lanzamos la musica de mejoras
-            
             sonidoMejora.Play();
-            
-
 
             //lanzar mejoras de aldea
             panelMejoras.SetActive(true);
@@ -89,7 +84,6 @@ public class RondasEnemigos : MonoBehaviour
 
     public void comenzarRonda()
     {
-        //
         if (!isRondaActive)
         {
 

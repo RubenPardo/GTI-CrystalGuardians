@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject textoAviso;
     public float timeDelayAviso;
+
+    //tutorial
+    public static bool isTutorialOn = true;
+    public bool IsTutorialOn { get => isTutorialOn; set => isTutorialOn = value; }
+
     // singleton
 
     static GameManager instance;
@@ -124,7 +129,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        isTutorialOn = true;
         if(instance == null)
         {
             instance = this;

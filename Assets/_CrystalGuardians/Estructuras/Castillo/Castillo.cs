@@ -26,12 +26,9 @@ public class Castillo : Estructura
 
     // controlador del shake camera para cuando le peguen
     public HUDShake cameraShake;
-    
-
-
     public int[] costeObsidiumConstruirMejorar;
 
-    bool possibleSueloMejora = false;
+    
     public override void abrirMenu()
     {
         if (canvas != null)
@@ -69,8 +66,9 @@ public class Castillo : Estructura
 
         if (mejoraDisponible)
         {
-            GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum - costeObsidiumMejorar[nivelActual];
-            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            updateRecursos(true, true, costeOroMejorar[nivelActual], transform);
+            updateRecursos(false, true, costeObsidiumMejorar[nivelActual], transform);
+            
             nivelActual++;
             GameManager.Instance.NivelActualCastillo++;
             // actualizar hud informacion

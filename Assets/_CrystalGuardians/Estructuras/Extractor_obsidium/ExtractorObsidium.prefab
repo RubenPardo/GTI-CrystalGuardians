@@ -157,6 +157,8 @@ MonoBehaviour:
   healthBar: {fileID: 1621434582196781804}
   textNivelSubMenu: {fileID: 2909831813465767506}
   costeOroMejorar: 18150000a0320000005a0000a08c000080ca0000
+  colorPrimary: {r: 208, g: 156, b: 45, a: 1}
+  floatingText: {fileID: 2813641865897385345, guid: 4b320ec1dcedbe24f97abfc8227e74e6, type: 3}
   txtNivel: {fileID: 2909831813465767506}
   txtMejora: {fileID: 5585315636278471244}
   txtSaludActual: {fileID: 2187296175128905971}
@@ -170,12 +172,7 @@ MonoBehaviour:
   prefabLvl1: {fileID: 8353252290271823975}
   prefabLvl2: {fileID: 9068225546835140861}
   prefabLvl3: {fileID: 345766267640335476}
-  levels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  isInstanciadoAlInicio: 0
   generacionObsidiumPorNivel: 1400000050000000b400000040010000f4010000d0020000
 --- !u!208 &7278084267598780179
 NavMeshObstacle:

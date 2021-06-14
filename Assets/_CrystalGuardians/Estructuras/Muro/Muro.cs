@@ -39,7 +39,7 @@ public class Muro : Estructura
     // Start is called before the first frame update
     protected override void Start()
     {
-        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirMuro;
+        updateRecursos(true, true, GameManager.costeConstruirMuro, transform);
         base.Start();
         setUpCanvasValues();
     }
@@ -96,7 +96,7 @@ public class Muro : Estructura
 
         if (mejoraDisponible)
         {
-            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            updateRecursos(true, true, costeOroMejorar[nivelActual], transform);
             nivelActual++;
             comprobarCambioPrefab();
             settearVida();

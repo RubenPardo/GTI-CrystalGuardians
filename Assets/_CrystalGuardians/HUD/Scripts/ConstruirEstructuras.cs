@@ -46,6 +46,7 @@ public class ConstruirEstructuras : MonoBehaviour
     {
 
         canvasHUD.enabled = (habilitado);
+        canvasHUD.gameObject.SetActive(habilitado);
     }
 
     private void comprobarDisponibilidadBotones()

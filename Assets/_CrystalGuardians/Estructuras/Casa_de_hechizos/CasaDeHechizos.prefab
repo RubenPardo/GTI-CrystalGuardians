@@ -974,6 +974,7 @@ MonoBehaviour:
   textNivelSubMenu: {fileID: 1464613048161185369}
   costeOroMejorar: 103b000080ca0000
   colorPrimary: {r: 208, g: 156, b: 45, a: 1}
+  floatingText: {fileID: 2813641865897385345, guid: 4b320ec1dcedbe24f97abfc8227e74e6, type: 3}
   txtMejora: {fileID: 6167534528127201637}
   txtSaludActual: {fileID: 2267751891581033898}
   txtCosteHeal: {fileID: 7534407057182888547}

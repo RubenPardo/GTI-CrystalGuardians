@@ -74,7 +74,7 @@ public class CasaDeHechizos : Estructura
         }
         if (mejoraDisponible)
         {
-            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            updateRecursos(true, true, costeOroMejorar[nivelActual], transform);
 
             nivelActual++;
             GameManager.nivelCasaHechizos++;
@@ -96,7 +96,7 @@ public class CasaDeHechizos : Estructura
         // canvas del menu de botones
         base.Start();
         // al empezar restar el oro
-        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirCasaHechizos;
+        updateRecursos(true, true, GameManager.costeConstruirCasaHechizos, transform);
         
         GameManager.nivelCasaHechizos = 0;
         GameManager.Instance.CasasDeHechizosConstruidas++;
@@ -186,7 +186,7 @@ public class CasaDeHechizos : Estructura
     {
         if (obsidiumSuficienteLanzarHechizo(GameManager.costeLanzarRayo[nivelActual]) )
         {
-            GameManager.Instance.Obsiidum -= GameManager.costeLanzarRayo[nivelActual];
+            updateRecursos(false, true, GameManager.costeLanzarRayo[nivelActual], transform);
             GameManager.Instance.RayosDisponibles++;
         }
        
@@ -195,15 +195,16 @@ public class CasaDeHechizos : Estructura
     {
         if (obsidiumSuficienteLanzarHechizo(GameManager.costeLanzarHeal[nivelActual]))
         {
-            GameManager.Instance.Obsiidum -= GameManager.costeLanzarHeal[nivelActual];
+            updateRecursos(false, true, GameManager.costeLanzarHeal[nivelActual], transform);
             GameManager.Instance.HealsDisponibles++;
         }
            
     }
     public void generarBuff()
     {
-        if (obsidiumSuficienteLanzarHechizo(GameManager.costeLanzarBuff[nivelActual])){
-            GameManager.Instance.Obsiidum -= GameManager.costeLanzarBuff[nivelActual];
+        if (obsidiumSuficienteLanzarHechizo(GameManager.costeLanzarBuff[nivelActual]))
+        {
+            updateRecursos(false, true, GameManager.costeLanzarBuff[nivelActual], transform);
             GameManager.Instance.BuffsDisponibles++;
         }
     }

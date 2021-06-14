@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,11 +20,12 @@ public class Mina : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
-        
+
+    public bool isInstanciadoAlInicio = false;// para indicar si se pone al inicio del juego como base
 
 
 
-public int[] generacionOroPorNivel;
+    public int[] generacionOroPorNivel;
 
     public static float mejoraDeAldeaProduccionOro = 1;//100% = 1 
 
@@ -31,7 +33,7 @@ public int[] generacionOroPorNivel;
     private void generarRecursos()
     {
         //GameManager.Instance.Oro += 1 * Time.deltaTime; //mina lvl-1
-        GameManager.Instance.Oro = GameManager.Instance.Oro + generacionOroPorNivel[nivelActual] * Time.deltaTime * mejoraDeAldeaProduccionOro;
+        updateRecursos(true, false, generacionOroPorNivel[nivelActual] * Time.deltaTime * mejoraDeAldeaProduccionOro, transform);
         GameManager.Instance.OroTotalGenerado = GameManager.Instance.OroTotalGenerado + generacionOroPorNivel[nivelActual] * Time.deltaTime * mejoraDeAldeaProduccionOro;
 
     }
@@ -59,7 +61,9 @@ public int[] generacionOroPorNivel;
         }
         if (mejoraDisponible)
         {
-            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+           
+          
+            updateRecursos(true,true, costeOroMejorar[nivelActual], transform);
             comprobarCambiarPrefab();
             nivelActual++;
             settearVida();
@@ -72,10 +76,16 @@ public int[] generacionOroPorNivel;
         }
     }
 
+   
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        if (!isInstanciadoAlInicio)
+        {
+            updateRecursos(true,true, GameManager.costeConstruirMina, transform);
+        }
         setUpCanvasValues();
     }
 

@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
     public int RayosDisponibles { get => rayosDisponibles; set => rayosDisponibles = value; }
     public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
-    private float oro = 3150;
+    private float oro = 990000000;//3150;
     private float obsidium = 990000000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;

@@ -100,7 +100,7 @@ public class CuartelUnidades : Estructura
 
         if (mejoraDisponible)
         {
-            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            updateRecursos(true, true, costeOroMejorar[nivelActual], transform);
             comprobarCambiarPrefab();
             nivelActual++;
 
@@ -202,7 +202,7 @@ public class CuartelUnidades : Estructura
 
             aliado.nivelActual = nivelActual;
             aliado.settearVida();
-            GameManager.Instance.Obsiidum -= aliado.costePorNivel[nivelActual];
+            updateRecursos(false, true, aliado.costePorNivel[nivelActual], transform);
 
             GameObject g = Instantiate(unidadAliada);
             g.transform.position = transform.position + spawnPoint;

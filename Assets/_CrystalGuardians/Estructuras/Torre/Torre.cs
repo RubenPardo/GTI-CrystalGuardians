@@ -32,19 +32,10 @@ public class Torre : Estructura
         
 
 
-public GameObject cannon;
+    public GameObject cannon;
     public Material materialCannonNivel3;
 
 
-    /*
-    public override void abrirMenu()
-    {
-        if (canvas != null)
-        {
-            canvas.SetActive(true);
-        }
-    }
-    */
 
     public float attackSpeed = 1f;
     private float fireCoutDwon = 0f;
@@ -108,7 +99,7 @@ public GameObject cannon;
 
         if (mejoraDisponible)
         {
-            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            updateRecursos(true, true, costeOroMejorar[nivelActual], transform);
             comprobarCambiarPrefab();
             nivelActual++;
             settearVida();
@@ -156,7 +147,7 @@ public GameObject cannon;
     // Start is called before the first frame update
     protected override void Start()
     {
-        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirTorre;
+        updateRecursos(true, true, GameManager.costeConstruirTorre, transform);
         // canvas del menu de botones
         base.Start();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);

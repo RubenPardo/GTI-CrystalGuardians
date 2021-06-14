@@ -21,11 +21,9 @@ public class ExtractorObsidium : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
+    public bool isInstanciadoAlInicio = false;// para indicar si se pone al inicio del juego como base
 
 
-
-// Storing different levels'
-public GameObject[] levels;
     public int[] generacionObsidiumPorNivel;
 
   
@@ -48,8 +46,8 @@ public GameObject[] levels;
 
     private void generarRecursos()
     {
-        GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum + generacionObsidiumPorNivel[nivelActual] * Time.deltaTime;
-        GameManager.Instance.ObsidiumTotalGenerado = GameManager.Instance.ObsidiumTotalGenerado + generacionObsidiumPorNivel[nivelActual] * Time.deltaTime;
+        updateRecursos(false, false, generacionObsidiumPorNivel[nivelActual] * Time.deltaTime , transform);
+        GameManager.Instance.ObsidiumTotalGenerado += generacionObsidiumPorNivel[nivelActual] * Time.deltaTime;
 
     }
 
@@ -96,6 +94,10 @@ public GameObject[] levels;
     protected override void Start()
     {
         base.Start();
+        if (!isInstanciadoAlInicio)
+        {
+            updateRecursos(true, true, GameManager.costeConstruirExtractor, transform);
+        }
         setUpCanvasValues();
     }
 

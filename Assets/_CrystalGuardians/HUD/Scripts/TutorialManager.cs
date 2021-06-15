@@ -66,7 +66,7 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(indicePasosTuto);
+        //Debug.Log(indicePasosTuto);
         if (pasoCumplido)
         {
            
@@ -88,7 +88,7 @@ public class TutorialManager : MonoBehaviour
                 escribirTexto();
                 break;
             case 2:
-                frase = "Luego nuestro bien más preciado, el obsidium, utilízalo para entrenar a nuestros guerreros e invocar hechizos.Como puedes ver debajo del obsidium se muestra la cantidad máxima de guerreros que pueden ser entrenados , mejora tus cuarteles para aumentar esa cifra.";
+                frase = "Luego nuestro bien más preciado, el obsidium, utilízalo para entrenar a nuestros guerreros e invocar hechizos. Como puedes ver debajo del obsidium se muestra la cantidad máxima de guerreros que pueden ser entrenados, mejora tus cuarteles para aumentar esa cifra.";
                 //estaEscrito = true;
                 escribirTexto();
                 break;
@@ -102,7 +102,11 @@ public class TutorialManager : MonoBehaviour
                 //paso mina y extractor
                 pasoCumplido = false;
                 mostrarPaneles(2);
-                activacionBotones(1);
+                if (!hayMina && !hayExtractor)
+                {
+                    activacionBotones(1);
+                }
+                
                 foreach (GameObject g in GameManager.listaEstructurasEnJuego)
                 {
                     if (g.GetComponent<Mina>() != null && !hayMina)
@@ -139,7 +143,7 @@ public class TutorialManager : MonoBehaviour
                 indicadorPasosTutorial.SetActive(false);
                 panelTutorial.SetActive(true);
 
-                frase = "Ahora vamos a crear muros y una torre";
+                frase = "Ahora vamos a crear muros y una torre.";
                 escribirTexto();
                 break;
             case 6:
@@ -173,7 +177,7 @@ public class TutorialManager : MonoBehaviour
                 indicadorPasosTutorial.SetActive(false);
                 panelTutorial.SetActive(true);
 
-                frase = "Vamos a crear un cuartel y a crear unidades . Para ello construye un cuartel y haz click sobre los iconos de creación de tropas de la derecha de la pantalla.Recuerda que seleccionando las tropas con un barrido con <ClickIzquierdo> puedes dirigir a tus unidades haciendo click en cualquier parte de la aldea con <ClickDerecho>.";
+                frase = "Vamos a crear un cuartel y unidades. Para ello construye un cuartel y haz click sobre los iconos de creación de tropas de la derecha de la pantalla. Recuerda que seleccionando las tropas con un barrido con <ClickIzquierdo> puedes dirigir a tus unidades haciendo click en cualquier parte de la aldea con <ClickDerecho>.";
                 escribirTexto();
                 break;
             case 8:
@@ -198,13 +202,14 @@ public class TutorialManager : MonoBehaviour
                 indicadorPasosTutorial.SetActive(false);
                 panelTutorial.SetActive(true);
 
-                frase = "Para hacer tu aldea más poderosa deberás mejorar tus estructuras.Pulsa sobre el castillo central y mejora la estructura con el botón naranja.";
+                frase = "Para hacer tu aldea más poderosa deberás mejorar tus estructuras. Pulsa sobre el castillo central y mejora la estructura con el botón amarillo.";
                 escribirTexto();
                 break;
             case 10:
                 //paso de mejorar castillo
                 pasoCumplido = false;
                 mostrarPaneles(5);
+                activacionBotones(5);
                 if(GameManager.Instance.NivelActualCastillo == 1)
                 {
                     pasoCumplido = true;
@@ -216,11 +221,11 @@ public class TutorialManager : MonoBehaviour
                 indicadorPasosTutorial.SetActive(false);
                 panelTutorial.SetActive(true);
 
-                frase = "Tal y como has hecho en el castillo, puedes mejorar todas las estructuras que construyas,pero recuerda,¡debes administrar tus recursos!";
+                frase = "Tal y como has hecho en el castillo, puedes mejorar todas las estructuras que construyas, pero recuerda, ¡debes administrar tus recursos!";
                 escribirTexto();
                 break;
             case 12:
-                frase = "Nuestro castillo ya está a nivel 2.Construyamos una casa de hechizos.Al igual que en los cuarteles los hechizos también se crean desde un menú lateral.Esta vez está en la izquerda de tu pantalla.Los hechizos nos serán de gran ayuda para combatir a nuestros enemigos.";
+                frase = "Nuestro castillo ya está a nivel 2. Construyamos una casa de hechizos. Al igual que en los cuarteles los hechizos también se crean desde un menú lateral. Esta vez está en la izquerda de tu pantalla. Los hechizos nos serán de gran ayuda para combatir a nuestros enemigos.";
                 escribirTexto();
                 break;
             case 13:
@@ -238,13 +243,13 @@ public class TutorialManager : MonoBehaviour
             case 14:
                 indicadorPasosTutorial.SetActive(false);
                 panelTutorial.SetActive(true);
-                frase = "Desde la capital nos comunican que cada cierto tiempo nos enviarán ayuda, estas serán las mejoras de aldea.Cuando elijas una de ellas podrás consultarlas haciendo click en el botón que se encuentra junto al botón de pausa.";
+                frase = "Desde la capital nos comunican que cada cierto tiempo nos enviarán ayuda, estas serán las mejoras de aldea. Cuando elijas una de ellas podrás consultarlas haciendo click en el botón que se encuentra junto al botón de pausa.";
                 escribirTexto();
                 btnMejorasAldea.SetActive(true);
                 break;
             case 15:
                 
-                frase = "¡Vaya!, parece que se acercan enemigos , utiliza tus tropas y tus defensas para defender la aldea";
+                frase = "¡Vaya!, parece que se acercan enemigos, utiliza tus tropas y tus defensas para defender la aldea.";
                 escribirTexto();
                 break;
             case 16:
@@ -313,32 +318,32 @@ public class TutorialManager : MonoBehaviour
                 desactivarPanelTutorial();
                 panelConstruccion.SetActive(true);
                 indicadorPasosTutorial.SetActive(true);
-                textoPasoIndicadorTutorial.text = "Construye almenos una mina y un extractor";
+                textoPasoIndicadorTutorial.text = "Construye almenos una mina y un extractor.";
                 break;
             case 3:
                 desactivarPanelTutorial();
                 
                 indicadorPasosTutorial.SetActive(true);
-                textoPasoIndicadorTutorial.text = "Construye muros y almenos una torre";
+                textoPasoIndicadorTutorial.text = "Construye muros y almenos una torre.";
                 break;
             case 4:
                 desactivarPanelTutorial();
                 
                 indicadorPasosTutorial.SetActive(true);
-                textoPasoIndicadorTutorial.text = "Construye un cuartel y crea unidades";
+                textoPasoIndicadorTutorial.text = "Construye un cuartel y crea unidades.";
 
                 break;
             case 5:
                 desactivarPanelTutorial();
 
                 indicadorPasosTutorial.SetActive(true);
-                textoPasoIndicadorTutorial.text = "Mejora el castillo central pulsando sobre él";
+                textoPasoIndicadorTutorial.text = "Mejora el castillo central pulsando sobre él.";
                 break;
             case 6:
                 desactivarPanelTutorial();
 
                 indicadorPasosTutorial.SetActive(true);
-                textoPasoIndicadorTutorial.text = "Construye la casa de hechizos, crea y utiliza un hechizo";
+                textoPasoIndicadorTutorial.text = "Construye la casa de hechizos, crea y utiliza un hechizo.";
                 break;
             case 7:
                 desactivarPanelTutorial();
@@ -375,6 +380,15 @@ public class TutorialManager : MonoBehaviour
             case 4:
                 habilitar(btnCasaHechizos, true);
                 break;
+            case 5:
+                habilitar(btnCasaHechizos, false);
+                habilitar(btnMuro, false);
+                habilitar(btnTrampa, false);
+                habilitar(btnTorre, false);
+                habilitar(btnCuartel, false);
+                habilitar(btnMina, false);
+                habilitar(btnExtractor, false);
+                break;
         }
     }
     public void desactivarPanelTutorial()
@@ -384,6 +398,7 @@ public class TutorialManager : MonoBehaviour
     private void habilitar(GameObject prefabBtn, bool v)
     {
         prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = v;
+        
         
     }
 

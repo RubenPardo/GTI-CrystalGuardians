@@ -20,13 +20,13 @@ public class TutorialManager : MonoBehaviour
     public GameObject btnMejorasAldea;
 
     //control botones
-    public Button btnMina;
-    public Button btnExtractor;
-    public Button btnTorre;
-    public Button btnTrampa;
-    public Button btnCasaHechizos;
-    public Button btnCuartel;
-    public Button btnMuro;
+    public GameObject btnMina;
+    public GameObject btnExtractor;
+    public GameObject btnTorre;
+    public GameObject btnTrampa;
+    public GameObject btnCasaHechizos;
+    public GameObject btnCuartel;
+    public GameObject btnMuro;
 
     //control textos
     public Text textoPasoIndicadorTutorial;
@@ -43,6 +43,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject prefabED;
     public bool spawnMele = false;
     public bool spawnDist = false;
+    
 
 
     // Start is called before the first frame update
@@ -102,7 +103,8 @@ public class TutorialManager : MonoBehaviour
                     if (g.GetComponent<Mina>() != null)
                     {
                         hayMina = true;
-                        btnMina.enabled = false;
+                        
+                        habilitar(btnMina, false);
                         /*
                         GameManager.Instance.SeEstaConstruyendo = false;
                         blueprints = GameObject.FindGameObjectsWithTag("Blueprint");
@@ -117,7 +119,8 @@ public class TutorialManager : MonoBehaviour
                     {
                         
                         hayExtractor = true;
-                        btnExtractor.enabled = false;
+                        
+                        habilitar(btnExtractor, false);
                         /*
                         GameManager.Instance.SeEstaConstruyendo = false;
                         blueprints = GameObject.FindGameObjectsWithTag("Blueprint");
@@ -152,7 +155,7 @@ public class TutorialManager : MonoBehaviour
                     if (g.GetComponent<Torre>() != null)
                     {
                         hayTorre = true;
-                        btnTorre.enabled = false;
+                        habilitar(btnTorre, false);
                     }
                     if (g.GetComponent<Muro>() != null)
                     {
@@ -178,6 +181,13 @@ public class TutorialManager : MonoBehaviour
                 pasoCumplido = false;
                 mostrarPaneles(4);
                 activacionBotones(3);
+                foreach(GameObject g in GameManager.listaEstructurasEnJuego)
+                {
+                    if(g.GetComponent<CuartelUnidades>() != null)
+                    {
+                        habilitar(btnCuartel, false);
+                    }
+                }
                 if(GameManager.listaAliadosEnJuego.Count >= 2)
                 {
                     pasoCumplido = true;
@@ -239,12 +249,14 @@ public class TutorialManager : MonoBehaviour
                 break;
             case 16:
                 //paso de defender la aldea
+                pasoCumplido = false;
                 mostrarPaneles(7);
                 GameObject go;
                 GameObject go2;
                 if (!spawnMele)
                 {
                     go2 = Instantiate(prefabEM);
+                    
                     go2.transform.position = new Vector3(-20, 0);
                     spawnMele = true;
                 }
@@ -254,14 +266,10 @@ public class TutorialManager : MonoBehaviour
                     go.transform.position = new Vector3(20, 0);
                     spawnDist = true;
                 }
-                
-                
-                
-                
+                if(spawnDist == true && spawnMele == true && GameManager.Instance.listaEnemigosRonda.Count ==  0)
+                {
 
-
-
-
+                }
                 break;
         }
 
@@ -328,28 +336,29 @@ public class TutorialManager : MonoBehaviour
     }
     public void activacionBotones(int i )
     {
-        btnCasaHechizos.enabled = false;
-        btnMuro.enabled = false;
-        btnTrampa.enabled = false;
-        btnTorre.enabled = false;
-        btnCuartel.enabled = false;
-        btnMina.enabled = false;
-        btnExtractor.enabled = false;
+        habilitar(btnCasaHechizos, false);
+        habilitar(btnMuro, false);
+        habilitar(btnTrampa, false);
+        habilitar(btnTorre, false);
+        habilitar(btnCuartel, false);
+        habilitar(btnMina, false);
+        habilitar(btnExtractor, false);
+        
         switch (i)
         {
             case 1:
-                btnMina.enabled = true;
-                btnExtractor.enabled = true;
+                habilitar(btnMina, true);
+                habilitar(btnExtractor, true);
                 break;
             case 2:
-                btnTorre.enabled = true;
-                btnMuro.enabled = true;
+                habilitar(btnTorre, true);
+                habilitar(btnMuro, true);
                 break;
             case 3:
-                btnCuartel.enabled = true;
+                habilitar(btnCuartel, true);
                 break;
             case 4:
-                btnCasaHechizos.enabled = true;
+                habilitar(btnCasaHechizos, true);
                 break;
         }
     }
@@ -357,6 +366,11 @@ public class TutorialManager : MonoBehaviour
     {
         panelTutorial.SetActive(false);
     }
-    
-    
+    private void habilitar(GameObject prefabBtn, bool v)
+    {
+        prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = v;
+        
+    }
+
+
 }

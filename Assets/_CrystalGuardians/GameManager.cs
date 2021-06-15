@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     private static int healsDisponibles = 0;
     private static int rayosDisponibles = 0;
     private static int buffsDisponibles = 0;
+    public int hechizosLanzados = 0;
 
     public static int topeCasaHechizos=1;
 

@@ -32,6 +32,7 @@ public class BluePrintHechizos : MonoBehaviour
             Instantiate(prefab, transform.position, transform.rotation);
             GameManager.Instance.SeEstaConstruyendo = false;
             Destroy(gameObject);
+            GameManager.Instance.hechizosLanzados++;
 
         }
         // cuando se pulse el boton derecho se cancela la animacion de lanzar hechizos

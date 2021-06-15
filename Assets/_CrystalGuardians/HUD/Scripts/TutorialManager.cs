@@ -7,11 +7,9 @@ public class TutorialManager : MonoBehaviour
 {
     string frase ;
     public Text texto;
-    /*
-    public bool estaEscrito = true;
-    public bool pasoCumplido ;
-    */
 
+    public bool pasoCumplido;
+    
     public int indicePasosTuto = 0;
 
     //control de paneles
@@ -19,6 +17,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject panelRecursos;
     public GameObject panelConstruccion;
     public GameObject indicadorPasosTutorial;
+    public GameObject btnMejorasAldea;
 
     //control botones
     public Button btnMina;
@@ -33,16 +32,26 @@ public class TutorialManager : MonoBehaviour
     public Text textoPasoIndicadorTutorial;
 
     //control estructuras
+    public GameObject[] blueprints;
     bool hayMina = false;
     bool hayExtractor = false;
+    bool hayTorre = false;
+    bool hayMuro = false;
+
+    //enemigos 
+    public GameObject prefabEM;
+    public GameObject prefabED;
+    public bool spawnMele = false;
+    public bool spawnDist = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        
         frase = "Bienvenido a Crystal Guardians. Tu objetivo en esta aventura será defender nuestra aldea de los enemigos del bosque, para ello deberás recolectar recursos y construir defensas.";
         escribirTexto();
+        pasoCumplido = true;
+        
 
     }
     public void escribirTexto()
@@ -53,14 +62,18 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(indicePasosTuto);
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (pasoCumplido)
         {
-            //cuando ya esta escrito paso al siguiente paso
-            indicePasosTuto++;
+           
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                //cuando ya esta escrito paso al siguiente paso
+                indicePasosTuto++;
 
 
+            }
         }
+        
 
         switch(indicePasosTuto){
             case 1:
@@ -81,7 +94,7 @@ public class TutorialManager : MonoBehaviour
 
             case 4:
                 //paso mina y extractor
-
+                pasoCumplido = false;
                 mostrarPaneles(2);
                 activacionBotones(1);
                 foreach (GameObject g in GameManager.listaEstructurasEnJuego)
@@ -89,13 +102,34 @@ public class TutorialManager : MonoBehaviour
                     if (g.GetComponent<Mina>() != null)
                     {
                         hayMina = true;
-                    }
+                        btnMina.enabled = false;
+                        /*
+                        GameManager.Instance.SeEstaConstruyendo = false;
+                        blueprints = GameObject.FindGameObjectsWithTag("Blueprint");
+                        foreach(GameObject obj in blueprints)
+                        {
+                            Destroy(obj);
+                        }
+                        */
+
+}
                     if (g.GetComponent<ExtractorObsidium>() != null)
                     {
+                        
                         hayExtractor = true;
+                        btnExtractor.enabled = false;
+                        /*
+                        GameManager.Instance.SeEstaConstruyendo = false;
+                        blueprints = GameObject.FindGameObjectsWithTag("Blueprint");
+                        foreach (GameObject obj in blueprints)
+                        {
+                            Destroy(obj);
+                        }
+                        */
                     }
                     if (hayMina && hayExtractor)
                     {
+                        pasoCumplido = true;
                         indicePasosTuto++;
                     }
                 }
@@ -110,7 +144,27 @@ public class TutorialManager : MonoBehaviour
                 break;
             case 6:
                 //paso muros y torre 
+                pasoCumplido = false;
                 mostrarPaneles(3);
+                activacionBotones(2);
+                foreach (GameObject g in GameManager.listaEstructurasEnJuego)
+                {
+                    if (g.GetComponent<Torre>() != null)
+                    {
+                        hayTorre = true;
+                        btnTorre.enabled = false;
+                    }
+                    if (g.GetComponent<Muro>() != null)
+                    {
+                        hayMuro = true;
+                        
+                    }
+                    if (hayTorre && hayMuro)
+                    {
+                        pasoCumplido = true;
+                        indicePasosTuto++;
+                    }
+                }
                 break;
             case 7:
                 indicadorPasosTutorial.SetActive(false);
@@ -121,7 +175,14 @@ public class TutorialManager : MonoBehaviour
                 break;
             case 8:
                 //paso de crear unidades
+                pasoCumplido = false;
                 mostrarPaneles(4);
+                activacionBotones(3);
+                if(GameManager.listaAliadosEnJuego.Count >= 2)
+                {
+                    pasoCumplido = true;
+                    indicePasosTuto++;
+                }
                 break;
             case 9:
                 indicadorPasosTutorial.SetActive(false);
@@ -132,7 +193,13 @@ public class TutorialManager : MonoBehaviour
                 break;
             case 10:
                 //paso de mejorar castillo
+                pasoCumplido = false;
                 mostrarPaneles(5);
+                if(GameManager.Instance.NivelActualCastillo == 1)
+                {
+                    pasoCumplido = true;
+                    indicePasosTuto++;
+                }
 
                 break;
             case 11:
@@ -147,18 +214,54 @@ public class TutorialManager : MonoBehaviour
                 escribirTexto();
                 break;
             case 13:
-                //paso de construir casa de hechizos
+                //paso de construir casa de hechizos y lanzar hechizo
+                pasoCumplido = false;
                 mostrarPaneles(6);
+                activacionBotones(4);
+                if (GameManager.Instance.hechizosLanzados > 0)
+                {
+                    pasoCumplido = true;
+                    indicePasosTuto++;
+                }
+
                 break;
             case 14:
                 indicadorPasosTutorial.SetActive(false);
                 panelTutorial.SetActive(true);
+                frase = "Desde la capital nos comunican que cada cierto tiempo nos enviarán ayuda, estas serán las mejoras de aldea.Cuando elijas una de ellas podrás consultarlas haciendo click en el botón que se encuentra junto al botón de pausa.";
+                escribirTexto();
+                btnMejorasAldea.SetActive(true);
+                break;
+            case 15:
+                
                 frase = "¡Vaya!, parece que se acercan enemigos , utiliza tus tropas y tus defensas para defender la aldea";
                 escribirTexto();
                 break;
-            case 15:
+            case 16:
                 //paso de defender la aldea
                 mostrarPaneles(7);
+                GameObject go;
+                GameObject go2;
+                if (!spawnMele)
+                {
+                    go2 = Instantiate(prefabEM);
+                    go2.transform.position = new Vector3(-20, 0);
+                    spawnMele = true;
+                }
+                if(!spawnDist){
+                    
+                    go = Instantiate(prefabED);
+                    go.transform.position = new Vector3(20, 0);
+                    spawnDist = true;
+                }
+                
+                
+                
+                
+
+
+
+
                 break;
         }
 
@@ -237,6 +340,16 @@ public class TutorialManager : MonoBehaviour
             case 1:
                 btnMina.enabled = true;
                 btnExtractor.enabled = true;
+                break;
+            case 2:
+                btnTorre.enabled = true;
+                btnMuro.enabled = true;
+                break;
+            case 3:
+                btnCuartel.enabled = true;
+                break;
+            case 4:
+                btnCasaHechizos.enabled = true;
                 break;
         }
     }

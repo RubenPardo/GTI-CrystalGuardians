@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class Castillo : Estructura
     public Text txtMejoraObsidium;
 
     public int[] costeObsidiumMejorar;
+    public int[] generacionOroPorNivel;
 
     //prefabs castillo 
     public GameObject prefabNvl1;
@@ -93,9 +95,16 @@ public class Castillo : Estructura
     protected override void Update()
     {
         base.Update();
+        generarRecursos();
         setUpCanvasValues();
         comprobarDisponibilidadMejora();
 
+    }
+
+    private void generarRecursos()
+    {
+        updateRecursos(true, false, generacionOroPorNivel[nivelActual] * Time.deltaTime, transform);
+        GameManager.Instance.OroTotalGenerado = GameManager.Instance.OroTotalGenerado + generacionOroPorNivel[nivelActual] * Time.deltaTime;
     }
 
     private void comprobarDisponibilidadMejora()

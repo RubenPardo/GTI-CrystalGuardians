@@ -253,7 +253,7 @@ public class RondasEnemigos : MonoBehaviour
             }
 
 
-            GameManager.Instance.listaEnemigosRonda.Add(g);
+            
 
         }
 

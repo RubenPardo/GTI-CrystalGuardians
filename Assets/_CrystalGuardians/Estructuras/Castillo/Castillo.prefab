@@ -1005,6 +1005,7 @@ MonoBehaviour:
   txtMejoraOro: {fileID: 2673671765317084356}
   txtMejoraObsidium: {fileID: 2790683367342643767}
   costeObsidiumMejorar: 30e6020080fc0a00
+  generacionOroPorNivel: 320000002c010000e8030000
   prefabNvl1: {fileID: 8748338743243517747}
   prefabNvl2: {fileID: 1889410240338208131}
   prefabNvl3: {fileID: 5943623601803193644}

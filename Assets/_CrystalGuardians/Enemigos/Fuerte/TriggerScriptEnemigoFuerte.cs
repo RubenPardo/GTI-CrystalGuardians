@@ -11,10 +11,15 @@ public class TriggerScriptEnemigoFuerte : MonoBehaviour
 
     void Update()
     {
+        
+       
+
         if (destruir && Time.time - detectedTime > delayAtaque)
         {
-            //Destroy(gameObject);
-            gameObject.SetActive(false);
+
+            Debug.Log("Destruir");
+            Destroy(gameObject);
+            //gameObject.SetActive(false);
         }
 
     }

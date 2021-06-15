@@ -32,19 +32,10 @@ public class Torre : Estructura
         
 
 
-public GameObject cannon;
+    public GameObject cannon;
     public Material materialCannonNivel3;
 
 
-    /*
-    public override void abrirMenu()
-    {
-        if (canvas != null)
-        {
-            canvas.SetActive(true);
-        }
-    }
-    */
 
     public float attackSpeed = 1f;
     private float fireCoutDwon = 0f;
@@ -87,25 +78,39 @@ public GameObject cannon;
     public override void mejorar()
     {
 
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+    && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+        if (nivelActual <= NivelMaximo - 1)
+        {
+            if(GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
+            {
+                mejoraDisponible = false;
+                GameManager.Instance.ShowMessage("Nivel de castillo insfuciente!");
+            }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual])
+            {
+                mejoraDisponible = false;
+                GameManager.Instance.ShowMessage("Oro insfuciente");
+            }
+        }
+        else
+        {
+            mejoraDisponible = false;
+        }
 
+        if (mejoraDisponible)
+        {
+            updateRecursos(true, true, costeOroMejorar[nivelActual], transform);
+            comprobarCambiarPrefab();
+            nivelActual++;
+            settearVida();
 
+            // actualizar hud informacion
+            setUpCanvasValues();
+            settearVida();
 
-        comprobarCambiarPrefab();
-
-        nivelActual++;
-
-
-        settearVida();
-
-
-        // actualizar hud informacion
-        setUpCanvasValues();
-        settearVida();
-
-        //emitir particulas
-        sistemaParticulasMejorar.Play();
-
+            //emitir particulas
+            sistemaParticulasMejorar.Play();
+        }
     }
 
     private void comprobarCambiarPrefab()
@@ -142,7 +147,7 @@ public GameObject cannon;
     // Start is called before the first frame update
     protected override void Start()
     {
-        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirTorre;
+        updateRecursos(true, true, GameManager.costeConstruirTorre, transform);
         // canvas del menu de botones
         base.Start();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -251,19 +256,19 @@ public GameObject cannon;
     private void comprobarDisponibilidadMejora()
     {
 
-        bool v = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        btnMejorar.interactable = v;
-        btnMejorarInfo.interactable = v;
 
-
-        if (v && !sistemaParticulasPosibleMejora.isEmitting)
+        if (mejoraDisponible)
         {
-            sistemaParticulasPosibleMejora.Play();
+            enableButtonEstructura(btnMejorar, btnMejorarInfo);
+            if(!sistemaParticulasPosibleMejora.isEmitting)
+                sistemaParticulasPosibleMejora.Play();
         }
-        else if (!v)
+        else if (!mejoraDisponible)
         {
+            disableButtonEstructura(btnMejorar, btnMejorarInfo);
             sistemaParticulasPosibleMejora.Stop();
         }
 

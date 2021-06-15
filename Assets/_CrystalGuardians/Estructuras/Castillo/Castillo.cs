@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class Castillo : Estructura
     public Text txtMejoraObsidium;
 
     public int[] costeObsidiumMejorar;
+    public int[] generacionOroPorNivel;
 
     //prefabs castillo 
     public GameObject prefabNvl1;
@@ -26,12 +28,9 @@ public class Castillo : Estructura
 
     // controlador del shake camera para cuando le peguen
     public HUDShake cameraShake;
-    
-
-
     public int[] costeObsidiumConstruirMejorar;
 
-    bool possibleSueloMejora = false;
+    
     public override void abrirMenu()
     {
         if (canvas != null)
@@ -48,28 +47,40 @@ public class Castillo : Estructura
     }
     public override void mejorar()
     {
-        //if()//comprobacion oro o obsidium - nivel castillo 
-        GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum - costeObsidiumMejorar[nivelActual];
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+        bool mejoraDisponible=true;
+        if ((nivelActual <= NivelMaximo - 1))
+        {
+            if (GameManager.Instance.Oro < costeOroMejorar[GameManager.Instance.NivelActualCastillo])
+            {
+                GameManager.Instance.ShowMessage("Oro insuficiente!");
+                mejoraDisponible = false;
+            }
+            else if (GameManager.Instance.Obsiidum < costeObsidiumMejorar[GameManager.Instance.NivelActualCastillo])
+            {
+                GameManager.Instance.ShowMessage("Obsidium insuficiente!");
+                mejoraDisponible = false;
+            }
+        }
+        else
+        {
+            mejoraDisponible = false;
+        }
 
-        nivelActual++;
+        if (mejoraDisponible)
+        {
+            updateRecursos(true, true, costeOroMejorar[nivelActual], transform);
+            updateRecursos(false, true, costeObsidiumMejorar[nivelActual], transform);
+            
+            nivelActual++;
+            GameManager.Instance.NivelActualCastillo++;
+            // actualizar hud informacion
+            setUpCanvasValues();
+            settearVida();
+            comprobarNivelCastillo();
 
-        GameManager.Instance.NivelActualCastillo++;
-
-
-
-        // actualizar hud informacion
-        setUpCanvasValues();
-
-
-
-        settearVida();
-        comprobarNivelCastillo();
-
-        //emitir particulas
-       
-        sistemaParticulasMejorar.Play();
-
+            //emitir particulas
+            sistemaParticulasMejorar.Play();
+        }
     }
 
     // Start is called before the first frame update
@@ -84,26 +95,37 @@ public class Castillo : Estructura
     protected override void Update()
     {
         base.Update();
+        generarRecursos();
         setUpCanvasValues();
         comprobarDisponibilidadMejora();
 
     }
 
+    private void generarRecursos()
+    {
+        updateRecursos(true, false, generacionOroPorNivel[nivelActual] * Time.deltaTime, transform);
+        GameManager.Instance.OroTotalGenerado = GameManager.Instance.OroTotalGenerado + generacionOroPorNivel[nivelActual] * Time.deltaTime;
+    }
+
     private void comprobarDisponibilidadMejora()
     {
        
-        bool inte = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1) && (GameManager.Instance.Oro >= costeOroMejorar[GameManager.Instance.NivelActualCastillo])
        && GameManager.Instance.Obsiidum >= costeObsidiumMejorar[GameManager.Instance.NivelActualCastillo];
         
-        btnMejorar.interactable = inte;
-        btnMejorarInfo.interactable = inte;
 
-        if (inte && !sistemaParticulasPosibleMejora.isEmitting)
+        if (mejoraDisponible)
         {
-            sistemaParticulasPosibleMejora.Play();
+            if (!sistemaParticulasPosibleMejora.isEmitting)
+            {
+                sistemaParticulasPosibleMejora.Play();
+            }
+
+            enableButtonEstructura(btnMejorar, btnMejorarInfo);
         }
-        else if (!inte)
+        else if (!mejoraDisponible)
         {
+            disableButtonEstructura(btnMejorar, btnMejorarInfo);
             sistemaParticulasPosibleMejora.Stop();
         }
 
@@ -137,7 +159,8 @@ public class Castillo : Estructura
 
     private void OnDestroy()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        GameManager.Instance.GameOver();
     }
     public void comprobarNivelCastillo()
     {

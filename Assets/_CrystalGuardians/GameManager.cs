@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     
-    public Text hudProba;
+    public GameObject hudGameOver;
     //objeto que controla la musica de la escena
     public GameObject musicaAmbiente;
 
@@ -17,13 +17,38 @@ public class GameManager : MonoBehaviour
     public static bool isTutorialOn = true;
     public bool IsTutorialOn { get => isTutorialOn; set => isTutorialOn = value; }
 
+    public GameObject textoAvisoSalirConstruccion;
+    public float duracionAviso = 3f;
+    public GameObject hudPrincipal;
+    public GameObject textoAvisoFlotante;
     // singleton
 
     static GameManager instance;
     public static GameManager Instance { get => instance; set => instance = value; }
 
     public bool seEstaConstruyendo = false; // cuando se pulsa un boton poner a true y deshabilitar todo hasta que se deje de construir
-    public bool SeEstaConstruyendo { get => seEstaConstruyendo; set => seEstaConstruyendo = value; }
+    public bool SeEstaConstruyendo { get => seEstaConstruyendo; 
+        set {
+            seEstaConstruyendo = value;
+            textoAvisoSalirConstruccion.SetActive(value);
+            textoAvisoSalirConstruccion.GetComponent<Text>().text = "Click derecho para salir del modo construccion";
+        } 
+    }
+
+    public void SeEstaLanzandoHechizo(bool state)
+    {
+        seEstaConstruyendo = state;
+        textoAvisoSalirConstruccion.SetActive(state);
+        textoAvisoSalirConstruccion.GetComponent<Text>().text = "Click derecho para salir del modo lanzamiento";
+    }
+
+    public void SeEstaDesplazandoUnidades(bool state)
+    {
+        //seEstaConstruyendo = state;
+        textoAvisoSalirConstruccion.SetActive(state);
+        textoAvisoSalirConstruccion.GetComponent<Text>().text = "Click derecho para desplazar a las unidaes";
+    }
+
 
     // casa de hechizos -----------
     public static int nivelMinimoCastilloCasaHechizos = 1;
@@ -78,7 +103,7 @@ public class GameManager : MonoBehaviour
     public int RayosDisponibles { get => rayosDisponibles; set => rayosDisponibles = value; }
     public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
-    private float oro = 990000000;
+    private float oro = 990000000;//3150;
     private float obsidium = 990000000;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
@@ -122,8 +147,27 @@ public class GameManager : MonoBehaviour
     public bool rangoAtaqueSiempreVisible = false;
     public bool RangoAtaqueSiempreVisible { get => rangoAtaqueSiempreVisible; set => rangoAtaqueSiempreVisible = value; }
 
-    
+    //Estadisticas generales para pantalla de derrota
+    private float oroTotalGenerado = 0;
+    public float OroTotalGenerado { get => oroTotalGenerado; set => oroTotalGenerado = value; }
 
+    private float obsidiumTotalGenerado = 0;
+    public float ObsidiumTotalGenerado { get => obsidiumTotalGenerado; set => obsidiumTotalGenerado = value; }
+
+    private int unidadesAliadasTotalesGeneradas = 0;
+    public int UnidadesAliadasTotalesGeneradas { get => unidadesAliadasTotalesGeneradas; set => unidadesAliadasTotalesGeneradas = value; }
+
+    private int enemigosTotalesEliminados = 0;
+    public int EnemigosTotalesEliminados { get => enemigosTotalesEliminados; set => enemigosTotalesEliminados = value; }
+
+    private int hechizosTotalesLanzados = 0;
+    public int HechizosTotalesLanzados { get => hechizosTotalesLanzados; set => hechizosTotalesLanzados = value; }
+
+    private int estructurasTotalesConstruidas = 0;
+    public int EstructurasTotalesConstruidas { get => estructurasTotalesConstruidas; set => estructurasTotalesConstruidas = value; }
+
+    private int rondaMaximaAlcanzada = 0;
+    public int RondaMaximaAlcanzada { get => rondaMaximaAlcanzada; set => rondaMaximaAlcanzada = value; }
 
     // Start is called before the first frame update
 
@@ -209,16 +253,17 @@ public class GameManager : MonoBehaviour
     }
     public void ShowMessage(string text)
     {
-        StartCoroutine(AvisoEmpezorRonda(text));
-    }
-    IEnumerator AvisoEmpezorRonda(string text)
-    {
-        textoAviso.GetComponent<Text>().text = text;
-        timeDelayAviso = 1.5f;
-        textoAviso.SetActive(true);
-        yield return new WaitForSeconds(timeDelayAviso);
-        textoAviso.SetActive(false);
-        yield return new WaitForSeconds(timeDelayAviso);
 
+        //GameObject go = Instantiate(textoAvisoFlotante, hudPrincipal.transform);
+        //go.GetComponent<Text>().text = text;
+        GameObject go = Instantiate(textoAvisoFlotante);
+        go.GetComponentInChildren<Text>().text = text;
+        Destroy(go, duracionAviso);
+    }
+
+    public void GameOver()
+    {
+        hudGameOver.SetActive(true);
+        hudGameOver.GetComponent<GameOver>().UpdateStats();
     }
 }

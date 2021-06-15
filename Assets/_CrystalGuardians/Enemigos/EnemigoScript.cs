@@ -19,17 +19,18 @@ public class EnemigoScript : MonoBehaviour
     public float rangoAtaque;
     public float attackSpeed = 1f;
     protected float attackCoutDwon = 0f;
-    private bool dir;
+
     [Header("HUD")]
     public HealthBarScript healthBar;
 
-    GameObject[] estructurasUnidades;
+   
     Dictionary<GameObject, float> dictDistancias;
-    protected GameObject objetivoFijado;
+    public GameObject objetivoFijado;
 
     private bool isMoving;
     private bool isObjetivoFijado;
     private bool isAtacking;
+    public bool canAttack = true;
 
     //animaciones
     private Animator animator;
@@ -40,10 +41,9 @@ public class EnemigoScript : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        dir = true;
         agent = GetComponent<NavMeshAgent>();
         settearVida();
-
+        GameManager.Instance.listaEnemigosRonda.Add(gameObject);
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -54,7 +54,7 @@ public class EnemigoScript : MonoBehaviour
         comprobarVida0();
     }
 
-    private void moverEnemigo()
+    protected void moverEnemigo()
     {
        
 
@@ -104,7 +104,6 @@ public class EnemigoScript : MonoBehaviour
             if (objetivoFijado == null)
             {
                 isAtacking = false;
-               
                 isObjetivoFijado = false;
                 isMoving = false;
             }
@@ -112,14 +111,15 @@ public class EnemigoScript : MonoBehaviour
             {
                 if (isObjetivoFijado)
                 {
+                   
                     if (Vector3.Distance(transform.position, objetivoFijado.transform.position) <= rangoAtaque)
                     {
                         // el enemigo esta dentro del rango de ataque
-
+                        
                         // parar el agent y true el flag de atacar
 
                         isMoving = false;
-                        agent.SetDestination(this.transform.position);
+                        agent.SetDestination(transform.position);
 
                         isAtacking = true;
                         animator.SetBool("atacando", true);
@@ -131,20 +131,15 @@ public class EnemigoScript : MonoBehaviour
                         agent.SetDestination(objetivoFijado.transform.position); //por si el objetivo se mueve
                     }
                 }
+                
             }
             
 
-            if (agent.remainingDistance == 0)// para cuando se pulsa a otra direccion hay que comprobar cuando para
-            {
-
-                isMoving = false;
-                //animator.SetBool("atacando", false);
-
-            }
         }
 
         if (isAtacking)
         {
+            
             
             if (objetivoFijado == null)
             {
@@ -162,7 +157,8 @@ public class EnemigoScript : MonoBehaviour
             }
             else
             {
-                attack();
+                 attack();
+                
             }
         }
     }
@@ -183,20 +179,20 @@ public class EnemigoScript : MonoBehaviour
     {
         if (attackCoutDwon <= 0f)
         {
-            /*
-            Guerrero guerrero;
-            Ballestero ballestero;
-            */
-            Aliado aliado;
-            if (objetivoFijado.TryGetComponent<Estructura>(out Estructura estructura))
+            
+            if (canAttack)
             {
-                
-                estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
-            }
-            else
-            {
-                aliado = objetivoFijado.GetComponentInParent<Aliado>();
-                aliado.setCurrentHealth(aliado.vidaActual - danyoPorNivel[nivelActual]);
+                Aliado aliado;
+                if (objetivoFijado.TryGetComponent<Estructura>(out Estructura estructura))
+                {
+
+                    estructura.setCurrentHealth(estructura.vidaActual - danyoPorNivel[nivelActual]);
+                }
+                else
+                {
+                    aliado = objetivoFijado.GetComponentInParent<Aliado>();
+                    aliado.setCurrentHealth(aliado.vidaActual - danyoPorNivel[nivelActual]);
+                }
             }
 
             attackCoutDwon = 1f / attackSpeed;
@@ -231,13 +227,13 @@ public class EnemigoScript : MonoBehaviour
         }
         if (vidaActual <= 0)
         {
-           
             Destroy(gameObject);
         }
     }
 
     protected virtual void OnDestroy()
     {
+        GameManager.Instance.EnemigosTotalesEliminados++;
         GameManager.Instance.listaEnemigosRonda.Remove(gameObject);
     }
 }

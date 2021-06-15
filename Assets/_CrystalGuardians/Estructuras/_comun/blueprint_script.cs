@@ -19,8 +19,6 @@ public class blueprint_script : MonoBehaviour
     private Material mat; // para cambiar el color al detectar colisiones
     private Color colorNormal;
     private Color colorColision = new Color(255, 0, 0, 0.5f);
-
-    // Start is called before the first frame update
     void Start()
     {
         GameManager.Instance.SeEstaConstruyendo = true;
@@ -37,34 +35,24 @@ public class blueprint_script : MonoBehaviour
         comprobarOro();
         mover_blueprint();
 
-       
+
         // si no hay colision y se puede construir
         if (!hayColision && sePuedeConstruir)
         {
             mat.color = colorNormal; // color normal
             mat.SetColor("_EmissionColor", colorNormal);
             // si se pulsa el izquierdo
-            if (Input.GetMouseButtonDown(0)){
+            if (Input.GetMouseButtonDown(0))
+            {
                 // construir la estructura 
-                
+
                 GameObject estructuraConstruida = Instantiate(prefab, transform.position, transform.rotation);
                 if (!prefab.GetComponent<Trampa>())
                 {
                     GameManager.listaEstructurasEnJuego.Add(estructuraConstruida.gameObject);
+                    GameManager.Instance.EstructurasTotalesConstruidas++;
                 }
-                
-                // mina
-                if (prefab.GetComponent<Mina>())
-                {
-                    GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirMina;
 
-                }
-                if (prefab.GetComponent<ExtractorObsidium>())
-                {
-                    GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirExtractor;
-
-                }
-                
             }
 
         }
@@ -73,9 +61,51 @@ public class blueprint_script : MonoBehaviour
             // si no a alguna de esas dos poner en color rojo
             mat.color = colorColision;
             mat.SetColor("_EmissionColor", colorColision);
+
+            // si se pulsa el izquierdo
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (hayColision)
+                {
+                    GameManager.Instance.ShowMessage("No puedes construir ahí!");
+                }else if (!sePuedeConstruir)
+                {
+                    // casa de hechizos
+                    if (prefab.GetComponent<CasaDeHechizos>())
+                    {
+
+                        
+                        if (GameManager.Instance.CasasDeHechizosConstruidas >= GameManager.topeCasaHechizos)
+                        {
+                            GameManager.Instance.ShowMessage("No puedes construir mas estructuras de ese tipo!");
+
+                        }else if (GameManager.Instance.Oro < GameManager.costeConstruirCasaHechizos)
+                        {
+                            GameManager.Instance.ShowMessage("Oro insufciente");
+                        }
+
+                    }
+                    else if (prefab.GetComponent<CuartelUnidades>())
+                    {
+                        if (GameManager.Instance.CuartelesConstruidos >= GameManager.topeCuartelUnidades)
+                        {
+                            GameManager.Instance.ShowMessage("No puedes construir mas estructuras de ese tipo!");
+                        }
+                        else if (GameManager.Instance.Oro < GameManager.costeConstruirCuartel)
+                        {
+                            GameManager.Instance.ShowMessage("Oro insufciente");
+                        }
+                    }
+                    else
+                    {
+                        GameManager.Instance.ShowMessage("Oro insifuciente!");
+                    }
+
+                   
+                }
+            }
+
         }
-
-
         // cuando se pulse el boton derecho se deja de construir
         if (Input.GetMouseButton(1)) {         
         
@@ -127,8 +157,7 @@ public class blueprint_script : MonoBehaviour
 
          // casa de hechizos
         if (prefab.GetComponent<CasaDeHechizos>()) {
-            sePuedeConstruir = ((GameManager.Instance.Oro >= GameManager.costeConstruirCasaHechizos) && GameManager.Instance.CasasDeHechizosConstruidas < GameManager.topeCasaHechizos);
-           
+            sePuedeConstruir = GameManager.Instance.Oro >= GameManager.costeConstruirCasaHechizos && GameManager.Instance.CasasDeHechizosConstruidas < GameManager.topeCasaHechizos;           
         }
 
         // torre

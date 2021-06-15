@@ -92,9 +92,11 @@ MonoBehaviour:
   vidaActual: 0
   speed: 5
   rangoVision: 100
-  rangoAtaque: 1.5
+  rangoAtaque: 2
   attackSpeed: 1
   healthBar: {fileID: 7592100259447508494}
+  objetivoFijado: {fileID: 0}
+  canAttack: 1
 --- !u!54 &4397731089738922922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120,7 +122,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2053117798627461158}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
@@ -306,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4064880173633874498, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 68.5816
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4064880173633874498, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_LocalPosition.x

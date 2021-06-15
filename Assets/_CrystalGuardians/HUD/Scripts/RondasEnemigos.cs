@@ -81,10 +81,7 @@ public class RondasEnemigos : MonoBehaviour
         if (numeroRnda % 6 == 0)
         {
             //lanzamos la musica de mejoras
-            
             sonidoMejora.Play();
-            
-
 
             //lanzar mejoras de aldea
             panelMejoras.SetActive(true);
@@ -96,7 +93,6 @@ public class RondasEnemigos : MonoBehaviour
 
     public void comenzarRonda()
     {
-        //
         if (!isRondaActive)
         {
 
@@ -247,8 +243,8 @@ public class RondasEnemigos : MonoBehaviour
   
     private void spawn()
     {
-        
- 
+
+        GameManager.Instance.RondaMaximaAlcanzada = numeroRnda;
        for (int i=0; i < numeroRnda * cantidadEnemigosPorRonda; i++)
 
         {
@@ -270,7 +266,7 @@ public class RondasEnemigos : MonoBehaviour
             }
 
 
-            GameManager.Instance.listaEnemigosRonda.Add(g);
+            
 
         }
 

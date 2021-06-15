@@ -344,6 +344,8 @@ MonoBehaviour:
   healthBar: {fileID: 3635736270986104619}
   textNivelSubMenu: {fileID: 8385414669054218727}
   costeOroMejorar: 64000000e803000070170000
+  colorPrimary: {r: 208, g: 156, b: 45, a: 1}
+  floatingText: {fileID: 2813641865897385345, guid: 4b320ec1dcedbe24f97abfc8227e74e6, type: 3}
   txtMejora: {fileID: 764245716102241772}
   txtSaludActual: {fileID: 5508940935901666644}
   txtLvlActual: {fileID: 5226934656838103639}

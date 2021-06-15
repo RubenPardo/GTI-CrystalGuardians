@@ -39,7 +39,7 @@ public class Trampa : Estructura
             {
                 mejoraDisponible = false;
                 GameManager.Instance.ShowMessage("Nivel de castillo insuficiente!");
-            }else if (GameManager.Instance.Oro >= costeOroMejorar[nivelActual])
+            }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual])
             {
                 mejoraDisponible = false;
                 GameManager.Instance.ShowMessage("Oro insuficiente!");
@@ -52,9 +52,9 @@ public class Trampa : Estructura
 
         if (mejoraDisponible)
         {
-            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            
             nivelActual++;
-            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            updateRecursos(true, true, costeOroMejorar[nivelActual], transform);
 
             //cambio de prefab 
             trampaInactivaNvl1.SetActive(false);
@@ -93,7 +93,10 @@ public class Trampa : Estructura
     {
         sistemaParticulasMejorar = particulasMejora.GetComponent<ParticleSystem>();
         sistemaParticulasPosibleMejora = particulasPosibleMejora.GetComponent<ParticleSystem>();
-        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirTrampa;
+
+        updateRecursos(true, true, GameManager.costeConstruirTrampa, transform);
+
+
         canvas = gameObject.transform.Find("Canvas").gameObject;
         if (canvas != null)
         {
@@ -141,7 +144,7 @@ public class Trampa : Estructura
         if (nivelActual < NivelMaximo)
         {
 
-            txtMejora.text = costeOroMejorar[nivelActual].ToString();
+            txtMejora.text = costeOroMejorar[nivelActual+1].ToString();
         }
         else
         {

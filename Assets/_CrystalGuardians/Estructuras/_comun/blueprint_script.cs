@@ -53,18 +53,6 @@ public class blueprint_script : MonoBehaviour
                     GameManager.Instance.EstructurasTotalesConstruidas++;
                 }
 
-                // mina
-                if (prefab.GetComponent<Mina>())
-                {
-                    GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirMina;
-
-                }
-                if (prefab.GetComponent<ExtractorObsidium>())
-                {
-                    GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirExtractor;
-
-                }
-
             }
 
         }

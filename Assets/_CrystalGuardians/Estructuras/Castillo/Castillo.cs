@@ -47,6 +47,7 @@ public class Castillo : Estructura
     }
     public override void mejorar()
     {
+        cerrarMenu();
         bool mejoraDisponible=true;
         if ((nivelActual <= NivelMaximo - 1))
         {

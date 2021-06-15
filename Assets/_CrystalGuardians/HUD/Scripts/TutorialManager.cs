@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class TutorialManager : MonoBehaviour
 {
@@ -32,7 +34,7 @@ public class TutorialManager : MonoBehaviour
     public Text textoPasoIndicadorTutorial;
 
     //control estructuras
-    public GameObject[] blueprints;
+    private GameObject[] blueprints;
     bool hayMina = false;
     bool hayExtractor = false;
     bool hayTorre = false;
@@ -49,6 +51,7 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        panelConstruccion.SetActive(false);
         frase = "Bienvenido a Crystal Guardians. Tu objetivo en esta aventura será defender nuestra aldea de los enemigos del bosque, para ello deberás recolectar recursos y construir defensas.";
         escribirTexto();
         pasoCumplido = true;
@@ -63,6 +66,7 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(indicePasosTuto);
         if (pasoCumplido)
         {
            
@@ -94,47 +98,40 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 4:
+                
                 //paso mina y extractor
                 pasoCumplido = false;
                 mostrarPaneles(2);
                 activacionBotones(1);
                 foreach (GameObject g in GameManager.listaEstructurasEnJuego)
                 {
-                    if (g.GetComponent<Mina>() != null)
+                    if (g.GetComponent<Mina>() != null && !hayMina)
                     {
                         hayMina = true;
                         
                         habilitar(btnMina, false);
-                        /*
-                        GameManager.Instance.SeEstaConstruyendo = false;
-                        blueprints = GameObject.FindGameObjectsWithTag("Blueprint");
-                        foreach(GameObject obj in blueprints)
-                        {
-                            Destroy(obj);
-                        }
-                        */
+                        GameManager.Instance.seEstaConstruyendo = false;
+                        Destroy(GameObject.FindGameObjectsWithTag("Blueprint")[0]);
+                        
+                        
 
-}
-                    if (g.GetComponent<ExtractorObsidium>() != null)
+                    }
+                    else if (g.GetComponent<ExtractorObsidium>() != null && !hayExtractor)
                     {
                         
                         hayExtractor = true;
-                        
+                        GameManager.Instance.seEstaConstruyendo = false;
                         habilitar(btnExtractor, false);
-                        /*
-                        GameManager.Instance.SeEstaConstruyendo = false;
-                        blueprints = GameObject.FindGameObjectsWithTag("Blueprint");
-                        foreach (GameObject obj in blueprints)
-                        {
-                            Destroy(obj);
-                        }
-                        */
+                        Destroy(GameObject.FindGameObjectsWithTag("Blueprint")[0]);
+
                     }
-                    if (hayMina && hayExtractor)
-                    {
-                        pasoCumplido = true;
-                        indicePasosTuto++;
-                    }
+                    
+                }
+                if (hayMina && hayExtractor)
+                {
+                    //Debug.Log("He entrado al if");
+                    pasoCumplido = true;
+                    indicePasosTuto++;
                 }
                 break;
             case 5:
@@ -152,15 +149,18 @@ public class TutorialManager : MonoBehaviour
                 activacionBotones(2);
                 foreach (GameObject g in GameManager.listaEstructurasEnJuego)
                 {
-                    if (g.GetComponent<Torre>() != null)
+                    if (g.GetComponent<Torre>() != null && !hayTorre)
                     {
                         hayTorre = true;
                         habilitar(btnTorre, false);
+                        GameManager.Instance.seEstaConstruyendo = false;
+                        Destroy(GameObject.FindGameObjectsWithTag("Blueprint")[0]);
                     }
-                    if (g.GetComponent<Muro>() != null)
+                    if (g.GetComponent<Muro>() != null && !hayMuro)
                     {
                         hayMuro = true;
                         
+
                     }
                     if (hayTorre && hayMuro)
                     {
@@ -256,20 +256,35 @@ public class TutorialManager : MonoBehaviour
                 if (!spawnMele)
                 {
                     go2 = Instantiate(prefabEM);
-                    
+                    GameManager.Instance.listaEnemigosRonda.Add(go2);
                     go2.transform.position = new Vector3(-20, 0);
                     spawnMele = true;
                 }
                 if(!spawnDist){
                     
                     go = Instantiate(prefabED);
+                    GameManager.Instance.listaEnemigosRonda.Add(go);
                     go.transform.position = new Vector3(20, 0);
                     spawnDist = true;
                 }
                 if(spawnDist == true && spawnMele == true && GameManager.Instance.listaEnemigosRonda.Count ==  0)
                 {
-
+                    indicePasosTuto++;
+                    pasoCumplido = true;
                 }
+                break;
+            case 17:
+                indicadorPasosTutorial.SetActive(false);
+                panelTutorial.SetActive(true);
+                frase = "¡Enhorabuena, has completado el tutorial de Crystal Guardians! Pulsa <Espacio> para empezar la partida.";
+                escribirTexto();
+
+                break;
+            case 18:
+
+                GameManager.isTutorialOn= false;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
                 break;
         }
 
@@ -298,13 +313,13 @@ public class TutorialManager : MonoBehaviour
                 desactivarPanelTutorial();
                 panelConstruccion.SetActive(true);
                 indicadorPasosTutorial.SetActive(true);
-                textoPasoIndicadorTutorial.text = "Construye una mina y un extractor";
+                textoPasoIndicadorTutorial.text = "Construye almenos una mina y un extractor";
                 break;
             case 3:
                 desactivarPanelTutorial();
                 
                 indicadorPasosTutorial.SetActive(true);
-                textoPasoIndicadorTutorial.text = "Construye muros y una torre";
+                textoPasoIndicadorTutorial.text = "Construye muros y almenos una torre";
                 break;
             case 4:
                 desactivarPanelTutorial();

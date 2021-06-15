@@ -21,6 +21,15 @@ public class GameManager : MonoBehaviour
     public float duracionAviso = 3f;
     public GameObject hudPrincipal;
     public GameObject textoAvisoFlotante;
+
+    //HUD 
+    public GameObject panelBarraRondas;
+    public GameObject panelBarraConstruccion;
+    public GameObject hudBtnMejorasAldea;
+    public GameObject barraRecursos;
+    public GameObject btnRangos;
+    public GameObject panelTutorial;
+
     // singleton
 
     static GameManager instance;
@@ -174,11 +183,20 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        isTutorialOn = true;
+        
         if(instance == null)
         {
-            instance = this;
 
+            instance = this;
+            if (!isTutorialOn)
+            {
+                panelBarraRondas.SetActive(true);
+                panelBarraConstruccion.SetActive(true);
+                hudBtnMejorasAldea.SetActive(true);
+                barraRecursos.SetActive(true);
+                btnRangos.SetActive(true);
+                panelTutorial.SetActive(false);
+            }
             //Instantiate(castillo, transform.position, transform.rotation);
            
 

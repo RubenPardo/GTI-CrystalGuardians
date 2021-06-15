@@ -18,7 +18,10 @@ public class enemigoDistanciaScript : EnemigoScript
     //Velocidad de giro del cañon
     public float turnSpeed = 10f;
 
-
+    protected override void Start()
+    {
+        base.Start();
+    }
     // Update is called once per frame
     protected override void Update()
     {

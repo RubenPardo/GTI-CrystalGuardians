@@ -8,7 +8,11 @@ public class enemigoFuerte : EnemigoScript
     //Bala a disparar
     public AnimacionController AnimacionController;
 
-   
+    protected override void Start()
+    {
+        GameManager.Instance.listaEnemigosRonda.Add(gameObject);
+    }
+
     // Update is called once per frame
     protected override void Update()
     {

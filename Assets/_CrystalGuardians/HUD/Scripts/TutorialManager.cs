@@ -66,7 +66,7 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(indicePasosTuto);
+        //Debug.Log(indicePasosTuto);
         if (pasoCumplido)
         {
            
@@ -102,7 +102,11 @@ public class TutorialManager : MonoBehaviour
                 //paso mina y extractor
                 pasoCumplido = false;
                 mostrarPaneles(2);
-                activacionBotones(1);
+                if (!hayMina && !hayExtractor)
+                {
+                    activacionBotones(1);
+                }
+                
                 foreach (GameObject g in GameManager.listaEstructurasEnJuego)
                 {
                     if (g.GetComponent<Mina>() != null && !hayMina)
@@ -205,6 +209,7 @@ public class TutorialManager : MonoBehaviour
                 //paso de mejorar castillo
                 pasoCumplido = false;
                 mostrarPaneles(5);
+                activacionBotones(5);
                 if(GameManager.Instance.NivelActualCastillo == 1)
                 {
                     pasoCumplido = true;
@@ -375,6 +380,15 @@ public class TutorialManager : MonoBehaviour
             case 4:
                 habilitar(btnCasaHechizos, true);
                 break;
+            case 5:
+                habilitar(btnCasaHechizos, false);
+                habilitar(btnMuro, false);
+                habilitar(btnTrampa, false);
+                habilitar(btnTorre, false);
+                habilitar(btnCuartel, false);
+                habilitar(btnMina, false);
+                habilitar(btnExtractor, false);
+                break;
         }
     }
     public void desactivarPanelTutorial()
@@ -384,6 +398,7 @@ public class TutorialManager : MonoBehaviour
     private void habilitar(GameObject prefabBtn, bool v)
     {
         prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = v;
+        
         
     }
 

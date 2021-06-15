@@ -64,14 +64,14 @@ public class BtnConstruccion : MonoBehaviour
             
         }
     }
-
+    
     public bool EnoughLevel
     {
         get => enoughLevel;
         set
         {
             enoughLevel = value;
-            //btn.interactable = value;
+            btn.interactable = value;
             setColor(enoughLevel ? colorPrimary : Color.gray);
         }
     }

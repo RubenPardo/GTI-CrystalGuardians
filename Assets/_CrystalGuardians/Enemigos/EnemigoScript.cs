@@ -43,8 +43,13 @@ public class EnemigoScript : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         settearVida();
-        GameManager.Instance.listaEnemigosRonda.Add(gameObject);
+        if (!GameManager.Instance.IsTutorialOn)
+        {
+            GameManager.Instance.listaEnemigosRonda.Add(gameObject);
+        }
+        
         animator = GetComponentInChildren<Animator>();
+        Debug.Log("he creado enemigo");
     }
 
     // Update is called once per frame

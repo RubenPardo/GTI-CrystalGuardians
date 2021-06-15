@@ -13,7 +13,7 @@ public class RondasEnemigos : MonoBehaviour
     public int numeroRnda = 1;
     private bool isRondaActive = false;
 
-
+    
    
     public int cantidadEnemigosPorRonda=3;
 
@@ -61,8 +61,17 @@ public class RondasEnemigos : MonoBehaviour
 
     void Start()
     {
-        tiempoRonda = (int)contadorTiempoRonda;
-        listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
+        
+            if (GameManager.isTutorialOn == false)
+            {
+                tiempoRonda = (int)contadorTiempoRonda;
+                listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
+            }
+        
+        
+        
+        
+
     }
    
 
@@ -129,24 +138,28 @@ public class RondasEnemigos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (updateCronometro())
-        {
-            comenzarRonda();
-        }
-        if (isRondaActive)
-        {
 
-            contadorRondas.text = "";
-            
-            if (comprobarFinRonda())
+        if (GameManager.isTutorialOn == false)
+        {
+            if (updateCronometro())
             {
-                finRonda();
-                
-
+                comenzarRonda();
             }
+            if (isRondaActive)
+            {
+
+                contadorRondas.text = "";
+
+                if (comprobarFinRonda())
+                {
+                    finRonda();
+
+
+                }
+            }
+            else if (numeroRnda % 5 == 0) { updateLuzAmbiente(); }
         }
-        else if(numeroRnda % 5 == 0){ updateLuzAmbiente(); }
+        
         
 
     }

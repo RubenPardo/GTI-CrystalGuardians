@@ -5,6 +5,8 @@ public abstract class Estructura : MonoBehaviour
 {
     public int NivelMaximo;
     public int nivelActual;
+    public AudioSource sonidoDestruccion;
+
     // todos estos atributos dependen del nivel al cual esta
     public int[] nivelMinimoCastilloParaMejorar;
     public int[] vidaPorNivel;
@@ -37,8 +39,7 @@ public abstract class Estructura : MonoBehaviour
 
     protected virtual void Start()
     {
-        
-     
+
         // canvas del menu de botones
         canvas = gameObject.transform.Find("Canvas").gameObject;
         if (canvas != null)
@@ -91,9 +92,15 @@ public abstract class Estructura : MonoBehaviour
         }
         if (vidaActual <= 0)
         {
+
             GameObject go =  Instantiate(particulasDestruccion);
             go.transform.position = transform.position;
             go.GetComponentInChildren<ParticleSystem>().Play();
+
+            sonidoDestruccion.Play();
+           //ebug.og(sonidoDestruccion);
+            transform.position = Vector3.one * 9999f; // move the game object off screen while it finishes it's sound, then destroy it
+            Destroy(gameObject, sonidoDestruccion.clip.length);
 
             GameManager.listaEstructurasEnJuego.Remove(gameObject);
             Destroy(gameObject);
@@ -127,6 +134,8 @@ public abstract class Estructura : MonoBehaviour
     {
         if (isGasto)
         {
+            
+
             // se gasta recursos
             if (isOro)
             {
@@ -165,5 +174,6 @@ public abstract class Estructura : MonoBehaviour
         Color32 prurple = new Color32(104, 30, 113, 255);
         tM.color = isOro ? yellow : prurple;
     }
+    
 
 }

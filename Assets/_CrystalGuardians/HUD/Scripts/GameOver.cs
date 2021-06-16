@@ -15,9 +15,12 @@ public class GameOver : MonoBehaviour
     public Text textEstructurasConstruidas;
     public Text textTiempoDeJuego;
     public Text textRondaMasAlta;
+    
+
 
     public void UpdateStats()
     {
+        
         textUnidadesGeneradas.text = GameManager.Instance.UnidadesAliadasTotalesGeneradas.ToString();
         textEnemigosEliminados.text = GameManager.Instance.EnemigosTotalesEliminados.ToString();
         textHechizosLanzados.text = GameManager.Instance.HechizosTotalesLanzados.ToString();

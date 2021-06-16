@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public float duracionAviso = 3f;
     public GameObject hudPrincipal;
     public GameObject textoAvisoFlotante;
+    public AudioSource sonidolose;
+    public AudioClip musicaGameOver;
     // singleton
 
     static GameManager instance;
@@ -95,8 +97,8 @@ public class GameManager : MonoBehaviour
     public int RayosDisponibles { get => rayosDisponibles; set => rayosDisponibles = value; }
     public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
-    private float oro = 990000000;//3150;
-    private float obsidium = 990000000;
+    private float oro = 99999999;//3150;
+    private float obsidium = 999999999;
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 
@@ -255,7 +257,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        hudGameOver.SetActive(true);
-        hudGameOver.GetComponent<GameOver>().UpdateStats();
+        if(hudGameOver != null)
+        {
+            hudGameOver.SetActive(true);
+            hudGameOver.GetComponent<GameOver>().UpdateStats();
+            AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
+            source.clip = musicaGameOver;
+            source.Play();
+        }
+        
     }
 }

@@ -907,6 +907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NivelMaximo: 1
   nivelActual: 0
+  sonidoDestruccion: {fileID: 0}
   nivelMinimoCastilloParaMejorar: 0100000002000000
   vidaPorNivel: 
   vidaActual: 1

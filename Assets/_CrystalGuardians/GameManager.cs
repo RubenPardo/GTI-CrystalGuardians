@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject barraRecursos;
     public GameObject btnRangos;
     public GameObject panelTutorial;
+    public GameObject btnSaltarTutorial;
 
     // singleton
 
@@ -193,6 +194,7 @@ public class GameManager : MonoBehaviour
         {
 
             instance = this;
+            btnSaltarTutorial.SetActive(isTutorialOn);
             if (!isTutorialOn)
             {
                 panelBarraRondas.SetActive(true);
@@ -201,6 +203,14 @@ public class GameManager : MonoBehaviour
                 barraRecursos.SetActive(true);
                 btnRangos.SetActive(true);
                 panelTutorial.SetActive(false);
+
+                GameManager.Instance.Oro = 5000;
+                GameManager.Instance.Obsiidum = 0;
+            }
+            else
+            {
+                GameManager.Instance.Oro = 99000000;
+                GameManager.Instance.Obsiidum = 99000000;
             }
             //Instantiate(castillo, transform.position, transform.rotation);
            

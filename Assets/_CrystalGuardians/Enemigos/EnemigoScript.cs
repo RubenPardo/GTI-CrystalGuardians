@@ -75,12 +75,16 @@ public class EnemigoScript : MonoBehaviour
               
                 foreach (GameObject objetivo in estructurasUnidades)
                 {
-                
-                    // distancia enemigos
-                    Vector3 pOrigen = transform.position;
-                    Vector3 pEnemigo = objetivo.transform.position;
+                    if (objetivo != null)
+                    {
+                        // distancia enemigos
+                        Vector3 pOrigen = transform.position;
+                        Debug.Log(objetivo);
+                        Vector3 pEnemigo = objetivo.transform.position;
 
-                    dictDistancias.Add(objetivo, Vector3.Distance(pOrigen, pEnemigo));
+                        dictDistancias.Add(objetivo, Vector3.Distance(pOrigen, pEnemigo));
+                    }
+                   
 
                 }
 

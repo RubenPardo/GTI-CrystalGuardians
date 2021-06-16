@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 5969061786629646688}
   m_Layer: 0
   m_Name: CasaDeHechizos_blueprint
-  m_TagString: Untagged
+  m_TagString: Blueprint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

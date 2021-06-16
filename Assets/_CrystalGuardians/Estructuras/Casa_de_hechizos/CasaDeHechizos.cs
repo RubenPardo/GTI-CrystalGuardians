@@ -59,12 +59,12 @@ public class CasaDeHechizos : Estructura
 
             if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
             {
-                GameManager.Instance.ShowMessage("Nivel de castillo insuficiente!");
+                GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
                 mejoraDisponible = false;
             }
             else if ((GameManager.Instance.Oro < costeOroMejorar[nivelActual]))
             {
-                GameManager.Instance.ShowMessage("Oro insuficiente!");
+                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
                 mejoraDisponible = false;
             }
         }
@@ -215,7 +215,7 @@ public class CasaDeHechizos : Estructura
         if(GameManager.Instance.Obsiidum< costeHechizo)
         {
             suficiente = false;
-            GameManager.Instance.ShowMessage("Obsidium insifuciente para crear el hechizo!");
+            GameManager.Instance.ShowMessage("¡Obsidium insuficiente para crear el hechizo!");
         }
 
 

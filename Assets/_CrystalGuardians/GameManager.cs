@@ -10,10 +10,27 @@ public class GameManager : MonoBehaviour
     //objeto que controla la musica de la escena
     public GameObject musicaAmbiente;
 
+    public GameObject textoAviso;
+    public float timeDelayAviso;
+
+    //tutorial
+    public static bool isTutorialOn = true;
+    public bool IsTutorialOn { get => isTutorialOn; set => isTutorialOn = value; }
+
     public GameObject textoAvisoSalirConstruccion;
     public float duracionAviso = 3f;
     public GameObject hudPrincipal;
     public GameObject textoAvisoFlotante;
+
+    //HUD 
+    public GameObject panelBarraRondas;
+    public GameObject panelBarraConstruccion;
+    public GameObject hudBtnMejorasAldea;
+    public GameObject barraRecursos;
+    public GameObject btnRangos;
+    public GameObject panelTutorial;
+    public GameObject btnSaltarTutorial;
+
     public AudioSource sonidolose;
     public AudioClip musicaGameOver;
     // singleton
@@ -87,6 +104,7 @@ public class GameManager : MonoBehaviour
     private static int healsDisponibles = 0;
     private static int rayosDisponibles = 0;
     private static int buffsDisponibles = 0;
+    public int hechizosLanzados = 0;
 
     public static int topeCasaHechizos=1;
 
@@ -97,8 +115,12 @@ public class GameManager : MonoBehaviour
     public int RayosDisponibles { get => rayosDisponibles; set => rayosDisponibles = value; }
     public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
-    private float oro = 99999999;//3150;
-    private float obsidium = 999999999;
+    //private float oro = 990000000;//3150;
+    //private float obsidium = 990000000;
+
+    private float oro = 5000;
+    private float obsidium = 0;
+
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 
@@ -119,7 +141,8 @@ public class GameManager : MonoBehaviour
     public static List<GameObject> listaAliadosEnJuego = new List<GameObject>();
 
 
-
+    private bool rondaEnemigosActiva = false;
+    public bool RondaEnemigosActiva { get => rondaEnemigosActiva; set => rondaEnemigosActiva = value; }
 
     public GameObject castillo; // se construira al inicio
 
@@ -171,16 +194,34 @@ public class GameManager : MonoBehaviour
         
         if(instance == null)
         {
-            instance = this;
 
+            instance = this;
+            btnSaltarTutorial.SetActive(isTutorialOn);
+            if (!isTutorialOn)
+            {
+                panelBarraRondas.SetActive(true);
+                panelBarraConstruccion.SetActive(true);
+                hudBtnMejorasAldea.SetActive(true);
+                barraRecursos.SetActive(true);
+                btnRangos.SetActive(true);
+                panelTutorial.SetActive(false);
+
+                GameManager.Instance.Oro = 5000;
+                GameManager.Instance.Obsiidum = 0;
+            }
+            else
+            {
+                GameManager.Instance.Oro = 99000000;
+                GameManager.Instance.Obsiidum = 99000000;
+            }
             //Instantiate(castillo, transform.position, transform.rotation);
            
 
             //A�adimos las cartas a la lista de cartas disponibles
             listaCartas = new List<Carta>();
             listaCartas.Add(new Carta("Estructura", "El coste de las estructuras se reduce un 10%", "estructuras", reducirCosteEstructuras));
-            listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas r�pido", "recursos", aumentarProduccionMinas20));
-            listaCartas.Add(new Carta("Unidades", "Tus unidades ahora hacen mas da�o", "unidades", aumentoDeDanyoAliados));
+            listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas rapido", "recursos", aumentarProduccionMinas20));
+            listaCartas.Add(new Carta("Unidades", "Mejora el ataque de tus unidades", "unidades", aumentoDeDanyoAliados));
             listaCartas.Add(new Carta("Hechizos", "El radio de los hechizos ha aumentado", "hechizos", aumentarRadioHechizos));
 
             

@@ -85,11 +85,11 @@ public class Torre : Estructura
             if(GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
             {
                 mejoraDisponible = false;
-                GameManager.Instance.ShowMessage("Nivel de castillo insfuciente!");
+                GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
             }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual])
             {
                 mejoraDisponible = false;
-                GameManager.Instance.ShowMessage("Oro insfuciente");
+                GameManager.Instance.ShowMessage("¡Oro insuficiente");
             }
         }
         else

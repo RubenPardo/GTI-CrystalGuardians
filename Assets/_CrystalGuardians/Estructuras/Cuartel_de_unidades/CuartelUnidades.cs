@@ -85,11 +85,11 @@ public class CuartelUnidades : Estructura
             if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
             {
                 mejoraDisponible = false;
-                GameManager.Instance.ShowMessage("Nivel de castillo insuficiente!");
+                GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
             }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual])
             {
                 mejoraDisponible = false;
-                GameManager.Instance.ShowMessage("Oro insuficiente!");
+                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
 
             }
         }
@@ -168,7 +168,7 @@ public class CuartelUnidades : Estructura
 
         if (GameManager.Instance.Unidades >= GameManager.Instance.TopeUnidades)
         {
-            GameManager.Instance.ShowMessage("No puedes crear más unidades!");
+            GameManager.Instance.ShowMessage("¡No puedes crear más unidades!");
             spawnDisponible = false;
         }
         else if (unidadAliada.TryGetComponent<Ballestero>(out ballesteroPrefab))
@@ -176,7 +176,7 @@ public class CuartelUnidades : Estructura
             if (GameManager.Instance.Obsiidum < ballestero.costePorNivel[nivelActual])
             {
                 spawnDisponible = false;
-                GameManager.Instance.ShowMessage("Obsidium insuficiente!");
+                GameManager.Instance.ShowMessage("¡Obsidium insuficiente!");
             }
         }
         else if (unidadAliada.TryGetComponent<Guerrero>(out guerreroPrefab))
@@ -184,7 +184,7 @@ public class CuartelUnidades : Estructura
             if (GameManager.Instance.Obsiidum < guerrero.costePorNivel[nivelActual])
             {
                 spawnDisponible = false;
-                GameManager.Instance.ShowMessage("Obsidium insuficiente!");
+                GameManager.Instance.ShowMessage("¡Obsidium insuficiente!");
             }
         }
 

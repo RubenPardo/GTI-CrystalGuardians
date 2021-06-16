@@ -48,11 +48,11 @@ public class Mina : Estructura
         {
             if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
             {
-                GameManager.Instance.ShowMessage("Nivel de castillo insuficiente!");
+                GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
 
             }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual])
             {
-                GameManager.Instance.ShowMessage("Oro insuficiente!");
+                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
             }
         }
         else

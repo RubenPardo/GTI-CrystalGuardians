@@ -43,8 +43,13 @@ public class EnemigoScript : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         settearVida();
-
+        if (!GameManager.Instance.IsTutorialOn)
+        {
+            GameManager.Instance.listaEnemigosRonda.Add(gameObject);
+        }
+        
         animator = GetComponentInChildren<Animator>();
+        Debug.Log("he creado enemigo");
     }
 
     // Update is called once per frame
@@ -70,12 +75,16 @@ public class EnemigoScript : MonoBehaviour
               
                 foreach (GameObject objetivo in estructurasUnidades)
                 {
-                
-                    // distancia enemigos
-                    Vector3 pOrigen = transform.position;
-                    Vector3 pEnemigo = objetivo.transform.position;
+                    if (objetivo != null)
+                    {
+                        // distancia enemigos
+                        Vector3 pOrigen = transform.position;
+                        Debug.Log(objetivo);
+                        Vector3 pEnemigo = objetivo.transform.position;
 
-                    dictDistancias.Add(objetivo, Vector3.Distance(pOrigen, pEnemigo));
+                        dictDistancias.Add(objetivo, Vector3.Distance(pOrigen, pEnemigo));
+                    }
+                   
 
                 }
 

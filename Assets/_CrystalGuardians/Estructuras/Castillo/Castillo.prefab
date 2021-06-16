@@ -995,7 +995,7 @@ MonoBehaviour:
   particulasMejora: {fileID: 895753418594313485}
   healthBar: {fileID: 528348197230273584}
   textNivelSubMenu: {fileID: 1331574488177434937}
-  costeOroMejorar: c04b030000350c00
+  costeOroMejorar: 1027000030750000
   colorPrimary: {r: 208, g: 156, b: 45, a: 1}
   floatingText: {fileID: 2813641865897385345, guid: 4b320ec1dcedbe24f97abfc8227e74e6, type: 3}
   txtSaludActual: {fileID: 3913183734627822116}
@@ -1006,12 +1006,14 @@ MonoBehaviour:
   btnMejorarInfo: {fileID: 1088283092702575585}
   txtMejoraOro: {fileID: 2673671765317084356}
   txtMejoraObsidium: {fileID: 2790683367342643767}
-  costeObsidiumMejorar: 30e6020080fc0a00
+  costeObsidiumMejorar: 88130000983a0000
+  produccionOro: 640000005e010000d0020000
+  produccionObsidium: 0a0000001400000023000000
   prefabNvl1: {fileID: 8748338743243517747}
   prefabNvl2: {fileID: 1889410240338208131}
   prefabNvl3: {fileID: 5943623601803193644}
   cameraShake: {fileID: 0}
-  costeObsidiumConstruirMejorar: 0000000030e6020080fc0a00
+  costeObsidiumConstruirMejorar: 0000000088130000983a0000
 --- !u!208 &4754766673540945886
 NavMeshObstacle:
   m_ObjectHideFlags: 0

@@ -64,7 +64,7 @@ public class BtnConstruccion : MonoBehaviour
             
         }
     }
-
+    
     public bool EnoughLevel
     {
         get => enoughLevel;
@@ -72,6 +72,7 @@ public class BtnConstruccion : MonoBehaviour
         {
             enoughLevel = value;
             //btn.interactable = value;
+            //btn.enabled = value;
             setColor(enoughLevel ? colorPrimary : Color.gray);
         }
     }

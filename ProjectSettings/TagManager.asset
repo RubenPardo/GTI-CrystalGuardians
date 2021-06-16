@@ -11,6 +11,7 @@ TagManager:
   - Estructura
   - estructura
   - Suelo
+  - Blueprint
   layers:
   - Default
   - TransparentFX

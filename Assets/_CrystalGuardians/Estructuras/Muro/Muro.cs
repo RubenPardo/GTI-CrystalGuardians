@@ -81,11 +81,11 @@ public class Muro : Estructura
             if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
             {
                 mejoraDisponible = false;
-                GameManager.Instance.ShowMessage("Nivel de castillo insuficiente!");
+                GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
             }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual])
             {
                 mejoraDisponible = false;
-                GameManager.Instance.ShowMessage("Oro insuficiente!");
+                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
             }
 
         }

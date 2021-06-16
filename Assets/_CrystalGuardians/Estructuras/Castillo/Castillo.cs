@@ -18,6 +18,9 @@ public class Castillo : Estructura
 
     public int[] costeObsidiumMejorar;
 
+    public int[] produccionOro;
+    public int[] produccionObsidium;
+
     //prefabs castillo 
     public GameObject prefabNvl1;
     public GameObject prefabNvl2;
@@ -50,12 +53,12 @@ public class Castillo : Estructura
         {
             if (GameManager.Instance.Oro < costeOroMejorar[GameManager.Instance.NivelActualCastillo])
             {
-                GameManager.Instance.ShowMessage("Oro insuficiente!");
+                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
                 mejoraDisponible = false;
             }
             else if (GameManager.Instance.Obsiidum < costeObsidiumMejorar[GameManager.Instance.NivelActualCastillo])
             {
-                GameManager.Instance.ShowMessage("Obsidium insuficiente!");
+                GameManager.Instance.ShowMessage("¡Obsidium insuficiente!");
                 mejoraDisponible = false;
             }
         }
@@ -95,6 +98,18 @@ public class Castillo : Estructura
         base.Update();
         setUpCanvasValues();
         comprobarDisponibilidadMejora();
+        generarRecursos();
+
+    }
+    private void generarRecursos()
+    {
+        //Oro
+        updateRecursos(true, false, produccionOro[nivelActual] * Time.deltaTime, transform);
+        GameManager.Instance.OroTotalGenerado = GameManager.Instance.OroTotalGenerado + produccionOro[nivelActual] * Time.deltaTime;
+
+        //Obsidium
+        updateRecursos(false, false, produccionObsidium[nivelActual] * Time.deltaTime, transform);
+        GameManager.Instance.ObsidiumTotalGenerado += produccionObsidium[nivelActual] * Time.deltaTime;
 
     }
 

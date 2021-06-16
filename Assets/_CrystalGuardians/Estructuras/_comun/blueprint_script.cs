@@ -67,7 +67,7 @@ public class blueprint_script : MonoBehaviour
             {
                 if (hayColision)
                 {
-                    GameManager.Instance.ShowMessage("No puedes construir ahí!");
+                    GameManager.Instance.ShowMessage("¡No puedes construir ahí!");
                 }else if (!sePuedeConstruir)
                 {
                     // casa de hechizos
@@ -77,11 +77,11 @@ public class blueprint_script : MonoBehaviour
                         
                         if (GameManager.Instance.CasasDeHechizosConstruidas >= GameManager.topeCasaHechizos)
                         {
-                            GameManager.Instance.ShowMessage("No puedes construir mas estructuras de ese tipo!");
+                            GameManager.Instance.ShowMessage("¡No puedes construir más estructuras de ese tipo!");
 
                         }else if (GameManager.Instance.Oro < GameManager.costeConstruirCasaHechizos)
                         {
-                            GameManager.Instance.ShowMessage("Oro insufciente");
+                            GameManager.Instance.ShowMessage("¡Oro insuficiente!");
                         }
 
                     }
@@ -89,16 +89,16 @@ public class blueprint_script : MonoBehaviour
                     {
                         if (GameManager.Instance.CuartelesConstruidos >= GameManager.topeCuartelUnidades)
                         {
-                            GameManager.Instance.ShowMessage("No puedes construir mas estructuras de ese tipo!");
+                            GameManager.Instance.ShowMessage("¡No puedes construir más estructuras de ese tipo!");
                         }
                         else if (GameManager.Instance.Oro < GameManager.costeConstruirCuartel)
                         {
-                            GameManager.Instance.ShowMessage("Oro insufciente");
+                            GameManager.Instance.ShowMessage("¡Oro insuficiente!");
                         }
                     }
                     else
                     {
-                        GameManager.Instance.ShowMessage("Oro insifuciente!");
+                        GameManager.Instance.ShowMessage("¡Oro insuficiente!");
                     }
 
                    

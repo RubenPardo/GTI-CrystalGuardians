@@ -173,7 +173,7 @@ MonoBehaviour:
   prefabLvl2: {fileID: 9068225546835140861}
   prefabLvl3: {fileID: 345766267640335476}
   isInstanciadoAlInicio: 0
-  generacionObsidiumPorNivel: 1400000050000000b400000040010000f4010000d0020000
+  generacionObsidiumPorNivel: 0a0000001400000023000000320000004b00000064000000
 --- !u!208 &7278084267598780179
 NavMeshObstacle:
   m_ObjectHideFlags: 0

@@ -133,7 +133,16 @@ public class ConstruirEstructuras : MonoBehaviour
         if (suficienteNivel(GameManager.nivelMinimoCastilloTrampa, prefabBtnTrampa)
             && oroSufcienteParaConstruir(GameManager.costeConstruirTrampa, prefabBtnTrampa))
         {
-            habilitar(prefabBtnTrampa, true);
+            if(GameManager.Instance.RondaEnemigosActiva == false)
+            {
+                habilitar(prefabBtnTrampa, true);
+            }
+            else
+            {
+                habilitar(prefabBtnTrampa, false);
+                prefabBtnTrampa.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "¡No puedes construir trampas en fase de combate!";
+            }
+            
         }
         else
         {
@@ -141,21 +150,7 @@ public class ConstruirEstructuras : MonoBehaviour
         }
     }
 
-    private bool suficienteNivel(int nivelCastilloRequerido, GameObject prefabBtn)
-    {
-        bool suficienteNivelConstruir = true;
-        if (nivelCastilloRequerido > GameManager.Instance.NivelActualCastillo )
-        {
-            suficienteNivelConstruir = false;
-            prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = false;
-            prefabBtn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "Nivel de castillo insuficiente!";
-        }
-        else
-        {
-            prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = true;
-        }
-        return suficienteNivelConstruir;
-    }
+
 
     private void habilitar(GameObject prefabBtn, bool v)
     {
@@ -246,14 +241,28 @@ public class ConstruirEstructuras : MonoBehaviour
         }
     }
 
-
+    private bool suficienteNivel(int nivelCastilloRequerido, GameObject prefabBtn)
+    {
+        bool suficienteNivelConstruir = true;
+        if (nivelCastilloRequerido > GameManager.Instance.NivelActualCastillo)
+        {
+            suficienteNivelConstruir = false;
+            prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = false;
+            prefabBtn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "¡Nivel de castillo insuficiente!";
+        }
+        else
+        {
+            prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = true;
+        }
+        return suficienteNivelConstruir;
+    }
 
     private bool oroSufcienteParaConstruir(int costeOro, GameObject btn) {
         bool oroDisponible = true;
 
         if (GameManager.Instance.Oro < costeOro)
         {
-            btn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "Oro insuficiente!";
+            btn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "¡Oro insuficiente!";
             oroDisponible = false;
         }
         return oroDisponible;
@@ -265,7 +274,7 @@ public class ConstruirEstructuras : MonoBehaviour
 
         if (estrcuturasActuales >= topeEstructuras)
         {
-            btn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "No puedes construir mas estrscturas de ese tipo!";
+            btn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "¡No puedes construir más estrscturas de ese tipo!";
             sePuedeConstruir = false;
         }
         return sePuedeConstruir;

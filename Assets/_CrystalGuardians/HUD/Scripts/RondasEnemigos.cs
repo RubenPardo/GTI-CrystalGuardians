@@ -9,7 +9,8 @@ public class RondasEnemigos : MonoBehaviour
 {
     public Text contadorRondas;
     public Text txtOleada;
-    private float contadorTiempoRonda = 10.0f;
+    public float tiempoEntreRonda;
+    private float contadorRonda;
     public int numeroRnda = 1;
     private bool isRondaActive = false;
 
@@ -61,7 +62,8 @@ public class RondasEnemigos : MonoBehaviour
 
     void Start()
     {
-        tiempoRonda = (int)contadorTiempoRonda;
+        contadorRonda = tiempoEntreRonda;
+        tiempoRonda = (int)tiempoEntreRonda;
         listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
     }
    
@@ -105,6 +107,7 @@ public class RondasEnemigos : MonoBehaviour
 
             spawn();
             isRondaActive = true;
+            GameManager.Instance.RondaEnemigosActiva = true;
             contadorRondas.text = "";
             txtOleada.text = "OLEADA " + numeroRnda.ToString("f0");
             txtOleada.color = Color.red;
@@ -155,9 +158,11 @@ public class RondasEnemigos : MonoBehaviour
     {
         GameManager.Instance.listaEnemigosRonda.Clear();
         numeroRnda++;
+        GameManager.Instance.RondaEnemigosActiva = false;
+
         isRondaActive = false;
-        contadorTiempoRonda = 10.0f;
-        tiempoRonda = (int)contadorTiempoRonda;
+        contadorRonda = tiempoEntreRonda;
+        tiempoRonda = (int)contadorRonda;
         txtOleada.text = "PARA LA OLEADA " + numeroRnda.ToString("f0");
         txtOleada.color = Color.white;
         comprobarLanzarMejorasAldeas();
@@ -183,15 +188,15 @@ public class RondasEnemigos : MonoBehaviour
     private bool updateCronometro()
     {
         
-        contadorTiempoRonda -= Time.deltaTime;
+        contadorRonda -= Time.deltaTime;
 
-        float seconds = Mathf.FloorToInt(contadorTiempoRonda % 60); 
-        float minutes = Mathf.FloorToInt(contadorTiempoRonda / 60);
+        float seconds = Mathf.FloorToInt(contadorRonda % 60); 
+        float minutes = Mathf.FloorToInt(contadorRonda / 60);
 
        
         contadorRondas.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        return contadorTiempoRonda <= 0.0f;
+        return contadorRonda <= 0.0f;
     }
     private void updateLuzAmbiente()
     {
@@ -200,7 +205,7 @@ public class RondasEnemigos : MonoBehaviour
         // tmAct/tmMax = X/LuzMax -> X = (tmAct * luzMax) / tmMax
 
 
-        float cocienteTiempo = contadorTiempoRonda / tiempoRonda;
+        float cocienteTiempo = contadorRonda / tiempoRonda;
 
         // quitar el tanto porciento entre la resta y luego sumar el min, 
         // asi si se redujo el 100% debe dar el maxOscuridad 
@@ -231,37 +236,43 @@ public class RondasEnemigos : MonoBehaviour
     private void spawn()
     {
 
-        GameManager.Instance.RondaMaximaAlcanzada = numeroRnda;
-       for (int i=0; i < numeroRnda * cantidadEnemigosPorRonda; i++)
+       GameManager.Instance.RondaMaximaAlcanzada = numeroRnda;
 
+      for (int i=0; i < numeroRnda * cantidadEnemigosPorRonda; i++)
         {
             GameObject casilla = listaSpawn[Random.Range(0, listaSpawn.Length)];
-            int meleeDistancia = Random.Range(0, 2);
             GameObject g;
-            if(meleeDistancia == 1)
+            if (numeroRnda>5)
             {
-                //generar melee
-                g = Instantiate(enemigoMelee);
-                g.transform.position = casilla.transform.position;
-                
+                int meleeDistancia = Random.Range(0, 2);
+                if (meleeDistancia == 1)
+                {
+                    //generar melee
+                    g = Instantiate(enemigoMelee);
+                    g.transform.position = casilla.transform.position;
+
+                }
+                else
+                {
+                    //generar distancia
+                    g = Instantiate(enemigoDistancia);
+                    g.transform.position = casilla.transform.position;
+                }
             }
             else
             {
-                //generar distancia
-                g = Instantiate(enemigoDistancia);
+                g = Instantiate(enemigoMelee);
                 g.transform.position = casilla.transform.position;
             }
-
-
             GameManager.Instance.listaEnemigosRonda.Add(g);
 
         }
 
         // generar enemigos fuertes
-        if(numeroRnda % 5 == 0)
+        if(numeroRnda % 10 == 0)
         {
             int cantidadEnemigosFuertes = numeroRnda / 5;
-            Debug.Log(cantidadEnemigosFuertes);
+            //Debug.Log(cantidadEnemigosFuertes);
             if (cantidadEnemigosFuertes > 4) cantidadEnemigosFuertes = 4;
 
             for (int i = 0; i < cantidadEnemigosFuertes; i++) 

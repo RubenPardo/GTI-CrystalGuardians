@@ -60,14 +60,14 @@ public class ExtractorObsidium : Estructura
         {
             if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
             {
-                GameManager.Instance.ShowMessage("Nivel de castillo insuficiente!");
+                GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
                 mejoraDisponible = false;
 
             }
             else if((GameManager.Instance.Oro < costeOroMejorar[nivelActual]))
             {
                 mejoraDisponible = false;
-                GameManager.Instance.ShowMessage("Oro insuficiente");
+                GameManager.Instance.ShowMessage("¡Oro insuficiente");
             }
         }
         else

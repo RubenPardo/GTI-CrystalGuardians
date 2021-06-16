@@ -95,8 +95,12 @@ public class GameManager : MonoBehaviour
     public int RayosDisponibles { get => rayosDisponibles; set => rayosDisponibles = value; }
     public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
-    private float oro = 990000000;//3150;
-    private float obsidium = 990000000;
+    //private float oro = 990000000;//3150;
+    //private float obsidium = 990000000;
+
+    private float oro = 5000;
+    private float obsidium = 0;
+
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 
@@ -117,7 +121,8 @@ public class GameManager : MonoBehaviour
     public static List<GameObject> listaAliadosEnJuego = new List<GameObject>();
 
 
-
+    private bool rondaEnemigosActiva = false;
+    public bool RondaEnemigosActiva { get => rondaEnemigosActiva; set => rondaEnemigosActiva = value; }
 
     public GameObject castillo; // se construira al inicio
 
@@ -255,7 +260,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        hudGameOver.SetActive(true);
-        hudGameOver.GetComponent<GameOver>().UpdateStats();
+        if (hudGameOver != null)
+        {
+            hudGameOver.SetActive(true);
+            hudGameOver.GetComponent<GameOver>().UpdateStats();
+
+        }
+       
     }
 }

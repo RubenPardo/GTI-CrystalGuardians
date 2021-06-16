@@ -107,7 +107,7 @@ MonoBehaviour:
   rangoVision: 100
   rangoAtaque: 4
   attackSpeed: 1
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 461610120816575611}
   objetivoFijado: {fileID: 0}
   canAttack: 0
   AnimacionController: {fileID: 358887966252480225}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class Castillo : Estructura
     public Text txtMejoraObsidium;
 
     public int[] costeObsidiumMejorar;
+    public int[] generacionOroPorNivel;
 
     public int[] produccionOro;
     public int[] produccionObsidium;
@@ -48,17 +50,18 @@ public class Castillo : Estructura
     }
     public override void mejorar()
     {
+        cerrarMenu();
         bool mejoraDisponible=true;
         if ((nivelActual <= NivelMaximo - 1))
         {
             if (GameManager.Instance.Oro < costeOroMejorar[GameManager.Instance.NivelActualCastillo])
             {
-                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
+                GameManager.Instance.ShowMessage("Oro insuficiente!");
                 mejoraDisponible = false;
             }
             else if (GameManager.Instance.Obsiidum < costeObsidiumMejorar[GameManager.Instance.NivelActualCastillo])
             {
-                GameManager.Instance.ShowMessage("¡Obsidium insuficiente!");
+                GameManager.Instance.ShowMessage("Obsidium insuficiente!");
                 mejoraDisponible = false;
             }
         }
@@ -96,21 +99,28 @@ public class Castillo : Estructura
     protected override void Update()
     {
         base.Update();
+        generarRecursos();
         setUpCanvasValues();
         comprobarDisponibilidadMejora();
         generarRecursos();
 
+    }
+    private void generarRecursos()
+    {
+        //Oro
+        updateRecursos(true, false, produccionOro[nivelActual] * Time.deltaTime, transform);
+        GameManager.Instance.OroTotalGenerado = GameManager.Instance.OroTotalGenerado + produccionOro[nivelActual] * Time.deltaTime;
+
+        //Obsidium
+        updateRecursos(false, false, produccionObsidium[nivelActual] * Time.deltaTime, transform);
+        GameManager.Instance.ObsidiumTotalGenerado += produccionObsidium[nivelActual] * Time.deltaTime;
+
     }
+
     private void generarRecursos()
     {
-        //Oro
-        updateRecursos(true, false, produccionOro[nivelActual] * Time.deltaTime, transform);
-        GameManager.Instance.OroTotalGenerado = GameManager.Instance.OroTotalGenerado + produccionOro[nivelActual] * Time.deltaTime;
-
-        //Obsidium
-        updateRecursos(false, false, produccionObsidium[nivelActual] * Time.deltaTime, transform);
-        GameManager.Instance.ObsidiumTotalGenerado += produccionObsidium[nivelActual] * Time.deltaTime;
-
+        updateRecursos(true, false, generacionOroPorNivel[nivelActual] * Time.deltaTime, transform);
+        GameManager.Instance.OroTotalGenerado = GameManager.Instance.OroTotalGenerado + generacionOroPorNivel[nivelActual] * Time.deltaTime;
     }
 
     private void comprobarDisponibilidadMejora()

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 1106947263199198498}
   m_Layer: 0
   m_Name: ExtractorObsidium_blueprint
-  m_TagString: Untagged
+  m_TagString: Blueprint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

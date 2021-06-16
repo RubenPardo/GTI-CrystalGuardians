@@ -10,10 +10,26 @@ public class GameManager : MonoBehaviour
     //objeto que controla la musica de la escena
     public GameObject musicaAmbiente;
 
+    public GameObject textoAviso;
+    public float timeDelayAviso;
+
+    //tutorial
+    public static bool isTutorialOn = true;
+    public bool IsTutorialOn { get => isTutorialOn; set => isTutorialOn = value; }
+
     public GameObject textoAvisoSalirConstruccion;
     public float duracionAviso = 3f;
     public GameObject hudPrincipal;
     public GameObject textoAvisoFlotante;
+
+    //HUD 
+    public GameObject panelBarraRondas;
+    public GameObject panelBarraConstruccion;
+    public GameObject hudBtnMejorasAldea;
+    public GameObject barraRecursos;
+    public GameObject btnRangos;
+    public GameObject panelTutorial;
+
     // singleton
 
     static GameManager instance;
@@ -85,6 +101,7 @@ public class GameManager : MonoBehaviour
     private static int healsDisponibles = 0;
     private static int rayosDisponibles = 0;
     private static int buffsDisponibles = 0;
+    public int hechizosLanzados = 0;
 
     public static int topeCasaHechizos=1;
 
@@ -174,16 +191,25 @@ public class GameManager : MonoBehaviour
         
         if(instance == null)
         {
-            instance = this;
 
+            instance = this;
+            if (!isTutorialOn)
+            {
+                panelBarraRondas.SetActive(true);
+                panelBarraConstruccion.SetActive(true);
+                hudBtnMejorasAldea.SetActive(true);
+                barraRecursos.SetActive(true);
+                btnRangos.SetActive(true);
+                panelTutorial.SetActive(false);
+            }
             //Instantiate(castillo, transform.position, transform.rotation);
            
 
             //A�adimos las cartas a la lista de cartas disponibles
             listaCartas = new List<Carta>();
             listaCartas.Add(new Carta("Estructura", "El coste de las estructuras se reduce un 10%", "estructuras", reducirCosteEstructuras));
-            listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas r�pido", "recursos", aumentarProduccionMinas20));
-            listaCartas.Add(new Carta("Unidades", "Tus unidades ahora hacen mas da�o", "unidades", aumentoDeDanyoAliados));
+            listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas rapido", "recursos", aumentarProduccionMinas20));
+            listaCartas.Add(new Carta("Unidades", "Mejora el ataque de tus unidades", "unidades", aumentoDeDanyoAliados));
             listaCartas.Add(new Carta("Hechizos", "El radio de los hechizos ha aumentado", "hechizos", aumentarRadioHechizos));
 
             

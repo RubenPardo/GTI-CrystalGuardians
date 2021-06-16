@@ -209,7 +209,7 @@ MonoBehaviour:
   rangoVision: 15
   rangoAtaque: 1.4
   velocidadAtaque: 1
-  vidaActual: 1000
+  vidaActual: 500
   healthBar: {fileID: 1429728333258723833}
   attackSpeed: 1
   buffDamage: 1
@@ -787,11 +787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174248364024, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_Value
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174248364024, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_MaxValue
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174676661161, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_AnchorMax.x

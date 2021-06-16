@@ -10,9 +10,9 @@ public class TutorialManager : MonoBehaviour
     string frase ;
     public Text texto;
 
-    public bool pasoCumplido;
-    
-    public int indicePasosTuto = 0;
+    private bool pasoCumplido;
+
+    private int indicePasosTuto = 0;
 
     //control de paneles
     public GameObject panelTutorial;
@@ -39,18 +39,23 @@ public class TutorialManager : MonoBehaviour
     bool hayExtractor = false;
     bool hayTorre = false;
     bool hayMuro = false;
+    bool hayCasaHechizos = false;
+    bool hayCuartel = false;
 
     //enemigos 
     public GameObject prefabEM;
     public GameObject prefabED;
-    public bool spawnMele = false;
-    public bool spawnDist = false;
-    
+    private bool spawnMele = false;
+    private bool spawnDist = false;
+
+    public CameraeController cameraController;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+       
         panelConstruccion.SetActive(false);
         frase = "Bienvenido a Crystal Guardians. Tu objetivo en esta aventura será defender nuestra aldea de los enemigos del bosque, para ello deberás recolectar recursos y construir defensas.";
         escribirTexto();
@@ -66,11 +71,13 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(indicePasosTuto);
+        cameraController.isActive = !panelTutorial.activeSelf;// bloqueamos los controles de la camara si esta el texto activo
+        
+
         if (pasoCumplido)
         {
            
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space) || (Input.GetMouseButtonDown(0) && panelTutorial.activeSelf))
             {
                 //cuando ya esta escrito paso al siguiente paso
                 indicePasosTuto++;
@@ -114,19 +121,17 @@ public class TutorialManager : MonoBehaviour
                         hayMina = true;
                         
                         habilitar(btnMina, false);
-                        GameManager.Instance.seEstaConstruyendo = false;
-                        Destroy(GameObject.FindGameObjectsWithTag("Blueprint")[0]);
-                        
-                        
+                        salirModoConstruccion();
+
+
 
                     }
                     else if (g.GetComponent<ExtractorObsidium>() != null && !hayExtractor)
                     {
                         
                         hayExtractor = true;
-                        GameManager.Instance.seEstaConstruyendo = false;
-                        habilitar(btnExtractor, false);
-                        Destroy(GameObject.FindGameObjectsWithTag("Blueprint")[0]);
+                        habilitar(btnExtractor, false); 
+                        salirModoConstruccion();
 
                     }
                     
@@ -150,27 +155,30 @@ public class TutorialManager : MonoBehaviour
                 //paso muros y torre 
                 pasoCumplido = false;
                 mostrarPaneles(3);
-                activacionBotones(2);
+                if (!hayTorre)
+                {
+                    activacionBotones(2);
+                }
                 foreach (GameObject g in GameManager.listaEstructurasEnJuego)
                 {
                     if (g.GetComponent<Torre>() != null && !hayTorre)
                     {
                         hayTorre = true;
                         habilitar(btnTorre, false);
-                        GameManager.Instance.seEstaConstruyendo = false;
-                        Destroy(GameObject.FindGameObjectsWithTag("Blueprint")[0]);
+                        salirModoConstruccion();
                     }
-                    if (g.GetComponent<Muro>() != null && !hayMuro)
+                    else if (g.GetComponent<Muro>() != null && !hayMuro)
                     {
                         hayMuro = true;
                         
 
                     }
-                    if (hayTorre && hayMuro)
-                    {
-                        pasoCumplido = true;
-                        indicePasosTuto++;
-                    }
+                   
+                }
+                if (hayTorre && hayMuro && !GameManager.Instance.SeEstaConstruyendo)
+                {
+                    pasoCumplido = true;
+                    indicePasosTuto++;
                 }
                 break;
             case 7:
@@ -183,15 +191,21 @@ public class TutorialManager : MonoBehaviour
             case 8:
                 //paso de crear unidades
                 pasoCumplido = false;
-                mostrarPaneles(4);
+                if (!hayCuartel)
+                {
+                    mostrarPaneles(4);
+                }
                 activacionBotones(3);
                 foreach(GameObject g in GameManager.listaEstructurasEnJuego)
                 {
-                    if(g.GetComponent<CuartelUnidades>() != null)
+                    if(g.GetComponent<CuartelUnidades>() != null && !hayCuartel)
                     {
                         habilitar(btnCuartel, false);
+                        hayCuartel = true;
+                        salirModoConstruccion();
                     }
                 }
+               
                 if(GameManager.listaAliadosEnJuego.Count >= 2)
                 {
                     pasoCumplido = true;
@@ -209,7 +223,7 @@ public class TutorialManager : MonoBehaviour
                 //paso de mejorar castillo
                 pasoCumplido = false;
                 mostrarPaneles(5);
-                activacionBotones(5);
+                activacionBotones(6);
                 if(GameManager.Instance.NivelActualCastillo == 1)
                 {
                     pasoCumplido = true;
@@ -232,7 +246,22 @@ public class TutorialManager : MonoBehaviour
                 //paso de construir casa de hechizos y lanzar hechizo
                 pasoCumplido = false;
                 mostrarPaneles(6);
-                activacionBotones(4);
+
+                if (!hayCasaHechizos)
+                {
+                    activacionBotones(4);
+                }
+
+                foreach (GameObject g in GameManager.listaEstructurasEnJuego)
+                {
+                    if (g.GetComponent<CasaDeHechizos>() != null && !hayCasaHechizos)
+                    {
+                        hayCasaHechizos = true;
+                        habilitar(btnCasaHechizos, false);
+                        salirModoConstruccion();
+                    }
+                }
+
                 if (GameManager.Instance.hechizosLanzados > 0)
                 {
                     pasoCumplido = true;
@@ -256,6 +285,7 @@ public class TutorialManager : MonoBehaviour
                 //paso de defender la aldea
                 pasoCumplido = false;
                 mostrarPaneles(7);
+                activacionBotones(5);
                 GameObject go;
                 GameObject go2;
                 if (!spawnMele)
@@ -288,6 +318,8 @@ public class TutorialManager : MonoBehaviour
             case 18:
 
                 GameManager.isTutorialOn= false;
+                GameManager.listaEstructurasEnJuego.Clear();
+                GameManager.listaAliadosEnJuego.Clear();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
                 break;
@@ -299,7 +331,11 @@ public class TutorialManager : MonoBehaviour
 
 
 
-
+    private void salirModoConstruccion()
+    {
+        GameManager.Instance.seEstaConstruyendo = false;
+        Destroy(GameObject.FindGameObjectsWithTag("Blueprint")[0]);
+    }
         
         
         
@@ -381,6 +417,15 @@ public class TutorialManager : MonoBehaviour
                 habilitar(btnCasaHechizos, true);
                 break;
             case 5:
+                habilitar(btnCasaHechizos, true);
+                habilitar(btnMuro, true);
+                habilitar(btnTrampa, true);
+                habilitar(btnTorre, true);
+                habilitar(btnCuartel, true);
+                habilitar(btnMina, true);
+                habilitar(btnExtractor, true);
+                break;
+            case 6:
                 habilitar(btnCasaHechizos, false);
                 habilitar(btnMuro, false);
                 habilitar(btnTrampa, false);
@@ -398,6 +443,7 @@ public class TutorialManager : MonoBehaviour
     private void habilitar(GameObject prefabBtn, bool v)
     {
         prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = v;
+        prefabBtn.GetComponent<BtnConstruccion>().Available = v;
         
         
     }

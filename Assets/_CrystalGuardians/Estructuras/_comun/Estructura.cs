@@ -5,7 +5,6 @@ public abstract class Estructura : MonoBehaviour
 {
     public int NivelMaximo;
     public int nivelActual;
-    public AudioSource sonidoDestruccion;
 
     // todos estos atributos dependen del nivel al cual esta
     public int[] nivelMinimoCastilloParaMejorar;
@@ -29,6 +28,8 @@ public abstract class Estructura : MonoBehaviour
     public abstract void abrirMenu();
     public abstract void cerrarMenu();
     public Color colorPrimary = new Color(208, 156, 45);
+
+    private bool seHaDestruidoUnaVez = true;
 
 
     protected GameObject canvas;
@@ -81,6 +82,7 @@ public abstract class Estructura : MonoBehaviour
         healthBar?.SetMaxHealth(vidaPorNivel[nivelActual]);
         healthBar?.SetHeatlh(vidaPorNivel[nivelActual]);
         vidaActual = vidaPorNivel[nivelActual];
+       
         //Debug.Log("SETEANDO -> "+ healthBar.slider.maxValue + " Current: "+ healthBar.slider.value);
     }
 
@@ -92,18 +94,15 @@ public abstract class Estructura : MonoBehaviour
         }
         if (vidaActual <= 0)
         {
-
-            GameObject go =  Instantiate(particulasDestruccion);
-            go.transform.position = transform.position;
-            go.GetComponentInChildren<ParticleSystem>().Play();
-
-            sonidoDestruccion.Play();
-           //ebug.og(sonidoDestruccion);
-            transform.position = Vector3.one * 9999f; // move the game object off screen while it finishes it's sound, then destroy it
-            Destroy(gameObject, sonidoDestruccion.clip.length);
-
-            GameManager.listaEstructurasEnJuego.Remove(gameObject);
-            Destroy(gameObject);
+            if (seHaDestruidoUnaVez)
+            {
+                seHaDestruidoUnaVez = false;
+                GameObject go = Instantiate(particulasDestruccion);
+                go.transform.position = transform.position;
+                go.GetComponentInChildren<ParticleSystem>().Play();
+                GameManager.listaEstructurasEnJuego.Remove(gameObject);
+                Destroy(gameObject);
+            }
         }
     }
 

@@ -62,20 +62,12 @@ public class RondasEnemigos : MonoBehaviour
 
     void Start()
     {
-        
-            if (GameManager.isTutorialOn == false)
-            {
-                tiempoRonda = (int)contadorTiempoRonda;
-                listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
-            }
-        
-        
-        
-        
-
-        contadorRonda = tiempoEntreRonda;
-        tiempoRonda = (int)tiempoEntreRonda;
-        listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
+        if (GameManager.isTutorialOn == false)
+        {
+            contadorRonda = tiempoEntreRonda;
+            tiempoRonda = (int)tiempoEntreRonda;
+            listaSpawn = GameObject.FindGameObjectsWithTag("Respawn");
+        }
     }
    
 

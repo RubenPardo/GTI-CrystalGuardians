@@ -71,7 +71,7 @@ public class BtnConstruccion : MonoBehaviour
         set
         {
             enoughLevel = value;
-            btn.interactable = value;
+            //btn.interactable = value;
             //btn.enabled = value;
             setColor(enoughLevel ? colorPrimary : Color.gray);
         }

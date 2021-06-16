@@ -102,7 +102,6 @@ public class Castillo : Estructura
         generarRecursos();
         setUpCanvasValues();
         comprobarDisponibilidadMejora();
-        generarRecursos();
 
     }
     private void generarRecursos()
@@ -117,11 +116,6 @@ public class Castillo : Estructura
 
     }
 
-    private void generarRecursos()
-    {
-        updateRecursos(true, false, generacionOroPorNivel[nivelActual] * Time.deltaTime, transform);
-        GameManager.Instance.OroTotalGenerado = GameManager.Instance.OroTotalGenerado + generacionOroPorNivel[nivelActual] * Time.deltaTime;
-    }
 
     private void comprobarDisponibilidadMejora()
     {

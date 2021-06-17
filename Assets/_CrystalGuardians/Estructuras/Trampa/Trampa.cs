@@ -116,7 +116,7 @@ public class Trampa : Estructura
     private void comprobarDisponibilidadMejora()
     {
         bool mejoraDisponible = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
-            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
+            && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual+1]);
 
         if (mejoraDisponible)
         {

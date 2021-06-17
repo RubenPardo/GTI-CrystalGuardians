@@ -93,9 +93,20 @@ public class RondasEnemigos : MonoBehaviour
         if (!isRondaActive)
         {
 
+
+            contadorRonda = 0;
+            spawn();
+            isRondaActive = true;
+            GameManager.Instance.RondaEnemigosActiva = true;
+            contadorRondas.text = "";
+            txtOleada.text = "OLEADA " + numeroRnda.ToString("f0");
+            txtOleada.color = Color.red;
+
             if (numeroRnda % 10 == 0)
             {
                 AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
+               
+                updateLuzAmbiente();
                 sonidoRugido.Play();
                 source.clip = musicaRondaBoss;
                 source.Play();
@@ -108,13 +119,6 @@ public class RondasEnemigos : MonoBehaviour
                 source.clip = musicaRondaNormal;
                 source.Play();
             }
-
-            spawn();
-            isRondaActive = true;
-            GameManager.Instance.RondaEnemigosActiva = true;
-            contadorRondas.text = "";
-            txtOleada.text = "OLEADA " + numeroRnda.ToString("f0");
-            txtOleada.color = Color.red;
         }
        
     }
@@ -157,7 +161,7 @@ public class RondasEnemigos : MonoBehaviour
 
                 }
             }
-            else if (numeroRnda % 5 == 0) { updateLuzAmbiente(); }
+            else if (numeroRnda % 10 == 0) { updateLuzAmbiente(); }
         }
         
         

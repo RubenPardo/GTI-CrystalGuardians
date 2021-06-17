@@ -13,7 +13,6 @@ public class RondasEnemigos : MonoBehaviour
     private float contadorRonda;
     public int numeroRnda = 1;
     private bool isRondaActive = false;
-
     
    
     public int cantidadEnemigosPorRonda=3;
@@ -89,6 +88,8 @@ public class RondasEnemigos : MonoBehaviour
 
     public void comenzarRonda()
     {
+        
+
         if (!isRondaActive)
         {
 
@@ -138,6 +139,8 @@ public class RondasEnemigos : MonoBehaviour
 
         if (GameManager.isTutorialOn == false)
         {
+            btnEmpezar.SetActive(!isRondaActive);
+
             if (updateCronometro())
             {
                 comenzarRonda();

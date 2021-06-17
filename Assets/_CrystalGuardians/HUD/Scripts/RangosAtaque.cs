@@ -52,9 +52,12 @@ public class RangosAtaque : MonoBehaviour
         List<GameObject> estructuras = GameManager.listaEstructurasEnJuego;
         foreach (GameObject go in estructuras)
         {
-            Torre torre;
-            if (go.TryGetComponent<Torre>(out torre))
-                torre.removeRangeAttack();
+            if (go != null)
+            {
+                if (go.TryGetComponent<Torre>(out Torre torre))
+                    torre.removeRangeAttack();
+            }
+            
         }
     }
 }

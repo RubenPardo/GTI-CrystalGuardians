@@ -79,7 +79,6 @@ public class EnemigoScript : MonoBehaviour
                     {
                         // distancia enemigos
                         Vector3 pOrigen = transform.position;
-                        Debug.Log(objetivo);
                         Vector3 pEnemigo = objetivo.transform.position;
 
                         dictDistancias.Add(objetivo, Vector3.Distance(pOrigen, pEnemigo));

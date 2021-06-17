@@ -39,7 +39,7 @@ public class Trampa : Estructura
             {
                 mejoraDisponible = false;
                 GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
-            }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual])
+            }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual+1])
             {
                 mejoraDisponible = false;
                 GameManager.Instance.ShowMessage("¡Oro insuficiente!");

@@ -65,7 +65,6 @@ public class MejorasController : MonoBehaviour
         personalizarPanelSeleccion(listaTresCartas);
         //indicamos este booleano en falso para controlar el texto del contenedor mis mejoras
         hasElegidoMejora = false;
-        Debug.Log("START");
     }
     
     
@@ -73,7 +72,7 @@ public class MejorasController : MonoBehaviour
     //metodo para elegir una carta al azar
     public   string ChooseUnaCarta(List<Carta> listaCartas)
     {
-        //Debug.Log("hola "+ listaStrings.Count);
+       
         
         return listaCartas[Random.Range(0, listaCartas.Count)].Titulo;
     }
@@ -86,7 +85,7 @@ public class MejorasController : MonoBehaviour
         {
             cartasElegidas.Add(listaGeneral[Random.Range(0, listaGeneral.Count)]);
         }
-        //Debug.Log(cartasElegidas.Count);
+        
         return cartasElegidas;
     }
 
@@ -177,7 +176,7 @@ public class MejorasController : MonoBehaviour
     public void registrarCarta(string titulo , string descripcion)
     {
         
-        Debug.Log("HAS ELEGIDO UNA CARTA");
+     
         if (hasElegidoMejora)
         {
             textoDeMisMejoras.text += "-"  + titulo + ": " + descripcion + "\n";

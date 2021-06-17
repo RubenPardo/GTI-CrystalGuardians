@@ -158,6 +158,15 @@ public class GameManager : MonoBehaviour
     //Mejoras de aldea
     public List<Carta> listaCartas;
 
+    // botones escena
+    public BtnConstruccion btnMina;
+    public BtnConstruccion btnExtractor;
+    public BtnConstruccion btnCuartel;
+    public BtnConstruccion btnTorre;
+    public BtnConstruccion btnMuro;
+    public BtnConstruccion btnTrampa;
+    public BtnConstruccion btnCasaHechizos;
+
     // controlar las luces para activarlas solo de noche
     internal bool lucesActivas = false;
     
@@ -214,10 +223,7 @@ public class GameManager : MonoBehaviour
                 GameManager.Instance.Oro = 99000000;
                 GameManager.Instance.Obsiidum = 99000000;
             }
-            //Instantiate(castillo, transform.position, transform.rotation);
-           
-
-            //A�adimos las cartas a la lista de cartas disponibles
+          
             listaCartas = new List<Carta>();
             listaCartas.Add(new Carta("Estructura", "El coste de las estructuras se reduce un 10%", "estructuras", reducirCosteEstructuras));
             listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas rapido", "recursos", aumentarProduccionMinas20));
@@ -236,54 +242,57 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-
-    
-    void Update()
-    {
-      
-    }
     static int aumentoDeDanyoAliados()
     {
-        Debug.Log("Tus unidades ahora hacen mas da�o");
-        Guerrero.mejoraDanyo *= 5f;
-        Ballestero.mejoraDanyo *= 5f;
+    
+        Guerrero.mejoraDanyoGuerrero *= 1.05f;
+        Ballestero.mejoraDanyoBallestero *= 1.05f;
 
         return 0;
     }
-    static int reducirCosteEstructuras()
+    public int reducirCosteEstructuras()
     {
-        Debug.Log("Las estructuras han bajado de coste un 10%");
+        
+        // reducir un 10%
+        costeConstruirMina -= 10 * costeConstruirMina / 100;
+        btnMina.textPrecio.text = costeConstruirMina.ToString();
 
-        //Debug.Log("Coste antes --> " + costeConstruirMina);
+        costeConstruirExtractor -= 10 * costeConstruirExtractor / 100;
+        btnExtractor.textPrecio.text = costeConstruirExtractor.ToString();
 
-        costeConstruirMina = costeConstruirMina -  10 * costeConstruirMina / 100;
-        costeConstruirExtractor = costeConstruirExtractor - 10 * costeConstruirExtractor / 100;
-        costeConstruirCuartel = costeConstruirCuartel - 10 * costeConstruirCuartel / 100;
-        costeConstruirCasaHechizos = costeConstruirCasaHechizos - 10 * costeConstruirCasaHechizos / 100;
-        costeConstruirMuro = costeConstruirMuro - 10 * costeConstruirMuro / 100;
-        costeConstruirTorre = costeConstruirTorre - 10 * costeConstruirTorre / 100;
-        costeConstruirTrampa = costeConstruirTrampa - 10 * costeConstruirTrampa / 100;
+        costeConstruirCuartel -= 10 * costeConstruirCuartel / 100;
+        btnCuartel.textPrecio.text = costeConstruirCuartel.ToString();
 
-        //Debug.Log("Coste despues --> " + costeConstruirMina);
+        costeConstruirCasaHechizos -= 10 * costeConstruirCasaHechizos / 100;
+        btnCasaHechizos.textPrecio.text = costeConstruirCasaHechizos.ToString();
+
+        costeConstruirMuro -= 10 * costeConstruirMuro / 100;
+        btnMuro.textPrecio.text = costeConstruirMuro.ToString();
+
+        costeConstruirTorre -= 10 * costeConstruirTorre / 100;
+        btnTorre.textPrecio.text = costeConstruirTorre.ToString();
+
+        costeConstruirTrampa -= 10 * costeConstruirTrampa / 100;
+        btnTrampa.textPrecio.text = costeConstruirTrampa.ToString();
+
+
 
         return 0;
     }
     static int aumentarRadioHechizos()
     {
-        Debug.Log("El radio de los hechizos ha aumentado");
-        BluePrintHechizos.aumentoRadio *= 3f;
-        RayoScript.aumentoRadio *= 3f;
-        BuffScript.aumentoRadio *= 3f;
-        HealScript.aumentoRadio *= 3f;
+       // 30% mas grande
+        BluePrintHechizos.aumentoRadio *= 1.3f;
+        RayoScript.aumentoRadio *= 1.3f;
+        BuffScript.aumentoRadio *= 1.3f;
+        HealScript.aumentoRadio *= 1.3f;
         return 0;
     }
     static int aumentarProduccionMinas20()
     {
         //aumenta un 20% la produccion de las minas
-        Debug.Log("Has mejorado la produccion de las minas un 20%");
         //cambiar la variable 
-        Mina.mejoraDeAldeaProduccionOro = Mina.mejoraDeAldeaProduccionOro *  1.2f;
+        Mina.mejoraDeAldeaProduccionOro *=  1.2f;
         return 0;
     }
     public void ShowMessage(string text)

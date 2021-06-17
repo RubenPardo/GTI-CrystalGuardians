@@ -74,7 +74,7 @@ public class RondasEnemigos : MonoBehaviour
     private void comprobarLanzarMejorasAldeas()
     {
         // cada 3 rondas se lanzaran las mejoras de la aldea
-        if (numeroRnda % 6 == 0)
+        if (numeroRnda % 3 == 0)
         {
             //lanzamos la musica de mejoras
             sonidoMejora.Play();
@@ -92,7 +92,7 @@ public class RondasEnemigos : MonoBehaviour
         if (!isRondaActive)
         {
 
-            if (numeroRnda % 5 == 0)
+            if (numeroRnda % 10 == 0)
             {
                 AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
                 sonidoRugido.Play();
@@ -207,10 +207,7 @@ public class RondasEnemigos : MonoBehaviour
     }
     private void updateLuzAmbiente()
     {
-        // contadorTiempoRonda ( tmAct ) -> tiempoRonda (tmMax)
-        // luzAmbiente.rotation.x ( X ) -> maxOscuridad (luzMax)
-        // tmAct/tmMax = X/LuzMax -> X = (tmAct * luzMax) / tmMax
-
+     
 
         float cocienteTiempo = contadorRonda / tiempoRonda;
 

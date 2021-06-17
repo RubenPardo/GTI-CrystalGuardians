@@ -143,7 +143,7 @@ public class Mina : Estructura
 
 
         txtLvlActual.text = "Mina Nivel "+(nivelActual + 1).ToString();
-        txtProduccionActual.text = generacionOroPorNivel[nivelActual].ToString();
+        txtProduccionActual.text = (generacionOroPorNivel[nivelActual]*mejoraDeAldeaProduccionOro).ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
 
         if (nivelActual < NivelMaximo)

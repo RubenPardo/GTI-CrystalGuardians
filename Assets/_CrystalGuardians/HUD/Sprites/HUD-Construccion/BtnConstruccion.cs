@@ -10,8 +10,8 @@ public class BtnConstruccion : MonoBehaviour
     private Image imgEstructura;
     [SerializeField]
     private Button btn;
-    [SerializeField]
-    private Text textPrecio;
+    
+    public Text textPrecio;
 
     [Header("Campos personalizables")]
     [SerializeField]
@@ -25,6 +25,7 @@ public class BtnConstruccion : MonoBehaviour
     private Color colorPrimary = new Color(208, 156, 45);
 
     public string textNoSePuedeConstruir;
+
 
    
     public bool Selected

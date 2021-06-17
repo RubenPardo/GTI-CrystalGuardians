@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject textoAviso;
     public float timeDelayAviso;
+    public AudioMixer mixerEfectos;
 
     //tutorial
     public static bool isTutorialOn = true;
@@ -215,8 +217,8 @@ public class GameManager : MonoBehaviour
                 btnRangos.SetActive(true);
                 panelTutorial.SetActive(false);
 
-                GameManager.Instance.Oro = 99000000;
-                GameManager.Instance.Obsiidum = 99000000;
+                GameManager.Instance.Oro = 5000;
+                GameManager.Instance.Obsiidum = 0;
             }
             else
             {
@@ -311,6 +313,7 @@ public class GameManager : MonoBehaviour
         {
             hudGameOver.SetActive(true);
             hudGameOver.GetComponent<GameOver>().UpdateStats();
+            mixerEfectos.SetFloat("EffectsVolume", Mathf.Log10(0.001f) * 20);
             AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
             source.clip = musicaGameOver;
             source.Play();

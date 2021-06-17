@@ -9,6 +9,6 @@ public class EffectsController : MonoBehaviour
     public void SetLevel(float sliderValue)
     {
         mixer.SetFloat("EffectsVolume", Mathf.Log10(sliderValue) * 20);
-
+       
     }
 }

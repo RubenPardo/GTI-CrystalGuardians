@@ -26754,7 +26754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5309516325401425213, guid: 732998678f81b0e4990bcda40531a325, type: 3}
       propertyPath: strPrecio
-      value: 1350
+      value: 2350
       objectReference: {fileID: 0}
     - target: {fileID: 5309516325401425213, guid: 732998678f81b0e4990bcda40531a325, type: 3}
       propertyPath: paramImgEstructura

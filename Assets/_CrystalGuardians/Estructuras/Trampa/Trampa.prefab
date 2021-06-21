@@ -915,7 +915,7 @@ MonoBehaviour:
   particulasMejora: {fileID: 620941315219504873}
   healthBar: {fileID: 0}
   textNivelSubMenu: {fileID: 8277984841815177055}
-  costeOroMejorar: f401000088130000
+  costeOroMejorar: f4010000581b0000
   colorPrimary: {r: 208, g: 156, b: 45, a: 1}
   floatingText: {fileID: 2813641865897385345, guid: 4b320ec1dcedbe24f97abfc8227e74e6, type: 3}
   txtMejora: {fileID: 3037791610061314794}
@@ -928,7 +928,7 @@ MonoBehaviour:
   trampaInactivaNvl2: {fileID: 8734841796031500179}
   trampaActivaNvl2: {fileID: 616954273170886840}
   colliderExplosion: {fileID: 5904761644296621726}
-  danyoPorNivel: f4010000b80b0000
+  danyoPorNivel: f4010000ac0d0000
 --- !u!208 &2963853287157165438
 NavMeshObstacle:
   m_ObjectHideFlags: 0

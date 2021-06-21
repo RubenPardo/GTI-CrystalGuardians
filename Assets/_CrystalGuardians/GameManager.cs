@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     // casa de hechizos -----------
     public static int nivelMinimoCastilloCasaHechizos = 1;
-    public static int costeConstruirCasaHechizos = 1440;
+    public static int costeConstruirCasaHechizos = 2500;
 
     // cuartel de unidades -----------
     public static int nivelMinimoCastilloCuartel = 0;
@@ -81,11 +81,11 @@ public class GameManager : MonoBehaviour
 
     // torre -----------
     public static int nivelMinimoCastilloTorre = 0;
-    public static int costeConstruirTorre = 1350;
+    public static int costeConstruirTorre = 2350;
 
     // muros -----------
     public static int nivelMinimoCastilloMuros = 0;
-    public static int costeConstruirMuro = 100;
+    public static int costeConstruirMuro = 150;
 
     // mina -----------
     public static int nivelMinimoCastilloMina = 0;
@@ -98,9 +98,9 @@ public class GameManager : MonoBehaviour
     public static int costeConstruirExtractor = 2160;
 
     // hechizos --------
-    public static int[] costeLanzarHeal = { 250, 1500, 5000} ;
-    public static int[] costeLanzarRayo = { 250, 1500, 5000 };
-    public static int[] costeLanzarBuff = { 250, 1500, 5000 };
+    public static int[] costeLanzarHeal = { 1500, 5000, 15000} ;
+    public static int[] costeLanzarRayo = { 1500, 5000, 15000 };
+    public static int[] costeLanzarBuff = { 1500, 5000, 15000 };
     public static int nivelCasaHechizos;
 
     private static int healsDisponibles = 0;
@@ -217,8 +217,10 @@ public class GameManager : MonoBehaviour
                 btnRangos.SetActive(true);
                 panelTutorial.SetActive(false);
 
-                GameManager.Instance.Oro = 5000;
-                GameManager.Instance.Obsiidum = 0;
+               /* GameManager.Instance.Oro = 5000;
+                GameManager.Instance.Obsiidum = 0;*/
+                GameManager.Instance.Oro = 99000000;
+                GameManager.Instance.Obsiidum = 99000000;
             }
             else
             {
@@ -283,11 +285,11 @@ public class GameManager : MonoBehaviour
     }
     static int aumentarRadioHechizos()
     {
-       // 30% mas grande
-        BluePrintHechizos.aumentoRadio *= 1.3f;
-        RayoScript.aumentoRadio *= 1.3f;
-        BuffScript.aumentoRadio *= 1.3f;
-        HealScript.aumentoRadio *= 1.3f;
+       // 20% mas grande
+        BluePrintHechizos.aumentoRadio *= 1.2f;
+        RayoScript.aumentoRadio *= 1.2f;
+        BuffScript.aumentoRadio *= 1.2f;
+        HealScript.aumentoRadio *= 1.2f;
         return 0;
     }
     static int aumentarProduccionMinas20()

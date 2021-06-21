@@ -4838,7 +4838,7 @@ Transform:
   m_GameObject: {fileID: 6404778857047164824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_Children:
   - {fileID: 4864962115054922499}
   - {fileID: 6166553040167702082}
@@ -9910,9 +9910,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duracionHechizo: 1
   statsHechizoPorNivel:
-  - 0.2
-  - 0.3
-  - 0.45
+  - 800
+  - 2000
+  - 5000
   nivelActual: 0
   sistemaParticualas: {fileID: 1512690969374192511}
   areaParticualas: {fileID: 2181616190709157361}

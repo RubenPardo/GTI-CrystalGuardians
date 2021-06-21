@@ -29,8 +29,7 @@ public class RayoScript : Hechizo
             EnemigoScript enemigo = other.GetComponent<EnemigoScript>();
             //El da�o del rayo sera en % de vida
             nivelActual = GameManager.nivelCasaHechizos;
-            int damageHechizo = (int) ( statsHechizoPorNivel[nivelActual] * enemigo.vidaPorNivel[enemigo.nivelActual]);
-            enemigo.setCurrentHealth(enemigo.vidaActual - damageHechizo* mejoraDanyoRayo);
+            enemigo.setCurrentHealth(enemigo.vidaActual - ((int)statsHechizoPorNivel[nivelActual] * mejoraDanyoRayo));
         }
     }
 

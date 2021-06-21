@@ -578,16 +578,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NivelMaximo: 5
   nivelActual: 0
-  sonidoDestruccion: {fileID: 4610893205831710798}
   nivelMinimoCastilloParaMejorar: 0000000001000000010000000100000002000000
-  vidaPorNivel: 1503000064030000ba0300001a04000083040000f6040000
+  vidaPorNivel: f4010000e8030000d007000088130000983a0000409c0000
   vidaActual: 0
   particulasDestruccion: {fileID: 8337808104379242316, guid: c3e7c45e40279b446b05b56ab81d82ad, type: 3}
   particulasPosibleMejora: {fileID: 7836416503483824519}
   particulasMejora: {fileID: 7521981254727926248}
   healthBar: {fileID: 4486102258168293382}
   textNivelSubMenu: {fileID: 2616945709019604040}
-  costeOroMejorar: 94110000682e000040650000a4b5000090050100
+  costeOroMejorar: 88130000e02e000090650000c8af000080380100
   colorPrimary: {r: 208, g: 156, b: 45, a: 1}
   floatingText: {fileID: 2813641865897385345, guid: 4b320ec1dcedbe24f97abfc8227e74e6, type: 3}
   txtNivel: {fileID: 0}
@@ -600,7 +599,7 @@ MonoBehaviour:
   txtLvlSiguiente: {fileID: 0}
   btnMejorar: {fileID: 1376258461376158711}
   btnMejorarInfo: {fileID: 1959394036138420081}
-  danyoPorNivel: 53000000640000002c010000c20100008a02000020030000
+  danyoPorNivel: 32000000640000002c010000c20100008a02000020030000
   prefabLvl1: {fileID: 8910542504664560914}
   prefabLvl2: {fileID: 2695015260880322290}
   prefabLvl3: {fileID: 4219672741121557078}

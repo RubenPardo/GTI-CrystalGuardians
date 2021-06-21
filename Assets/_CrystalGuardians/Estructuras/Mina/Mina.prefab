@@ -761,10 +761,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NivelMaximo: 5
   nivelActual: 0
-  sonidoDestruccion: {fileID: 5270515757624914558}
-  sonidoDestruccion2: {fileID: 8300000, guid: 84a51017f84808e43ad196158f0451a0, type: 3}
   nivelMinimoCastilloParaMejorar: 0000000001000000010000000100000002000000
-  vidaPorNivel: d80100000d0200004702000088020000d002000020030000
+  vidaPorNivel: f4010000e8030000c4090000701700001027000030750000
   vidaActual: 0
   particulasDestruccion: {fileID: 8337808104379242316, guid: c3e7c45e40279b446b05b56ab81d82ad, type: 3}
   particulasPosibleMejora: {fileID: 1302234624122257592}

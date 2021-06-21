@@ -592,7 +592,7 @@ MonoBehaviour:
   NivelMaximo: 2
   nivelActual: 0
   nivelMinimoCastilloParaMejorar: 0100000002000000
-  vidaPorNivel: f4010000b80b000010270000
+  vidaPorNivel: e8030000ac0d000010270000
   vidaActual: 0
   particulasDestruccion: {fileID: 8337808104379242316, guid: c3e7c45e40279b446b05b56ab81d82ad, type: 3}
   particulasPosibleMejora: {fileID: 5016366393637090371}

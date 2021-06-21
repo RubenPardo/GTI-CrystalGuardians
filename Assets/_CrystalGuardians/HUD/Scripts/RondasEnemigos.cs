@@ -15,7 +15,8 @@ public class RondasEnemigos : MonoBehaviour
     private bool isRondaActive = false;
     
    
-    public int cantidadEnemigosPorRonda=3;
+    public int cantidadEnemigosPorRonda=2;
+    public int maxEnemigosPorRonda=50;
 
     private GameObject[] listaSpawn;
 
@@ -59,6 +60,15 @@ public class RondasEnemigos : MonoBehaviour
     public AudioSource sonidoVictoria;
     public AudioSource sonidoMejora;
 
+
+
+    private int rondaEnemigosDistancia = 3;// a partir de la ronda 3 aparecen a distancia
+    private int rondaEnemigosFuertes = 10;// cada 10 rondas enemigos fuertes
+    private int rondaMejorarEnemigos = 5;// cada x rondas suben de nivel los enemigos
+    private int rondaMejorarEnemigosFuertes = 10;// cada x rondas suben de nivel los enemigos fuertes
+    private int rondaMejoras = 3;// cada x rondas aparecen mejoras
+    private int maxEnemigosFuertes = 4;
+
     void Start()
     {
         if (GameManager.isTutorialOn == false)
@@ -73,7 +83,7 @@ public class RondasEnemigos : MonoBehaviour
     private void comprobarLanzarMejorasAldeas()
     {
         // cada 3 rondas se lanzaran las mejoras de la aldea
-        if (numeroRnda % 3 == 0)
+        if (numeroRnda % rondaMejoras == 0)
         {
             //lanzamos la musica de mejoras
             sonidoMejora.Play();
@@ -102,7 +112,7 @@ public class RondasEnemigos : MonoBehaviour
             txtOleada.text = "OLEADA " + numeroRnda.ToString("f0");
             txtOleada.color = Color.red;
 
-            if (numeroRnda % 10 == 0)
+            if (numeroRnda % rondaEnemigosFuertes == 0)
             {
                 AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
                
@@ -161,7 +171,7 @@ public class RondasEnemigos : MonoBehaviour
 
                 }
             }
-            else if (numeroRnda % 10 == 0) { updateLuzAmbiente(); }
+            else if (numeroRnda % rondaEnemigosFuertes == 0) { updateLuzAmbiente(); }
         }
         
         
@@ -189,7 +199,7 @@ public class RondasEnemigos : MonoBehaviour
         luzAmbiente.transform.eulerAngles = rotation;
 
         AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
-        if (numeroRnda%3 != 0)
+        if (numeroRnda % rondaMejoras != 0)
         {
             sonidoVictoria.Play();
         }
@@ -249,11 +259,16 @@ public class RondasEnemigos : MonoBehaviour
 
        GameManager.Instance.RondaMaximaAlcanzada = numeroRnda;
 
-      for (int i=0; i < numeroRnda * cantidadEnemigosPorRonda; i++)
+        int nivelEnemigos = numeroRnda / rondaMejorarEnemigos;
+        enemigoMelee.GetComponent<EnemigoScript>().nivelActual = nivelEnemigos;
+        enemigoDistancia.GetComponent<enemigoDistanciaScript>().nivelActual = nivelEnemigos;
+
+        int enemigosRonda = (numeroRnda * cantidadEnemigosPorRonda) > maxEnemigosPorRonda ? maxEnemigosPorRonda : numeroRnda * cantidadEnemigosPorRonda;
+      for (int i=0; i < enemigosRonda; i++)
         {
             GameObject casilla = listaSpawn[Random.Range(0, listaSpawn.Length)];
             GameObject g;
-            if (numeroRnda>5)
+            if (numeroRnda>rondaEnemigosDistancia)
             {
                 int meleeDistancia = Random.Range(0, 2);
                 if (meleeDistancia == 1)
@@ -275,16 +290,22 @@ public class RondasEnemigos : MonoBehaviour
                 g = Instantiate(enemigoMelee);
                 g.transform.position = casilla.transform.position;
             }
+
+
+
             GameManager.Instance.listaEnemigosRonda.Add(g);
 
         }
 
         // generar enemigos fuertes
-        if(numeroRnda % 10 == 0)
+        if(numeroRnda % rondaEnemigosFuertes == 0)
         {
+
+            int nivelEnemigosFuertes = numeroRnda / rondaMejorarEnemigosFuertes;
+            enemigoFuerte.GetComponent<EnemigoScript>().nivelActual = nivelEnemigosFuertes;
             int cantidadEnemigosFuertes = numeroRnda / 5;
             //Debug.Log(cantidadEnemigosFuertes);
-            if (cantidadEnemigosFuertes > 4) cantidadEnemigosFuertes = 4;
+            if (cantidadEnemigosFuertes > maxEnemigosFuertes) cantidadEnemigosFuertes = maxEnemigosFuertes;
 
             for (int i = 0; i < cantidadEnemigosFuertes; i++) 
             {

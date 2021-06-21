@@ -49,7 +49,6 @@ public class EnemigoScript : MonoBehaviour
         }
         
         animator = GetComponentInChildren<Animator>();
-        Debug.Log("he creado enemigo");
     }
 
     // Update is called once per frame

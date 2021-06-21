@@ -8,6 +8,7 @@ public class move_controller : MonoBehaviour
 
     private global_selection global_selection;
     RaycastHit hit;
+    public GameObject flechasMovimiento;
 
     void Start()
     {
@@ -26,23 +27,7 @@ public class move_controller : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 50000.0f))
             {
 
-                // NO-----
-                // calcular un circulo formado por todo el grupo y asignarle un punto a cada uno
-                /*float areaAgentes = 0.0f;
-                int numAgentes = global_selection.selected_table.selectedTable.Count;
-                foreach (KeyValuePair<int, GameObject> pair in global_selection.selected_table.selectedTable)
-                {
-
-                    NavMeshAgent agent = global_selection.selected_table.selectedTable[pair.Key].transform.parent.gameObject.GetComponent<NavMeshAgent>();
-                    areaAgentes += agent.radius;
-                    
-                }
-
-                float radioCirculo = Utility.getCircleRadiusByArea(areaAgentes) + 2;
-
-                Debug.Log("area: " + areaAgentes);
-                Debug.Log("radio circulo: " + radioCirculo);
-                Vector3[] puntos = Utility.getPuntosEquidistribuidosDentroCirculo(radioCirculo, numAgentes);*/
+                
                 int k = 0;
                 foreach (KeyValuePair<int, GameObject> pair in global_selection.selected_table.selectedTable)
                 {
@@ -51,16 +36,26 @@ public class move_controller : MonoBehaviour
                     NavMeshAgent agent = unidad.GetComponent<NavMeshAgent>();
                     // cuando pulsamos restablecer por defecto los flags
                     unidad.setDefaultMoveFlags();
-                    //Debug.Log("PUNTO " +k +": "  + (hit.point + PuntosPosicionamiento.puntos[k] * (agent.radius+0.7f)));
-                    Debug.Log(PuntosPosicionamiento.puntos[k]);
-                    agent.SetDestination(hit.point+PuntosPosicionamiento.puntos[k]*(agent.radius + 0.7f));
+                    
+                    agent.SetDestination(hit.point+PuntosPosicionamiento.puntos[k]*(agent.radius + 1.0f));
                    
                     k++;
 
                     
                 }
-                
+                if (k > 0)
+                {
+                    global_selection.selected_table.deselectAll();
+                    GameObject go = Instantiate(flechasMovimiento);
+                    Vector3 pos = new Vector3(hit.point.x, 2, hit.point.z);
+                    go.transform.position = pos;
+                    Destroy(go, 0.5f);
+
+
+                }
+
             }
+
                 
         }
     }

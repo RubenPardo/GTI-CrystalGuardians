@@ -21,11 +21,9 @@ public class ExtractorObsidium : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
+    public bool isInstanciadoAlInicio = false;// para indicar si se pone al inicio del juego como base
 
 
-
-// Storing different levels'
-public GameObject[] levels;
     public int[] generacionObsidiumPorNivel;
 
   
@@ -48,27 +46,58 @@ public GameObject[] levels;
 
     private void generarRecursos()
     {
-        GameManager.Instance.Obsiidum = GameManager.Instance.Obsiidum + generacionObsidiumPorNivel[nivelActual] * Time.deltaTime;
+        updateRecursos(false, false, generacionObsidiumPorNivel[nivelActual] * Time.deltaTime , transform);
+        GameManager.Instance.ObsidiumTotalGenerado += generacionObsidiumPorNivel[nivelActual] * Time.deltaTime;
+
     }
 
     public override void mejorar()
     {
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
 
-        comprobarCambiarPrefab();
-        nivelActual++;
-        // actualizar hud informacion
-        setUpCanvasValues();
-        settearVida();
+        bool mejoraDisponible = true;
 
-        //emitir particulas
-        sistemaParticulasMejorar.Play();
+        if ((nivelActual <= NivelMaximo - 1))
+        {
+            if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
+            {
+                GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
+                mejoraDisponible = false;
+
+            }
+            else if((GameManager.Instance.Oro < costeOroMejorar[nivelActual]))
+            {
+                mejoraDisponible = false;
+                GameManager.Instance.ShowMessage("¡Oro insuficiente");
+            }
+        }
+        else
+        {
+            mejoraDisponible = false;
+        }
+
+        if (mejoraDisponible)
+        {
+            GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+            comprobarCambiarPrefab();
+            nivelActual++;
+
+            // actualizar hud informacion
+            setUpCanvasValues();
+            settearVida();
+
+            //emitir particulas
+            sistemaParticulasMejorar.Play();
+        }
     }
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        if (!isInstanciadoAlInicio)
+        {
+            updateRecursos(true, true, GameManager.costeConstruirExtractor, transform);
+        }
         setUpCanvasValues();
     }
 
@@ -83,19 +112,18 @@ public GameObject[] levels;
     private void comprobarDisponibilidadMejora()
     {
 
-        bool v = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1) && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        btnMejorar.interactable = v;
-        btnMejorarInfo.enabled = v;
 
-
-        if (v && !sistemaParticulasPosibleMejora.isEmitting)
+        if (mejoraDisponible && !sistemaParticulasPosibleMejora.isEmitting)
         {
+            enableButtonEstructura(btnMejorar, btnMejorarInfo);
             sistemaParticulasPosibleMejora.Play();
         }
-        else if (!v)
+        else if (!mejoraDisponible)
         {
+            disableButtonEstructura(btnMejorar, btnMejorarInfo);
             sistemaParticulasPosibleMejora.Stop();
         }
 

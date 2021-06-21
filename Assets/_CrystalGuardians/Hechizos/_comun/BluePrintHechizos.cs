@@ -15,7 +15,7 @@ public class BluePrintHechizos : MonoBehaviour
     void Start()
     {
         
-        GameManager.Instance.SeEstaConstruyendo = true;
+        GameManager.Instance.SeEstaLanzandoHechizo(true);
         transform.localScale = new Vector3(transform.localScale.x * aumentoRadio, transform.localScale.y, transform.localScale.z * aumentoRadio);
         mover_blueprint();
  
@@ -30,14 +30,16 @@ public class BluePrintHechizos : MonoBehaviour
             descontarHechizo();
             // Lanzar el hechizo
             Instantiate(prefab, transform.position, transform.rotation);
-            GameManager.Instance.SeEstaConstruyendo = false;
+            GameManager.Instance.SeEstaLanzandoHechizo(false);
+            GameManager.Instance.HechizosTotalesLanzados++;
             Destroy(gameObject);
+            GameManager.Instance.hechizosLanzados++;
 
         }
         // cuando se pulse el boton derecho se cancela la animacion de lanzar hechizos
         if (Input.GetMouseButton(1))
         {
-            GameManager.Instance.SeEstaConstruyendo = false;
+            GameManager.Instance.SeEstaLanzandoHechizo(false);
             Destroy(gameObject);
         }
     }

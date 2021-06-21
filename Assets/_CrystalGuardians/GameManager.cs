@@ -1,24 +1,68 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     
-    public Text hudProba;
+    public GameObject hudGameOver;
     //objeto que controla la musica de la escena
     public GameObject musicaAmbiente;
 
     public GameObject textoAviso;
     public float timeDelayAviso;
+    public AudioMixer mixerEfectos;
+
+    //tutorial
+    public static bool isTutorialOn = true;
+    public bool IsTutorialOn { get => isTutorialOn; set => isTutorialOn = value; }
+
+    public GameObject textoAvisoSalirConstruccion;
+    public float duracionAviso = 3f;
+    public GameObject hudPrincipal;
+    public GameObject textoAvisoFlotante;
+
+    //HUD 
+    public GameObject panelBarraRondas;
+    public GameObject panelBarraConstruccion;
+    public GameObject hudBtnMejorasAldea;
+    public GameObject barraRecursos;
+    public GameObject btnRangos;
+    public GameObject panelTutorial;
+    public GameObject btnSaltarTutorial;
+
+    public AudioSource sonidolose;
+    public AudioClip musicaGameOver;
     // singleton
 
     static GameManager instance;
     public static GameManager Instance { get => instance; set => instance = value; }
 
     public bool seEstaConstruyendo = false; // cuando se pulsa un boton poner a true y deshabilitar todo hasta que se deje de construir
-    public bool SeEstaConstruyendo { get => seEstaConstruyendo; set => seEstaConstruyendo = value; }
+    public bool SeEstaConstruyendo { get => seEstaConstruyendo; 
+        set {
+            seEstaConstruyendo = value;
+            textoAvisoSalirConstruccion.SetActive(value);
+            textoAvisoSalirConstruccion.GetComponent<Text>().text = "Click derecho para salir del modo construccion";
+        } 
+    }
+
+    public void SeEstaLanzandoHechizo(bool state)
+    {
+        seEstaConstruyendo = state;
+        textoAvisoSalirConstruccion.SetActive(state);
+        textoAvisoSalirConstruccion.GetComponent<Text>().text = "Click derecho para salir del modo lanzamiento";
+    }
+
+    public void SeEstaDesplazandoUnidades(bool state)
+    {
+        //seEstaConstruyendo = state;
+        textoAvisoSalirConstruccion.SetActive(state);
+        textoAvisoSalirConstruccion.GetComponent<Text>().text = "Click derecho para desplazar a las unidaes";
+    }
+
 
     // casa de hechizos -----------
     public static int nivelMinimoCastilloCasaHechizos = 1;
@@ -62,6 +106,7 @@ public class GameManager : MonoBehaviour
     private static int healsDisponibles = 0;
     private static int rayosDisponibles = 0;
     private static int buffsDisponibles = 0;
+    public int hechizosLanzados = 0;
 
     public static int topeCasaHechizos=1;
 
@@ -72,8 +117,12 @@ public class GameManager : MonoBehaviour
     public int RayosDisponibles { get => rayosDisponibles; set => rayosDisponibles = value; }
     public int HealsDisponibles { get => healsDisponibles; set => healsDisponibles = value; }
     //recursos -------------
-    private float oro = 990000000;
-    private float obsidium = 990000000;
+    //private float oro = 990000000;//3150;
+    //private float obsidium = 990000000;
+
+    private float oro = 5000;
+    private float obsidium = 0;
+
     public bool oroConstruido = false;
     public bool obsidiumConstruido = false;
 
@@ -94,7 +143,8 @@ public class GameManager : MonoBehaviour
     public static List<GameObject> listaAliadosEnJuego = new List<GameObject>();
 
 
-
+    private bool rondaEnemigosActiva = false;
+    public bool RondaEnemigosActiva { get => rondaEnemigosActiva; set => rondaEnemigosActiva = value; }
 
     public GameObject castillo; // se construira al inicio
 
@@ -110,14 +160,42 @@ public class GameManager : MonoBehaviour
     //Mejoras de aldea
     public List<Carta> listaCartas;
 
+    // botones escena
+    public BtnConstruccion btnMina;
+    public BtnConstruccion btnExtractor;
+    public BtnConstruccion btnCuartel;
+    public BtnConstruccion btnTorre;
+    public BtnConstruccion btnMuro;
+    public BtnConstruccion btnTrampa;
+    public BtnConstruccion btnCasaHechizos;
+
     // controlar las luces para activarlas solo de noche
     internal bool lucesActivas = false;
     
     public bool rangoAtaqueSiempreVisible = false;
     public bool RangoAtaqueSiempreVisible { get => rangoAtaqueSiempreVisible; set => rangoAtaqueSiempreVisible = value; }
 
-    
+    //Estadisticas generales para pantalla de derrota
+    private float oroTotalGenerado = 0;
+    public float OroTotalGenerado { get => oroTotalGenerado; set => oroTotalGenerado = value; }
 
+    private float obsidiumTotalGenerado = 0;
+    public float ObsidiumTotalGenerado { get => obsidiumTotalGenerado; set => obsidiumTotalGenerado = value; }
+
+    private int unidadesAliadasTotalesGeneradas = 0;
+    public int UnidadesAliadasTotalesGeneradas { get => unidadesAliadasTotalesGeneradas; set => unidadesAliadasTotalesGeneradas = value; }
+
+    private int enemigosTotalesEliminados = 0;
+    public int EnemigosTotalesEliminados { get => enemigosTotalesEliminados; set => enemigosTotalesEliminados = value; }
+
+    private int hechizosTotalesLanzados = 0;
+    public int HechizosTotalesLanzados { get => hechizosTotalesLanzados; set => hechizosTotalesLanzados = value; }
+
+    private int estructurasTotalesConstruidas = 0;
+    public int EstructurasTotalesConstruidas { get => estructurasTotalesConstruidas; set => estructurasTotalesConstruidas = value; }
+
+    private int rondaMaximaAlcanzada = 0;
+    public int RondaMaximaAlcanzada { get => rondaMaximaAlcanzada; set => rondaMaximaAlcanzada = value; }
 
     // Start is called before the first frame update
 
@@ -127,16 +205,31 @@ public class GameManager : MonoBehaviour
         
         if(instance == null)
         {
+
             instance = this;
+            btnSaltarTutorial.SetActive(isTutorialOn);
+            if (!isTutorialOn)
+            {
+                panelBarraRondas.SetActive(true);
+                panelBarraConstruccion.SetActive(true);
+                hudBtnMejorasAldea.SetActive(true);
+                barraRecursos.SetActive(true);
+                btnRangos.SetActive(true);
+                panelTutorial.SetActive(false);
 
-            //Instantiate(castillo, transform.position, transform.rotation);
-           
-
-            //A�adimos las cartas a la lista de cartas disponibles
+                GameManager.Instance.Oro = 5000;
+                GameManager.Instance.Obsiidum = 0;
+            }
+            else
+            {
+                GameManager.Instance.Oro = 99000000;
+                GameManager.Instance.Obsiidum = 99000000;
+            }
+          
             listaCartas = new List<Carta>();
             listaCartas.Add(new Carta("Estructura", "El coste de las estructuras se reduce un 10%", "estructuras", reducirCosteEstructuras));
-            listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas r�pido", "recursos", aumentarProduccionMinas20));
-            listaCartas.Add(new Carta("Unidades", "Tus unidades ahora hacen mas da�o", "unidades", aumentoDeDanyoAliados));
+            listaCartas.Add(new Carta("Recursos", "Las minas producen un 20% mas rapido", "recursos", aumentarProduccionMinas20));
+            listaCartas.Add(new Carta("Unidades", "Mejora el ataque de tus unidades", "unidades", aumentoDeDanyoAliados));
             listaCartas.Add(new Carta("Hechizos", "El radio de los hechizos ha aumentado", "hechizos", aumentarRadioHechizos));
 
             
@@ -151,68 +244,80 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-
-    
-    void Update()
-    {
-      
-    }
     static int aumentoDeDanyoAliados()
     {
-        Debug.Log("Tus unidades ahora hacen mas da�o");
-        Guerrero.mejoraDanyo *= 5f;
-        Ballestero.mejoraDanyo *= 5f;
+    
+        Guerrero.mejoraDanyoGuerrero *= 1.05f;
+        Ballestero.mejoraDanyoBallestero *= 1.05f;
 
         return 0;
     }
-    static int reducirCosteEstructuras()
+    public int reducirCosteEstructuras()
     {
-        Debug.Log("Las estructuras han bajado de coste un 10%");
+        
+        // reducir un 10%
+        costeConstruirMina -= 10 * costeConstruirMina / 100;
+        btnMina.textPrecio.text = costeConstruirMina.ToString();
 
-        //Debug.Log("Coste antes --> " + costeConstruirMina);
+        costeConstruirExtractor -= 10 * costeConstruirExtractor / 100;
+        btnExtractor.textPrecio.text = costeConstruirExtractor.ToString();
 
-        costeConstruirMina = costeConstruirMina -  10 * costeConstruirMina / 100;
-        costeConstruirExtractor = costeConstruirExtractor - 10 * costeConstruirExtractor / 100;
-        costeConstruirCuartel = costeConstruirCuartel - 10 * costeConstruirCuartel / 100;
-        costeConstruirCasaHechizos = costeConstruirCasaHechizos - 10 * costeConstruirCasaHechizos / 100;
-        costeConstruirMuro = costeConstruirMuro - 10 * costeConstruirMuro / 100;
-        costeConstruirTorre = costeConstruirTorre - 10 * costeConstruirTorre / 100;
-        costeConstruirTrampa = costeConstruirTrampa - 10 * costeConstruirTrampa / 100;
+        costeConstruirCuartel -= 10 * costeConstruirCuartel / 100;
+        btnCuartel.textPrecio.text = costeConstruirCuartel.ToString();
 
-        //Debug.Log("Coste despues --> " + costeConstruirMina);
+        costeConstruirCasaHechizos -= 10 * costeConstruirCasaHechizos / 100;
+        btnCasaHechizos.textPrecio.text = costeConstruirCasaHechizos.ToString();
+
+        costeConstruirMuro -= 10 * costeConstruirMuro / 100;
+        btnMuro.textPrecio.text = costeConstruirMuro.ToString();
+
+        costeConstruirTorre -= 10 * costeConstruirTorre / 100;
+        btnTorre.textPrecio.text = costeConstruirTorre.ToString();
+
+        costeConstruirTrampa -= 10 * costeConstruirTrampa / 100;
+        btnTrampa.textPrecio.text = costeConstruirTrampa.ToString();
+
+
 
         return 0;
     }
     static int aumentarRadioHechizos()
     {
-        Debug.Log("El radio de los hechizos ha aumentado");
-        BluePrintHechizos.aumentoRadio *= 3f;
-        RayoScript.aumentoRadio *= 3f;
-        BuffScript.aumentoRadio *= 3f;
-        HealScript.aumentoRadio *= 3f;
+       // 30% mas grande
+        BluePrintHechizos.aumentoRadio *= 1.3f;
+        RayoScript.aumentoRadio *= 1.3f;
+        BuffScript.aumentoRadio *= 1.3f;
+        HealScript.aumentoRadio *= 1.3f;
         return 0;
     }
     static int aumentarProduccionMinas20()
     {
         //aumenta un 20% la produccion de las minas
-        Debug.Log("Has mejorado la produccion de las minas un 20%");
         //cambiar la variable 
-        Mina.mejoraDeAldeaProduccionOro = Mina.mejoraDeAldeaProduccionOro *  1.2f;
+        Mina.mejoraDeAldeaProduccionOro *=  1.2f;
         return 0;
     }
     public void ShowMessage(string text)
     {
-        StartCoroutine(AvisoEmpezorRonda(text));
-    }
-    IEnumerator AvisoEmpezorRonda(string text)
-    {
-        textoAviso.GetComponent<Text>().text = text;
-        timeDelayAviso = 1.5f;
-        textoAviso.SetActive(true);
-        yield return new WaitForSeconds(timeDelayAviso);
-        textoAviso.SetActive(false);
-        yield return new WaitForSeconds(timeDelayAviso);
 
+        //GameObject go = Instantiate(textoAvisoFlotante, hudPrincipal.transform);
+        //go.GetComponent<Text>().text = text;
+        GameObject go = Instantiate(textoAvisoFlotante);
+        go.GetComponentInChildren<Text>().text = text;
+        Destroy(go, duracionAviso);
+    }
+
+    public void GameOver()
+    {
+        if(hudGameOver != null)
+        {
+            hudGameOver.SetActive(true);
+            hudGameOver.GetComponent<GameOver>().UpdateStats();
+            mixerEfectos.SetFloat("EffectsVolume", Mathf.Log10(0.001f) * 20);
+            AudioSource source = GameManager.Instance.musicaAmbiente.GetComponent<AudioSource>();
+            source.clip = musicaGameOver;
+            source.Play();
+        }
+        
     }
 }

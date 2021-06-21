@@ -15,6 +15,7 @@ public class selected_dictionary : MonoBehaviour
             int id = go.GetInstanceID();
             if (!selectedTable.ContainsKey(id))
             {
+                GameManager.Instance.SeEstaDesplazandoUnidades(true);
                 selectedTable.Add(id, go);
                 go.AddComponent<selection_component>();
             }
@@ -30,6 +31,8 @@ public class selected_dictionary : MonoBehaviour
 
     public void deselectAll()
     {
+
+        GameManager.Instance.SeEstaDesplazandoUnidades(false);
         foreach(KeyValuePair<int, GameObject> pair in selectedTable)
         {
             if(pair.Value != null)

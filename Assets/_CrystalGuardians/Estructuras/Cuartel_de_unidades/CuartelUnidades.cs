@@ -78,23 +78,41 @@ public class CuartelUnidades : Estructura
     public override void mejorar()
     {
 
-        
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+        bool mejoraDisponible = true;
 
-        comprobarCambiarPrefab();
-        nivelActual++;
+        if ((nivelActual <= NivelMaximo - 1))
+        {
+            if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
+            {
+                mejoraDisponible = false;
+                GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
+            }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual])
+            {
+                mejoraDisponible = false;
+                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
 
+            }
+        }
+        else
+        {
+            mejoraDisponible = false;
+        }
 
-        // actualizar hud informacion
-        //comprobarCambiarPrefab();
-        setUpCanvasValues();
-        sumarTopeUnidades(true);
-        settearVida();
+        if (mejoraDisponible)
+        {
+            updateRecursos(true, true, costeOroMejorar[nivelActual], transform);
+            comprobarCambiarPrefab();
+            nivelActual++;
 
-        //emitir particulas
-        sistemaParticulasMejorar.Play();
+            // actualizar hud informacion
+            setUpCanvasValues();
+            sumarTopeUnidades(true);
+            settearVida();
 
-
+            //emitir particulas
+            sistemaParticulasMejorar.Play();
+        }
+       
     }
 
     private void comprobarCambiarPrefab()
@@ -150,7 +168,7 @@ public class CuartelUnidades : Estructura
 
         if (GameManager.Instance.Unidades >= GameManager.Instance.TopeUnidades)
         {
-            GameManager.Instance.ShowMessage("No puedes crear más unidades!");
+            GameManager.Instance.ShowMessage("¡No puedes crear más unidades!");
             spawnDisponible = false;
         }
         else if (unidadAliada.TryGetComponent<Ballestero>(out ballesteroPrefab))
@@ -158,7 +176,7 @@ public class CuartelUnidades : Estructura
             if (GameManager.Instance.Obsiidum < ballestero.costePorNivel[nivelActual])
             {
                 spawnDisponible = false;
-                GameManager.Instance.ShowMessage("Obsidium insuficiente!");
+                GameManager.Instance.ShowMessage("¡Obsidium insuficiente!");
             }
         }
         else if (unidadAliada.TryGetComponent<Guerrero>(out guerreroPrefab))
@@ -166,7 +184,7 @@ public class CuartelUnidades : Estructura
             if (GameManager.Instance.Obsiidum < guerrero.costePorNivel[nivelActual])
             {
                 spawnDisponible = false;
-                GameManager.Instance.ShowMessage("Obsidium insuficiente!");
+                GameManager.Instance.ShowMessage("¡Obsidium insuficiente!");
             }
         }
 
@@ -184,7 +202,7 @@ public class CuartelUnidades : Estructura
 
             aliado.nivelActual = nivelActual;
             aliado.settearVida();
-            GameManager.Instance.Obsiidum -= aliado.costePorNivel[nivelActual];
+            updateRecursos(false, true, aliado.costePorNivel[nivelActual], transform);
 
             GameObject g = Instantiate(unidadAliada);
             g.transform.position = transform.position + spawnPoint;
@@ -192,6 +210,8 @@ public class CuartelUnidades : Estructura
             GameManager.Instance.Unidades++;
 
             GameManager.listaAliadosEnJuego.Add(g);
+
+            GameManager.Instance.UnidadesAliadasTotalesGeneradas++;
         }
     }
 
@@ -212,20 +232,19 @@ public class CuartelUnidades : Estructura
     private void comprobarDisponibilidadMejora()
     {
 
-        bool v = (nivelActual <= NivelMaximo - 1) &&
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1) &&
             GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        btnMejorar.interactable = v;
-        btnMejorarInfo.interactable = v;
-
-
-        if (v && !sistemaParticulasPosibleMejora.isEmitting)
+        if (mejoraDisponible)
         {
-            sistemaParticulasPosibleMejora.Play();
+            enableButtonEstructura(btnMejorar, btnMejorarInfo);   
+            if (!sistemaParticulasPosibleMejora.isEmitting)
+                sistemaParticulasPosibleMejora.Play();
         }
-        else if (!v)
+        else if (!mejoraDisponible)
         {
+            disableButtonEstructura(btnMejorar, btnMejorarInfo);
             sistemaParticulasPosibleMejora.Stop();
         }
 
@@ -255,18 +274,11 @@ public class CuartelUnidades : Estructura
 
     private void setUpCanvasValues()
     {
-
-
         // panel actual
         txtLvlActual.text = "Cuartel de Unidades Nivel " + (nivelActual + 1).ToString();
         txtNivel.text = (nivelActual + 1).ToString();
         txtCapacidadActual.text = capacidadUnidades[nivelActual].ToString();
-
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
-
-        
-
-
 
         // panel siguiente
         if(nivelActual < NivelMaximo)
@@ -278,10 +290,6 @@ public class CuartelUnidades : Estructura
             btnMejorar.gameObject.SetActive(false);
             btnMejorarInfo.gameObject.SetActive(false);
         }
-       
-
-       
-
     }
 
    
@@ -299,10 +307,5 @@ public class CuartelUnidades : Estructura
         {
             canvas.SetActive(false);
         }
-
-
-        
     }
-    
-    
 }

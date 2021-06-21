@@ -10,7 +10,7 @@ public class blueprint_script : MonoBehaviour
     RaycastHit hit;
     public LayerMask layerCasillas = ~0;
     public LayerMask layerEstructuras = ~0;
-    Vector3 movePoint;
+   
     public GameObject prefab;
     public float gridSize;
 
@@ -20,70 +20,251 @@ public class blueprint_script : MonoBehaviour
     private Color colorNormal;
     private Color colorColision = new Color(255, 0, 0, 0.5f);
 
-    // Start is called before the first frame update
+    // control de construccion muro
+    Vector3 mousePositionMurosIni;
+    Vector3 mousePositionMurosFin;
+    private bool seEstaConstruyendoMuro;
+    private int numMuros = 1;
+
     void Start()
     {
         GameManager.Instance.SeEstaConstruyendo = true;
         mover_blueprint();
-        mat = transform.GetChild(0).GetComponent<Renderer>().material; // coger el material del cubo hijo
-        colorNormal = mat.color;
-       
+        if (!prefab.GetComponent<Muro>())
+        {
+
+            mat = transform.GetChild(0).GetComponent<Renderer>().material; // coger el material del cubo hijo
+            
+        }
+        colorNormal = Color.green;
 
     }
 
     void LateUpdate()
     {
+        
 
-        comprobarOro();
-        mover_blueprint();
-
-       
-        // si no hay colision y se puede construir
-        if (!hayColision && sePuedeConstruir)
+        if (!seEstaConstruyendoMuro)
         {
-            mat.color = colorNormal; // color normal
-            mat.SetColor("_EmissionColor", colorNormal);
-            // si se pulsa el izquierdo
-            if (Input.GetMouseButtonDown(0)){
-                // construir la estructura 
-                
-                GameObject estructuraConstruida = Instantiate(prefab, transform.position, transform.rotation);
-                if (!prefab.GetComponent<Trampa>())
+            comprobarOro();
+            mover_blueprint();
+
+
+            // si no hay colision y se puede construir
+            if (!hayColision && sePuedeConstruir)
+            {
+                cambiarColor(true);
+                // si se pulsa el izquierdo
+                if (Input.GetMouseButtonDown(0) && prefab.GetComponent<Muro>())
                 {
-                    GameManager.listaEstructurasEnJuego.Add(estructuraConstruida.gameObject);
-                }
-                
-                // mina
-                if (prefab.GetComponent<Mina>())
-                {
-                    GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirMina;
+                    // se esta construyendo muro
+                    mousePositionMurosIni = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    seEstaConstruyendoMuro = true;
 
                 }
-                if (prefab.GetComponent<ExtractorObsidium>())
+                else if (Input.GetMouseButtonDown(0))
                 {
-                    GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirExtractor;
-
+                    // construir la estructura 
+                    
+                    GameObject estructuraConstruida = Instantiate(prefab, transform.position, transform.rotation);
+                    if (!prefab.GetComponent<Trampa>())
+                    {
+                        GameManager.listaEstructurasEnJuego.Add(estructuraConstruida.gameObject);
+                        GameManager.Instance.EstructurasTotalesConstruidas++;
+                    }
                 }
-                
+
             }
+            else
+            {
+                // si no a alguna de esas dos poner en color rojo
+                cambiarColor(false);
 
+                // si se pulsa el izquierdo
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (hayColision)
+                    {
+                        GameManager.Instance.ShowMessage("¡No puedes construir ahí!");
+                    }
+                    else if (!sePuedeConstruir)
+                    {
+                        // casa de hechizos
+                        if (prefab.GetComponent<CasaDeHechizos>())
+                        {
+
+
+                            if (GameManager.Instance.CasasDeHechizosConstruidas >= GameManager.topeCasaHechizos)
+                            {
+                                GameManager.Instance.ShowMessage("¡No puedes construir más estructuras de ese tipo!");
+
+                            }
+                            else if (GameManager.Instance.Oro < GameManager.costeConstruirCasaHechizos)
+                            {
+                                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
+                            }
+
+                        }
+                        else if (prefab.GetComponent<CuartelUnidades>())
+                        {
+                            if (GameManager.Instance.CuartelesConstruidos >= GameManager.topeCuartelUnidades)
+                            {
+                                GameManager.Instance.ShowMessage("¡No puedes construir más estructuras de ese tipo!");
+                            }
+                            else if (GameManager.Instance.Oro < GameManager.costeConstruirCuartel)
+                            {
+                                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
+                            }
+                        }
+                        else
+                        {
+                            GameManager.Instance.ShowMessage("¡Oro insuficiente!");
+                        }
+
+
+                    }
+                }
+
+            }
         }
         else
         {
-            // si no a alguna de esas dos poner en color rojo
-            mat.color = colorColision;
-            mat.SetColor("_EmissionColor", colorColision);
+            
+            
+           
+
+            Transform cubeColliderMuro = transform.GetChild(0);
+            cubeColliderMuro.localScale = new Vector3(1F, 1F, 1F);
+            // calculos sobre la distancia del cursor
+            Vector3 mousePositionActual = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log("X - I: "+mousePositionMurosIni.x+" X -a: "+mousePositionActual.x);
+            float distX = Mathf.Abs(mousePositionMurosIni.x) - Mathf.Abs(mousePositionActual.x);
+            float disty = Mathf.Abs(mousePositionMurosIni.y) - Mathf.Abs(mousePositionActual.y);
+            bool isX = Mathf.Abs(distX) > Mathf.Abs(disty); // poner los murso donde este mas largo el cursor
+            int isNegativo;
+            if (isX)
+            {
+                isNegativo = mousePositionMurosIni.x -mousePositionActual.x > 0 ? -1 : 1;
+                numMuros = (int)(Mathf.Abs(distX));
+            }
+            else
+            {
+                isNegativo = mousePositionMurosIni.y - mousePositionActual.y > 0 ? -1 : 1;
+                numMuros = (int)(Mathf.Abs(disty));
+            }
+
+            comprobarOro();
+            cambiarColor((!hayColision && sePuedeConstruir));
+
+            // suelta el click
+            if (Input.GetMouseButtonUp(0))
+            {
+                seEstaConstruyendoMuro = false;
+                if(!hayColision && sePuedeConstruir)
+                {
+                    construirMuros(isX, isNegativo);
+                }
+
+                if (GameManager.Instance.Oro < GameManager.costeConstruirMuro * numMuros)
+                {
+                    GameManager.Instance.ShowMessage("¡Oro insuficiente!");
+                }
+                if (hayColision)
+                {
+                    GameManager.Instance.ShowMessage("¡No puedes construir ahí!");
+                }
+            }
+            // mantiene el click
+            else
+            {
+                
+                if(isX)
+                {
+                    
+                    cubeColliderMuro.localScale = new Vector3(1F * numMuros *isNegativo, 1F, 1F);
+                }
+                else
+                {
+                    cubeColliderMuro.localScale = new Vector3(1F, 1F, 1F * numMuros* isNegativo);
+                }
+            }
         }
-
-
         // cuando se pulse el boton derecho se deja de construir
-        if (Input.GetMouseButton(1)) {         
-        
+        if (Input.GetMouseButton(1)) {
+
+            numMuros = 0;
             GameManager.Instance.SeEstaConstruyendo = false;
             Destroy(gameObject);
         }
 
         
+    }
+
+    /// <summary>
+    /// Construye los n muros
+    /// </summary>
+    /// <param name="dir">true = X, False Z</param>
+    /// <param name="isNegativo">1 o -1 para la direccion</param>
+    private void construirMuros(bool dir, int isNegativo)
+    {
+        Vector3 pos = transform.position;
+        GameObject estructuraConstruida = Instantiate(prefab, pos, transform.rotation);
+        GameManager.listaEstructurasEnJuego.Add(estructuraConstruida.gameObject);
+        GameManager.Instance.EstructurasTotalesConstruidas++;
+
+        for (int i = 0; i < numMuros; i++)
+        {
+            
+                if (dir)
+                {
+                    // modificar la x
+                    pos += new Vector3(1f * isNegativo, 0f, 0f);
+                }
+                else
+                {
+                    // modificar la z
+                    pos += new Vector3(0f, 0f, 1f * isNegativo);
+                }
+
+            
+
+            estructuraConstruida = Instantiate(prefab, pos, transform.rotation);
+            GameManager.listaEstructurasEnJuego.Add(estructuraConstruida.gameObject);
+            GameManager.Instance.EstructurasTotalesConstruidas++;
+        }
+        numMuros = 0;
+    }
+
+    private void cambiarColor(bool v)
+    {
+        if (v)
+        {
+            if (mat != null)
+            {
+                mat.color = colorNormal; // color normal
+                mat.SetColor("_EmissionColor", colorNormal);
+            }
+            else
+            {
+                Material m = transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material;
+                m.color = colorNormal;
+                m.SetColor("_EmissionColor", colorNormal);
+            }
+        }
+        else
+        {
+            if (mat != null)
+            {
+                mat.color = colorColision; // color normal
+                mat.SetColor("_EmissionColor", colorColision);
+            }
+            else
+            {
+                Material m = transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material;
+                m.color = colorColision;
+                m.SetColor("_EmissionColor", colorColision);
+            }
+        }
     }
 
     // como el blue print estará hasta que se pulse click derecho, hay que comprobar los recursos si se puede consturir
@@ -95,7 +276,7 @@ public class blueprint_script : MonoBehaviour
 
         // muro
         if (prefab.GetComponent<Muro>()) {
-            sePuedeConstruir = ((GameManager.Instance.Oro >= GameManager.costeConstruirMuro));
+            sePuedeConstruir = ((GameManager.Instance.Oro >= GameManager.costeConstruirMuro* Mathf.Abs(numMuros)));
           
         }
 
@@ -127,8 +308,7 @@ public class blueprint_script : MonoBehaviour
 
          // casa de hechizos
         if (prefab.GetComponent<CasaDeHechizos>()) {
-            sePuedeConstruir = ((GameManager.Instance.Oro >= GameManager.costeConstruirCasaHechizos) && GameManager.Instance.CasasDeHechizosConstruidas < GameManager.topeCasaHechizos);
-           
+            sePuedeConstruir = GameManager.Instance.Oro >= GameManager.costeConstruirCasaHechizos && GameManager.Instance.CasasDeHechizosConstruidas < GameManager.topeCasaHechizos;           
         }
 
         // torre

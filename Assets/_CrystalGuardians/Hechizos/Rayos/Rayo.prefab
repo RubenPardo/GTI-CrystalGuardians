@@ -4844,7 +4844,7 @@ Transform:
   - {fileID: 6166553040167702082}
   - {fileID: 1471749637780530208}
   - {fileID: 4561781405882552317}
-  - {fileID: 5137811218324707257}
+  - {fileID: 6071520254279874621}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4867,7 +4867,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &7192973052377398920
+--- !u!1 &7017867756509137612
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4875,22 +4875,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5137811218324707257}
-  - component: {fileID: 1760930725553972626}
+  - component: {fileID: 6071520254279874621}
+  - component: {fileID: 43454627891525749}
   m_Layer: 0
-  m_Name: SonidoPocionRayo
+  m_Name: hechizoRayoNuestro_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5137811218324707257
+--- !u!4 &6071520254279874621
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7192973052377398920}
+  m_GameObject: {fileID: 7017867756509137612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -4898,17 +4898,17 @@ Transform:
   m_Father: {fileID: 2679558053481421550}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1760930725553972626
+--- !u!82 &43454627891525749
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7192973052377398920}
+  m_GameObject: {fileID: 7017867756509137612}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7748644276605542726, guid: 01512322317d44442a29409e4da4baf0, type: 2}
-  m_audioClip: {fileID: 8300000, guid: b7308b0e37e277c4ab6ff6a7134b8966, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1cc6cdc6806a7c94abb79b7ecc904a9e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -9917,7 +9917,7 @@ MonoBehaviour:
   sistemaParticualas: {fileID: 1512690969374192511}
   areaParticualas: {fileID: 2181616190709157361}
   mejoraDanyoRayo: 1
-  sonidoHechizoRayo: {fileID: 1760930725553972626}
+  sonidoHechizoRayo: {fileID: 43454627891525749}
 --- !u!1001 &5915836740478724521
 PrefabInstance:
   m_ObjectHideFlags: 0

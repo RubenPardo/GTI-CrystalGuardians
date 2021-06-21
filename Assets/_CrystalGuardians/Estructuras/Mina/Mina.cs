@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,11 +20,12 @@ public class Mina : Estructura
     public GameObject prefabLvl2;
     public GameObject prefabLvl3;
 
-        
+
+    public bool isInstanciadoAlInicio = false;// para indicar si se pone al inicio del juego como base
 
 
 
-public int[] generacionOroPorNivel;
+    public int[] generacionOroPorNivel;
 
     public static float mejoraDeAldeaProduccionOro = 1;//100% = 1 
 
@@ -31,29 +33,59 @@ public int[] generacionOroPorNivel;
     private void generarRecursos()
     {
         //GameManager.Instance.Oro += 1 * Time.deltaTime; //mina lvl-1
-        GameManager.Instance.Oro = GameManager.Instance.Oro + generacionOroPorNivel[nivelActual] * Time.deltaTime * mejoraDeAldeaProduccionOro;
+        updateRecursos(true, false, generacionOroPorNivel[nivelActual] * Time.deltaTime * mejoraDeAldeaProduccionOro, transform);
+        GameManager.Instance.OroTotalGenerado = GameManager.Instance.OroTotalGenerado + generacionOroPorNivel[nivelActual] * Time.deltaTime * mejoraDeAldeaProduccionOro;
 
-        // Debug.Log("Estoy generando --> " + (generacionOroPorNivel[nivelActual] * mejoraDeAldeaProduccionOro));
     }
 
     public override void mejorar()
     {
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
-       
-        comprobarCambiarPrefab();
-        nivelActual++;
-        settearVida();
-         // actualizar hud informacion
-        setUpCanvasValues();
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1)
+    && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
+    && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        //emitir particulas
-        sistemaParticulasMejorar.Play();
+        if ((nivelActual <= NivelMaximo - 1))
+        {
+            if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
+            {
+                GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
+
+            }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual])
+            {
+                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
+            }
+        }
+        else
+        {
+            mejoraDisponible = false;
+        }
+        if (mejoraDisponible)
+        {
+           
+          
+            updateRecursos(true,true, costeOroMejorar[nivelActual], transform);
+            comprobarCambiarPrefab();
+            nivelActual++;
+            settearVida();
+
+            // actualizar hud informacion
+            setUpCanvasValues();
+
+            //emitir particulas
+            sistemaParticulasMejorar.Play();
+        }
     }
+
+   
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        if (!isInstanciadoAlInicio)
+        {
+            updateRecursos(true,true, GameManager.costeConstruirMina, transform);
+        }
         setUpCanvasValues();
     }
 
@@ -84,20 +116,22 @@ public int[] generacionOroPorNivel;
     private void comprobarDisponibilidadMejora()
     {
 
-        bool v = (nivelActual <= NivelMaximo - 1)
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1)
             && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        btnMejorar.interactable = v;
-        btnMejorarInfo.interactable = v;
 
-
-        if (v && !sistemaParticulasPosibleMejora.isEmitting)
+        if (mejoraDisponible)
         {
-            sistemaParticulasPosibleMejora.Play();
+            enableButtonEstructura(btnMejorar, btnMejorarInfo);
+            if (!sistemaParticulasPosibleMejora.isEmitting)
+            {
+                sistemaParticulasPosibleMejora.Play();
+            }
         }
-        else if (!v)
+        else if (!mejoraDisponible)
         {
+            disableButtonEstructura(btnMejorar, btnMejorarInfo);
             sistemaParticulasPosibleMejora.Stop();
         }
 
@@ -109,7 +143,7 @@ public int[] generacionOroPorNivel;
 
 
         txtLvlActual.text = "Mina Nivel "+(nivelActual + 1).ToString();
-        txtProduccionActual.text = generacionOroPorNivel[nivelActual].ToString();
+        txtProduccionActual.text = (generacionOroPorNivel[nivelActual]*mejoraDeAldeaProduccionOro).ToString();
         txtSaludActual.text = vidaPorNivel[nivelActual].ToString();
 
         if (nivelActual < NivelMaximo)

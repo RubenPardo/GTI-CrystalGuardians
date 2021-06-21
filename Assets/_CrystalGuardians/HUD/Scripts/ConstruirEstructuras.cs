@@ -46,6 +46,7 @@ public class ConstruirEstructuras : MonoBehaviour
     {
 
         canvasHUD.enabled = (habilitado);
+        canvasHUD.gameObject.SetActive(habilitado);
     }
 
     private void comprobarDisponibilidadBotones()
@@ -54,107 +55,105 @@ public class ConstruirEstructuras : MonoBehaviour
 
         // CAMBIO DE ICONO CASA DE HECHIZOS
 
-          
-        if (suficienteNivel(GameManager.nivelMinimoCastilloCasaHechizos, prefabBtnCasaHechizos)
-            && oroSufcienteParaConstruir(GameManager.costeConstruirCasaHechizos, prefabBtnCasaHechizos) 
-            && topeEstructuasNoAlcanzado(GameManager.Instance.CasasDeHechizosConstruidas, GameManager.topeCasaHechizos,prefabBtnCasaHechizos))
+        if (!GameManager.isTutorialOn)
         {
-            habilitar(prefabBtnCasaHechizos, true);
-        }
-        else
-        {
-            habilitar(prefabBtnCasaHechizos, false);
-        }
+            if (suficienteNivel(GameManager.nivelMinimoCastilloCasaHechizos, prefabBtnCasaHechizos)
+           && oroSufcienteParaConstruir(GameManager.costeConstruirCasaHechizos, prefabBtnCasaHechizos)
+           && topeEstructuasNoAlcanzado(GameManager.Instance.CasasDeHechizosConstruidas, GameManager.topeCasaHechizos, prefabBtnCasaHechizos))
+            {
+                habilitar(prefabBtnCasaHechizos, true);
+            }
+            else
+            {
+                habilitar(prefabBtnCasaHechizos, false);
+            }
 
-        // CAMBIO DE ICONO CUARTEL
-        if (suficienteNivel(GameManager.nivelMinimoCastilloCuartel, prefabBtnCuartel)
-          && oroSufcienteParaConstruir(GameManager.costeConstruirCuartel, prefabBtnCuartel)
-          && topeEstructuasNoAlcanzado(GameManager.Instance.CuartelesConstruidos, GameManager.topeCuartelUnidades, prefabBtnCuartel))
-        {
-            habilitar(prefabBtnCuartel, true);
-        }
-        else
-        {
-            habilitar(prefabBtnCuartel, false);
-        }
-
-
-        // CAMBIO DE ICONO MINA
-
-        if (suficienteNivel(GameManager.nivelMinimoCastilloMina, prefabBtnMina)
-             && oroSufcienteParaConstruir(GameManager.costeConstruirMina, prefabBtnMina))
-        {
-            habilitar(prefabBtnMina, true);
-        }
-        else
-        {
-            habilitar(prefabBtnMina, false);
-        }
+            // CAMBIO DE ICONO CUARTEL
+            if (suficienteNivel(GameManager.nivelMinimoCastilloCuartel, prefabBtnCuartel)
+              && oroSufcienteParaConstruir(GameManager.costeConstruirCuartel, prefabBtnCuartel)
+              && topeEstructuasNoAlcanzado(GameManager.Instance.CuartelesConstruidos, GameManager.topeCuartelUnidades, prefabBtnCuartel))
+            {
+                habilitar(prefabBtnCuartel, true);
+            }
+            else
+            {
+                habilitar(prefabBtnCuartel, false);
+            }
 
 
-        // CAMBIO DE ICONO EXTRACTOR
-        if (suficienteNivel(GameManager.nivelMinimoCastilloExtractor, prefabBtnExtractor)
-            && oroSufcienteParaConstruir(GameManager.costeConstruirExtractor, prefabBtnExtractor))
-        {
-            habilitar(prefabBtnExtractor, true);
-        }
-        else
-        {
-            habilitar(prefabBtnExtractor, false);
-        }
+            // CAMBIO DE ICONO MINA
+
+            if (suficienteNivel(GameManager.nivelMinimoCastilloMina, prefabBtnMina)
+                 && oroSufcienteParaConstruir(GameManager.costeConstruirMina, prefabBtnMina))
+            {
+                habilitar(prefabBtnMina, true);
+            }
+            else
+            {
+                habilitar(prefabBtnMina, false);
+            }
+
+
+            // CAMBIO DE ICONO EXTRACTOR
+            if (suficienteNivel(GameManager.nivelMinimoCastilloExtractor, prefabBtnExtractor)
+                && oroSufcienteParaConstruir(GameManager.costeConstruirExtractor, prefabBtnExtractor))
+            {
+                habilitar(prefabBtnExtractor, true);
+            }
+            else
+            {
+                habilitar(prefabBtnExtractor, false);
+            }
 
 
 
-        // CAMBIO DE ICONO MURO
-        if (suficienteNivel(GameManager.nivelMinimoCastilloMuros, prefabBtnMuro)
-            && oroSufcienteParaConstruir(GameManager.costeConstruirMuro, prefabBtnMuro))
-        {
-            habilitar(prefabBtnMuro, true);
-        }
-        else
-        {
-            habilitar(prefabBtnMuro, false);
-        }
+            // CAMBIO DE ICONO MURO
+            if (suficienteNivel(GameManager.nivelMinimoCastilloMuros, prefabBtnMuro)
+                && oroSufcienteParaConstruir(GameManager.costeConstruirMuro, prefabBtnMuro))
+            {
+                habilitar(prefabBtnMuro, true);
+            }
+            else
+            {
+                habilitar(prefabBtnMuro, false);
+            }
 
-        // CAMBIO DE ICONO TORRE
-        if (suficienteNivel(GameManager.nivelMinimoCastilloTorre, prefabBtnTorre)
-            && oroSufcienteParaConstruir(GameManager.costeConstruirTorre, prefabBtnTorre))
-        {
-            habilitar(prefabBtnTorre, true);
-        }
-        else
-        {
-            habilitar(prefabBtnTorre, false);
-        }
+            // CAMBIO DE ICONO TORRE
+            if (suficienteNivel(GameManager.nivelMinimoCastilloTorre, prefabBtnTorre)
+                && oroSufcienteParaConstruir(GameManager.costeConstruirTorre, prefabBtnTorre))
+            {
+                habilitar(prefabBtnTorre, true);
+            }
+            else
+            {
+                habilitar(prefabBtnTorre, false);
+            }
 
 
-        // CAMBIO DE ICONO TRAMPA
-        if (suficienteNivel(GameManager.nivelMinimoCastilloTrampa, prefabBtnTrampa)
-            && oroSufcienteParaConstruir(GameManager.costeConstruirTrampa, prefabBtnTrampa))
-        {
-            habilitar(prefabBtnTrampa, true);
-        }
-        else
-        {
-            habilitar(prefabBtnTrampa, false);
-        }
+            // CAMBIO DE ICONO TRAMPA
+            if (suficienteNivel(GameManager.nivelMinimoCastilloTrampa, prefabBtnTrampa)
+                && oroSufcienteParaConstruir(GameManager.costeConstruirTrampa, prefabBtnTrampa))
+            {
+                if (GameManager.Instance.RondaEnemigosActiva == false)
+                {
+                    habilitar(prefabBtnTrampa, true);
+                }
+                else
+                {
+                    habilitar(prefabBtnTrampa, false);
+                    prefabBtnTrampa.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "¡No puedes construir trampas en fase de combate!";
+                }
+
+            }
+            else
+            {
+                habilitar(prefabBtnTrampa, false);
+            }
+        }  
+       
     }
 
-    private bool suficienteNivel(int nivelCastilloRequerido, GameObject prefabBtn)
-    {
-        bool suficienteNivelConstruir = true;
-        if (nivelCastilloRequerido > GameManager.Instance.NivelActualCastillo )
-        {
-            suficienteNivelConstruir = false;
-            prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = false;
-            prefabBtn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "Nivel de castillo insuficiente!";
-        }
-        else
-        {
-            prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = true;
-        }
-        return suficienteNivelConstruir;
-    }
+
 
     private void habilitar(GameObject prefabBtn, bool v)
     {
@@ -245,14 +244,28 @@ public class ConstruirEstructuras : MonoBehaviour
         }
     }
 
-
+    private bool suficienteNivel(int nivelCastilloRequerido, GameObject prefabBtn)
+    {
+        bool suficienteNivelConstruir = true;
+        if (nivelCastilloRequerido > GameManager.Instance.NivelActualCastillo)
+        {
+            suficienteNivelConstruir = false;
+            prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = false;
+            prefabBtn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "¡Nivel de castillo insuficiente!";
+        }
+        else
+        {
+            prefabBtn.GetComponent<BtnConstruccion>().EnoughLevel = true;
+        }
+        return suficienteNivelConstruir;
+    }
 
     private bool oroSufcienteParaConstruir(int costeOro, GameObject btn) {
         bool oroDisponible = true;
 
         if (GameManager.Instance.Oro < costeOro)
         {
-            btn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "Oro insuficiente!";
+            btn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "¡Oro insuficiente!";
             oroDisponible = false;
         }
         return oroDisponible;
@@ -264,7 +277,7 @@ public class ConstruirEstructuras : MonoBehaviour
 
         if (estrcuturasActuales >= topeEstructuras)
         {
-            btn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "No puedes construir mas estrscturas de ese tipo!";
+            btn.GetComponent<BtnConstruccion>().textNoSePuedeConstruir = "¡No puedes construir más estrscturas de ese tipo!";
             sePuedeConstruir = false;
         }
         return sePuedeConstruir;

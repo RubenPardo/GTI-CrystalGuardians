@@ -76,11 +76,17 @@ public class Aliado : MonoBehaviour
 
                 foreach (GameObject enemigo in enemigos)
                 {
-                    // distancia enemigos
-                    Vector3 pOrigen = transform.position;
-                    Vector3 pEnemigo = enemigo.transform.position;
-
-                    enemigosDistancias.Add(enemigo, Vector3.Distance(pOrigen, pEnemigo));
+                    if (enemigo != null)
+                    {
+                        // distancia enemigos
+                        Vector3 pOrigen = transform.position;
+                        Vector3 pEnemigo = enemigo.transform.position;
+                        if (!enemigosDistancias.ContainsKey(enemigo))
+                        {
+                            enemigosDistancias.Add(enemigo, Vector3.Distance(pOrigen, pEnemigo));
+                        }
+                    }
+                    
 
                 }
                 // ordenamos por distancia de menos a mas

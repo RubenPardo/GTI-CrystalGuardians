@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DemoCrystalGuardians.unity
+    path: Assets/_CrystalGuardians/Scenes/MainMenu.unity
+    guid: fe553d3454b508843833e06b967dd8b0
+  - enabled: 1
+    path: Assets/_CrystalGuardians/Scenes/DemoCrystalGuardians.unity
     guid: 7a92817a786e0c745897238ff7e5f64e
   m_configObjects: {}

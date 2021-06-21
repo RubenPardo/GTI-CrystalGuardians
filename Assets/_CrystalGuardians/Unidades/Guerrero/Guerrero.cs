@@ -7,7 +7,7 @@ using System.Linq;
 public class Guerrero : Aliado
 {
    
-    public static float mejoraDanyo = 1f;//mejora de aldea
+    public static float mejoraDanyoGuerrero = 1f;//mejora de aldea
                                         
 
 
@@ -16,7 +16,7 @@ public class Guerrero : Aliado
     protected override void Update()
     {
 
-        base.mejoraDanyo = Guerrero.mejoraDanyo;
+        base.mejoraDanyo = Guerrero.mejoraDanyoGuerrero;
         base.Update();
        
     }

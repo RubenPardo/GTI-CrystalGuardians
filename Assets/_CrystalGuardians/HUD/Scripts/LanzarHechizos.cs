@@ -41,7 +41,7 @@ public class LanzarHechizos : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.ShowMessage("Antes debes generar el hechizo!");
+            GameManager.Instance.ShowMessage("¡Antes debes generar el hechizo!");
         }
        
 
@@ -56,7 +56,7 @@ public class LanzarHechizos : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.ShowMessage("Antes debes generar el hechizo!");
+            GameManager.Instance.ShowMessage("¡Antes debes generar el hechizo!");
         }
 
     }
@@ -70,7 +70,7 @@ public class LanzarHechizos : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.ShowMessage("Antes debes generar el hechizo!");
+            GameManager.Instance.ShowMessage("¡Antes debes generar el hechizo!");
         }
 
     }

@@ -30,18 +30,28 @@ public class showMenuEstructuraOnClick : MonoBehaviour
                     Transform parent = raycastHit.transform.parent;
                     if (parent != null)
                     {
+                        Debug.Log(parent);
                         Estructura e = parent.gameObject.GetComponent<Estructura>();
 
                         if (e != null)
                         {
-                            estructuraAnterior?.cerrarMenu();
+                            Debug.Log("ABRIR MENU");
+                            if (estructuraAnterior != null)
+                            {
+                                estructuraAnterior.cerrarMenu();
+                            }
                             estructuraAnterior = e;
                             e.abrirMenu();
                         }
                         else
                         {
+                            Debug.Log("CERRAR MENU");
                             // se hizo click en otra cosa que no es una estructura
-                            estructuraAnterior?.cerrarMenu();
+                            if (estructuraAnterior != null)
+                            {
+                                estructuraAnterior.cerrarMenu();
+                            }
+
                         }
                     }
                 }
@@ -49,11 +59,13 @@ public class showMenuEstructuraOnClick : MonoBehaviour
                 {
                     // se hizo click en otra cosa que no es una estructura
                     estructuraAnterior?.cerrarMenu();
+
                 }
             }
             else
             {
                // golpeo en UI
+
             }
 
            

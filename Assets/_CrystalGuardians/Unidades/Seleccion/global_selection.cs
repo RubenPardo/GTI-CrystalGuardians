@@ -41,7 +41,7 @@ public class global_selection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Utility.rayCastUI())
+        if (!Utility.rayCastUI() && !GameManager.Instance.seEstaConstruyendo)
         {
             //1. when left mouse button clicked (but not released)
             if (Input.GetMouseButtonDown(0))

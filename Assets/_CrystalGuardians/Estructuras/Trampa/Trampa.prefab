@@ -198,7 +198,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4c3866b51e343f4409cf01aaaa96ff3c, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -440,7 +440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24, y: 204}
+  m_AnchoredPosition: {x: -24, y: 189}
   m_SizeDelta: {x: 382.5529, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &872224364261728350
@@ -915,7 +915,9 @@ MonoBehaviour:
   particulasMejora: {fileID: 620941315219504873}
   healthBar: {fileID: 0}
   textNivelSubMenu: {fileID: 8277984841815177055}
-  costeOroMejorar: f4010000983a0000
+  costeOroMejorar: f401000088130000
+  colorPrimary: {r: 208, g: 156, b: 45, a: 1}
+  floatingText: {fileID: 2813641865897385345, guid: 4b320ec1dcedbe24f97abfc8227e74e6, type: 3}
   txtMejora: {fileID: 3037791610061314794}
   "txtDa\xF1oActual": {fileID: 2234072939235130563}
   txtLvlActual: {fileID: 9221755644142065032}
@@ -1201,7 +1203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 49ae86039cc11374893d4b616fb48fe8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 49ae86039cc11374893d4b616fb48fe8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1262,6 +1264,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8076399094265432057}
     m_Modifications:
+    - target: {fileID: 817557065892486861, guid: b1178509441505b4483667075b73c654, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 1418391273241523887, guid: b1178509441505b4483667075b73c654, type: 3}
       propertyPath: lookAt
       value: 

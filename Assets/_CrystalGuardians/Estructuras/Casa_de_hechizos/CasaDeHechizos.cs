@@ -53,17 +53,41 @@ public class CasaDeHechizos : Estructura
     public override void mejorar()
     {
 
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+        bool mejoraDisponible = true;
+        if ((nivelActual <= NivelMaximo - 1))
+        {
 
-        nivelActual++;
-        GameManager.nivelCasaHechizos++;
-        // actualizar hud informacion
-        setUpCanvasValues();
-        settearVida();
-        comprobarNivelCasa();
+            if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
+            {
+                GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
+                mejoraDisponible = false;
+            }
+            else if ((GameManager.Instance.Oro < costeOroMejorar[nivelActual]))
+            {
+                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
+                mejoraDisponible = false;
+            }
+        }
+        else
+        {
+            mejoraDisponible = false;
+        }
+        if (mejoraDisponible)
+        {
+            updateRecursos(true, true, costeOroMejorar[nivelActual], transform);
 
-        //emitir particulas
-        sistemaParticulasMejorar.Play();
+            nivelActual++;
+            GameManager.nivelCasaHechizos++;
+            // actualizar hud informacion
+            setUpCanvasValues();
+            settearVida();
+            comprobarNivelCasa();
+
+            //emitir particulas
+            sistemaParticulasMejorar.Play();
+        }
+
+      
     }
 
     // Start is called before the first frame update
@@ -72,7 +96,7 @@ public class CasaDeHechizos : Estructura
         // canvas del menu de botones
         base.Start();
         // al empezar restar el oro
-        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirCasaHechizos;
+        updateRecursos(true, true, GameManager.costeConstruirCasaHechizos, transform);
         
         GameManager.nivelCasaHechizos = 0;
         GameManager.Instance.CasasDeHechizosConstruidas++;
@@ -109,24 +133,23 @@ public class CasaDeHechizos : Estructura
     private void comprobarDisponibilidadMejora()
     {
 
-        bool v = (nivelActual <= NivelMaximo - 1)
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1)
             && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
-
-        btnMejorar.interactable = v;
-
-
-        btnMejorarInfo.interactable = v;
-
         
-            
-        
-        if (v && !sistemaParticulasPosibleMejora.isEmitting)
+        if (mejoraDisponible)
         {
-            sistemaParticulasPosibleMejora.Play();
+            enableButtonEstructura(btnMejorar, btnMejorarInfo);
+
+            if (!sistemaParticulasPosibleMejora.isEmitting)
+            {
+                sistemaParticulasPosibleMejora.Play();
+            }
         }
-        else if (!v){
+        else if (!mejoraDisponible){
             sistemaParticulasPosibleMejora.Stop();
+
+            disableButtonEstructura(btnMejorar, btnMejorarInfo);
         }
             
            
@@ -163,7 +186,7 @@ public class CasaDeHechizos : Estructura
     {
         if (obsidiumSuficienteLanzarHechizo(GameManager.costeLanzarRayo[nivelActual]) )
         {
-            GameManager.Instance.Obsiidum -= GameManager.costeLanzarRayo[nivelActual];
+            updateRecursos(false, true, GameManager.costeLanzarRayo[nivelActual], transform);
             GameManager.Instance.RayosDisponibles++;
         }
        
@@ -172,15 +195,16 @@ public class CasaDeHechizos : Estructura
     {
         if (obsidiumSuficienteLanzarHechizo(GameManager.costeLanzarHeal[nivelActual]))
         {
-            GameManager.Instance.Obsiidum -= GameManager.costeLanzarHeal[nivelActual];
+            updateRecursos(false, true, GameManager.costeLanzarHeal[nivelActual], transform);
             GameManager.Instance.HealsDisponibles++;
         }
            
     }
     public void generarBuff()
     {
-        if (obsidiumSuficienteLanzarHechizo(GameManager.costeLanzarBuff[nivelActual])){
-            GameManager.Instance.Obsiidum -= GameManager.costeLanzarBuff[nivelActual];
+        if (obsidiumSuficienteLanzarHechizo(GameManager.costeLanzarBuff[nivelActual]))
+        {
+            updateRecursos(false, true, GameManager.costeLanzarBuff[nivelActual], transform);
             GameManager.Instance.BuffsDisponibles++;
         }
     }
@@ -191,7 +215,7 @@ public class CasaDeHechizos : Estructura
         if(GameManager.Instance.Obsiidum< costeHechizo)
         {
             suficiente = false;
-            GameManager.Instance.ShowMessage("Obsidium insifuciente para crear el hechizo!");
+            GameManager.Instance.ShowMessage("¡Obsidium insuficiente para crear el hechizo!");
         }
 
 

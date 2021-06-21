@@ -39,7 +39,7 @@ public class Muro : Estructura
     // Start is called before the first frame update
     protected override void Start()
     {
-        GameManager.Instance.Oro = GameManager.Instance.Oro - GameManager.costeConstruirMuro;
+        updateRecursos(true, true, GameManager.costeConstruirMuro, transform);
         base.Start();
         setUpCanvasValues();
     }
@@ -53,40 +53,60 @@ public class Muro : Estructura
 
     private void comprobarDisponibilidadMejora()
     {
-        bool enable = (nivelActual <= NivelMaximo - 1)
+        bool mejoraDisponible = (nivelActual <= NivelMaximo - 1)
             && GameManager.Instance.NivelActualCastillo >= nivelMinimoCastilloParaMejorar[nivelActual]
             && (GameManager.Instance.Oro >= costeOroMejorar[nivelActual]);
 
-        
-        btnMejorar.interactable = enable;
-        btnMejorarInfo.interactable = enable;
-
-        if (enable && !sistemaParticulasPosibleMejora.isEmitting)
+        if (mejoraDisponible)
         {
+            if (!sistemaParticulasPosibleMejora.isEmitting)
+            {
             sistemaParticulasPosibleMejora.Play();
+            }
+            enableButtonEstructura(btnMejorar, btnMejorarInfo);
         }
-        else if (!enable)
+        else if (!mejoraDisponible)
         {
             sistemaParticulasPosibleMejora.Stop();
+            disableButtonEstructura(btnMejorar, btnMejorarInfo);
         }
 
     }
     public override void mejorar()
     {
+        bool mejoraDisponible = true;
 
+        if ((nivelActual <= NivelMaximo - 1))
+        {
+            if (GameManager.Instance.NivelActualCastillo < nivelMinimoCastilloParaMejorar[nivelActual])
+            {
+                mejoraDisponible = false;
+                GameManager.Instance.ShowMessage("¡Nivel de castillo insuficiente!");
+            }else if (GameManager.Instance.Oro < costeOroMejorar[nivelActual])
+            {
+                mejoraDisponible = false;
+                GameManager.Instance.ShowMessage("¡Oro insuficiente!");
+            }
 
-        GameManager.Instance.Oro = GameManager.Instance.Oro - costeOroMejorar[nivelActual];
+        }
+        else
+        {
+            mejoraDisponible = false;
+        }
 
-        nivelActual++;
-        comprobarCambioPrefab();
+        if (mejoraDisponible)
+        {
+            updateRecursos(true, true, costeOroMejorar[nivelActual], transform);
+            nivelActual++;
+            comprobarCambioPrefab();
+            settearVida();
 
-        settearVida();
-        // actualizar hud informacion
-        setUpCanvasValues();
+            // actualizar hud informacion
+            setUpCanvasValues();
 
-        //emitir particulas
-        sistemaParticulasMejorar.Play();
-
+            //emitir particulas
+            sistemaParticulasMejorar.Play();
+        }
     }
 
     private void setUpCanvasValues()

@@ -217,10 +217,10 @@ public class GameManager : MonoBehaviour
                 btnRangos.SetActive(true);
                 panelTutorial.SetActive(false);
 
-                GameManager.Instance.Oro = 5000;
-                GameManager.Instance.Obsiidum = 0;
-                /*GameManager.Instance.Oro = 99000000;
-                GameManager.Instance.Obsiidum = 99000000;*/
+               /* GameManager.Instance.Oro = 5000;
+                GameManager.Instance.Obsiidum = 0;*/
+                GameManager.Instance.Oro = 99000000;
+                GameManager.Instance.Obsiidum = 99000000;
             }
             else
             {
@@ -285,11 +285,11 @@ public class GameManager : MonoBehaviour
     }
     static int aumentarRadioHechizos()
     {
-       // 30% mas grande
-        BluePrintHechizos.aumentoRadio *= 1.3f;
-        RayoScript.aumentoRadio *= 1.3f;
-        BuffScript.aumentoRadio *= 1.3f;
-        HealScript.aumentoRadio *= 1.3f;
+       // 20% mas grande
+        BluePrintHechizos.aumentoRadio *= 1.2f;
+        RayoScript.aumentoRadio *= 1.2f;
+        BuffScript.aumentoRadio *= 1.2f;
+        HealScript.aumentoRadio *= 1.2f;
         return 0;
     }
     static int aumentarProduccionMinas20()

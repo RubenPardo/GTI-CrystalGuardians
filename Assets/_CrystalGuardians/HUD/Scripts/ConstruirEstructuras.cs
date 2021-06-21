@@ -37,7 +37,7 @@ public class ConstruirEstructuras : MonoBehaviour
     private void Update()
     {
      
-        habilitarCanvas(!GameManager.Instance.seEstaConstruyendo);
+        habilitarCanvas(!GameManager.Instance.seEstaConstruyendo && !GameManager.Instance.RondaEnemigosActiva);
         comprobarDisponibilidadBotones();
         
     }

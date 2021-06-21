@@ -202,14 +202,14 @@ MonoBehaviour:
   prefabLvl2: {fileID: 4167404608437397355}
   prefabLvl3: {fileID: 1769988250544019387}
   animator: {fileID: 0}
-  nivelActual: 1
+  nivelActual: 0
   costePorNivel: f4010000e8030000c409000070170000401f0000983a0000
   danyoPorNivel: 4600000078000000dc000000720100000802000034030000
   vidaPorNivel: 08020000fc030000b8060000d8090000cc0b00009c130000
   rangoVision: 15
   rangoAtaque: 1.4
   velocidadAtaque: 1
-  vidaActual: 1020
+  vidaActual: 520
   healthBar: {fileID: 1429728333258723833}
   attackSpeed: 1
   buffDamage: 1
@@ -787,11 +787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174248364024, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_Value
-      value: 1020
+      value: 520
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174248364024, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_MaxValue
-      value: 1020
+      value: 520
       objectReference: {fileID: 0}
     - target: {fileID: 4064880174676661161, guid: 5b04fc53ebbb8f04bbd2ad92e78f1124, type: 3}
       propertyPath: m_AnchorMax.x

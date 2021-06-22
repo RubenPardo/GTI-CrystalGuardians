@@ -17216,6 +17216,7 @@ MonoBehaviour:
   sonidoRugido: {fileID: 513120013}
   sonidoVictoria: {fileID: 1395338036}
   sonidoMejora: {fileID: 291365113}
+  contadorRondasObject: {fileID: 0}
 --- !u!114 &236390889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67948,6 +67949,7 @@ MonoBehaviour:
   prefabEM: {fileID: 2053117798627461158, guid: de219af1d9e38c54dabcabadde7519f8, type: 3}
   prefabED: {fileID: 4668921592342232491, guid: 4e066e0079f2d714d9f34937a03b386e, type: 3}
   cameraController: {fileID: 243791722}
+  eventSystem: {fileID: 1124900460}
 --- !u!4 &1939829452
 Transform:
   m_ObjectHideFlags: 0

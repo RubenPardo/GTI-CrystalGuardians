@@ -42,8 +42,20 @@ public class TutorialManager : MonoBehaviour
     bool hayMuro = false;
     bool hayCasaHechizos = false;
     bool hayCuartel = false;
-    
-    
+
+    //control de camaras
+    public GameObject camaraPrincipal;
+    public GameObject camaraCastillo;
+
+    //control animaciones
+    public GameObject contadorOro;
+    public GameObject contadorObsi;
+    public GameObject contadorUni;
+    private Animator animatorOro;
+    private Animator animatorObsi;
+    private Animator animatorUnidades;
+
+
     
 
     //enemigos 
@@ -61,11 +73,21 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        camaraCastillo.SetActive(true);
+        camaraPrincipal.SetActive(false);
         
         panelConstruccion.SetActive(false);
-        frase = "Bienvenido a Crystal Guardians. Tu objetivo en esta aventura será defender nuestra aldea de los enemigos del bosque, para ello deberás recolectar recursos y construir defensas.";
+        frase = "Bienvenido a Crystal Guardians. Tu objetivo en esta aventura será defender nuestro castillo de los enemigos del bosque, para ello deberás recolectar recursos y construir defensas.";
         escribirTexto();
         pasoCumplido = true;
+
+        //apagamos animaciones
+        animatorOro = contadorOro.GetComponent<Animator>();
+        animatorObsi = contadorObsi.GetComponent<Animator>();
+        animatorUnidades = contadorUni.GetComponent<Animator>();
+        animatorOro.enabled = false;
+        animatorObsi.enabled = false;
+        animatorUnidades.enabled = false;
         
 
     }
@@ -99,19 +121,32 @@ public class TutorialManager : MonoBehaviour
             switch (indicePasosTuto)
             {
                 case 1:
+                    camaraPrincipal.SetActive(true);
+                    camaraCastillo.SetActive(false);
                     frase = "Estos son tus contadores de recursos. Primero tenemos el oro, que te ayudará a construir y mejorar tus estructuras y defensas.";
                     //estaEscrito = true;
                     mostrarPaneles(1);
                     escribirTexto();
+                    animatorOro.enabled = true;//animamos el contador de oro
                     break;
                 case 2:
                     frase = "Luego nuestro bien más preciado, el obsidium, utilízalo para entrenar a nuestros guerreros e invocar hechizos. Como puedes ver debajo del obsidium se muestra la cantidad máxima de guerreros que pueden ser entrenados, mejora tus cuarteles para aumentar esa cifra.";
                     //estaEscrito = true;
                     escribirTexto();
+                    animatorOro.enabled = false;
+                    contadorOro.transform.localScale = new Vector3(1, 1, 1);
+                    
+                    animatorObsi.enabled = true;
+                    animatorUnidades.enabled = true;
                     break;
                 case 3:
                     frase = "Para generar recursos vamos a construir una mina y un extractor.";
                     escribirTexto();
+                    animatorObsi.enabled = false;
+                    animatorUnidades.enabled = false;
+                    contadorObsi.transform.localScale = new Vector3(1, 1, 1);
+                    contadorUni.transform.localScale = new Vector3(1, 1, 1);
+
                     break;
 
                 case 4:

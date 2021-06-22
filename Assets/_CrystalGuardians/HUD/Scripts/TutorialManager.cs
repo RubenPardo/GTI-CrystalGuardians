@@ -13,7 +13,7 @@ public class TutorialManager : MonoBehaviour
 
     private bool pasoCumplido;
 
-    private int indicePasosTuto = 0;
+    private int indicePasosTuto =0;
 
     //control de paneles
     public GameObject panelTutorial;
@@ -42,6 +42,9 @@ public class TutorialManager : MonoBehaviour
     bool hayMuro = false;
     bool hayCasaHechizos = false;
     bool hayCuartel = false;
+    
+    
+    
 
     //enemigos 
     public GameObject prefabEM;
@@ -58,7 +61,7 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        
         panelConstruccion.SetActive(false);
         frase = "Bienvenido a Crystal Guardians. Tu objetivo en esta aventura será defender nuestra aldea de los enemigos del bosque, para ello deberás recolectar recursos y construir defensas.";
         escribirTexto();
@@ -74,6 +77,7 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(GameManager.listaEstructurasEnJuego.Count);
         if (GameManager.Instance.IsTutorialOn)
         {
             cameraController.isActive = !panelTutorial.activeSelf;// bloqueamos los controles de la camara si esta el texto activo
@@ -278,16 +282,35 @@ public class TutorialManager : MonoBehaviour
                 case 14:
                     indicadorPasosTutorial.SetActive(false);
                     panelTutorial.SetActive(true);
+
+                    frase = "Puede que tus habilidades de construcción fallen alguna vez y coloques mal alguna estructura, no te preocupes por esto, tiene solución. Cuando esto suceda, pulsa en la estructura que desees destruir y haz click sobre el botón con un martillo, así liberarás de nuevo ese espacio para construir nuevas estructuras. Prueba a destruir el extractor que has creado previamente. ";
+                    escribirTexto();
+                    break;
+                case 15:
+                    //paso destruir extractor
+                    pasoCumplido = false;
+                    mostrarPaneles(8);
+                    activacionBotones(6);
+                    if(GameManager.Instance.estructuraDestruida == true)
+                    {
+                        pasoCumplido = true;
+                        indicePasosTuto++;
+                    }
+                    
+                    break;
+                case 16:
+                    indicadorPasosTutorial.SetActive(false);
+                    panelTutorial.SetActive(true);
                     frase = "Desde la capital nos comunican que cada cierto tiempo nos enviarán ayuda, estas serán las mejoras de aldea. Cuando elijas una de ellas podrás consultarlas haciendo click en el botón que se encuentra junto al botón de pausa.";
                     escribirTexto();
                     btnMejorasAldea.SetActive(true);
                     break;
-                case 15:
+                case 17:
 
                     frase = "¡Vaya!, parece que se acercan enemigos, utiliza tus tropas y tus defensas para defender la aldea.";
                     escribirTexto();
                     break;
-                case 16:
+                case 18:
                     //paso de defender la aldea
                     pasoCumplido = false;
                     mostrarPaneles(7);
@@ -315,14 +338,14 @@ public class TutorialManager : MonoBehaviour
                         pasoCumplido = true;
                     }
                     break;
-                case 17:
+                case 19:
                     indicadorPasosTutorial.SetActive(false);
                     panelTutorial.SetActive(true);
                     frase = "¡Enhorabuena, has completado el tutorial de Crystal Guardians! Pulsa <Espacio> para empezar la partida.";
                     escribirTexto();
 
                     break;
-                case 18:
+                case 20:
                     habilitarSeleccionUnidades(true);
                     GameManager.isTutorialOn = false;
                     GameManager.listaEstructurasEnJuego.Clear();
@@ -398,6 +421,12 @@ public class TutorialManager : MonoBehaviour
                 indicadorPasosTutorial.SetActive(true);
                 textoPasoIndicadorTutorial.text = "¡Defiende la aldea!";
                 break;
+            case 8:
+                desactivarPanelTutorial();
+
+                indicadorPasosTutorial.SetActive(true);
+                textoPasoIndicadorTutorial.text = "Pulsa sobre el extractor y destrúyelo con el botón de destruir.";
+                break;
 
         }
     }
@@ -444,6 +473,9 @@ public class TutorialManager : MonoBehaviour
                 habilitar(btnCuartel, false);
                 habilitar(btnMina, false);
                 habilitar(btnExtractor, false);
+                break;
+            case 7:
+                habilitar(btnExtractor, true);
                 break;
         }
     }

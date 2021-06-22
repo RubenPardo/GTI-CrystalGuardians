@@ -175,6 +175,11 @@ public abstract class Estructura : MonoBehaviour
     {
         GameManager.listaEstructurasEnJuego.Remove(gameObject);
         Destroy(gameObject);
+        if(GameManager.Instance.estructuraDestruida == false)
+        {
+            GameManager.Instance.estructuraDestruida = true;
+        }
+        
     }
 
     private void OnDestroy()

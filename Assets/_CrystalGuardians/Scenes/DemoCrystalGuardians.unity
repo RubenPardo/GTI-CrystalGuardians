@@ -17216,7 +17216,7 @@ MonoBehaviour:
   sonidoRugido: {fileID: 513120013}
   sonidoVictoria: {fileID: 1395338036}
   sonidoMejora: {fileID: 291365113}
-  contadorRondasObject: {fileID: 0}
+  contadorRondasObject: {fileID: 1675765646}
 --- !u!114 &236390889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59668,6 +59668,7 @@ GameObject:
   - component: {fileID: 1675765647}
   - component: {fileID: 1675765649}
   - component: {fileID: 1675765648}
+  - component: {fileID: 1675765650}
   m_Layer: 5
   m_Name: contadorRandas
   m_TagString: Untagged
@@ -59736,6 +59737,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675765646}
   m_CullTransparentMesh: 1
+--- !u!95 &1675765650
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675765646}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 11f723e98d968b445aba5d78f709dfa0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1677270394
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     //tutorial
     public static bool isTutorialOn = true;
     public bool IsTutorialOn { get => isTutorialOn; set => isTutorialOn = value; }
+    public bool estructuraDestruida = false;
 
     public GameObject textoAvisoSalirConstruccion;
     public float duracionAviso = 3f;

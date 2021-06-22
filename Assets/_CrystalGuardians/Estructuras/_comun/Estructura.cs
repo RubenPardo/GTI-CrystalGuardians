@@ -173,6 +173,7 @@ public abstract class Estructura : MonoBehaviour
     
     public void destruirEstructura()
     {
+        GameManager.listaEstructurasEnJuego.Remove(gameObject);
         Destroy(gameObject);
     }
 

@@ -17103,6 +17103,7 @@ MonoBehaviour:
   tiempoEntreRonda: 60
   numeroRnda: 1
   cantidadEnemigosPorRonda: 3
+  maxEnemigosPorRonda: 50
   panelMejoras: {fileID: 1551178979}
   panelRondas: {fileID: 55732640}
   btnFinalizar: {fileID: 0}

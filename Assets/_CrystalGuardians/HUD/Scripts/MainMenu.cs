@@ -22,8 +22,23 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
+        GameManager.isTutorialOn = false;
         panelLoad.SetActive(true);
         SceneManager.LoadScene(newGameScene);
+    }
+
+    public void PlayTutorial()
+    {
+        GameManager.isTutorialOn = true;
+        panelLoad.SetActive(true);
+        SceneManager.LoadScene(newGameScene);
+
+    }
+
+    public void Settings() {
+    
+    
+    
     }
 
     public void Exit()

@@ -97,9 +97,6 @@ public abstract class Estructura : MonoBehaviour
             if (seHaDestruidoUnaVez)
             {
                 seHaDestruidoUnaVez = false;
-                GameObject go = Instantiate(particulasDestruccion);
-                go.transform.position = transform.position;
-                go.GetComponentInChildren<ParticleSystem>().Play();
                 GameManager.listaEstructurasEnJuego.Remove(gameObject);
                 Destroy(gameObject);
             }
@@ -174,5 +171,18 @@ public abstract class Estructura : MonoBehaviour
         tM.color = isOro ? yellow : prurple;
     }
     
+    public void destruirEstructura()
+    {
+        Destroy(gameObject);
+    }
 
+    private void OnDestroy()
+    {
+        if (particulasDestruccion != null)
+        {
+            GameObject go = Instantiate(particulasDestruccion);
+            go.transform.position = transform.position;
+            go.GetComponentInChildren<ParticleSystem>().Play();
+        }
+    }
 }

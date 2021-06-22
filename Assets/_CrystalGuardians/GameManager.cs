@@ -217,10 +217,10 @@ public class GameManager : MonoBehaviour
                 btnRangos.SetActive(true);
                 panelTutorial.SetActive(false);
 
-               /* GameManager.Instance.Oro = 5000;
-                GameManager.Instance.Obsiidum = 0;*/
-                GameManager.Instance.Oro = 99000000;
-                GameManager.Instance.Obsiidum = 99000000;
+                GameManager.Instance.Oro = 5000;
+                GameManager.Instance.Obsiidum = 0;
+               /* GameManager.Instance.Oro = 99000000;
+                GameManager.Instance.Obsiidum = 99000000;*/
             }
             else
             {

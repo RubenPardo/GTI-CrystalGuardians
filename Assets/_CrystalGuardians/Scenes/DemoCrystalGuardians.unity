@@ -4975,6 +4975,7 @@ GameObject:
   - component: {fileID: 155716047}
   - component: {fileID: 155716049}
   - component: {fileID: 155716048}
+  - component: {fileID: 155716050}
   m_Layer: 5
   m_Name: fondo Obsidium
   m_TagString: Untagged
@@ -5037,6 +5038,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155716046}
   m_CullTransparentMesh: 1
+--- !u!95 &155716050
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155716046}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 52fae777d0fb3ce498716a12bc8187bf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &155972482 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4623580461926112944, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -14485,6 +14505,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300476, guid: 353b40c6a1ff7dd469b9d1e4dc0f13a8, type: 3}
+--- !u!1 &162281515 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2855807874156308925, guid: c8594e4772837be4f8970588383c44e1, type: 3}
+  m_PrefabInstance: {fileID: 2855807873351890359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &164107548 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4623580461985860552, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -16647,6 +16672,89 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300480, guid: 353b40c6a1ff7dd469b9d1e4dc0f13a8, type: 3}
+--- !u!1 &226690310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 226690311}
+  - component: {fileID: 226690313}
+  - component: {fileID: 226690312}
+  m_Layer: 0
+  m_Name: camaraCastillo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &226690311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226690310}
+  m_LocalRotation: {x: -0.24287438, y: -0.19938149, z: 0.05108232, w: -0.9479714}
+  m_LocalPosition: {x: -2.9703596, y: 4.9037743, z: -6.7014084}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 243791721}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &226690312
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226690310}
+  m_Enabled: 1
+--- !u!20 &226690313
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226690310}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &227017887 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6505362722113473374, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -17590,6 +17698,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2101496839}
+  - {fileID: 226690311}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29817,6 +29926,7 @@ GameObject:
   - component: {fileID: 648901774}
   - component: {fileID: 648901776}
   - component: {fileID: 648901775}
+  - component: {fileID: 648901777}
   m_Layer: 5
   m_Name: fondooro
   m_TagString: Untagged
@@ -29879,6 +29989,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648901773}
   m_CullTransparentMesh: 1
+--- !u!95 &648901777
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648901773}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: efdfc7cc674c0654fa6e9c6af67bcf29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &651332019 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4623580461366514774, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -44591,6 +44720,7 @@ MonoBehaviour:
   textoAviso: {fileID: 0}
   timeDelayAviso: 0
   mixerEfectos: {fileID: 24100000, guid: 01512322317d44442a29409e4da4baf0, type: 2}
+  estructuraDestruida: 0
   textoAvisoSalirConstruccion: {fileID: 1989299668}
   duracionAviso: 3
   hudPrincipal: {fileID: 1242609358}
@@ -53355,6 +53485,7 @@ GameObject:
   - component: {fileID: 1474459112}
   - component: {fileID: 1474459114}
   - component: {fileID: 1474459113}
+  - component: {fileID: 1474459115}
   m_Layer: 5
   m_Name: fondo Unidades
   m_TagString: Untagged
@@ -53419,6 +53550,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474459111}
   m_CullTransparentMesh: 1
+--- !u!95 &1474459115
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474459111}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5eab07b2b1084b4184be5daaf8ee0c0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1475246526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6505362722147052461, guid: a06701f7f954a0248bc3ed72f2a5df9a, type: 3}
@@ -67966,6 +68116,11 @@ MonoBehaviour:
   btnCuartel: {fileID: 202469311}
   btnMuro: {fileID: 237497872}
   textoPasoIndicadorTutorial: {fileID: 1839539338}
+  camaraPrincipal: {fileID: 162281515}
+  camaraCastillo: {fileID: 226690310}
+  contadorOro: {fileID: 648901773}
+  contadorObsi: {fileID: 155716046}
+  contadorUni: {fileID: 1474459111}
   prefabEM: {fileID: 2053117798627461158, guid: de219af1d9e38c54dabcabadde7519f8, type: 3}
   prefabED: {fileID: 4668921592342232491, guid: 4e066e0079f2d714d9f34937a03b386e, type: 3}
   cameraController: {fileID: 243791722}
@@ -73636,7 +73791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2855807874156308922, guid: c8594e4772837be4f8970588383c44e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 2855807874156308922, guid: c8594e4772837be4f8970588383c44e1, type: 3}
       propertyPath: m_LocalPosition.z

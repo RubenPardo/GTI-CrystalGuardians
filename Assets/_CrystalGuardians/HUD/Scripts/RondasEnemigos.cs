@@ -69,8 +69,15 @@ public class RondasEnemigos : MonoBehaviour
     private int rondaMejoras = 3;// cada x rondas aparecen mejoras
     private int maxEnemigosFuertes = 4;
 
+    //animacion del contador de tiempo
+    private Animator animacionContador;
+    public GameObject contadorRondasObject;
+
+
     void Start()
     {
+        animacionContador = contadorRondasObject.GetComponent<Animator>();
+        animacionContador.enabled = false;
         if (GameManager.isTutorialOn == false)
         {
             contadorRonda = tiempoEntreRonda;
@@ -98,7 +105,7 @@ public class RondasEnemigos : MonoBehaviour
 
     public void comenzarRonda()
     {
-        
+        animacionContador.enabled = false;
 
         if (!isRondaActive)
         {
@@ -211,7 +218,10 @@ public class RondasEnemigos : MonoBehaviour
 
     private bool updateCronometro()
     {
-        
+        if (contadorRonda <= 10.0f)
+        {
+            animacionContador.enabled = true;
+        }
         contadorRonda -= Time.deltaTime;
 
         float seconds = Mathf.FloorToInt(contadorRonda % 60); 
@@ -249,6 +259,7 @@ public class RondasEnemigos : MonoBehaviour
         GameObject[] listaEnemigosEnPartida = GameObject.FindGameObjectsWithTag("Enemigo");
         if (listaEnemigosEnPartida.Length == 0)
         {
+            
             return true;
         }
         return false;

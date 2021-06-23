@@ -13,6 +13,9 @@ public class EnemigoScript : MonoBehaviour
     public int[] vidaPorNivel;
     public int vidaMaxima;
     public int vidaActual;
+    public GameObject particulasMuerte;
+    protected ParticleSystem sistemaParticulasMuerte;
+
 
     public float speed;
     public float rangoVision;
@@ -42,6 +45,8 @@ public class EnemigoScript : MonoBehaviour
     protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        sistemaParticulasMuerte = particulasMuerte.GetComponent<ParticleSystem>();
+
         settearVida();
         if (!GameManager.Instance.IsTutorialOn)
         {
@@ -240,6 +245,12 @@ public class EnemigoScript : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
+        if (particulasMuerte != null)
+        {
+            GameObject go = Instantiate(particulasMuerte);
+            go.transform.position = transform.position;
+            go.GetComponentInChildren<ParticleSystem>().Play();
+        }
         GameManager.Instance.EnemigosTotalesEliminados++;
         GameManager.Instance.listaEnemigosRonda.Remove(gameObject);
     }

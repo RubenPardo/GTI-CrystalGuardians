@@ -79,6 +79,7 @@ MonoBehaviour:
   vidaPorNivel: 581b0000b0360000204e0000a86100003075000050c30000
   vidaMaxima: 0
   vidaActual: 0
+  particulasMuerte: {fileID: 0}
   speed: 5
   rangoVision: 100
   rangoAtaque: 4
@@ -103,6 +104,7 @@ MonoBehaviour:
   vidaPorNivel: 881300005014000018150000e0150000a816000070170000
   vidaMaxima: 0
   vidaActual: 0
+  particulasMuerte: {fileID: 6989892642491672809, guid: ccefccf86bf8c38488416686cbc30c8c, type: 3}
   speed: 5
   rangoVision: 100
   rangoAtaque: 4

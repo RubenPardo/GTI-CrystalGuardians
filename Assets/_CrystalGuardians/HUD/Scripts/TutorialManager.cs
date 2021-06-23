@@ -73,8 +73,12 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camaraCastillo.SetActive(true);
-        camaraPrincipal.SetActive(false);
+        if (GameManager.Instance.IsTutorialOn)
+        {
+            camaraCastillo.SetActive(true);
+            camaraPrincipal.SetActive(false);
+        }
+        
         
         panelConstruccion.SetActive(false);
         frase = "Bienvenido a Crystal Guardians. Tu objetivo en esta aventura será defender nuestro castillo de los enemigos del bosque, para ello deberás recolectar recursos y construir defensas.";
@@ -385,6 +389,8 @@ public class TutorialManager : MonoBehaviour
                     GameManager.isTutorialOn = false;
                     GameManager.listaEstructurasEnJuego.Clear();
                     GameManager.listaAliadosEnJuego.Clear();
+
+                    
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
                     break;

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     //tutorial
     public static bool isTutorialOn = true;
+    
     public bool IsTutorialOn { get => isTutorialOn; set => isTutorialOn = value; }
     public bool estructuraDestruida = false;
 
@@ -217,6 +218,7 @@ public class GameManager : MonoBehaviour
                 barraRecursos.SetActive(true);
                 btnRangos.SetActive(true);
                 panelTutorial.SetActive(false);
+                
 
                 GameManager.Instance.Oro = 5000;
                 GameManager.Instance.Obsiidum = 0;

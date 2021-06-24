@@ -448,7 +448,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7748644276605542726, guid: 01512322317d44442a29409e4da4baf0, type: 2}
   m_audioClip: {fileID: 8300000, guid: aafa661129ce44847aa3632995897351, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -610,6 +610,7 @@ MonoBehaviour:
   prefabNvl1: {fileID: 8783709651146290012}
   prefabNvl2: {fileID: 5191019865775717959}
   prefabNvl3: {fileID: 804689531424573015}
+  audioConstruccion: {fileID: 1076533822478528048}
 --- !u!208 &996061154091974965
 NavMeshObstacle:
   m_ObjectHideFlags: 0

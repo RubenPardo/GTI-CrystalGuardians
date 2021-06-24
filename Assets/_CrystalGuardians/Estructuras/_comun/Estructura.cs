@@ -41,6 +41,8 @@ public abstract class Estructura : MonoBehaviour
     protected virtual void Start()
     {
 
+      
+
         // canvas del menu de botones
         canvas = gameObject.transform.Find("Canvas").gameObject;
         if (canvas != null)

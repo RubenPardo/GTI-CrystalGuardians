@@ -21,9 +21,9 @@ public class Muro : Estructura
     public GameObject prefabNvl2;
     public GameObject prefabNvl3;
 
-        
 
-
+    private static bool isConstruccionPlaying = false;
+    public AudioSource audioConstruccion;
 
     public override void abrirMenu()
     {
@@ -39,6 +39,11 @@ public class Muro : Estructura
     // Start is called before the first frame update
     protected override void Start()
     {
+        if (!isConstruccionPlaying)
+        {
+            isConstruccionPlaying = true;
+            audioConstruccion.Play();
+        }
         updateRecursos(true, true, GameManager.costeConstruirMuro, transform);
         base.Start();
         setUpCanvasValues();
@@ -47,6 +52,7 @@ public class Muro : Estructura
     // Update is called once per frame
     protected override void Update()
     {
+        isConstruccionPlaying = audioConstruccion.isPlaying;
         base.Update();
         comprobarDisponibilidadMejora();
     }

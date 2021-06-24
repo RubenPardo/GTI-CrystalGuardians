@@ -137,7 +137,6 @@ public class blueprint_script : MonoBehaviour
             cubeColliderMuro.localScale = new Vector3(1F, 1F, 1F);
             // calculos sobre la distancia del cursor
             Vector3 mousePositionActual = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("X - I: "+mousePositionMurosIni.x+" X -a: "+mousePositionActual.x);
             float distX = Mathf.Abs(mousePositionMurosIni.x) - Mathf.Abs(mousePositionActual.x);
             float disty = Mathf.Abs(mousePositionMurosIni.y) - Mathf.Abs(mousePositionActual.y);
             bool isX = Mathf.Abs(distX) > Mathf.Abs(disty); // poner los murso donde este mas largo el cursor

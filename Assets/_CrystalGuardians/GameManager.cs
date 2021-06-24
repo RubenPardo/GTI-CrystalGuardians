@@ -242,7 +242,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            DestroyImmediate(gameObject);
+             DontDestroyOnLoad(gameObject);
         }
 
         

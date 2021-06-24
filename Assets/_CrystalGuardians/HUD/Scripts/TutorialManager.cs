@@ -103,11 +103,11 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(GameManager.listaEstructurasEnJuego.Count);
+        
         if (GameManager.Instance.IsTutorialOn)
         {
             cameraController.isActive = !panelTutorial.activeSelf;// bloqueamos los controles de la camara si esta el texto activo
-            habilitarSeleccionUnidades(indicePasosTuto == 16);
+            habilitarSeleccionUnidades(indicePasosTuto == 18);
 
             if (pasoCumplido)
             {
@@ -165,7 +165,7 @@ public class TutorialManager : MonoBehaviour
 
                     foreach (GameObject g in GameManager.listaEstructurasEnJuego)
                     {
-                        if (g.GetComponent<Mina>() != null && !hayMina)
+                        if (g!=null && g.GetComponent<Mina>() != null && !hayMina)
                         {
                             hayMina = true;
 
@@ -175,7 +175,7 @@ public class TutorialManager : MonoBehaviour
 
 
                         }
-                        else if (g.GetComponent<ExtractorObsidium>() != null && !hayExtractor)
+                        else if (g != null && g.GetComponent<ExtractorObsidium>() != null && !hayExtractor)
                         {
 
                             hayExtractor = true;
@@ -210,13 +210,13 @@ public class TutorialManager : MonoBehaviour
                     }
                     foreach (GameObject g in GameManager.listaEstructurasEnJuego)
                     {
-                        if (g.GetComponent<Torre>() != null && !hayTorre)
+                        if (g != null && g.GetComponent<Torre>() != null && !hayTorre)
                         {
                             hayTorre = true;
                             habilitar(btnTorre, false);
                             salirModoConstruccion();
                         }
-                        else if (g.GetComponent<Muro>() != null && !hayMuro)
+                        else if (g != null && g.GetComponent<Muro>() != null && !hayMuro)
                         {
                             hayMuro = true;
 
@@ -247,7 +247,7 @@ public class TutorialManager : MonoBehaviour
                     activacionBotones(3);
                     foreach (GameObject g in GameManager.listaEstructurasEnJuego)
                     {
-                        if (g.GetComponent<CuartelUnidades>() != null && !hayCuartel)
+                        if (g != null && g.GetComponent<CuartelUnidades>() != null && !hayCuartel)
                         {
                             habilitar(btnCuartel, false);
                             hayCuartel = true;
@@ -303,7 +303,7 @@ public class TutorialManager : MonoBehaviour
 
                     foreach (GameObject g in GameManager.listaEstructurasEnJuego)
                     {
-                        if (g.GetComponent<CasaDeHechizos>() != null && !hayCasaHechizos)
+                        if (g != null && g.GetComponent<CasaDeHechizos>() != null && !hayCasaHechizos)
                         {
                             hayCasaHechizos = true;
                             habilitar(btnCasaHechizos, false);

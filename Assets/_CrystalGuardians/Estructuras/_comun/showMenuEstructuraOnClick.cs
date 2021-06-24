@@ -35,7 +35,6 @@ public class showMenuEstructuraOnClick : MonoBehaviour
 
                         if (e != null)
                         {
-                            Debug.Log("ABRIR MENU");
                             if (estructuraAnterior != null)
                             {
                                 estructuraAnterior.cerrarMenu();
@@ -45,7 +44,7 @@ public class showMenuEstructuraOnClick : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("CERRAR MENU");
+
                             // se hizo click en otra cosa que no es una estructura
                             if (estructuraAnterior != null)
                             {

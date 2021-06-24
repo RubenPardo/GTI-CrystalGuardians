@@ -249,7 +249,7 @@ public class EnemigoScript : MonoBehaviour
         {
             GameObject go = Instantiate(particulasMuerte);
             go.transform.position = transform.position;
-            go.GetComponentInChildren<ParticleSystem>().Play();
+            //go.GetComponent<ParticleSystem>().Play();
         }
         GameManager.Instance.EnemigosTotalesEliminados++;
         GameManager.Instance.listaEnemigosRonda.Remove(gameObject);
